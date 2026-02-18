@@ -153,3 +153,7 @@ python3 ros_stream.py
 # then in another terminal:
 ros2 topic echo /camera/color/image_raw # just shows data
 
+SENDING DRIVE COMMANDS WITH ARROW KEY TELEOPERATOR:
+# after ssh in, run the following:
+cd code/ros_ws/src/
+python3 teleoperator.py

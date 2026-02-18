@@ -85,6 +85,26 @@ export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 # Add to .bashrc to make it permanent:
 echo 'export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '"'"'{print $2}'"'"'):0.0' >> ~/.bashrc
 
+SSH WITH GRAPHICS:
+-----------------
+On your local machine edit ~/.ssh/config
+Add this to the ssh config file:
+
+Host *
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Protocol 2
+    GSSAPIDelegateCredentials no
+    XAuthLocation /usr/bin/xauth
+
+and then try 
+ssh -X copperbottoms@100.124.219.92
+
+Once you've ssh'ed in, run
+xeyes
+if a graphical application pops up, you've added graphics
+to your ssh session.
 
 SSH TO RASPBERRY PI:
 -------------------

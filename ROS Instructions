@@ -1,0 +1,146 @@
+ROS 2 HUMBLE - WSL SETUP INSTRUCTIONS
+=====================================
+
+EVERY NEW TERMINAL - Run this first:
+------------------------------------
+source /opt/ros/humble/setup.bash
+
+To avoid typing this every time, add it to your .bashrc:
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+
+
+QUICK NAVIGATION:
+-----------------
+# Add this alias to quickly switch to copperbottoms directory:
+echo "alias copperbottoms='cd ~/copperbottoms'" >> ~/.bashrc
+source ~/.bashrc
+
+# Then just type:
+copperbottoms
+
+# (Adjust the path if your directory is elsewhere, e.g., /mnt/c/Users/aehee/copperbottoms)
+
+
+RUNNING TURTLESIM:
+-----------------
+
+TERMINAL 1 - Start turtlesim:
+source /opt/ros/humble/setup.bash
+ros2 run turtlesim turtlesim_node
+
+TERMINAL 2 - Control the turtle:
+source /opt/ros/humble/setup.bash
+ros2 run turtlesim turtle_teleop_key
+(Use arrow keys to move the turtle)
+
+
+USEFUL COMMANDS:
+---------------
+# List all running nodes
+ros2 node list
+
+# Get detailed info about a specific node (publishers, subscribers, services, actions)
+ros2 node info /node_name
+
+# List all topics
+ros2 topic list
+
+# Get info about a specific topic (publishers/subscribers)
+ros2 topic info /topic_name
+
+# See topic data in real-time
+ros2 topic echo /turtle1/pose
+
+# Visualize the node/topic graph
+rqt_graph
+
+# Open rqt GUI tool
+rqt
+
+# Check ROS 2 version
+ros2 --version
+
+# topic list 
+ros2 topic list -t
+These attributes, particularly the type, 
+are how nodes know they’re talking about the same information as it moves over topics.
+
+#To see the data being published on a topic, use:
+
+ ros2 topic echo /turtle1/cmd_vel
+
+OPTIONAL SETTINGS:
+-----------------
+# Set domain ID (0-101) to isolate your network
+export ROS_DOMAIN_ID=0
+domain 1d = 11
+
+
+X11 DISPLAY SETUP (for GUI apps like turtlesim):
+------------------------------------------------
+# Make sure VcXsrv is running on Windows first!
+# In WSL, set DISPLAY variable:
+export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+
+# Add to .bashrc to make it permanent:
+echo 'export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '"'"'{print $2}'"'"'):0.0' >> ~/.bashrc
+
+
+SSH TO RASPBERRY PI:
+-------------------
+# Basic SSH connection:
+ssh copperbottoms@100.124.219.92
+password: Babadook8374!
+
+# SSH with X11 forwarding (to run GUI apps on Pi and display on your PC):
+ssh -X copperbottoms@100.124.219.92
+
+# Or with compression for better performance over network:
+ssh -XC copperbottoms@100.124.219.92
+
+# After connecting with -X, you can run GUI apps like:
+# ros2 run turtlesim turtlesim_node
+# rqt_graph
+# etc. and they'll display on your Windows machine via VcXsrv
+
+
+RUNNING ROVER NODE ON RASPBERRY PI:
+-----------------------------------
+# After SSH'ing to the Pi, run these commands in a new terminal:
+cd ~/code/ros_ws
+source install/setup.bash
+ros2 run robo_rover rover_node
+
+# To check if rover_node is already running:
+ros2 node list
+
+# To see rover_node topics:
+ros2 topic list
+
+# To monitor IMU data:
+ros2 topic echo /imu/accel
+ros2 topic echo /imu/gyro
+
+# To control the rover:
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5}, angular: {z: 0.0}}"
+
+
+DEBUGGING ROVER NODE:
+--------------------
+# If IMU data isn't publishing, check hardware connection:
+sudo i2cdetect -y 1
+# Should show IMU at address 0x68 or 0x69
+
+# Restart rover_node to see initialization messages:
+pkill -f rover_node
+cd ~/code/ros_ws
+source install/setup.bash
+ros2 run robo_rover rover_node
+
+# Check which terminal rover_node is running in:
+ps aux | grep rover_node
+tty
+
+# View ROS logs:
+ros2 node info /rover_node
+ros2 topic hz /imu/accel

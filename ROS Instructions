@@ -169,9 +169,14 @@ READING IN CAMERA DATA:
 -----------------------
 # run the following:
 cd robo_realsense/
+
+# to get raw camera data:
 python3 ros_stream.py
 # then in another terminal:
 ros2 topic echo /camera/color/image_raw # just shows data
+
+# to get camera stream: (need -X for graphics)
+python3 desktop_stream.py
 
 SENDING DRIVE COMMANDS WITH ARROW KEY TELEOPERATOR:
 # after ssh in, run the following:

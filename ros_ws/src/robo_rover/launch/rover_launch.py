@@ -14,7 +14,7 @@ def generate_launch_description():
     # Declare launch arguments
     connection_string_arg = DeclareLaunchArgument(
         'connection_string',
-        default_value='/dev/ttyACM0',
+        default_value='/dev/ttyACM1',
         description='MAVLink connection string (serial port or UDP/TCP)'
     )
     

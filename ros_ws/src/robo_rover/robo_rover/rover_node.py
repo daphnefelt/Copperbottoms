@@ -22,10 +22,9 @@ class ArduPilotRoverNode(Node):
         super().__init__('rover_node')
         
         # Parameters
-        self.declare_parameter('connection_string', '/dev/ttyACM0')
+        self.declare_parameter('connection_string', '/dev/ttyACM1')
         self.declare_parameter('baud_rate', 115200)
         self.declare_parameter('control_frequency', 20.0)
-        #self.declare_parameter('control_frequency', 10000.0)
         self.declare_parameter('imu_frequency', 20.0)
         
         # Get parameters
@@ -106,8 +105,8 @@ class ArduPilotRoverNode(Node):
             
             self.connected = True
             
-            # Set mode to Manual
-            if self.set_mode('MANUAL'):
+            # Set mode to ACRO
+            if self.set_mode('ACRO'):
                 time.sleep(2)
                 # Arm the rover
                 self.arm_rover()
@@ -267,13 +266,12 @@ class ArduPilotRoverNode(Node):
             steering = self.current_steering
         
         # Send manual control command
-        throttle = 1800
         try:
             self.master.mav.manual_control_send(
                 self.master.target_system,
-                throttle,      
+                0,      
                 steering,    
-                1800,      
+                throttle,      
                 0,           
                 0            
             )
@@ -286,7 +284,7 @@ class ArduPilotRoverNode(Node):
             return
         
         # Try to get SCALED_IMU first (preferred)
-        scaled_imu = self.master.recv_match(type='SCALED_IMU', blocking=True,timeout=.01)
+        scaled_imu = self.master.recv_match(type='SCALED_IMU', blocking=False)
         if scaled_imu is not None:
             self.publish_scaled_imu(scaled_imu)
             return

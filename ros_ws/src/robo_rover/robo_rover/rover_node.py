@@ -268,7 +268,7 @@ class ArduPilotRoverNode(Node):
         
         # Send manual control command
         throttle = 1800
-	try:
+        try:
             self.master.mav.manual_control_send(
                 self.master.target_system,
                 throttle,      

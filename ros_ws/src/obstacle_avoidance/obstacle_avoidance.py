@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 import sys
-from std_msgs.msg import Header
+from sensor_msgs.msg import Header
 import math
 import matplotlib.pyplot as plt
 import numpy as np

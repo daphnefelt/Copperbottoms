@@ -243,6 +243,10 @@ class ArduPilotRoverNode(Node):
         self.current_throttle = int(np.clip(throttle_with_offset, -300, 300))
 
         self.current_steering = int(np.clip(msg.angular.z * 500, -1000, 1000))
+        #max_throttle = 300
+        #min_throttle = -300
+        #self.current_throttle = int(np.clip((msg.linear.x + 1.0)*600 - 1000, min_throttle, max_throttle))
+        #self.current_steering = int(np.clip((msg.angular.z + 2.0)*1000 - 1000, min_throttle, max_throttle))
         
         self.last_cmd_time = time.time()
         

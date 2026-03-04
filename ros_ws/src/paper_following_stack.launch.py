@@ -2,8 +2,7 @@
 
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess
-from launch.substitutions import LaunchConfiguration
+from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
 
 def generate_launch_description():
@@ -11,13 +10,13 @@ def generate_launch_description():
     fastsam_dir = os.path.expanduser('~/robo_realsense/fastsam')
 
     find_paper = ExecuteProcess(
-        cmd=['python3', [LaunchConfiguration('workspace_src_dir'), '/find_paper.py']],
+        cmd=['python3', os.path.join(workspace_src_dir, 'find_paper.py')],
         output='screen',
         emulate_tty=True,
     )
 
     pid_paper_following = ExecuteProcess(
-        cmd=['python3', [LaunchConfiguration('workspace_src_dir'), '/pid_paper_following.py']],
+        cmd=['python3', os.path.join(workspace_src_dir, 'pid_paper_following.py')],
         output='screen',
         emulate_tty=True,
     )
@@ -31,20 +30,18 @@ def generate_launch_description():
     )
 
     camera_subscriber = ExecuteProcess(
-        cmd=['python3', [LaunchConfiguration('fastsam_dir'), '/camera_subscriber.py']],
+        cmd=['python3', os.path.join(fastsam_dir, 'camera_subscriber.py')],
         output='screen',
         emulate_tty=True,
     )
 
     ros_stream_with_depth = ExecuteProcess(
-        cmd=['python3', [LaunchConfiguration('fastsam_dir'), '/ros_stream_with_depth.py']],
+        cmd=['python3', os.path.join(fastsam_dir, 'ros_stream_with_depth.py')],
         output='screen',
         emulate_tty=True,
     )
 
     return LaunchDescription([
-        workspace_src_dir,
-        fastsam_dir,
         find_paper,
         pid_paper_following,
         rover_node,

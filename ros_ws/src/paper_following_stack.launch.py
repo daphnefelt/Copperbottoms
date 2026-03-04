@@ -29,12 +29,6 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
-    camera_subscriber = ExecuteProcess(
-        cmd=['python3', os.path.join(fastsam_dir, 'camera_subscriber.py')],
-        output='screen',
-        emulate_tty=True,
-    )
-
     ros_stream_with_depth = ExecuteProcess(
         cmd=['python3', os.path.join(fastsam_dir, 'ros_stream_with_depth.py')],
         output='screen',
@@ -45,6 +39,5 @@ def generate_launch_description():
         find_paper,
         pid_paper_following,
         rover_node,
-        camera_subscriber,
         ros_stream_with_depth,
     ])

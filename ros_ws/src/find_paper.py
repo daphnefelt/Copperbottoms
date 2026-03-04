@@ -5,7 +5,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Image
-import cv2
+import cv2 as cv
 
 class FindPaperNode(Node):
     def __init__(self) -> None:
@@ -78,8 +78,8 @@ class FindPaperNode(Node):
         color_mask = np.all((color >= lower) & (color <= upper), axis=2)
 
         display = color.copy()
-        cv2.imshow("image", display)
-        cv2.waitKey(1)
+        cv.imshow("image", display)
+        cv.waitKey(1)
 
         ys, xs = np.where(color_mask)
         if xs.size == 0:
@@ -117,12 +117,11 @@ class FindPaperNode(Node):
         )
 
         # plot img with mask and centroid
-        import cv2
         display = color.copy()
         display[color_mask] = [0, 255, 255]  # highlight mask
-        cv2.circle(display, (int(centroid_x), int(ys.mean())), 5, (0, 0, 255), -1)  # centroid
-        cv2.imshow("Mask", display)
-        cv2.waitKey(1)
+        cv.circle(display, (int(centroid_x), int(ys.mean())), 5, (0, 0, 255), -1)  # centroid
+        cv.imshow("Mask", display)
+        cv.waitKey(1)
 
 
 def main(args=None) -> None:

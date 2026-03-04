@@ -5,6 +5,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Image
+import cv2
 
 class FindPaperNode(Node):
     def __init__(self) -> None:
@@ -75,6 +76,10 @@ class FindPaperNode(Node):
         upper = self.upper_bgr.reshape((1, 1, 3))
 
         color_mask = np.all((color >= lower) & (color <= upper), axis=2)
+
+        display = color.copy()
+        cv2.imshow("image", display)
+        cv2.waitKey(1)
 
         ys, xs = np.where(color_mask)
         if xs.size == 0:

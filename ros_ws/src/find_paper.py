@@ -24,6 +24,7 @@ class FindPaperNode(Node):
         self.latest_depth = None
         self.latest_depth_stamp = None
         self.frame_count = 0
+        self.processes_every_n_frames = 2
 
         self.color_sub = self.create_subscription(Image, self.color_topic, self.color_callback, qos_profile_sensor_data)
         self.depth_sub = self.create_subscription(Image, self.depth_topic, self.depth_callback, qos_profile_sensor_data)
@@ -56,6 +57,9 @@ class FindPaperNode(Node):
 
     def color_callback(self, msg: Image) -> None:
         self.frame_count += 1
+
+        if self.frame_count % self.processes_every_n_frames != 0:
+            return
 
         if self.latest_depth is None:
             self.get_logger().warn("No depth frame received yet.")

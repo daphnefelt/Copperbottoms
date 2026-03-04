@@ -80,9 +80,9 @@ class FindPaperNode(Node):
 
         color_mask = np.all((color >= lower) & (color <= upper), axis=2)
 
-        display = color.copy()
-        cv.imshow("image", display)
-        cv.waitKey(1)
+        # display = color.copy()
+        # cv.imshow("image", display)
+        # cv.waitKey(1)
 
         ys, xs = np.where(color_mask)
         if xs.size == 0:
@@ -121,8 +121,8 @@ class FindPaperNode(Node):
 
         # send angle goal as proportional to x_offset
         angle_goal = Float64()
-        # mapping from -100,100 to -45,45
-        angle_goal.data = 0.45 * x_offset  # negative because left offset should
+        # mapping from -200,200 to -45,45
+        angle_goal.data = 0.225 * x_offset  # negative because left offset should
         # publish
         self.angle_pub.publish(angle_goal)
         self.get_logger().info(f"Published angle_goal: {angle_goal.data:.2f} degrees")

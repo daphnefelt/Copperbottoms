@@ -6,6 +6,7 @@ from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Image
 import cv2 as cv
+from std_msgs.msg import Float64
 
 class FindPaperNode(Node):
     def __init__(self) -> None:
@@ -26,6 +27,7 @@ class FindPaperNode(Node):
 
         self.color_sub = self.create_subscription(Image, self.color_topic, self.color_callback, qos_profile_sensor_data)
         self.depth_sub = self.create_subscription(Image, self.depth_topic, self.depth_callback, qos_profile_sensor_data)
+        self.angle_pub = self.create_publisher(Float64, "/angle_goal", 10)
 
         self.get_logger().info(f"Subscribed color: {self.color_topic}")
         self.get_logger().info(f"Subscribed depth: {self.depth_topic}")
@@ -116,6 +118,14 @@ class FindPaperNode(Node):
                 valid_depth.size,
             )
         )
+
+        # send angle goal as proportional to x_offset
+        angle_goal = Float64()
+        # mapping from -100,100 to -45,45
+        angle_goal.data = 0.45 * x_offset  # negative because left offset should
+        # publish
+        self.angle_pub.publish(angle_goal)
+        self.get_logger().info(f"Published angle_goal: {angle_goal.data:.2f} degrees")
 
         # plot img with mask and centroid
         display = color.copy()

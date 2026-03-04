@@ -34,6 +34,7 @@ class ArduPilotRoverNode(Node):
         self.imu_freq = self.get_parameter('imu_frequency').value
         
         # Control variables
+        self.stop_move= False
         self.default_throttle = 0.0
         self.default_steering = 0.0
         self.current_throttle = self.default_throttle
@@ -67,6 +68,7 @@ class ArduPilotRoverNode(Node):
         # Subscribers
         self.cmd_sub = self.create_subscription(
             Twist, 'cmd_vel', self.cmd_vel_callback, control_qos)
+        self.stop_move_sub = self.create_subscription(Bool, 'stop_move', self.stop_move_callback, control_qos)
         
         # Timers
         self.control_timer = self.create_timer(
@@ -223,6 +225,9 @@ class ArduPilotRoverNode(Node):
             
         except Exception as e:
             self.get_logger().error(f'Failed to request IMU data: {e}')
+    def stop_move_callback(self, msg):
+        """ Respect stopping commands """
+        self.stop_move = msg.data 
     
     def cmd_vel_callback(self, msg):
         """Handle incoming velocity commands"""
@@ -243,6 +248,10 @@ class ArduPilotRoverNode(Node):
         self.current_throttle = int(np.clip(throttle_with_offset, -300, 300))
 
         self.current_steering = int(np.clip(msg.angular.z * 500, -1000, 1000))
+        #max_throttle = 300
+        #min_throttle = -300
+        #self.current_throttle = int(np.clip((msg.linear.x + 1.0)*600 - 1000, min_throttle, max_throttle))
+        #self.current_steering = int(np.clip((msg.angular.z + 2.0)*1000 - 1000, min_throttle, max_throttle))
         
         self.last_cmd_time = time.time()
         
@@ -264,6 +273,9 @@ class ArduPilotRoverNode(Node):
         else:
             throttle = self.current_throttle
             steering = self.current_steering
+	if self.stop_move:
+            throttle = 0;
+            steering = 0;
         
         # Send manual control command
         try:

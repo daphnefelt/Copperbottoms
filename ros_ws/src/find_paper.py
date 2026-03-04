@@ -13,9 +13,10 @@ class FindPaperNode(Node):
 
         self.color_topic = "/camera/color/image_raw"
         self.depth_topic = "/camera/depth/image_raw"
-        self.actual_bgr = np.array([20, 255, 57]) # bgr for rgb (57, 255, 20)
-        self.lower_bgr = self.actual_bgr - np.array([10, 10, 10])
-        self.upper_bgr = self.actual_bgr + np.array([10, 10, 10])
+        # self.actual_bgr = np.array([20, 255, 57]) # bgr for rgb (57, 255, 20)
+        self.actual_bgr = np.array([74, 94, 15]) # bgr for rgb 15, 94, 74
+        self.lower_bgr = self.actual_bgr - np.array([20, 20, 20])
+        self.upper_bgr = self.actual_bgr + np.array([20, 20, 20])
         self.min_depth_mm = 1
         self.max_depth_mm = 10000
 

@@ -183,6 +183,12 @@ SENDING DRIVE COMMANDS WITH ARROW KEY TELEOPERATOR:
 cd code/ros_ws/src/
 python3 teleoperator.py
 
+LAUNCH FILES:
+--------------------------
+# Green paper following launch (must be in paper_following directory (src))
+# Launches find_paper.py, pid_paper_following.py, robo_rover, ros_stream_with_depth.py
+ros2 launch ./paper_following_stack.launch.py
+
 LIDAR DATA:
 -----------------------
 # ssh in (with graphics) and run the following:

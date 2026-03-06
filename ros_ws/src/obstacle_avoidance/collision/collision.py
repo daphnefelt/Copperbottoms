@@ -13,7 +13,13 @@ class CollisionDetector(Node):
         # 1. Setup constants and convert to numpy
         ranges = np.array(msg.ranges)
         half_cone = math.radians(15)
-
+        min_angle_degrees = msg.angle_min*180/math.pi
+        max_angle_degrees = msg.angle_max*180/math.pi
+        angle_increment_degrees = msg.angle_increment*180/math.pi
+#        print(f"min angle radian: {msg.angle_min}, angle: {min_angle_degrees}")
+#        print(f"max angle radian: {msg.angle_max}, angle: {max_angle_degrees}")
+#        print(f"increment angle radian: {msg.angle_increment}, angle: {angle_increment_degrees}")
+#
         # 2. Calculate indices with explicit integer casting
         # Formula: index = (target_angle - min_angle) / increment
         start_idx = int(((-half_cone) - msg.angle_min) / msg.angle_increment)

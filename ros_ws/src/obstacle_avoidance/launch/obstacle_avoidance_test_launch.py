@@ -1,9 +1,14 @@
 from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
 from launch_ros.actions import Node
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import ThisLaunchFileDir
 
 
 #  ros2 run rplidar_ros rplidar_node --ros-args --remap scan_mode:=Standard --ros-args --remap serial_port:=/dev/ttyUSB0
 def generate_launch_description():
+    rplidar_launch_file = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
     return LaunchDescription([
         Node(
             package='robo_rover',
@@ -23,6 +28,7 @@ def generate_launch_description():
         ),
         Node(
             package='obstacle_avoidance',
+            namespace='collision',
             executable='collision',
             name='collision_executable',
         )

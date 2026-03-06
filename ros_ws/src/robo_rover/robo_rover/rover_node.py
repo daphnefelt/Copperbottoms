@@ -264,7 +264,7 @@ class ArduPilotRoverNode(Node):
         """Main control loop - sends commands at fixed rate"""
         if not self.connected or not self.armed:
             return
-        
+
         # Check for command timeout
         if time.time() - self.last_cmd_time > self.cmd_timeout:
             # Use default values if no recent commands
@@ -273,9 +273,11 @@ class ArduPilotRoverNode(Node):
         else:
             throttle = self.current_throttle
             steering = self.current_steering
-	if self.stop_move:
-            throttle = 0;
-            steering = 0;
+
+
+        if self.stop_move:
+            throttle = 0
+            steering = 0
         
         # Send manual control command
         try:

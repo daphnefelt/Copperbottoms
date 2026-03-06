@@ -16,7 +16,7 @@ class PaperFollower(Node):
         self.drive_pub = self.create_publisher(Twist, '/cmd_vel', 10)
 
     def angle_goal_callback(self, msg):
-        angle_goal = msg.data
+        angle_goal = -msg.data
         self.get_logger().info(f"Received angle_goal: {angle_goal}")
         # Angle goal is with respect to the robot's current heading, so it is already the error
         p = 0.4  # proportional
@@ -32,7 +32,7 @@ class PaperFollower(Node):
 
         # now actually command using the robo rover node
         twist = Twist()
-        twist.linear.x = 0.1  # constant forward speed to make turn actually happen
+        twist.linear.x = 0.15  # constant forward speed to make turn actually happen
         twist.angular.z = turn_amount # need to check signs here
         self.drive_pub.publish(twist)
 

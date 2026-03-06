@@ -227,6 +227,7 @@ class ArduPilotRoverNode(Node):
             self.get_logger().error(f'Failed to request IMU data: {e}')
     def stop_move_callback(self, msg):
         """ Respect stopping commands """
+
         self.stop_move = msg.data 
     
     def cmd_vel_callback(self, msg):
@@ -236,7 +237,7 @@ class ArduPilotRoverNode(Node):
         # msg.angular.z: turning rate (-2.0 to 2.0)
         
         # adds offset to throttle to make it act more linear
-        throttle_raw = msg.linear.x * -400
+        throttle_raw = msg.linear.x * 400
         offset = 80
 
         if throttle_raw >= 0:
@@ -276,8 +277,14 @@ class ArduPilotRoverNode(Node):
 
 
         if self.stop_move:
+            self.get_logger().warn(f"Obstacle detected!  ")
+
             throttle = 0
             steering = 0
+        else:
+            self.get_logger().warn(f"Not within 1 meter")
+
+        self.get_logger().warn(f"steering {steering} throttle {throttle}")
         
         # Send manual control command
         try:

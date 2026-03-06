@@ -7,9 +7,11 @@ from launch.substitutions import ThisLaunchFileDir
 
 #  ros2 run rplidar_ros rplidar_node --ros-args --remap scan_mode:=Standard --ros-args --remap serial_port:=/dev/ttyUSB0
 def generate_launch_description():
+    # i'm being lazy about generating the folder - mary
     rplidar_launch_file = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
+            PythonLaunchDescriptionSource(['/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/launch/', 'rplidar_a1_launch.py'])
     return LaunchDescription([
+        rplidar_launch_file,
         Node(
             package='robo_rover',
             namespace='robo_node',

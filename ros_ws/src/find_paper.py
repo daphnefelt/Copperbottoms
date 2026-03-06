@@ -84,9 +84,9 @@ class FindPaperNode(Node):
 
         color_mask = np.all((color >= lower) & (color <= upper), axis=2)
 
-        # display = color.copy()
-        # cv.imshow("image", display)
-        # cv.waitKey(1)
+        display = color.copy()
+        cv.imshow("image", display)
+        cv.waitKey(1)
 
         ys, xs = np.where(color_mask)
         if xs.size == 0:

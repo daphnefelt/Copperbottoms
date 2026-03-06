@@ -8,20 +8,20 @@ from geometry_msgs.msg import Twist
 from std_msgs.msg import Bool
  
 class CollisionDetector(Node):
-    
-   def scan_callback(self, msg):
+
+    def scan_callback(self, msg):
         # 1. Setup constants and convert to numpy
         ranges = np.array(msg.ranges)
         half_cone = math.radians(15)
-        
+
         # 2. Calculate indices with explicit integer casting
         # Formula: index = (target_angle - min_angle) / increment
         start_idx = int(((-half_cone) - msg.angle_min) / msg.angle_increment)
         end_idx = int((half_cone - msg.angle_min) / msg.angle_increment)
-        
+
         # 3. Slice the array
         front_ranges = ranges[start_idx : end_idx + 1]
-        
+
         # 4. Filter out zeros and non-finite values (Inf/NaN)
         # This prevents the rover from "ghost stopping" due to sensor noise
         valid_ranges = front_ranges[(front_ranges > msg.range_min) & (np.isfinite(front_ranges))]
@@ -48,9 +48,8 @@ class CollisionDetector(Node):
             stop_msg.data = False
 
         self.stop_move_pub.publish(stop_msg)
-
     def __init__(self):
-        
+
         super().__init__('collision_detector')
         # subscribe to lidar scanner
         self.subscription = self.create_subscription(

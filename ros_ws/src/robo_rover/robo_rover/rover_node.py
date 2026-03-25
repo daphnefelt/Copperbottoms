@@ -35,6 +35,7 @@ class ArduPilotRoverNode(Node):
         
         # Control variables
         self.stop_move= False
+        self.slow_move = False
         self.default_throttle = 0.0
         self.default_steering = 0.0
         self.current_throttle = self.default_throttle
@@ -69,6 +70,7 @@ class ArduPilotRoverNode(Node):
         self.cmd_sub = self.create_subscription(
             Twist, 'cmd_vel', self.cmd_vel_callback, control_qos)
         self.stop_move_sub = self.create_subscription(Bool, 'stop_move', self.stop_move_callback, control_qos)
+        self.slow_move_sub = self.create_subscription(Bool, 'slow_move', self.slow_move_callback, control_qos)
         
         # Timers
         self.control_timer = self.create_timer(
@@ -229,6 +231,11 @@ class ArduPilotRoverNode(Node):
         """ Respect stopping commands """
 
         self.stop_move = msg.data 
+
+    def slow_move_callback(self, msg):
+        """ Respect slow commands """
+
+        self.slow_move = msg.data
     
     def cmd_vel_callback(self, msg):
         """Handle incoming velocity commands"""
@@ -283,6 +290,16 @@ class ArduPilotRoverNode(Node):
             steering = 0
         else:
             self.get_logger().warn(f"Not within 1 meter")
+
+        if self.slow_move:
+            self.get_logger().warn(f"Object near, slowing down!")
+            throttle = 0.5
+            steering = 0
+            else
+            self.get_logger().warn(f"Not near, not slowing down")
+
+            
+
 
         self.get_logger().warn(f"steering {steering} throttle {throttle}")
         

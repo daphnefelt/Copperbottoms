@@ -15,7 +15,7 @@ class FindPaperNode(Node):
         self.color_topic = "/camera/color/image_raw"
         self.depth_topic = "/camera/depth/image_raw"
         # self.actual_bgr = np.array([20, 255, 57]) # bgr for rgb (57, 255, 20)
-        self.actual_bgr = np.array([74, 94, 15]) # bgr for rgb 15, 94, 74
+        self.actual_bgr = np.array([78, 170, 95]) # bgr for rgb 15, 94, 74
         self.lower_bgr = self.actual_bgr - np.array([20, 20, 20])
         self.upper_bgr = self.actual_bgr + np.array([20, 20, 20])
         self.min_depth_mm = 1
@@ -24,7 +24,7 @@ class FindPaperNode(Node):
         self.latest_depth = None
         self.latest_depth_stamp = None
         self.frame_count = 0
-        self.processes_every_n_frames = 2
+        self.processes_every_n_frames = 1
 
         self.color_sub = self.create_subscription(Image, self.color_topic, self.color_callback, qos_profile_sensor_data)
         self.depth_sub = self.create_subscription(Image, self.depth_topic, self.depth_callback, qos_profile_sensor_data)

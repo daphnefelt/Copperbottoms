@@ -211,3 +211,7 @@ ros2 run robo_rover rover_node
 Publish to command_vel
 ros2 topic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.2}}'
 =======
+
+PAPER following
+---------------
+ros2 launch paper_following_stack.launch.py

@@ -19,7 +19,7 @@ class PaperFollower(Node):
         angle_goal = -msg.data
         self.get_logger().info(f"Received angle_goal: {angle_goal}")
         # Angle goal is with respect to the robot's current heading, so it is already the error
-        p = 0.4  # proportional
+        p = 0.2  # proportional
         i = 0.0  # integral
         d = 0.0  # derivative
 

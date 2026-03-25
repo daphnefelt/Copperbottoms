@@ -288,8 +288,6 @@ class ArduPilotRoverNode(Node):
 
             throttle = 0
             steering = 0
-        else:
-            self.get_logger().warn(f"Not within 1 meter")
 
         if self.slow_move:
             self.get_logger().warn(f"Object near, slowing down!")

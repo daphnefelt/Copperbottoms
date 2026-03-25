@@ -9,7 +9,7 @@ from launch.substitutions import ThisLaunchFileDir
 def generate_launch_description():
     # i'm being lazy about generating the folder - mary
     rplidar_launch_file = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(['/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/launch/', 'rplidar_a1_launch.py'])
+            PythonLaunchDescriptionSource(['/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance/launch', 'obstacle_avoidance_test_launch.py']))
     return LaunchDescription([
         rplidar_launch_file,
         Node(

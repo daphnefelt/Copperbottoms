@@ -299,7 +299,6 @@ class ArduPilotRoverNode(Node):
             
 
 
-        self.get_logger().warn(f"steering {steering} throttle {throttle}")
         
         # Send manual control command
         try:

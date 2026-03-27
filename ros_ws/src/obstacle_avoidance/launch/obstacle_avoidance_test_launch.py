@@ -14,24 +14,16 @@ def generate_launch_description():
         rplidar_launch_file,
         Node(
             package='robo_rover',
-            namespace='robo_node',
             executable='robo_node',
             name='robo_node'
         ),
         Node(
-            package='rplidar_ros',
-            namespace='rplidar_node',
-            executable='rplidar_node',
-            parameters=[{
-                'serial_port': '/dev/ttyUSB0',
-                'scan_mode': 'Standard',
-            }],
-            name='rplidar_node'
-        ),
-        Node(
             package='obstacle_avoidance',
-            namespace='collision',
             executable='collision',
             name='collision_executable',
+        ),
+	ExecuteProcess(
+            cmd=['ros2', 'topic', 'pub', '/cmd_vel', 'geometry/Twist', '"{linear: {x: 0.2}, angular: {z: 0.0}}"'],
+            output='screen'
         )
     ])

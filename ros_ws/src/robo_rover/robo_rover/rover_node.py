@@ -293,13 +293,10 @@ class ArduPilotRoverNode(Node):
             self.get_logger().warn(f"Object near, slowing down!")
             throttle = 0.5
             steering = 0
-            else
-            self.get_logger().warn(f"Not near, not slowing down")
 
             
 
 
-        self.get_logger().warn(f"steering {steering} throttle {throttle}")
         
         # Send manual control command
         try:
@@ -312,7 +309,7 @@ class ArduPilotRoverNode(Node):
                 0            
             )
         except Exception as e:
-            self.get_logger().error(f'Failed to send control command: {e}')
+            self.get_logger().error(f'Failed to send control command: {e} steering: {steering} throttle {throttle}')
     
     def imu_loop(self):
         """IMU data processing loop"""

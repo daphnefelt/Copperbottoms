@@ -236,15 +236,13 @@ class ArduPilotRoverNode(Node):
         """ Respect slow commands """
 
         self.slow_move = msg.data
-    
-    def cmd_vel_callback(self, msg):
-        """Handle incoming velocity commands"""
-        # Convert Twist message to throttle and steering
-        # msg.linear.x: forward/backward speed (-1.0 to 1.0)
-        # msg.angular.z: turning rate (-2.0 to 2.0)
+
+    def set_robo_vel_cmd(self, linear, steering):
+        """Convert ROS cmd_vel to MAVLink manual control values"""
+        # linear: -1.0 to 1.0 (backward to forward)
+        # steering: -2.0 to 2.0 (left to right)
         
-        # adds offset to throttle to make it act more linear
-        throttle_raw = msg.linear.x * 400
+        throttle_raw = linear * 400
         offset = 80
 
         if throttle_raw >= 0:
@@ -256,6 +254,15 @@ class ArduPilotRoverNode(Node):
         self.current_throttle = int(np.clip(throttle_with_offset, -300, 300))
 
         self.current_steering = int(np.clip(msg.angular.z * 500, -1000, 1000))
+            
+    def cmd_vel_callback(self, msg):
+        """Handle incoming velocity commands"""
+        # Convert Twist message to throttle and steering
+        # msg.linear.x: forward/backward speed (-1.0 to 1.0)
+        # msg.angular.z: turning rate (-2.0 to 2.0)
+        
+        # adds offset to throttle to make it act more linear
+        self.set_robo_vel_cmd(msg.linear.x, msg.angular.z)
         #max_throttle = 300
         #min_throttle = -300
         #self.current_throttle = int(np.clip((msg.linear.x + 1.0)*600 - 1000, min_throttle, max_throttle))
@@ -273,6 +280,8 @@ class ArduPilotRoverNode(Node):
         if not self.connected or not self.armed:
             return
 
+
+
         # Check for command timeout
         if time.time() - self.last_cmd_time > self.cmd_timeout:
             # Use default values if no recent commands
@@ -282,6 +291,9 @@ class ArduPilotRoverNode(Node):
             throttle = self.current_throttle
             steering = self.current_steering
 
+        if self.slow_move:
+           self.get_logger().warn(f"Object near, slowing down!")
+           self.set_robo_vel_cmd(0.1, 0)
 
         if self.stop_move:
             self.get_logger().warn(f"Obstacle detected!  ")
@@ -291,12 +303,7 @@ class ArduPilotRoverNode(Node):
         else:
             self.get_logger().warn(f"Not within 1 meter")
 
-        if self.slow_move:
-            self.get_logger().warn(f"Object near, slowing down!")
-            throttle = 0.5
-            steering = 0
-            else
-            self.get_logger().warn(f"Not near, not slowing down")
+
 
             
 

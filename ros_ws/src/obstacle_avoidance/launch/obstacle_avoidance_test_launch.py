@@ -21,5 +21,9 @@ def generate_launch_description():
             package='obstacle_avoidance',
             executable='collision',
             name='collision_executable',
+        ),
+	ExecuteProcess(
+            cmd=['ros2', 'topic', 'pub', '/cmd_vel', 'geometry/Twist', '"{linear: {x: 0.2}, angular: {z: 0.0}}"'],
+            output='screen'
         )
     ])

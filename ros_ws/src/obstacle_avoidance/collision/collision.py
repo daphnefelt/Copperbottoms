@@ -6,6 +6,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Bool
+from custom_messages.msg import Slow
  
 class CollisionDetector(Node):
 
@@ -40,7 +41,7 @@ class CollisionDetector(Node):
 
         # 5. Logic for stopping and decelerating
         stop_msg = Bool()
-        slow_msg = Bool()
+        slow_msg = Slow()
         
         slow_dis = 2.3 # start slowing down at this distance in meters
         stop_dis = 1.3 # stop completely at this distance in meters
@@ -51,10 +52,13 @@ class CollisionDetector(Node):
             twist_msg = Twist()
             twist_msg.linear.x = 0.1
             twist_msg.angular.z = 0.0
+
             self.vel_pub.publish(twist_msg)
             
-            slow_msg.data = True
-            stop_msg.data = False
+            slow_msg.slowcmdvel = 0.1
+            slow_msg.slowcmdang = 0.0
+            slow_msg.slowcmdlogi = True
+
 
         elif min_distance <= stop_dis: # 1.3 because lidar is not at front or back of robot, the .3 should account
             self.get_logger().warn(f"Obstacle detected! Distance: {min_distance:.2f}m")
@@ -66,10 +70,10 @@ class CollisionDetector(Node):
             self.vel_pub.publish(twist_msg)
             
             stop_msg.data = True
-            slow_msg.data = False
+            slow_msg.slowcmdlogi = False
         else:
             stop_msg.data = False
-            slow_msg.data = False
+            slow_msg.slowcmdlogi = False
 
         self.stop_move_pub.publish(stop_msg)
         self.slow_move_pub.publish(slow_msg)
@@ -87,8 +91,9 @@ class CollisionDetector(Node):
         # think about using a QoSProfile instead of 10
         self.vel_pub= self.create_publisher(Twist, 'cmd_vel', 10)
         self.stop_move_pub = self.create_publisher(Bool, 'stop_move', 10)
-        self.slow_move_pub = self.create_publisher(Bool, 'slow_move', 10)
+        self.slow_move_pub = self.create_publisher(Slow, 'slow_move', 10)
         
+
 
 
 

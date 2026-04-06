@@ -16,6 +16,7 @@ from pymavlink import mavutil
 import numpy as np
 from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
+from custom_messages.msg import Slow
 
 class ArduPilotRoverNode(Node):
     def __init__(self):
@@ -35,7 +36,8 @@ class ArduPilotRoverNode(Node):
         
         # Control variables
         self.stop_move= False
-        self.slow_move = False
+        self.slow_move = Slow()
+        self.slow_move.slowcmdlogi = False
         self.default_throttle = 0.0
         self.default_steering = 0.0
         self.current_throttle = self.default_throttle
@@ -70,7 +72,7 @@ class ArduPilotRoverNode(Node):
         self.cmd_sub = self.create_subscription(
             Twist, 'cmd_vel', self.cmd_vel_callback, control_qos)
         self.stop_move_sub = self.create_subscription(Bool, 'stop_move', self.stop_move_callback, control_qos)
-        self.slow_move_sub = self.create_subscription(Bool, 'slow_move', self.slow_move_callback, control_qos)
+        self.slow_move_sub = self.create_subscription(Slow, 'slow_move', self.slow_move_callback, control_qos)
         
         # Timers
         self.control_timer = self.create_timer(
@@ -235,16 +237,14 @@ class ArduPilotRoverNode(Node):
     def slow_move_callback(self, msg):
         """ Respect slow commands """
 
-        self.slow_move = msg.data
-    
-    def cmd_vel_callback(self, msg):
-        """Handle incoming velocity commands"""
-        # Convert Twist message to throttle and steering
-        # msg.linear.x: forward/backward speed (-1.0 to 1.0)
-        # msg.angular.z: turning rate (-2.0 to 2.0)
+        self.slow_move = msg
+
+    def set_robo_vel_cmd(self, linear, steering):
+        """Convert ROS cmd_vel to MAVLink manual control values"""
+        # linear: -1.0 to 1.0 (backward to forward)
+        # steering: -2.0 to 2.0 (left to right)
         
-        # adds offset to throttle to make it act more linear
-        throttle_raw = msg.linear.x * 400
+        throttle_raw = linear * 400
         offset = 80
 
         if throttle_raw >= 0:
@@ -255,7 +255,16 @@ class ArduPilotRoverNode(Node):
         # Scale to MAVLink range (-1000 to 1000)
         self.current_throttle = int(np.clip(throttle_with_offset, -300, 300))
 
-        self.current_steering = int(np.clip(msg.angular.z * 500, -1000, 1000))
+        self.current_steering = int(np.clip(steering * 500, -1000, 1000))
+            
+    def cmd_vel_callback(self, msg):
+        """Handle incoming velocity commands"""
+        # Convert Twist message to throttle and steering
+        # msg.linear.x: forward/backward speed (-1.0 to 1.0)
+        # msg.angular.z: turning rate (-2.0 to 2.0)
+        
+        # adds offset to throttle to make it act more linear
+        self.set_robo_vel_cmd(msg.linear.x, msg.angular.z)
         #max_throttle = 300
         #min_throttle = -300
         #self.current_throttle = int(np.clip((msg.linear.x + 1.0)*600 - 1000, min_throttle, max_throttle))
@@ -273,6 +282,8 @@ class ArduPilotRoverNode(Node):
         if not self.connected or not self.armed:
             return
 
+
+
         # Check for command timeout
         if time.time() - self.last_cmd_time > self.cmd_timeout:
             # Use default values if no recent commands
@@ -282,6 +293,11 @@ class ArduPilotRoverNode(Node):
             throttle = self.current_throttle
             steering = self.current_steering
 
+        if self.slow_move.slowcmdlogi:
+           self.get_logger().warn(f"Object near, slowing down!")
+           self.set_robo_vel_cmd(self.slow_move.slowcmdvel, self.slow_move.slowcmdang)
+
+
 
         if self.stop_move:
             self.get_logger().warn(f"Obstacle detected!  ")
@@ -289,10 +305,7 @@ class ArduPilotRoverNode(Node):
             throttle = 0
             steering = 0
 
-        if self.slow_move:
-            self.get_logger().warn(f"Object near, slowing down!")
-            throttle = 0.5
-            steering = 0
+
 
             
 

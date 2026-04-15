@@ -21,7 +21,7 @@ class LineFollower(Node):
         self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50
-        self.forward_speed = 0.2
+        self.forward_speed = 0.3
         self.max_turn = 1.0
 
         # subscribers

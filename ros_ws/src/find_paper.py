@@ -14,10 +14,29 @@ class FindPaperNode(Node):
 
         self.color_topic = "/camera/color/image_raw"
         self.depth_topic = "/camera/depth/image_raw"
-        # self.actual_bgr = np.array([20, 255, 57]) # bgr for rgb (57, 255, 20)
-        self.actual_bgr = np.array([200, 150, 50]) # bgr
-        self.lower_bgr = self.actual_bgr - np.array([10, 10, 15])
-        self.upper_bgr = self.actual_bgr + np.array([10, 10, 15])
+        self.target_h = 100
+        self.h_tol = 10
+        self.target_v = 160
+        self.v_tol = 20
+        # Keep moderate-high saturation to avoid gray/white background noise.
+        self.s_min = 40
+        self.s_max = 255
+        self.lower_hsv = np.array(
+            [
+                max(0, self.target_h - self.h_tol),
+                self.s_min,
+                max(0, self.target_v - self.v_tol),
+            ],
+            dtype=np.uint8,
+        )
+        self.upper_hsv = np.array(
+            [
+                min(179, self.target_h + self.h_tol),
+                self.s_max,
+                min(255, self.target_v + self.v_tol),
+            ],
+            dtype=np.uint8,
+        )
         self.min_depth_mm = 1
         self.max_depth_mm = 10000
 
@@ -32,7 +51,7 @@ class FindPaperNode(Node):
 
         self.get_logger().info(f"Subscribed color: {self.color_topic}")
         self.get_logger().info(f"Subscribed depth: {self.depth_topic}")
-        self.get_logger().info(f"Mask BGR range: lower={self.lower_bgr} upper={self.upper_bgr}")
+        self.get_logger().info(f"Mask HSV range: lower={self.lower_hsv} upper={self.upper_hsv}")
 
     @staticmethod
     def image_to_bgr(msg: Image) -> np.ndarray:
@@ -79,10 +98,8 @@ class FindPaperNode(Node):
             )
             return
 
-        lower = self.lower_bgr.reshape((1, 1, 3))
-        upper = self.upper_bgr.reshape((1, 1, 3))
-
-        color_mask = np.all((color >= lower) & (color <= upper), axis=2)
+        hsv = cv.cvtColor(color, cv.COLOR_BGR2HSV)
+        color_mask = cv.inRange(hsv, self.lower_hsv, self.upper_hsv) > 0
 
         display = color.copy()
         cv.imshow("image", display)

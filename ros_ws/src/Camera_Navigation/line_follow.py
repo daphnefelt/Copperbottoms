@@ -28,7 +28,15 @@ class LineFollower(Node):
         )
 
     def image_callback(self, msg: Image):
-        # We will build this logic together step by step.
+        # frame count
+        self.frame_count += 1
+        if self.frame_count % 10 == 0:
+        self.get_logger().info(
+                    f"tape_x={tape_x}, err={error:.3f}, blue_px={blue_count}, turn={turn:.3f}"
+                )
+
+        
+
         pass
 
 

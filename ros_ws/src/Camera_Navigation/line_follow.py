@@ -74,10 +74,12 @@ class LineFollower(Node):
         if blue_count < self.min_pixels:
             self.get_logger().info("No tape detected, stopping.")
             self.see_line = False
-            twist = Twist()
-            twist.linear.x = 0.0
-            twist.angular.z = 0.0
-            self.vel_pub.publish(twist)
+            # twist = Twist()
+            # twist.linear.x = 0.0
+            # twist.angular.z = 0.0
+            # self.vel_pub.publish(twist)
+
+            self.turn_to_find_line()
 
             return
 
@@ -109,8 +111,8 @@ class LineFollower(Node):
     def turn_to_find_line(self):
         # rotate in place to try to find the line when it is lost
         twist = Twist()
-        twist.linear.x = 0.0
-        twist.angular.z = 0.5  # turn right
+        twist.linear.x = 0.3
+        twist.angular.z = -1.0  # turn right
         self.vel_pub.publish(twist)
         self.get_logger().info("Line lost - turning to try to find it.")
 

@@ -15,7 +15,7 @@ class FindPaperNode(Node):
         self.color_topic = "/camera/color/image_raw"
         self.depth_topic = "/camera/depth/image_raw"
         self.target_h = 100
-        self.h_tol = 10
+        self.h_tol = 3
         self.target_v = 160
         self.v_tol = 20
         # Keep moderate-high saturation to avoid gray/white background noise.

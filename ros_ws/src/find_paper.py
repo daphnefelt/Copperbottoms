@@ -14,9 +14,9 @@ class FindPaperNode(Node):
 
         self.color_topic = "/camera/color/image_raw"
         self.depth_topic = "/camera/depth/image_raw"
-        self.target_h = 100
-        self.h_tol = 3
-        self.target_v = 160
+        self.target_h = 200
+        self.h_tol = 10
+        self.target_v = 60
         self.v_tol = 20
         # Keep moderate-high saturation to avoid gray/white background noise.
         self.s_min = 40
@@ -149,11 +149,11 @@ class FindPaperNode(Node):
         self.get_logger().info(f"Published angle_goal: {angle_goal.data:.2f} degrees")
 
         # plot img with mask and centroid
-        # display = color.copy()
-        # display[color_mask] = [0, 255, 255]  # highlight mask
-        # cv.circle(display, (int(centroid_x), int(ys.mean())), 5, (0, 0, 255), -1)  # centroid
-        # cv.imshow("Mask", display)
-        # cv.waitKey(1)
+        display = color.copy()
+        display[color_mask] = [0, 255, 255]  # highlight mask
+        cv.circle(display, (int(centroid_x), int(ys.mean())), 5, (0, 0, 255), -1)  # centroid
+        cv.imshow("Mask", display)
+        cv.waitKey(1)
 
 
 def main(args=None) -> None:

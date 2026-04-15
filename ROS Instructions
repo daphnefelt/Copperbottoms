@@ -210,6 +210,14 @@ ros2 run robo_rover rover_node
 
 Publish to command_vel
 ros2 topic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.2}}'
+
+Blue Line Following
+__________________
+# needs robo node, realsense node, and navigation node
+ros2 run robo_rover rover_node --ros-args -p connection_string:=/dev/ttyACM0
+ros2 run realsense_publisher realsense_node
+ros2 run camera_navigation line_follow
+
 =======
 
 PAPER following

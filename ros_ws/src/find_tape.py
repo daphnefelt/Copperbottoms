@@ -25,8 +25,8 @@ class FindTapeNode(Node):
         self.depth_topic = "/camera/depth/image_raw"
 
         # H=100 ±3, S and V fully open
-        self.lower_hsv = np.array([97,   0,   0])
-        self.upper_hsv = np.array([103, 255, 255])
+        self.lower_hsv = np.array([197,   0,   0])
+        self.upper_hsv = np.array([203, 255, 255])
 
         self.latest_depth = None
         self.latest_depth_stamp = None

@@ -1,0 +1,25 @@
+[3.736s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/obstacle_avoidance build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/install.log --single-version-externally-managed install_data
+[5.011s] running egg_info
+[5.014s] writing ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/PKG-INFO
+[5.015s] writing dependency_links to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/dependency_links.txt
+[5.016s] writing entry points to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/entry_points.txt
+[5.016s] writing requirements to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/requires.txt
+[5.017s] writing top-level names to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/top_level.txt
+[5.027s] reading manifest file '../../build/obstacle_avoidance/obstacle_avoidance.egg-info/SOURCES.txt'
+[5.029s] adding license file 'LICENSE'
+[5.032s] writing manifest file '../../build/obstacle_avoidance/obstacle_avoidance.egg-info/SOURCES.txt'
+[5.033s] running build
+[5.033s] running build_py
+[5.033s] copying collision/collision.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build/lib/collision
+[5.035s] running install
+[5.037s] running install_lib
+[5.040s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build/lib/collision/collision.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/collision
+[5.044s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/collision/collision.py to collision.cpython-310.pyc
+[5.048s] running install_data
+[5.049s] running install_egg_info
+[5.056s] removing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle_avoidance-0.0.0-py3.10.egg-info' (and everything under it)
+[5.059s] Copying ../../build/obstacle_avoidance/obstacle_avoidance.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle_avoidance-0.0.0-py3.10.egg-info
+[5.068s] running install_scripts
+[5.153s] Installing collision script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/obstacle_avoidance
+[5.155s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/install.log'
+[5.281s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance' returned '0': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/obstacle_avoidance build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/install.log --single-version-externally-managed install_data

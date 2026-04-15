@@ -1,0 +1,3 @@
+[console_scripts]
+realsense_node = realsense_publisher.realsense_node:main
+

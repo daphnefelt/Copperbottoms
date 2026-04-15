@@ -1,0 +1,37 @@
+[5.353s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/amy_test build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/install.log --single-version-externally-managed install_data
+[6.922s] running egg_info
+[6.924s] creating ../../build/amy_test/amy_test.egg-info
+[6.925s] writing ../../build/amy_test/amy_test.egg-info/PKG-INFO
+[6.926s] writing dependency_links to ../../build/amy_test/amy_test.egg-info/dependency_links.txt
+[6.928s] writing entry points to ../../build/amy_test/amy_test.egg-info/entry_points.txt
+[6.929s] writing requirements to ../../build/amy_test/amy_test.egg-info/requires.txt
+[6.931s] writing top-level names to ../../build/amy_test/amy_test.egg-info/top_level.txt
+[6.932s] writing manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'
+[6.942s] reading manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'
+[6.945s] writing manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'
+[6.946s] running build
+[6.946s] running build_py
+[6.947s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build
+[6.948s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib
+[6.948s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test
+[6.949s] copying amy_test/camera_subscriber_edge_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test
+[6.949s] copying amy_test/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test
+[6.950s] running install
+[6.952s] running install_lib
+[6.956s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+[6.957s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test/camera_subscriber_edge_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+[6.958s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+[6.963s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/camera_subscriber_edge_follow.py to camera_subscriber_edge_follow.cpython-310.pyc
+[6.972s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/__init__.py to __init__.cpython-310.pyc
+[6.974s] running install_data
+[6.975s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index
+[6.975s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index
+[6.976s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages
+[6.976s] copying resource/amy_test -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages
+[6.977s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test
+[6.977s] running install_egg_info
+[6.985s] Copying ../../build/amy_test/amy_test.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test-0.0.1-py3.10.egg-info
+[6.993s] running install_scripts
+[7.095s] Installing edge_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test
+[7.101s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/install.log'
+[7.249s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/amy_test build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/install.log --single-version-externally-managed install_data

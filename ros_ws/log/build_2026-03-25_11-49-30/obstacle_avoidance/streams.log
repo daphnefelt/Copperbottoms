@@ -1,0 +1,24 @@
+[5.998s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build --no-deps symlink_data
+[9.053s] running develop
+[10.624s] running egg_info
+[10.625s] creating obstacle_avoidance.egg-info
+[10.627s] writing obstacle_avoidance.egg-info/PKG-INFO
+[10.629s] writing dependency_links to obstacle_avoidance.egg-info/dependency_links.txt
+[10.632s] writing entry points to obstacle_avoidance.egg-info/entry_points.txt
+[10.635s] writing requirements to obstacle_avoidance.egg-info/requires.txt
+[10.638s] writing top-level names to obstacle_avoidance.egg-info/top_level.txt
+[10.641s] writing manifest file 'obstacle_avoidance.egg-info/SOURCES.txt'
+[10.652s] reading manifest file 'obstacle_avoidance.egg-info/SOURCES.txt'
+[10.657s] writing manifest file 'obstacle_avoidance.egg-info/SOURCES.txt'
+[10.668s] running build_ext
+[10.670s] Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle-avoidance.egg-link (link to .)
+[10.677s] Installing collision script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/obstacle_avoidance
+[10.680s] 
+[10.681s] Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance
+[10.682s] running symlink_data
+[10.685s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/ament_index
+[10.687s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/ament_index/resource_index
+[10.688s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/ament_index/resource_index/packages
+[10.691s] symbolically linking /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/resource/obstacle_avoidance -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/ament_index/resource_index/packages
+[10.693s] symbolically linking /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance
+[10.953s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build --no-deps symlink_data

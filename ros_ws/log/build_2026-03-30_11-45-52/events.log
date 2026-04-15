@@ -1,0 +1,66 @@
+[0.000000] (-) TimerEvent: {}
+[0.001484] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.002528] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.003040] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.003224] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.003497] (custom_messages) JobQueued: {'identifier': 'custom_messages', 'dependencies': OrderedDict()}
+[0.003666] (custom_messages) JobStarted: {'identifier': 'custom_messages'}
+[0.042328] (custom_messages) JobProgress: {'identifier': 'custom_messages', 'progress': 'cmake'}
+[0.045689] (custom_messages) Command: {'cmd': ['/usr/bin/cmake', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages', '-DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.113.17 33080 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages'), ('SSH_TTY', '/dev/pts/2'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'), ('SSH_CONNECTION', '100.124.113.17 33080 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover')]), 'shell': False}
+[0.099188] (-) TimerEvent: {}
+[0.107447] (custom_messages) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.199365] (-) TimerEvent: {}
+[0.300116] (-) TimerEvent: {}
+[0.400899] (-) TimerEvent: {}
+[0.501832] (-) TimerEvent: {}
+[0.602540] (-) TimerEvent: {}
+[0.703308] (-) TimerEvent: {}
+[0.720232] (custom_messages) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[0.728611] (custom_messages) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.739991] (custom_messages) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.803458] (-) TimerEvent: {}
+[0.904210] (-) TimerEvent: {}
+[0.929556] (custom_messages) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.004397] (-) TimerEvent: {}
+[1.105089] (-) TimerEvent: {}
+[1.205795] (-) TimerEvent: {}
+[1.306601] (-) TimerEvent: {}
+[1.407468] (-) TimerEvent: {}
+[1.508245] (-) TimerEvent: {}
+[1.609057] (-) TimerEvent: {}
+[1.709870] (-) TimerEvent: {}
+[1.810547] (-) TimerEvent: {}
+[1.844466] (custom_messages) StderrLine: {'line': b"Error parsing '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/package.xml':\n"}
+[1.910717] (-) TimerEvent: {}
+[2.011461] (-) TimerEvent: {}
+[2.035548] (custom_messages) StderrLine: {'line': b'Traceback (most recent call last):\n'}
+[2.036418] (custom_messages) StderrLine: {'line': b'  File "/opt/ros/humble/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 150, in <module>\n'}
+[2.036809] (custom_messages) StderrLine: {'line': b'    main()\n'}
+[2.037088] (custom_messages) StderrLine: {'line': b'  File "/opt/ros/humble/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 53, in main\n'}
+[2.037490] (custom_messages) StderrLine: {'line': b'    raise e\n'}
+[2.037867] (custom_messages) StderrLine: {'line': b'  File "/opt/ros/humble/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 49, in main\n'}
+[2.038145] (custom_messages) StderrLine: {'line': b'    package = parse_package_string(\n'}
+[2.038459] (custom_messages) StderrLine: {'line': b'  File "/usr/lib/python3/dist-packages/catkin_pkg/package.py", line 788, in parse_package_string\n'}
+[2.039024] (custom_messages) StderrLine: {'line': b'    pkg.validate(warnings=warnings)\n'}
+[2.040446] (custom_messages) StderrLine: {'line': b'  File "/usr/lib/python3/dist-packages/catkin_pkg/package.py", line 330, in validate\n'}
+[2.041643] (custom_messages) StderrLine: {'line': b"    raise InvalidPackage('\\n'.join(errors), self.filename)\n"}
+[2.043564] (custom_messages) StderrLine: {'line': b"catkin_pkg.package.InvalidPackage: Error(s) in package '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/package.xml':\n"}
+[2.044766] (custom_messages) StderrLine: {'line': b'Invalid email "copperbottom" for person "copperbottoms"\n'}
+[2.111723] (-) TimerEvent: {}
+[2.121007] (custom_messages) StderrLine: {'line': b'\x1b[31mCMake Error at /opt/ros/humble/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:95 (message):\n'}
+[2.121658] (custom_messages) StderrLine: {'line': b'  execute_process(/usr/bin/python3\n'}
+[2.122334] (custom_messages) StderrLine: {'line': b'  /opt/ros/humble/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py\n'}
+[2.122697] (custom_messages) StderrLine: {'line': b'  /home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/package.xml\n'}
+[2.123465] (custom_messages) StderrLine: {'line': b'  /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/ament_cmake_core/package.cmake)\n'}
+[2.123932] (custom_messages) StderrLine: {'line': b'  returned error code 1\n'}
+[2.124239] (custom_messages) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[2.124539] (custom_messages) StderrLine: {'line': b'  /opt/ros/humble/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:49 (_ament_package_xml)\n'}
+[2.124861] (custom_messages) StderrLine: {'line': b'  /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:226 (ament_package_xml)\n'}
+[2.125237] (custom_messages) StderrLine: {'line': b'  CMakeLists.txt:15 (rosidl_generate_interfaces)\n'}
+[2.125776] (custom_messages) StderrLine: {'line': b'\n'}
+[2.126191] (custom_messages) StderrLine: {'line': b'\x1b[0m\n'}
+[2.126546] (custom_messages) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[2.127057] (custom_messages) StdoutLine: {'line': b'See also "/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/CMakeFiles/CMakeOutput.log".\n'}
+[2.139303] (custom_messages) CommandEnded: {'returncode': 1}
+[2.141424] (custom_messages) JobEnded: {'identifier': 'custom_messages', 'rc': 1}
+[2.153343] (-) EventReactorShutdown: {}

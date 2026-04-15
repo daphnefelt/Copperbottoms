@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/amy_test/amy_test.egg-info
+writing ../../build/amy_test/amy_test.egg-info/PKG-INFO
+writing dependency_links to ../../build/amy_test/amy_test.egg-info/dependency_links.txt
+writing entry points to ../../build/amy_test/amy_test.egg-info/entry_points.txt
+writing requirements to ../../build/amy_test/amy_test.egg-info/requires.txt
+writing top-level names to ../../build/amy_test/amy_test.egg-info/top_level.txt
+writing manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'
+reading manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'
+writing manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test
+copying amy_test/camera_subscriber_edge_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test
+copying amy_test/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test
+running install
+running install_lib
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test/camera_subscriber_edge_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/camera_subscriber_edge_follow.py to camera_subscriber_edge_follow.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages
+copying resource/amy_test -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages
+copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test
+running install_egg_info
+Copying ../../build/amy_test/amy_test.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test-0.0.1-py3.10.egg-info
+running install_scripts
+Installing edge_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test
+writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/install.log'

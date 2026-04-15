@@ -1,0 +1,2 @@
+Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages': /usr/bin/cmake /home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages -DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages
+Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages' returned '1': /usr/bin/cmake /home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages -DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages

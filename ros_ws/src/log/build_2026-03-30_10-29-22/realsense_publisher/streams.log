@@ -1,0 +1,41 @@
+[6.174s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/realsense_publisher build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/install.log --single-version-externally-managed install_data
+[8.206s] running egg_info
+[8.209s] creating ../build/realsense_publisher/realsense_publisher.egg-info
+[8.213s] writing ../build/realsense_publisher/realsense_publisher.egg-info/PKG-INFO
+[8.213s] writing dependency_links to ../build/realsense_publisher/realsense_publisher.egg-info/dependency_links.txt
+[8.214s] writing entry points to ../build/realsense_publisher/realsense_publisher.egg-info/entry_points.txt
+[8.214s] writing requirements to ../build/realsense_publisher/realsense_publisher.egg-info/requires.txt
+[8.215s] writing top-level names to ../build/realsense_publisher/realsense_publisher.egg-info/top_level.txt
+[8.215s] writing manifest file '../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+[8.238s] reading manifest file '../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+[8.241s] adding license file 'LICENSE'
+[8.245s] writing manifest file '../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+[8.248s] running build
+[8.254s] running build_py
+[8.257s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build
+[8.265s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib
+[8.269s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib/realsense_publisher
+[8.279s] copying realsense_publisher/realsense_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib/realsense_publisher
+[8.279s] copying realsense_publisher/realsense_subsriber.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib/realsense_publisher
+[8.280s] copying realsense_publisher/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib/realsense_publisher
+[8.281s] running install
+[8.281s] running install_lib
+[8.282s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+[8.283s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib/realsense_publisher/realsense_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+[8.283s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib/realsense_publisher/realsense_subsriber.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+[8.293s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build/lib/realsense_publisher/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+[8.307s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher/realsense_node.py to realsense_node.cpython-310.pyc
+[8.308s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher/realsense_subsriber.py to realsense_subsriber.cpython-310.pyc
+[8.309s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher/__init__.py to __init__.cpython-310.pyc
+[8.310s] running install_data
+[8.311s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/share/ament_index
+[8.320s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/share/ament_index/resource_index
+[8.321s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/share/ament_index/resource_index/packages
+[8.321s] copying resource/realsense_publisher -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/share/ament_index/resource_index/packages
+[8.322s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/share/realsense_publisher
+[8.323s] running install_egg_info
+[8.332s] Copying ../build/realsense_publisher/realsense_publisher.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher-0.0.0-py3.10.egg-info
+[8.333s] running install_scripts
+[8.417s] Installing realsense_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/realsense_publisher
+[8.421s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/install.log'
+[8.571s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/realsense_publisher build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/realsense_publisher/install.log --single-version-externally-managed install_data

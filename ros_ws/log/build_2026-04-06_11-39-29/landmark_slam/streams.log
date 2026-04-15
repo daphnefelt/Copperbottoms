@@ -1,0 +1,37 @@
+[3.921s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/landmark_slam': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/landmark_slam build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/install.log --single-version-externally-managed install_data
+[5.195s] running egg_info
+[5.197s] creating ../../build/landmark_slam/landmark_slam.egg-info
+[5.198s] writing ../../build/landmark_slam/landmark_slam.egg-info/PKG-INFO
+[5.199s] writing dependency_links to ../../build/landmark_slam/landmark_slam.egg-info/dependency_links.txt
+[5.200s] writing entry points to ../../build/landmark_slam/landmark_slam.egg-info/entry_points.txt
+[5.200s] writing requirements to ../../build/landmark_slam/landmark_slam.egg-info/requires.txt
+[5.201s] writing top-level names to ../../build/landmark_slam/landmark_slam.egg-info/top_level.txt
+[5.202s] writing manifest file '../../build/landmark_slam/landmark_slam.egg-info/SOURCES.txt'
+[5.210s] reading manifest file '../../build/landmark_slam/landmark_slam.egg-info/SOURCES.txt'
+[5.213s] writing manifest file '../../build/landmark_slam/landmark_slam.egg-info/SOURCES.txt'
+[5.214s] running build
+[5.214s] running build_py
+[5.215s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build
+[5.216s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build/lib
+[5.216s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build/lib/landmark_slam
+[5.217s] copying landmark_slam/landmark_slam.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build/lib/landmark_slam
+[5.217s] copying landmark_slam/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build/lib/landmark_slam
+[5.218s] running install
+[5.219s] running install_lib
+[5.223s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark_slam
+[5.223s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build/lib/landmark_slam/landmark_slam.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark_slam
+[5.224s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build/lib/landmark_slam/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark_slam
+[5.227s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark_slam/landmark_slam.py to landmark_slam.cpython-310.pyc
+[5.228s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark_slam/__init__.py to __init__.cpython-310.pyc
+[5.230s] running install_data
+[5.230s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/ament_index
+[5.231s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/ament_index/resource_index
+[5.231s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/ament_index/resource_index/packages
+[5.232s] copying resource/landmark_slam -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/ament_index/resource_index/packages
+[5.232s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam
+[5.233s] running install_egg_info
+[5.241s] Copying ../../build/landmark_slam/landmark_slam.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark_slam-0.0.0-py3.10.egg-info
+[5.246s] running install_scripts
+[5.332s] Installing landmark_slam script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/landmark_slam
+[5.333s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/install.log'
+[5.457s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/landmark_slam' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/landmark_slam build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/install.log --single-version-externally-managed install_data

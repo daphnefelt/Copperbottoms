@@ -1,0 +1,398 @@
+[0.000000] (-) TimerEvent: {}
+[0.001727] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.002377] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.002891] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.003080] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.003363] (custom_messages) JobQueued: {'identifier': 'custom_messages', 'dependencies': OrderedDict()}
+[0.003536] (custom_messages) JobStarted: {'identifier': 'custom_messages'}
+[0.042857] (custom_messages) JobProgress: {'identifier': 'custom_messages', 'progress': 'cmake'}
+[0.046396] (custom_messages) Command: {'cmd': ['/usr/bin/cmake', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages', '-DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.113.17 33080 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages'), ('SSH_TTY', '/dev/pts/2'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'), ('SSH_CONNECTION', '100.124.113.17 33080 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble')]), 'shell': False}
+[0.099006] (-) TimerEvent: {}
+[0.108188] (custom_messages) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.199178] (-) TimerEvent: {}
+[0.300082] (-) TimerEvent: {}
+[0.400935] (-) TimerEvent: {}
+[0.501800] (-) TimerEvent: {}
+[0.602525] (-) TimerEvent: {}
+[0.703294] (-) TimerEvent: {}
+[0.722247] (custom_messages) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[0.730665] (custom_messages) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.742018] (custom_messages) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.803459] (-) TimerEvent: {}
+[0.904522] (-) TimerEvent: {}
+[0.933147] (custom_messages) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.004695] (-) TimerEvent: {}
+[1.105455] (-) TimerEvent: {}
+[1.206151] (-) TimerEvent: {}
+[1.306983] (-) TimerEvent: {}
+[1.407947] (-) TimerEvent: {}
+[1.508719] (-) TimerEvent: {}
+[1.609545] (-) TimerEvent: {}
+[1.710345] (-) TimerEvent: {}
+[1.811069] (-) TimerEvent: {}
+[1.911905] (-) TimerEvent: {}
+[2.012751] (-) TimerEvent: {}
+[2.113540] (-) TimerEvent: {}
+[2.214265] (-) TimerEvent: {}
+[2.226460] (custom_messages) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[2.314438] (-) TimerEvent: {}
+[2.415167] (-) TimerEvent: {}
+[2.515984] (-) TimerEvent: {}
+[2.616867] (-) TimerEvent: {}
+[2.717865] (-) TimerEvent: {}
+[2.819230] (-) TimerEvent: {}
+[2.920269] (-) TimerEvent: {}
+[3.021130] (-) TimerEvent: {}
+[3.121969] (-) TimerEvent: {}
+[3.212259] (custom_messages) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[3.222141] (-) TimerEvent: {}
+[3.322844] (-) TimerEvent: {}
+[3.423635] (-) TimerEvent: {}
+[3.524370] (-) TimerEvent: {}
+[3.625112] (-) TimerEvent: {}
+[3.725795] (-) TimerEvent: {}
+[3.826478] (-) TimerEvent: {}
+[3.927282] (-) TimerEvent: {}
+[4.028068] (-) TimerEvent: {}
+[4.128796] (-) TimerEvent: {}
+[4.229854] (-) TimerEvent: {}
+[4.330864] (-) TimerEvent: {}
+[4.390231] (custom_messages) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.431039] (-) TimerEvent: {}
+[4.511267] (custom_messages) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[4.531216] (-) TimerEvent: {}
+[4.541979] (custom_messages) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[4.631391] (-) TimerEvent: {}
+[4.683954] (custom_messages) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[4.684847] (custom_messages) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[4.685651] (custom_messages) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[4.686238] (custom_messages) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so\n'}
+[4.731595] (-) TimerEvent: {}
+[4.795737] (custom_messages) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[4.831773] (-) TimerEvent: {}
+[4.932519] (-) TimerEvent: {}
+[4.987098] (custom_messages) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[5.032690] (-) TimerEvent: {}
+[5.133445] (-) TimerEvent: {}
+[5.234214] (-) TimerEvent: {}
+[5.284946] (custom_messages) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[5.300115] (custom_messages) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[5.322895] (custom_messages) StdoutLine: {'line': b'-- Configuring done\n'}
+[5.334385] (-) TimerEvent: {}
+[5.435102] (-) TimerEvent: {}
+[5.505136] (custom_messages) StdoutLine: {'line': b'-- Generating done\n'}
+[5.535294] (-) TimerEvent: {}
+[5.550126] (custom_messages) StdoutLine: {'line': b'-- Build files have been written to: /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages\n'}
+[5.566617] (custom_messages) CommandEnded: {'returncode': 0}
+[5.568820] (custom_messages) JobProgress: {'identifier': 'custom_messages', 'progress': 'build'}
+[5.571149] (custom_messages) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', '--', '-j4', '-l4'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.113.17 33080 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages'), ('SSH_TTY', '/dev/pts/2'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'), ('SSH_CONNECTION', '100.124.113.17 33080 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble')]), 'shell': False}
+[5.635539] (-) TimerEvent: {}
+[5.736659] (-) TimerEvent: {}
+[5.761891] (custom_messages) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[5.836855] (-) TimerEvent: {}
+[5.887899] (custom_messages) StdoutLine: {'line': b'[  6%] Built target ament_cmake_python_copy_custom_messages\n'}
+[5.891399] (custom_messages) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[5.937231] (-) TimerEvent: {}
+[6.038364] (-) TimerEvent: {}
+[6.139550] (-) TimerEvent: {}
+[6.240384] (-) TimerEvent: {}
+[6.341123] (-) TimerEvent: {}
+[6.441861] (-) TimerEvent: {}
+[6.542655] (-) TimerEvent: {}
+[6.643543] (-) TimerEvent: {}
+[6.744367] (-) TimerEvent: {}
+[6.845233] (-) TimerEvent: {}
+[6.946705] (-) TimerEvent: {}
+[7.048156] (-) TimerEvent: {}
+[7.149893] (-) TimerEvent: {}
+[7.251117] (-) TimerEvent: {}
+[7.352060] (-) TimerEvent: {}
+[7.444339] (custom_messages) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/slow__functions.c.o\x1b[0m\n'}
+[7.452267] (-) TimerEvent: {}
+[7.474345] (custom_messages) StdoutLine: {'line': b'[  9%] Built target custom_messages__cpp\n'}
+[7.529296] (custom_messages) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[7.536492] (custom_messages) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[7.552535] (-) TimerEvent: {}
+[7.654670] (-) TimerEvent: {}
+[7.713004] (custom_messages) StdoutLine: {'line': b'running egg_info\n'}
+[7.716715] (custom_messages) StdoutLine: {'line': b'creating custom_messages.egg-info\n'}
+[7.718037] (custom_messages) StdoutLine: {'line': b'writing custom_messages.egg-info/PKG-INFO\n'}
+[7.719070] (custom_messages) StdoutLine: {'line': b'writing dependency_links to custom_messages.egg-info/dependency_links.txt\n'}
+[7.720162] (custom_messages) StdoutLine: {'line': b'writing top-level names to custom_messages.egg-info/top_level.txt\n'}
+[7.721773] (custom_messages) StdoutLine: {'line': b"writing manifest file 'custom_messages.egg-info/SOURCES.txt'\n"}
+[7.746194] (custom_messages) StdoutLine: {'line': b"reading manifest file 'custom_messages.egg-info/SOURCES.txt'\n"}
+[7.750081] (custom_messages) StdoutLine: {'line': b"writing manifest file 'custom_messages.egg-info/SOURCES.txt'\n"}
+[7.755300] (-) TimerEvent: {}
+[7.858448] (-) TimerEvent: {}
+[7.942788] (custom_messages) StdoutLine: {'line': b'[ 19%] \x1b[32m\x1b[1mLinking C shared library libcustom_messages__rosidl_generator_c.so\x1b[0m\n'}
+[7.952498] (custom_messages) StdoutLine: {'line': b'[ 19%] Built target ament_cmake_python_build_custom_messages_egg\n'}
+[7.961942] (-) TimerEvent: {}
+[8.006699] (custom_messages) StdoutLine: {'line': b'[ 22%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[8.062208] (-) TimerEvent: {}
+[8.164141] (-) TimerEvent: {}
+[8.196011] (custom_messages) StdoutLine: {'line': b'[ 22%] Built target custom_messages__rosidl_generator_c\n'}
+[8.258846] (custom_messages) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[8.264455] (-) TimerEvent: {}
+[8.366791] (-) TimerEvent: {}
+[8.469681] (-) TimerEvent: {}
+[8.571614] (-) TimerEvent: {}
+[8.673568] (-) TimerEvent: {}
+[8.775549] (-) TimerEvent: {}
+[8.879741] (-) TimerEvent: {}
+[8.981864] (-) TimerEvent: {}
+[8.992940] (custom_messages) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.cpp.o\x1b[0m\n'}
+[9.082114] (-) TimerEvent: {}
+[9.092006] (custom_messages) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__type_support.cpp.o\x1b[0m\n'}
+[9.182519] (-) TimerEvent: {}
+[9.283566] (-) TimerEvent: {}
+[9.384998] (-) TimerEvent: {}
+[9.411073] (custom_messages) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/slow__type_support.cpp.o\x1b[0m\n'}
+[9.485230] (-) TimerEvent: {}
+[9.586164] (-) TimerEvent: {}
+[9.687401] (-) TimerEvent: {}
+[9.748744] (custom_messages) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.cpp.o\x1b[0m\n'}
+[9.787714] (-) TimerEvent: {}
+[9.890162] (-) TimerEvent: {}
+[9.992447] (-) TimerEvent: {}
+[10.095935] (-) TimerEvent: {}
+[10.200231] (-) TimerEvent: {}
+[10.304037] (-) TimerEvent: {}
+[10.405816] (-) TimerEvent: {}
+[10.507291] (-) TimerEvent: {}
+[10.608844] (-) TimerEvent: {}
+[10.710550] (-) TimerEvent: {}
+[10.812134] (-) TimerEvent: {}
+[10.913793] (-) TimerEvent: {}
+[11.114977] (-) TimerEvent: {}
+[11.127099] (custom_messages) StdoutLine: {'line': b'[ 41%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[11.215311] (-) TimerEvent: {}
+[11.318773] (-) TimerEvent: {}
+[11.420734] (-) TimerEvent: {}
+[11.424531] (custom_messages) StdoutLine: {'line': b'[ 41%] Built target custom_messages__rosidl_typesupport_cpp\n'}
+[11.483036] (custom_messages) StdoutLine: {'line': b'[ 45%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[11.521020] (-) TimerEvent: {}
+[11.624532] (-) TimerEvent: {}
+[11.726089] (-) TimerEvent: {}
+[11.827688] (-) TimerEvent: {}
+[11.882512] (custom_messages) StdoutLine: {'line': b'[ 48%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[11.928092] (-) TimerEvent: {}
+[11.942119] (custom_messages) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[12.029158] (-) TimerEvent: {}
+[12.130860] (-) TimerEvent: {}
+[12.191597] (custom_messages) StdoutLine: {'line': b'[ 54%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[12.201454] (custom_messages) StdoutLine: {'line': b'[ 54%] Built target custom_messages__rosidl_typesupport_introspection_cpp\n'}
+[12.231155] (-) TimerEvent: {}
+[12.264195] (custom_messages) StdoutLine: {'line': b'[ 58%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[12.331903] (-) TimerEvent: {}
+[12.333707] (custom_messages) StdoutLine: {'line': b'[ 58%] Built target custom_messages__rosidl_typesupport_fastrtps_cpp\n'}
+[12.432137] (-) TimerEvent: {}
+[12.535144] (-) TimerEvent: {}
+[12.601600] (custom_messages) StdoutLine: {'line': b'[ 58%] Built target custom_messages__rosidl_typesupport_fastrtps_c\n'}
+[12.635429] (-) TimerEvent: {}
+[12.736562] (-) TimerEvent: {}
+[12.837492] (-) TimerEvent: {}
+[12.938740] (-) TimerEvent: {}
+[12.982122] (custom_messages) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.o\x1b[0m\n'}
+[13.038909] (-) TimerEvent: {}
+[13.139699] (-) TimerEvent: {}
+[13.158242] (custom_messages) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking C shared library libcustom_messages__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[13.240116] (-) TimerEvent: {}
+[13.308709] (custom_messages) StdoutLine: {'line': b'[ 64%] Built target custom_messages__rosidl_typesupport_introspection_c\n'}
+[13.340307] (-) TimerEvent: {}
+[13.406860] (custom_messages) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/slow__type_support.cpp.o\x1b[0m\n'}
+[13.440527] (-) TimerEvent: {}
+[13.541671] (-) TimerEvent: {}
+[13.560874] (custom_messages) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_c.so\x1b[0m\n'}
+[13.641914] (-) TimerEvent: {}
+[13.725797] (custom_messages) StdoutLine: {'line': b'[ 70%] Built target custom_messages__rosidl_typesupport_c\n'}
+[13.742103] (-) TimerEvent: {}
+[13.813412] (custom_messages) StdoutLine: {'line': b'[ 70%] Built target custom_messages\n'}
+[13.842337] (-) TimerEvent: {}
+[13.902244] (custom_messages) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[13.942492] (-) TimerEvent: {}
+[14.043210] (-) TimerEvent: {}
+[14.144074] (-) TimerEvent: {}
+[14.245001] (-) TimerEvent: {}
+[14.345760] (-) TimerEvent: {}
+[14.446609] (-) TimerEvent: {}
+[14.547288] (-) TimerEvent: {}
+[14.648004] (-) TimerEvent: {}
+[14.748701] (-) TimerEvent: {}
+[14.849462] (-) TimerEvent: {}
+[14.950128] (-) TimerEvent: {}
+[15.050930] (-) TimerEvent: {}
+[15.152017] (-) TimerEvent: {}
+[15.170095] (custom_messages) StdoutLine: {'line': b'[ 74%] Built target custom_messages__py\n'}
+[15.252287] (-) TimerEvent: {}
+[15.257249] (custom_messages) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_slow_s.c.o\x1b[0m\n'}
+[15.352482] (-) TimerEvent: {}
+[15.453283] (-) TimerEvent: {}
+[15.554133] (-) TimerEvent: {}
+[15.654984] (-) TimerEvent: {}
+[15.756094] (-) TimerEvent: {}
+[15.857799] (-) TimerEvent: {}
+[15.873519] (custom_messages) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_messages/libcustom_messages__rosidl_generator_py.so\x1b[0m\n'}
+[15.958312] (-) TimerEvent: {}
+[16.059645] (-) TimerEvent: {}
+[16.078964] (custom_messages) StdoutLine: {'line': b'[ 80%] Built target custom_messages__rosidl_generator_py\n'}
+[16.159852] (-) TimerEvent: {}
+[16.172678] (custom_messages) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[16.177517] (custom_messages) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[16.181103] (custom_messages) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[16.260090] (-) TimerEvent: {}
+[16.361572] (-) TimerEvent: {}
+[16.462418] (-) TimerEvent: {}
+[16.563636] (-) TimerEvent: {}
+[16.648730] (custom_messages) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[16.663912] (-) TimerEvent: {}
+[16.673873] (custom_messages) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[16.698328] (custom_messages) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[16.764400] (-) TimerEvent: {}
+[16.840804] (custom_messages) StdoutLine: {'line': b'[100%] Built target custom_messages__rosidl_typesupport_c__pyext\n'}
+[16.860209] (custom_messages) StdoutLine: {'line': b'[100%] Built target custom_messages__rosidl_typesupport_introspection_c__pyext\n'}
+[16.864535] (-) TimerEvent: {}
+[16.889830] (custom_messages) StdoutLine: {'line': b'[100%] Built target custom_messages__rosidl_typesupport_fastrtps_c__pyext\n'}
+[16.938409] (custom_messages) CommandEnded: {'returncode': 0}
+[16.940870] (custom_messages) JobProgress: {'identifier': 'custom_messages', 'progress': 'install'}
+[16.964728] (-) TimerEvent: {}
+[16.974220] (custom_messages) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.113.17 33080 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages'), ('SSH_TTY', '/dev/pts/2'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'), ('SSH_CONNECTION', '100.124.113.17 33080 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble')]), 'shell': False}
+[17.008804] (custom_messages) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[17.010089] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/rosidl_interfaces/custom_messages\n'}
+[17.011570] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages\n'}
+[17.012408] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg\n'}
+[17.013244] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_generator_c__visibility_control.h\n'}
+[17.014569] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail\n'}
+[17.015375] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__functions.h\n'}
+[17.016719] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.h\n'}
+[17.017998] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__struct.h\n'}
+[17.019208] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__functions.c\n'}
+[17.020526] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/slow.h\n'}
+[17.022725] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/library_path.sh\n'}
+[17.023976] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/library_path.dsv\n'}
+[17.025829] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_c.so\n'}
+[17.028503] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_c.so" to ""\n'}
+[17.029100] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages\n'}
+[17.029614] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg\n'}
+[17.030054] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail\n'}
+[17.030443] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_fastrtps_c.h\n'}
+[17.031891] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[17.033540] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_c.so\n'}
+[17.036306] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[17.036865] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages\n'}
+[17.037366] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg\n'}
+[17.037792] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail\n'}
+[17.038224] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.c\n'}
+[17.039568] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h\n'}
+[17.040940] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[17.042683] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_c.so\n'}
+[17.045486] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_c.so" to ""\n'}
+[17.046084] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_c.so\n'}
+[17.048866] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_c.so" to ""\n'}
+[17.049576] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages\n'}
+[17.050043] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg\n'}
+[17.050467] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[17.051526] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/slow.hpp\n'}
+[17.052618] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail\n'}
+[17.053185] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.hpp\n'}
+[17.054524] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__builder.hpp\n'}
+[17.055776] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__traits.hpp\n'}
+[17.057054] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__struct.hpp\n'}
+[17.058404] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages\n'}
+[17.058964] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg\n'}
+[17.059405] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[17.060689] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail\n'}
+[17.061332] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/dds_fastrtps\n'}
+[17.062252] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.063968] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_cpp.so\n'}
+[17.064824] (-) TimerEvent: {}
+[17.066996] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[17.067600] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages\n'}
+[17.068022] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg\n'}
+[17.068443] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail\n'}
+[17.068907] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.070484] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.cpp\n'}
+[17.072092] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_cpp.so\n'}
+[17.074921] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[17.075523] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_cpp.so\n'}
+[17.078257] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_cpp.so" to ""\n'}
+[17.078807] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/pythonpath.sh\n'}
+[17.080055] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/pythonpath.dsv\n'}
+[17.081305] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info\n'}
+[17.082520] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[17.083868] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[17.085274] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[17.086600] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[17.088035] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages\n'}
+[17.088805] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg\n'}
+[17.089687] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow.py\n'}
+[17.090996] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow_s.c\n'}
+[17.092236] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/__init__.py\n'}
+[17.093582] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_c.c\n'}
+[17.095087] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.096723] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.098339] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/__init__.py\n'}
+[17.099493] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[17.100948] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.102734] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[17.104085] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/libcustom_messages__rosidl_generator_py.so\n'}
+[17.165062] (-) TimerEvent: {}
+[17.266928] (-) TimerEvent: {}
+[17.277163] (custom_messages) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages'...\n"}
+[17.278713] (custom_messages) StdoutLine: {'line': b"Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/__init__.py'...\n"}
+[17.279951] (custom_messages) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg'...\n"}
+[17.281200] (custom_messages) StdoutLine: {'line': b"Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/__init__.py'...\n"}
+[17.282395] (custom_messages) StdoutLine: {'line': b"Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow.py'...\n"}
+[17.305102] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.308046] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so" to ""\n'}
+[17.309734] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.312728] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so" to ""\n'}
+[17.314300] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.317618] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so" to ""\n'}
+[17.318322] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_py.so\n'}
+[17.321392] (custom_messages) StdoutLine: {'line': b'-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_py.so" to ""\n'}
+[17.322228] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/Slow.idl\n'}
+[17.323678] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/Slow.msg\n'}
+[17.325621] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/package_run_dependencies/custom_messages\n'}
+[17.327518] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/parent_prefix_path/custom_messages\n'}
+[17.328960] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/ament_prefix_path.sh\n'}
+[17.331110] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/ament_prefix_path.dsv\n'}
+[17.333318] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/path.sh\n'}
+[17.334382] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/path.dsv\n'}
+[17.335135] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.bash\n'}
+[17.336719] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.sh\n'}
+[17.338441] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.zsh\n'}
+[17.339891] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.dsv\n'}
+[17.341426] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.dsv\n'}
+[17.343337] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/packages/custom_messages\n'}
+[17.345265] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cExport.cmake\n'}
+[17.346861] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cExport-noconfig.cmake\n'}
+[17.348625] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[17.351671] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[17.352441] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cExport.cmake\n'}
+[17.354166] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[17.355852] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cExport.cmake\n'}
+[17.357515] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[17.359150] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cppExport.cmake\n'}
+[17.360800] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[17.362698] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[17.364402] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[17.366153] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[17.367024] (-) TimerEvent: {}
+[17.367942] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cppExport.cmake\n'}
+[17.369630] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[17.371271] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_pyExport.cmake\n'}
+[17.372916] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_pyExport-noconfig.cmake\n'}
+[17.374516] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake-extras.cmake\n'}
+[17.375888] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[17.377607] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[17.379103] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[17.380576] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[17.382243] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[17.383739] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[17.385349] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messagesConfig.cmake\n'}
+[17.386585] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messagesConfig-version.cmake\n'}
+[17.387921] (custom_messages) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.xml\n'}
+[17.395342] (custom_messages) CommandEnded: {'returncode': 0}
+[17.467180] (-) TimerEvent: {}
+[17.530934] (custom_messages) JobEnded: {'identifier': 'custom_messages', 'rc': 0}
+[17.533947] (-) EventReactorShutdown: {}

@@ -1,0 +1,6 @@
+[0.000000] (-) TimerEvent: {}
+[0.001275] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.001744] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.001849] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.002126] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.002903] (-) EventReactorShutdown: {}

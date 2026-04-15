@@ -1,0 +1,3 @@
+[console_scripts]
+edge_follow = amy_test.camera_subscriber_edge_follow:main
+

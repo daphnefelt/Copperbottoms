@@ -1,0 +1,29 @@
+[0.053s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover -- -j4 -l4
+[0.296s] Built target ament_cmake_python_symlink_robo_rover
+[1.547s] running egg_info
+[1.550s] writing robo_rover.egg-info/PKG-INFO
+[1.551s] writing dependency_links to robo_rover.egg-info/dependency_links.txt
+[1.552s] writing top-level names to robo_rover.egg-info/top_level.txt
+[1.567s] reading manifest file 'robo_rover.egg-info/SOURCES.txt'
+[1.569s] writing manifest file 'robo_rover.egg-info/SOURCES.txt'
+[1.703s] Built target ament_cmake_python_build_robo_rover_egg
+[1.751s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover -- -j4 -l4
+[1.798s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover
+[1.826s] -- Install configuration: ""
+[1.829s] -- Execute custom install script
+[1.832s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.sh
+[1.832s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.dsv
+[1.837s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/PKG-INFO
+[1.840s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/SOURCES.txt
+[1.844s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/dependency_links.txt
+[1.848s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/top_level.txt
+[1.851s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/__init__.py
+[1.851s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/rover_node.py
+[1.851s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/launch/rover_launch.py
+[1.852s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/package_run_dependencies/robo_rover
+[1.852s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/parent_prefix_path/robo_rover
+[1.857s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.sh
+[1.860s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.dsv
+[1.861s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.sh
+[1.862s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.dsv
+[1.862s] -- Up-to-date 

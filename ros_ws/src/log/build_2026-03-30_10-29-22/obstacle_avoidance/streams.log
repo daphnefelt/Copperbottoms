@@ -1,0 +1,37 @@
+[6.267s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build
+[8.455s] running develop
+[9.785s] Removing /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle-avoidance.egg-link (link to .)
+[9.962s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build
+[9.973s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/obstacle_avoidance build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/install.log --single-version-externally-managed install_data --force
+[11.567s] running egg_info
+[11.571s] writing ../build/obstacle_avoidance/obstacle_avoidance.egg-info/PKG-INFO
+[11.572s] writing dependency_links to ../build/obstacle_avoidance/obstacle_avoidance.egg-info/dependency_links.txt
+[11.573s] writing entry points to ../build/obstacle_avoidance/obstacle_avoidance.egg-info/entry_points.txt
+[11.574s] writing requirements to ../build/obstacle_avoidance/obstacle_avoidance.egg-info/requires.txt
+[11.577s] writing top-level names to ../build/obstacle_avoidance/obstacle_avoidance.egg-info/top_level.txt
+[11.588s] reading manifest file '../build/obstacle_avoidance/obstacle_avoidance.egg-info/SOURCES.txt'
+[11.590s] adding license file 'LICENSE'
+[11.593s] writing manifest file '../build/obstacle_avoidance/obstacle_avoidance.egg-info/SOURCES.txt'
+[11.594s] running build
+[11.596s] running build_py
+[11.597s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build
+[11.597s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build/lib
+[11.598s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build/lib/collision
+[11.599s] copying collision/collision.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build/lib/collision
+[11.600s] copying collision/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build/lib/collision
+[11.601s] running install
+[11.602s] running install_lib
+[11.606s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages/collision
+[11.607s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build/lib/collision/collision.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages/collision
+[11.608s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build/lib/collision/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages/collision
+[11.612s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages/collision/collision.py to collision.cpython-310.pyc
+[11.616s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages/collision/__init__.py to __init__.cpython-310.pyc
+[11.618s] running install_data
+[11.619s] copying resource/obstacle_avoidance -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/share/ament_index/resource_index/packages
+[11.622s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/share/obstacle_avoidance
+[11.623s] running install_egg_info
+[11.633s] Copying ../build/obstacle_avoidance/obstacle_avoidance.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle_avoidance-0.0.0-py3.10.egg-info
+[11.645s] running install_scripts
+[11.750s] Installing collision script to /home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/obstacle_avoidance
+[11.752s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/install.log'
+[11.915s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/obstacle_avoidance build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/src/build/obstacle_avoidance/install.log --single-version-externally-managed install_data --force

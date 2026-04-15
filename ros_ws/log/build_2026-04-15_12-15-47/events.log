@@ -1,0 +1,88 @@
+[0.000000] (-) TimerEvent: {}
+[0.001804] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.002453] (-) JobUnselected: {'identifier': 'landmark_slam'}
+[0.002935] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.003123] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.003455] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.003619] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.003721] (amy_test) JobQueued: {'identifier': 'amy_test', 'dependencies': OrderedDict()}
+[0.003820] (amy_test) JobStarted: {'identifier': 'amy_test'}
+[0.099067] (-) TimerEvent: {}
+[0.199818] (-) TimerEvent: {}
+[0.300651] (-) TimerEvent: {}
+[0.401379] (-) TimerEvent: {}
+[0.502211] (-) TimerEvent: {}
+[0.602976] (-) TimerEvent: {}
+[0.703704] (-) TimerEvent: {}
+[0.804400] (-) TimerEvent: {}
+[0.905098] (-) TimerEvent: {}
+[1.005956] (-) TimerEvent: {}
+[1.106721] (-) TimerEvent: {}
+[1.207539] (-) TimerEvent: {}
+[1.308225] (-) TimerEvent: {}
+[1.409056] (-) TimerEvent: {}
+[1.510258] (-) TimerEvent: {}
+[1.611206] (-) TimerEvent: {}
+[1.711908] (-) TimerEvent: {}
+[1.812938] (-) TimerEvent: {}
+[1.913742] (-) TimerEvent: {}
+[2.014812] (-) TimerEvent: {}
+[2.115522] (-) TimerEvent: {}
+[2.216177] (-) TimerEvent: {}
+[2.316984] (-) TimerEvent: {}
+[2.417758] (-) TimerEvent: {}
+[2.518458] (-) TimerEvent: {}
+[2.619179] (-) TimerEvent: {}
+[2.719886] (-) TimerEvent: {}
+[2.820599] (-) TimerEvent: {}
+[2.921398] (-) TimerEvent: {}
+[3.022196] (-) TimerEvent: {}
+[3.123036] (-) TimerEvent: {}
+[3.223769] (-) TimerEvent: {}
+[3.324639] (-) TimerEvent: {}
+[3.426156] (-) TimerEvent: {}
+[3.448319] (amy_test) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/amy_test', 'build', '--build-base', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build', 'install', '--record', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.88.11.47 36072 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms/code/Copperbottoms/ros_ws', 'SSH_TTY': '/dev/pts/1', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '6', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': 'localhost:11.0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test', 'SSH_CONNECTION': '100.88.11.47 36072 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[3.526483] (-) TimerEvent: {}
+[3.627682] (-) TimerEvent: {}
+[3.728388] (-) TimerEvent: {}
+[3.829221] (-) TimerEvent: {}
+[3.929943] (-) TimerEvent: {}
+[4.030807] (-) TimerEvent: {}
+[4.131565] (-) TimerEvent: {}
+[4.232282] (-) TimerEvent: {}
+[4.333035] (-) TimerEvent: {}
+[4.433704] (-) TimerEvent: {}
+[4.534352] (-) TimerEvent: {}
+[4.635103] (-) TimerEvent: {}
+[4.735845] (-) TimerEvent: {}
+[4.823394] (amy_test) StdoutLine: {'line': b'running egg_info\n'}
+[4.826413] (amy_test) StdoutLine: {'line': b'writing ../../build/amy_test/amy_test.egg-info/PKG-INFO\n'}
+[4.827978] (amy_test) StdoutLine: {'line': b'writing dependency_links to ../../build/amy_test/amy_test.egg-info/dependency_links.txt\n'}
+[4.829236] (amy_test) StdoutLine: {'line': b'writing entry points to ../../build/amy_test/amy_test.egg-info/entry_points.txt\n'}
+[4.830120] (amy_test) StdoutLine: {'line': b'writing requirements to ../../build/amy_test/amy_test.egg-info/requires.txt\n'}
+[4.830808] (amy_test) StdoutLine: {'line': b'writing top-level names to ../../build/amy_test/amy_test.egg-info/top_level.txt\n'}
+[4.836009] (-) TimerEvent: {}
+[4.840273] (amy_test) StdoutLine: {'line': b"reading manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'\n"}
+[4.844116] (amy_test) StdoutLine: {'line': b"writing manifest file '../../build/amy_test/amy_test.egg-info/SOURCES.txt'\n"}
+[4.844895] (amy_test) StdoutLine: {'line': b'running build\n'}
+[4.845428] (amy_test) StdoutLine: {'line': b'running build_py\n'}
+[4.846087] (amy_test) StdoutLine: {'line': b'copying amy_test/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test\n'}
+[4.847530] (amy_test) StdoutLine: {'line': b'running install\n'}
+[4.848958] (amy_test) StdoutLine: {'line': b'running install_lib\n'}
+[4.852704] (amy_test) StdoutLine: {'line': b'copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/build/lib/amy_test/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test\n'}
+[4.856161] (amy_test) StdoutLine: {'line': b'byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/__init__.py to __init__.cpython-310.pyc\n'}
+[4.857989] (amy_test) StdoutLine: {'line': b'running install_data\n'}
+[4.858730] (amy_test) StdoutLine: {'line': b'copying resource/amy_test -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages\n'}
+[4.859320] (amy_test) StdoutLine: {'line': b'copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test\n'}
+[4.860008] (amy_test) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.867892] (amy_test) StdoutLine: {'line': b"removing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test-0.0.1-py3.10.egg-info' (and everything under it)\n"}
+[4.871186] (amy_test) StdoutLine: {'line': b'Copying ../../build/amy_test/amy_test.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test-0.0.1-py3.10.egg-info\n'}
+[4.880462] (amy_test) StdoutLine: {'line': b'running install_scripts\n'}
+[4.936263] (-) TimerEvent: {}
+[4.972261] (amy_test) StdoutLine: {'line': b'Installing edge_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test\n'}
+[4.973980] (amy_test) StdoutLine: {'line': b"writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/install.log'\n"}
+[5.036650] (-) TimerEvent: {}
+[5.100631] (amy_test) CommandEnded: {'returncode': 0}
+[5.137191] (-) TimerEvent: {}
+[5.154992] (amy_test) JobEnded: {'identifier': 'amy_test', 'rc': 0}
+[5.158236] (-) EventReactorShutdown: {}

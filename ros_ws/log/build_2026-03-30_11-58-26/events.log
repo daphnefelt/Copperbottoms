@@ -1,0 +1,84 @@
+[0.000000] (-) TimerEvent: {}
+[0.001657] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.002723] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.003640] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.004288] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.004536] (obstacle_avoidance) JobQueued: {'identifier': 'obstacle_avoidance', 'dependencies': OrderedDict([('custom_messages', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages')])}
+[0.005071] (obstacle_avoidance) JobStarted: {'identifier': 'obstacle_avoidance'}
+[0.098782] (-) TimerEvent: {}
+[0.199505] (-) TimerEvent: {}
+[0.300342] (-) TimerEvent: {}
+[0.401252] (-) TimerEvent: {}
+[0.502545] (-) TimerEvent: {}
+[0.603496] (-) TimerEvent: {}
+[0.704326] (-) TimerEvent: {}
+[0.805112] (-) TimerEvent: {}
+[0.906001] (-) TimerEvent: {}
+[1.007093] (-) TimerEvent: {}
+[1.107840] (-) TimerEvent: {}
+[1.208535] (-) TimerEvent: {}
+[1.309194] (-) TimerEvent: {}
+[1.409868] (-) TimerEvent: {}
+[1.510539] (-) TimerEvent: {}
+[1.611425] (-) TimerEvent: {}
+[1.712411] (-) TimerEvent: {}
+[1.813120] (-) TimerEvent: {}
+[1.913862] (-) TimerEvent: {}
+[2.014651] (-) TimerEvent: {}
+[2.115342] (-) TimerEvent: {}
+[2.216218] (-) TimerEvent: {}
+[2.316893] (-) TimerEvent: {}
+[2.417668] (-) TimerEvent: {}
+[2.518333] (-) TimerEvent: {}
+[2.619011] (-) TimerEvent: {}
+[2.719657] (-) TimerEvent: {}
+[2.820359] (-) TimerEvent: {}
+[2.921009] (-) TimerEvent: {}
+[3.021726] (-) TimerEvent: {}
+[3.122595] (-) TimerEvent: {}
+[3.223406] (-) TimerEvent: {}
+[3.324065] (-) TimerEvent: {}
+[3.424828] (-) TimerEvent: {}
+[3.513056] (obstacle_avoidance) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/obstacle_avoidance', 'build', '--build-base', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build', 'install', '--record', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.124.113.17 33080 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/src', 'SSH_TTY': '/dev/pts/2', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '7', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': 'localhost:11.0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance', 'SSH_CONNECTION': '100.124.113.17 33080 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover'}, 'shell': False}
+[3.525769] (-) TimerEvent: {}
+[3.626824] (-) TimerEvent: {}
+[3.727501] (-) TimerEvent: {}
+[3.828326] (-) TimerEvent: {}
+[3.929058] (-) TimerEvent: {}
+[4.029721] (-) TimerEvent: {}
+[4.130424] (-) TimerEvent: {}
+[4.231178] (-) TimerEvent: {}
+[4.331889] (-) TimerEvent: {}
+[4.432595] (-) TimerEvent: {}
+[4.533266] (-) TimerEvent: {}
+[4.633935] (-) TimerEvent: {}
+[4.734631] (-) TimerEvent: {}
+[4.756792] (obstacle_avoidance) StdoutLine: {'line': b'running egg_info\n'}
+[4.759803] (obstacle_avoidance) StdoutLine: {'line': b'writing ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/PKG-INFO\n'}
+[4.761452] (obstacle_avoidance) StdoutLine: {'line': b'writing dependency_links to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/dependency_links.txt\n'}
+[4.762326] (obstacle_avoidance) StdoutLine: {'line': b'writing entry points to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/entry_points.txt\n'}
+[4.763314] (obstacle_avoidance) StdoutLine: {'line': b'writing requirements to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/requires.txt\n'}
+[4.764075] (obstacle_avoidance) StdoutLine: {'line': b'writing top-level names to ../../build/obstacle_avoidance/obstacle_avoidance.egg-info/top_level.txt\n'}
+[4.773800] (obstacle_avoidance) StdoutLine: {'line': b"reading manifest file '../../build/obstacle_avoidance/obstacle_avoidance.egg-info/SOURCES.txt'\n"}
+[4.775210] (obstacle_avoidance) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[4.778094] (obstacle_avoidance) StdoutLine: {'line': b"writing manifest file '../../build/obstacle_avoidance/obstacle_avoidance.egg-info/SOURCES.txt'\n"}
+[4.778796] (obstacle_avoidance) StdoutLine: {'line': b'running build\n'}
+[4.779351] (obstacle_avoidance) StdoutLine: {'line': b'running build_py\n'}
+[4.779934] (obstacle_avoidance) StdoutLine: {'line': b'copying collision/collision.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build/lib/collision\n'}
+[4.781448] (obstacle_avoidance) StdoutLine: {'line': b'running install\n'}
+[4.782690] (obstacle_avoidance) StdoutLine: {'line': b'running install_lib\n'}
+[4.786298] (obstacle_avoidance) StdoutLine: {'line': b'copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build/lib/collision/collision.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/collision\n'}
+[4.789596] (obstacle_avoidance) StdoutLine: {'line': b'byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/collision/collision.py to collision.cpython-310.pyc\n'}
+[4.793518] (obstacle_avoidance) StdoutLine: {'line': b'running install_data\n'}
+[4.794449] (obstacle_avoidance) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.801737] (obstacle_avoidance) StdoutLine: {'line': b"removing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle_avoidance-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[4.803644] (obstacle_avoidance) StdoutLine: {'line': b'Copying ../../build/obstacle_avoidance/obstacle_avoidance.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle_avoidance-0.0.0-py3.10.egg-info\n'}
+[4.812071] (obstacle_avoidance) StdoutLine: {'line': b'running install_scripts\n'}
+[4.834832] (-) TimerEvent: {}
+[4.894826] (obstacle_avoidance) StdoutLine: {'line': b'Installing collision script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/obstacle_avoidance\n'}
+[4.896732] (obstacle_avoidance) StdoutLine: {'line': b"writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/install.log'\n"}
+[4.935190] (-) TimerEvent: {}
+[5.016650] (obstacle_avoidance) CommandEnded: {'returncode': 0}
+[5.035297] (-) TimerEvent: {}
+[5.072218] (obstacle_avoidance) JobEnded: {'identifier': 'obstacle_avoidance', 'rc': 0}
+[5.076083] (-) EventReactorShutdown: {}

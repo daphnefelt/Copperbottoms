@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+../../build/amy_test/amy_test.egg-info/PKG-INFO
+../../build/amy_test/amy_test.egg-info/SOURCES.txt
+../../build/amy_test/amy_test.egg-info/dependency_links.txt
+../../build/amy_test/amy_test.egg-info/entry_points.txt
+../../build/amy_test/amy_test.egg-info/requires.txt
+../../build/amy_test/amy_test.egg-info/top_level.txt
+../../build/amy_test/amy_test.egg-info/zip-safe
+amy_test/__init__.py
+amy_test/camera_subscriber_edge_follow.py
+resource/amy_test

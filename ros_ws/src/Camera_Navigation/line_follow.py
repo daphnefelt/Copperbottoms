@@ -18,7 +18,7 @@ class LineFollower(Node):
         cmd_vel_topic = '/cmd_vel'
 
         # tuning
-        self.camera_center_offset = -430
+        self.error_offset = 0.0 # to account for location of the camera lens
         self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50
@@ -82,8 +82,9 @@ class LineFollower(Node):
         tape_x = np.argmax(column_strength)
 
         # error
-        center_x = width / 2 + self.camera_center_offset
+        center_x = width / 2
         error = (tape_x - center_x) / center_x  # normalize error
+        error += self.error_offset
 
         # control
         turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))

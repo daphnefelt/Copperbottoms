@@ -32,7 +32,7 @@ class PaperFollower(Node):
 
         # now actually command using the robo rover node
         twist = Twist()
-        twist.linear.x = 0.15  # constant forward speed to make turn actually happen
+        twist.linear.x = 0.25  # constant forward speed to make turn actually happen
         twist.angular.z = turn_amount # need to check signs here
         self.drive_pub.publish(twist)
 

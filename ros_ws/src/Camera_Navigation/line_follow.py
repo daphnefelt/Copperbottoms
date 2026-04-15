@@ -18,6 +18,7 @@ class LineFollower(Node):
         cmd_vel_topic = '/cmd_vel'
 
         # tuning
+        self.camera_center_offset = -430
         self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50
@@ -78,7 +79,7 @@ class LineFollower(Node):
         # find tape position
         weighted = blue_score * blue_mask
         column_strength = weighted.mean(axis=0)  # average over rows
-        tape_x = np.argmax(column_strength)
+        tape_x = np.argmax(column_strength) + self.camera_center_offset
 
         # error
         center_x = width / 2

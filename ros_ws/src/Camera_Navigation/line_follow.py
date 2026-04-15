@@ -79,10 +79,10 @@ class LineFollower(Node):
         # find tape position
         weighted = blue_score * blue_mask
         column_strength = weighted.mean(axis=0)  # average over rows
-        tape_x = np.argmax(column_strength) + self.camera_center_offset
+        tape_x = np.argmax(column_strength)
 
         # error
-        center_x = width / 2
+        center_x = width / 2 + self.camera_center_offset
         error = (tape_x - center_x) / center_x  # normalize error
 
         # control

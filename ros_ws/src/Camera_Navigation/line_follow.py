@@ -24,6 +24,7 @@ class LineFollower(Node):
         self.min_pixels = 50
         self.forward_speed = 0.3
         self.max_turn = 1.0
+        self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
 
         # subscribers
         self.image_sub = self.create_subscription(
@@ -67,8 +68,12 @@ class LineFollower(Node):
         blue_mask = (blue_score > self.color_threshold)
         blue_count = np.sum(blue_mask)
 
+        if blue_count >= self.min_pixels:
+            self.see_line = True
+            
         if blue_count < self.min_pixels:
             self.get_logger().info("No tape detected, stopping.")
+            self.see_line = False
             twist = Twist()
             twist.linear.x = 0.0
             twist.angular.z = 0.0
@@ -100,6 +105,15 @@ class LineFollower(Node):
             self.get_logger().info(
                 f"tape_x={tape_x}, err={error:.3f}, blue_px={blue_count}, turn={turn:.3f}"
             )
+
+    def turn_to_find_line(self):
+        # rotate in place to try to find the line when it is lost
+        twist = Twist()
+        twist.linear.x = 0.0
+        twist.angular.z = 0.5  # turn right
+        self.vel_pub.publish(twist)
+        self.get_logger().info("Line lost - turning to try to find it.")
+
 
 
 def main(args=None):

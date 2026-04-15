@@ -1,0 +1,1 @@
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_typesupport_introspection_c/custom_messages/msg/rosidl_typesupport_introspection_c__visibility_control.h

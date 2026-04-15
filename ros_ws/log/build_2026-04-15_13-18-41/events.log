@@ -1,0 +1,178 @@
+[0.000000] (-) TimerEvent: {}
+[0.002123] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.002743] (-) JobUnselected: {'identifier': 'landmark_slam'}
+[0.003249] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.003437] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.003715] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.003881] (robo_rover) JobQueued: {'identifier': 'robo_rover', 'dependencies': OrderedDict([('custom_messages', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages')])}
+[0.004013] (robo_rover) JobStarted: {'identifier': 'robo_rover'}
+[0.056780] (robo_rover) JobProgress: {'identifier': 'robo_rover', 'progress': 'cmake'}
+[0.059402] (robo_rover) Command: {'cmd': ['/usr/bin/cmake', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_rover', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.121.236.39 58010 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/src'), ('SSH_TTY', '/dev/pts/0'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:10.0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover'), ('SSH_CONNECTION', '100.121.236.39 58010 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/opt/ros/humble')]), 'shell': False}
+[0.099066] (-) TimerEvent: {}
+[0.202720] (-) TimerEvent: {}
+[0.303645] (-) TimerEvent: {}
+[0.386786] (robo_rover) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.405036] (-) TimerEvent: {}
+[0.506498] (-) TimerEvent: {}
+[0.607906] (-) TimerEvent: {}
+[0.709019] (-) TimerEvent: {}
+[0.711330] (robo_rover) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.744575] (robo_rover) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.809250] (-) TimerEvent: {}
+[0.910108] (-) TimerEvent: {}
+[1.010974] (-) TimerEvent: {}
+[1.112289] (-) TimerEvent: {}
+[1.134482] (robo_rover) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.164042] (robo_rover) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.164859] (robo_rover) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.166253] (robo_rover) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.177497] (robo_rover) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.212497] (-) TimerEvent: {}
+[1.313450] (-) TimerEvent: {}
+[1.414538] (-) TimerEvent: {}
+[1.515306] (-) TimerEvent: {}
+[1.549118] (robo_rover) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.579604] (robo_rover) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.580634] (robo_rover) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.582486] (robo_rover) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.615471] (-) TimerEvent: {}
+[1.617802] (robo_rover) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[1.715617] (-) TimerEvent: {}
+[1.816315] (-) TimerEvent: {}
+[1.917000] (-) TimerEvent: {}
+[2.017673] (-) TimerEvent: {}
+[2.118386] (-) TimerEvent: {}
+[2.219072] (-) TimerEvent: {}
+[2.319774] (-) TimerEvent: {}
+[2.420664] (-) TimerEvent: {}
+[2.448791] (robo_rover) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[2.520835] (-) TimerEvent: {}
+[2.621518] (-) TimerEvent: {}
+[2.722383] (-) TimerEvent: {}
+[2.757587] (robo_rover) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[2.822590] (-) TimerEvent: {}
+[2.923305] (-) TimerEvent: {}
+[3.024064] (-) TimerEvent: {}
+[3.124801] (-) TimerEvent: {}
+[3.157809] (robo_rover) StdoutLine: {'line': b'-- Found rclpy: 3.3.19 (/opt/ros/humble/share/rclpy/cmake)\n'}
+[3.189210] (robo_rover) StdoutLine: {'line': b'-- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)\n'}
+[3.224978] (-) TimerEvent: {}
+[3.325727] (-) TimerEvent: {}
+[3.426442] (-) TimerEvent: {}
+[3.527164] (-) TimerEvent: {}
+[3.585303] (robo_rover) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[3.627329] (-) TimerEvent: {}
+[3.645908] (robo_rover) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[3.723289] (robo_rover) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[3.727476] (-) TimerEvent: {}
+[3.813601] (robo_rover) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[3.827625] (-) TimerEvent: {}
+[3.928275] (-) TimerEvent: {}
+[3.941497] (robo_rover) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.028454] (-) TimerEvent: {}
+[4.129155] (-) TimerEvent: {}
+[4.137658] (robo_rover) StdoutLine: {'line': b'-- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[4.229421] (-) TimerEvent: {}
+[4.249324] (robo_rover) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[4.329732] (-) TimerEvent: {}
+[4.431269] (-) TimerEvent: {}
+[4.532509] (-) TimerEvent: {}
+[4.634146] (-) TimerEvent: {}
+[4.735219] (-) TimerEvent: {}
+[4.835909] (-) TimerEvent: {}
+[4.936647] (-) TimerEvent: {}
+[4.944047] (robo_rover) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[5.036824] (-) TimerEvent: {}
+[5.137551] (-) TimerEvent: {}
+[5.238391] (-) TimerEvent: {}
+[5.339311] (-) TimerEvent: {}
+[5.440046] (-) TimerEvent: {}
+[5.524204] (robo_rover) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[5.540469] (-) TimerEvent: {}
+[5.549796] (robo_rover) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[5.555344] (robo_rover) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[5.565914] (robo_rover) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[5.572499] (robo_rover) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[5.584760] (robo_rover) StdoutLine: {'line': b'-- Configuring done\n'}
+[5.623871] (robo_rover) StdoutLine: {'line': b'-- Generating done\n'}
+[5.635769] (robo_rover) StdoutLine: {'line': b'-- Build files have been written to: /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover\n'}
+[5.640823] (-) TimerEvent: {}
+[5.660529] (robo_rover) CommandEnded: {'returncode': 0}
+[5.662374] (robo_rover) JobProgress: {'identifier': 'robo_rover', 'progress': 'build'}
+[5.667472] (robo_rover) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', '--', '-j4', '-l4'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.121.236.39 58010 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/src'), ('SSH_TTY', '/dev/pts/0'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:10.0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover'), ('SSH_CONNECTION', '100.121.236.39 58010 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/opt/ros/humble')]), 'shell': False}
+[5.741021] (-) TimerEvent: {}
+[5.841888] (-) TimerEvent: {}
+[5.926088] (robo_rover) StdoutLine: {'line': b'Built target ament_cmake_python_symlink_robo_rover\n'}
+[5.942119] (-) TimerEvent: {}
+[6.043047] (-) TimerEvent: {}
+[6.143858] (-) TimerEvent: {}
+[6.244600] (-) TimerEvent: {}
+[6.345290] (-) TimerEvent: {}
+[6.446017] (-) TimerEvent: {}
+[6.546658] (-) TimerEvent: {}
+[6.647313] (-) TimerEvent: {}
+[6.747966] (-) TimerEvent: {}
+[6.848693] (-) TimerEvent: {}
+[6.949380] (-) TimerEvent: {}
+[7.050059] (-) TimerEvent: {}
+[7.150768] (-) TimerEvent: {}
+[7.227055] (robo_rover) StdoutLine: {'line': b'running egg_info\n'}
+[7.229402] (robo_rover) StdoutLine: {'line': b'creating robo_rover.egg-info\n'}
+[7.230270] (robo_rover) StdoutLine: {'line': b'writing robo_rover.egg-info/PKG-INFO\n'}
+[7.231186] (robo_rover) StdoutLine: {'line': b'writing dependency_links to robo_rover.egg-info/dependency_links.txt\n'}
+[7.232126] (robo_rover) StdoutLine: {'line': b'writing top-level names to robo_rover.egg-info/top_level.txt\n'}
+[7.233333] (robo_rover) StdoutLine: {'line': b"writing manifest file 'robo_rover.egg-info/SOURCES.txt'\n"}
+[7.246332] (robo_rover) StdoutLine: {'line': b"reading manifest file 'robo_rover.egg-info/SOURCES.txt'\n"}
+[7.249055] (robo_rover) StdoutLine: {'line': b"writing manifest file 'robo_rover.egg-info/SOURCES.txt'\n"}
+[7.251043] (-) TimerEvent: {}
+[7.352256] (-) TimerEvent: {}
+[7.384224] (robo_rover) StdoutLine: {'line': b'Built target ament_cmake_python_build_robo_rover_egg\n'}
+[7.424363] (robo_rover) CommandEnded: {'returncode': 0}
+[7.426609] (robo_rover) JobProgress: {'identifier': 'robo_rover', 'progress': 'install'}
+[7.452523] (-) TimerEvent: {}
+[7.469660] (robo_rover) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.121.236.39 58010 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/src'), ('SSH_TTY', '/dev/pts/0'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:10.0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover'), ('SSH_CONNECTION', '100.121.236.39 58010 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/opt/ros/humble')]), 'shell': False}
+[7.499958] (robo_rover) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[7.501676] (robo_rover) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[7.503016] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.sh\n'}
+[7.537636] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.dsv\n'}
+[7.552800] (-) TimerEvent: {}
+[7.573240] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/PKG-INFO\n'}
+[7.608262] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[7.642029] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[7.652995] (-) TimerEvent: {}
+[7.676556] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/top_level.txt\n'}
+[7.711986] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/__init__.py\n'}
+[7.745912] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/rover_node.py\n'}
+[7.753163] (-) TimerEvent: {}
+[7.781687] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/launch/rover_launch.py\n'}
+[7.815445] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/package_run_dependencies/robo_rover\n'}
+[7.852363] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/parent_prefix_path/robo_rover\n'}
+[7.853426] (-) TimerEvent: {}
+[7.888096] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.sh\n'}
+[7.921503] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.dsv\n'}
+[7.953640] (-) TimerEvent: {}
+[7.960165] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.sh\n'}
+[7.993563] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.dsv\n'}
+[8.026585] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.bash\n'}
+[8.053821] (-) TimerEvent: {}
+[8.059900] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.sh\n'}
+[8.095481] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.zsh\n'}
+[8.128049] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.dsv\n'}
+[8.154075] (-) TimerEvent: {}
+[8.162295] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.dsv\n'}
+[8.196351] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/packages/robo_rover\n'}
+[8.238994] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/cmake/robo_roverConfig.cmake\n'}
+[8.254355] (-) TimerEvent: {}
+[8.286236] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/cmake/robo_roverConfig-version.cmake\n'}
+[8.318695] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.xml\n'}
+[8.354514] (-) TimerEvent: {}
+[8.455295] (-) TimerEvent: {}
+[8.543022] (robo_rover) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover'...\n"}
+[8.545011] (robo_rover) StdoutLine: {'line': b"Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/__init__.py'...\n"}
+[8.546821] (robo_rover) StdoutLine: {'line': b"Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/rover_node.py'...\n"}
+[8.555630] (-) TimerEvent: {}
+[8.574278] (robo_rover) StdoutLine: {'line': b'-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib/robo_rover/rover_node\n'}
+[8.582718] (robo_rover) CommandEnded: {'returncode': 0}
+[8.655937] (-) TimerEvent: {}
+[8.671868] (robo_rover) JobEnded: {'identifier': 'robo_rover', 'rc': 0}
+[8.674828] (-) EventReactorShutdown: {}

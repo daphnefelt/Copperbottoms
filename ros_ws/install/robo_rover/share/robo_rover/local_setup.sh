@@ -1,0 +1,1 @@
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/ament_cmake_environment_hooks/local_setup.sh

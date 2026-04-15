@@ -1,0 +1,11 @@
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/uninstall.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/robo_rover_uninstall.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/ament_cmake_python_symlink_robo_rover.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/ament_cmake_python_build_robo_rover_egg.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/test.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/edit_cache.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/rebuild_cache.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/list_install_components.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/install.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/install/local.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/CMakeFiles/install/strip.dir

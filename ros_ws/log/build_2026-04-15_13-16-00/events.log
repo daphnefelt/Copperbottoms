@@ -1,0 +1,11 @@
+[0.000000] (-) TimerEvent: {}
+[0.002675] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.007624] (-) JobUnselected: {'identifier': 'landmark_slam'}
+[0.007990] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.008193] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.008349] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.008483] (robo_rover) JobQueued: {'identifier': 'robo_rover', 'dependencies': OrderedDict([('custom_messages', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages')])}
+[0.008662] (robo_rover) JobStarted: {'identifier': 'robo_rover'}
+[0.097952] (-) TimerEvent: {}
+[0.108137] (robo_rover) JobEnded: {'identifier': 'robo_rover', 'rc': 1}
+[0.120138] (-) EventReactorShutdown: {}

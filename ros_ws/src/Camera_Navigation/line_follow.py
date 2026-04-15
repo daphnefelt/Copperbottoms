@@ -42,10 +42,6 @@ class LineFollower(Node):
     def image_callback(self, msg: Image):
         # frame count
         self.frame_count += 1
-        if self.frame_count % 10 == 0:
-        self.get_logger().info(
-                    f"tape_x={tape_x}, err={error:.3f}, blue_px={blue_count}, turn={turn:.3f}"
-                )
 
         if msg.encoding.lower() != "bgr8":
             self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
@@ -72,8 +68,6 @@ class LineFollower(Node):
 
         if blue_count < self.min_pixels:
             self.get_logger().info("No tape detected, stopping.")
-            self.publish_velocity(0.0, 0.0)
-
             twist = Twist()
             twist.linear.x = 0.0
             twist.angular.z = 0.0
@@ -91,7 +85,7 @@ class LineFollower(Node):
         error = (tape_x - center_x) / center_x  # normalize error
 
         # control
-        turn = float(np.clip(-self.kp * error, self.max_turn, self.max_turn))
+        turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
 
         # speed + publish
 
@@ -104,9 +98,6 @@ class LineFollower(Node):
             self.get_logger().info(
                 f"tape_x={tape_x}, err={error:.3f}, blue_px={blue_count}, turn={turn:.3f}"
             )
-
-
-        pass
 
 
 def main(args=None):

@@ -18,7 +18,7 @@ class LineFollower(Node):
         cmd_vel_topic = '/cmd_vel'
 
         # tuning
-        self.error_offset = 0.0 # to account for location of the camera lens
+        self.error_offset = -0.4 # to account for location of the camera lens
         self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50

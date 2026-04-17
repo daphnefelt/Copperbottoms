@@ -1,9 +1,43 @@
 #!/usr/bin/env python3
 
 import os
+import subprocess
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
+
+def _get_running_node_names() -> set[str]:
+    names: set[str] = set()
+    try:
+        result = subprocess.run(
+            ['ros2', 'node', 'list'],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=3,
+        )
+    except Exception:
+        return names
+
+    for raw_line in result.stdout.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        names.add(line)
+        if line.startswith('/'):
+            names.add(line[1:])
+    return names
+
+
+def _is_any_running(running_names: set[str], aliases: tuple[str, ...]) -> bool:
+	for alias in aliases:
+		if alias in running_names:
+			return True
+		if alias.startswith('/') and alias[1:] in running_names:
+			return True
+		if (not alias.startswith('/')) and ('/' + alias) in running_names:
+			return True
+	return False
 
 
 def generate_launch_description():
@@ -31,8 +65,18 @@ def generate_launch_description():
 		emulate_tty=True,
 	)
 
-	return LaunchDescription([
-		ros_stream_with_depth,
-		rover_node,
-		line_follow,
-	])
+	running_nodes = _get_running_node_names()
+	launch_actions = []
+
+	# ros_stream_with_depth.py creates this node name.
+	if not _is_any_running(running_nodes, ('realsense_color_depth_publisher', '/realsense_color_depth_publisher')):
+		launch_actions.append(ros_stream_with_depth)
+
+	if not _is_any_running(running_nodes, ('rover_node', '/rover_node')):
+		launch_actions.append(rover_node)
+
+	# line_follow.py creates this node name.
+	if not _is_any_running(running_nodes, ('line_follower', '/line_follower')):
+		launch_actions.append(line_follow)
+
+	return LaunchDescription(launch_actions)

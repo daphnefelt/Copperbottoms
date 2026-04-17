@@ -5,6 +5,7 @@ import numpy as np
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
+from std_msgs.msg import Bool
 
 
 class LineFollower(Node):
@@ -45,12 +46,20 @@ class LineFollower(Node):
         self.last_tape_x_norm = 0.0
         self.last_seen_zone = 1
         self.seen_first_frame = False
+        self.rover_armed = False
+        self._logged_waiting_for_arm = False
 
         # subscribers
         self.image_sub = self.create_subscription(
             Image,
             image_topic,
             self.image_callback,
+            10
+        )
+        self.armed_sub = self.create_subscription(
+            Bool,
+            '/rover/armed',
+            self.armed_callback,
             10
         )
 
@@ -60,6 +69,16 @@ class LineFollower(Node):
         self.get_logger().info(
             f'Line follower node started. image_topic={image_topic}, cmd_vel_topic={cmd_vel_topic}'
         )
+
+    def armed_callback(self, msg: Bool):
+        was_armed = self.rover_armed
+        self.rover_armed = bool(msg.data)
+
+        if self.rover_armed and not was_armed:
+            self.get_logger().info('Rover armed detected. Enabling line-follow motion commands.')
+            self._logged_waiting_for_arm = False
+        elif (not self.rover_armed) and was_armed:
+            self.get_logger().warn('Rover disarmed. Holding zero cmd_vel.')
 
     def image_callback(self, msg: Image):
         self.frame_count += 1
@@ -74,6 +93,15 @@ class LineFollower(Node):
 
         _, width, _ = img.shape
 
+        if not self.rover_armed:
+            # Wait until rover node reports armed; avoid sending drive commands early.
+            stop = Twist()
+            self.vel_pub.publish(stop)
+            if not self._logged_waiting_for_arm and self.frame_count % 30 == 0:
+                self.get_logger().warn('Waiting for /rover/armed=True before driving...')
+                self._logged_waiting_for_arm = True
+            return
+
         # Priority-based zone search: try lowest zone first, step up if no detection.
         candidate = None
         for zone in self.zones:
@@ -84,10 +112,11 @@ class LineFollower(Node):
         twist = Twist()
         blue_count = 0
         zone_used = 0
+        corner_mode = False
 
         if candidate is not None:
             # Tape found: follow it
-            twist, blue_count, zone_used = self.follow_line(candidate, width)
+            twist, blue_count, zone_used, corner_mode = self.follow_line(candidate, width)
 
             # update state and tracking info for potential future use 
             # in bridging or search
@@ -122,7 +151,8 @@ class LineFollower(Node):
             self.get_logger().info(
                 (
                     f"state={self.state}, zone={zone_used}, blue_px={blue_count}, "
-                    f"lost_frames={self.lost_frames}, lin={twist.linear.x:.2f}, ang={twist.angular.z:.2f}"
+                    f"lost_frames={self.lost_frames}, corner={corner_mode}, "
+                    f"lin={twist.linear.x:.2f}, ang={twist.angular.z:.2f}"
                 )
             )
 
@@ -157,6 +187,7 @@ class LineFollower(Node):
         return {
             'zone': zone,
             'tape_x': tape_x,
+            'width': width,
             'blue_count': blue_count,
             'left_count': left_count,
             'right_count': right_count,
@@ -170,7 +201,7 @@ class LineFollower(Node):
         if is_corner:
             # Slow down and turn harder at 90-degree corners
             turn = float(np.clip(-1.25 * self.kp * error, -self.max_turn, self.max_turn))
-            speed = max(0.12, self.forward_speed * 0.45)
+            speed = max(0.20, self.forward_speed * 0.45)
         else:
             turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
             speed = self.forward_speed
@@ -179,7 +210,7 @@ class LineFollower(Node):
         twist.linear.x = speed
         twist.angular.z = turn
 
-        return twist, candidate['blue_count'], candidate['zone']
+        return twist, candidate['blue_count'], candidate['zone'], is_corner
 
     def bridge_gap(self, img, width):
         # bridge short gaps by crawling forward and steering toward visible edges.
@@ -267,8 +298,10 @@ class LineFollower(Node):
         right_count = candidate['right_count']
         total = max(left_count + right_count, 1)
         side_imbalance = abs(left_count - right_count) / total
-        # If more than 40% of pixels are on one side, it's a corner cue.
-        return side_imbalance > 0.40 # we can tune this
+        x_norm = self.pixel_to_norm(candidate['tape_x'], candidate['width'])
+        near_edge = abs(x_norm) > 0.60
+        # Corner cue only when line is both side-heavy and near an image edge.
+        return side_imbalance > 0.45 and near_edge
 
     def pixel_to_norm(self, x, width):
         # Convert pixel x position to normalized -1.0 (left) to 1.0 (right)
@@ -310,7 +343,8 @@ def main(args=None):
     finally:
         if node is not None:
             node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

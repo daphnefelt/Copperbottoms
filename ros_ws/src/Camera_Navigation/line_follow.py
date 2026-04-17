@@ -5,6 +5,7 @@ import numpy as np
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
+from std_msgs.msg import Bool
 
 
 class LineFollower(Node):
@@ -44,12 +45,21 @@ class LineFollower(Node):
         self.last_turn = 0.0
         self.last_tape_x_norm = 0.0
         self.last_seen_zone = 1
+        self.seen_first_frame = False
+        self.rover_armed = False
+        self._logged_waiting_for_arm = False
 
         # subscribers
         self.image_sub = self.create_subscription(
             Image,
             image_topic,
             self.image_callback,
+            10
+        )
+        self.armed_sub = self.create_subscription(
+            Bool,
+            '/rover/armed',
+            self.armed_callback,
             10
         )
 
@@ -60,100 +70,107 @@ class LineFollower(Node):
             f'Line follower node started. image_topic={image_topic}, cmd_vel_topic={cmd_vel_topic}'
         )
 
+    def armed_callback(self, msg: Bool):
+        was_armed = self.rover_armed
+        self.rover_armed = bool(msg.data)
+
+        if self.rover_armed and not was_armed:
+            self.get_logger().info('Rover armed detected. Enabling line-follow motion commands.')
+            self._logged_waiting_for_arm = False
+        elif (not self.rover_armed) and was_armed:
+            self.get_logger().warn('Rover disarmed. Holding zero cmd_vel.')
+
     def image_callback(self, msg: Image):
         self.frame_count += 1
 
-        if msg.encoding.lower() != "bgr8":
-            self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
+        img = self.decode_image(msg)
+        if img is None:
             return
 
-        img = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, 3))
+        if not self.seen_first_frame:
+            self.seen_first_frame = True
+            self.get_logger().info(f"First camera frame received. encoding={msg.encoding}")
+
         _, width, _ = img.shape
 
-        # Evaluate all zones every frame and score detections by continuity + confidence.
-        candidates = []
+        if not self.rover_armed:
+            # Wait until rover node reports armed; avoid sending drive commands early.
+            stop = Twist()
+            self.vel_pub.publish(stop)
+            if not self._logged_waiting_for_arm and self.frame_count % 30 == 0:
+                self.get_logger().warn('Waiting for /rover/armed=True before driving...')
+                self._logged_waiting_for_arm = True
+            return
+
+        # Priority-based zone search: try lowest zone first, step up if no detection.
+        candidate = None
         for zone in self.zones:
             candidate = self.detect_candidate_in_zone(img, zone)
-            
-            if candidate is None:
-                continue
-
-            x_norm = self.pixel_to_norm(candidate['tape_x'], width)
-            continuity = 1.0 - min(abs(x_norm - self.last_tape_x_norm), 2.0) / 2.0
-            count_term = min(candidate['blue_count'] / 1000.0, 1.5)
-            bottom_bonus = (5 - zone) * 0.10
-            candidate['score'] = 1.2 * continuity + count_term + bottom_bonus
-            candidate['x_norm'] = x_norm
-            candidates.append(candidate)
+            if candidate is not None:
+                break  # Found tape, stop searching higher zones.
 
         twist = Twist()
+        blue_count = 0
+        zone_used = 0
+        corner_mode = False
 
-        if candidates:
-            best = max(candidates, key=lambda c: c['score'])
-            error = self.calculate_follow_error(best['tape_x'], width)
-            is_corner = self.is_hard_turn_candidate(best)
+        if candidate is not None:
+            # Tape found: follow it
+            twist, blue_count, zone_used, corner_mode = self.follow_line(candidate, width)
 
-            if is_corner:
-                # Slow down and allow stronger turn so 90-degree corners can be acquired.
-                turn = float(np.clip(-1.25 * self.kp * error, -self.max_turn, self.max_turn))
-                speed = max(0.12, self.forward_speed * 0.45)
-            else:
-                turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
-                speed = self.forward_speed
-
-            twist.linear.x = speed
-            twist.angular.z = turn
-
+            # update state and tracking info for potential future use 
+            # in bridging or search
             self.state = 'follow'
             self.see_line = True
             self.lost_frames = 0
-            self.last_error = error
-            self.last_turn = turn
-            self.last_tape_x_norm = best['x_norm']
-            self.last_seen_zone = best['zone']
-            blue_count = best['blue_count']
-            zone_used = best['zone']
+            self.last_error = self.calculate_follow_error(candidate['tape_x'], width)
+            self.last_turn = twist.angular.z
+            self.last_tape_x_norm = self.pixel_to_norm(candidate['tape_x'], width)
+            self.last_seen_zone = candidate['zone']
+            
         else:
+            # No tape found: bridge or search
             self.see_line = False
             self.lost_frames += 1
 
             if self.lost_frames <= self.bridge_max_frames:
-                # Bridge short gaps by holding recent steering with a slow forward crawl.
+                # Bridge short gaps, looking for tape on left or right edges
+                twist, blue_count, zone_used = self.bridge_gap(img, width)
+                # update state
                 self.state = 'bridge'
-                twist.linear.x = self.bridge_speed
-                twist.angular.z = float(np.clip(self.last_turn * 0.8, -self.max_turn, self.max_turn))
-                blue_count = 0
-                zone_used = 0
             else:
-                # Full recovery search: rotate in place until a zone reacquires tape.
+                # Full recovery: spin in place
+                twist, blue_count, zone_used = self.search_for_line()
+                # update state
                 self.state = 'search'
-                spin_sign = -1.0 if self.last_error >= 0.0 else 1.0
-                twist.linear.x = 0.0
-                twist.angular.z = spin_sign * self.search_spin_speed
-                blue_count = 0
-                zone_used = 0
 
+        # send velocity command
         self.vel_pub.publish(twist)
 
         if self.frame_count % 10 == 0:
             self.get_logger().info(
                 (
                     f"state={self.state}, zone={zone_used}, blue_px={blue_count}, "
-                    f"lost_frames={self.lost_frames}, lin={twist.linear.x:.2f}, ang={twist.angular.z:.2f}"
+                    f"lost_frames={self.lost_frames}, corner={corner_mode}, "
+                    f"lin={twist.linear.x:.2f}, ang={twist.angular.z:.2f}"
                 )
             )
 
     def detect_candidate_in_zone(self, img, zone):
-        roi = self.roi_from_zone(img, zone)
-        _, width, _ = roi.shape
+        roi = self.roi_from_zone(img, zone) # region of interest for this zone
+        _, width, _ = roi.shape # width of the ROI for normalization
 
         b = roi[:, :, 0].astype(np.float32)
         g = roi[:, :, 1].astype(np.float32)
         r = roi[:, :, 2].astype(np.float32)
+        # Simple blue detection: blue channel minus half of red and green to 
+        # reduce noise from non-blue areas.
         blue_score = b - 0.5 * (g + r)
         blue_mask = (blue_score > self.color_threshold)
         blue_count = int(np.sum(blue_mask))
 
+        # If not enough blue, we will change zones, if no blue in any zone
+        # we will entually go into search mode
         if blue_count < self.min_pixels:
             return None
 
@@ -162,39 +179,147 @@ class LineFollower(Node):
         column_strength = weighted.sum(axis=0)
         tape_x = int(np.argmax(column_strength))
 
+        # blue pixels on left half of image (for turning based systems)
         left_count = int(np.sum(blue_mask[:, :width // 2]))
+        # blue pixels on right half of image (for turning based systems)
         right_count = int(np.sum(blue_mask[:, width // 2:]))
 
         return {
             'zone': zone,
             'tape_x': tape_x,
+            'width': width,
             'blue_count': blue_count,
             'left_count': left_count,
             'right_count': right_count,
         }
 
-    def is_hard_turn_candidate(self, candidate):
+    def follow_line(self, candidate, width):
+        # follow detected tape line with steering and corner
+        error = self.calculate_follow_error(candidate['tape_x'], width)
+        is_corner = self.is_side_heavy_turn(candidate)
+
+        if is_corner:
+            # Slow down and turn harder at 90-degree corners
+            turn = float(np.clip(-1.25 * self.kp * error, -self.max_turn, self.max_turn))
+            speed = max(0.20, self.forward_speed * 0.45)
+        else:
+            turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
+            speed = self.forward_speed
+
+        twist = Twist()
+        twist.linear.x = speed
+        twist.angular.z = turn
+
+        return twist, candidate['blue_count'], candidate['zone'], is_corner
+
+    def bridge_gap(self, img, width):
+        # bridge short gaps by crawling forward and steering toward visible edges.
+        # Hold last steering + crawl forward
+        base_turn = float(np.clip(self.last_turn * 0.8, -self.max_turn, self.max_turn))
+
+        # Scan bottom zone for any blue on left or right edges to guide bridging
+        roi = self.roi_from_zone(img, 1)
+        _, roi_width, _ = roi.shape
+        b = roi[:, :, 0].astype(np.float32)
+        g = roi[:, :, 1].astype(np.float32)
+        r = roi[:, :, 2].astype(np.float32)
+        blue_score = b - 0.5 * (g + r)
+        blue_mask = (blue_score > self.color_threshold)
+
+        # Check left and right fifths for tape presence
+        left_fifth = int(roi_width / 5)
+        right_fifth = int(4 * roi_width / 5)
+        left_edge_count = int(np.sum(blue_mask[:, :left_fifth]))
+        right_edge_count = int(np.sum(blue_mask[:, right_fifth:]))
+        center_count = int(np.sum(blue_mask[:, left_fifth:right_fifth]))
+
+        # Bias turn toward visible tape on the edges
+        edge_bias = 0.0
+        if left_edge_count > center_count and left_edge_count > right_edge_count:
+            edge_bias = -0.3  # Steer left
+        elif right_edge_count > center_count and right_edge_count > left_edge_count:
+            edge_bias = 0.3   # Steer right
+
+        # Combine base turn with edge bias, ensuring we don't exceed max turn limits.
+        turn = float(np.clip(base_turn + edge_bias, -self.max_turn, self.max_turn))
+
+        twist = Twist()
+        twist.linear.x = self.bridge_speed
+        twist.angular.z = turn
+
+        total_blue = left_edge_count + center_count + right_edge_count
+        return twist, total_blue, 0
+
+    def decode_image(self, msg: Image):
+        # Support common raw camera encodings and convert to BGR.
+        enc = msg.encoding.lower()
+        data = np.frombuffer(msg.data, dtype=np.uint8)
+
+        try:
+            if enc in ("bgr8", "8uc3"):
+                return data.reshape((msg.height, msg.width, 3))
+
+            if enc == "rgb8":
+                rgb = data.reshape((msg.height, msg.width, 3))
+                return rgb[:, :, ::-1]
+
+            if enc == "bgra8":
+                bgra = data.reshape((msg.height, msg.width, 4))
+                return bgra[:, :, :3]
+
+            if enc == "rgba8":
+                rgba = data.reshape((msg.height, msg.width, 4))
+                return rgba[:, :, [2, 1, 0]]
+
+        except ValueError:
+            self.get_logger().warn(
+                f"Bad image buffer size for encoding={msg.encoding}, w={msg.width}, h={msg.height}"
+            )
+            return None
+
+        self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
+        return None
+
+    def search_for_line(self):
+        # Spin in place to search for the line after bridge timeout, 
+        # using last error sign to determine direction.
+        spin_sign = -1.0 if self.last_error >= 0.0 else 1.0
+
+        twist = Twist()
+        twist.linear.x = 0.0
+        twist.angular.z = spin_sign * self.search_spin_speed
+
+        return twist, 0, 0
+
+    def is_side_heavy_turn(self, candidate):
+        # looks for hard turns (like 90 degree corners) 
+        # where tape is heavily skewed to one side of the image
         left_count = candidate['left_count']
         right_count = candidate['right_count']
         total = max(left_count + right_count, 1)
         side_imbalance = abs(left_count - right_count) / total
-
-        x_norm = candidate['x_norm']
-        near_edge = abs(x_norm) > 0.65
-        return near_edge and side_imbalance > 0.30
+        x_norm = self.pixel_to_norm(candidate['tape_x'], candidate['width'])
+        near_edge = abs(x_norm) > 0.60
+        # Corner cue only when line is both side-heavy and near an image edge.
+        return side_imbalance > 0.45 and near_edge
 
     def pixel_to_norm(self, x, width):
+        # Convert pixel x position to normalized -1.0 (left) to 1.0 (right)
+        # for consistent error scaling.
         if width <= 1:
             return 0.0
         return (2.0 * x / float(width - 1)) - 1.0
 
     def calculate_follow_error(self, tape_x, width):
+        # Calculate error as normalized distance from tape_x to center of image, 
+        # with offset for camera position.
         center_x = width / 2
         error = (tape_x - center_x) / center_x
         error += self.error_offset
         return error
 
     def roi_from_zone(self, img, zone):
+        # calculate region of interest within image based on zone number
         height = img.shape[0]
         if zone == 1:
             return img[int(height * 0.75):height, :, :]
@@ -218,8 +343,8 @@ def main(args=None):
     finally:
         if node is not None:
             node.destroy_node()
-        rclpy.shutdown()
-
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

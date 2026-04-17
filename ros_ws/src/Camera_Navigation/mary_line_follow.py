@@ -164,6 +164,7 @@ class LineFollower(Node):
             # within 20 degrees - right angle
             if np.abs(np.max(diff_orientations) - np.pi/2) < 0.4:
                 self.right_angle_detected = True 
+                print("In right angle detected")
             else:
                 # follow local line
                 # can turn up to 45 degrees at -2 to 2
@@ -172,6 +173,7 @@ class LineFollower(Node):
 
             
     def turn_to_point(self, pt):
+        print("Trying to command movement")
         dir = np.arctan2(*((pt - self.robot_center)[::-1]))
         turn_val = np.clip(-2.0 + 4*(dir + np.pi/4)*2/np.pi, -2.0, 2.0)
         twist = Twist()

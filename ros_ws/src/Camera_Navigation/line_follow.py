@@ -74,6 +74,7 @@ class LineFollower(Node):
         candidates = []
         for zone in self.zones:
             candidate = self.detect_candidate_in_zone(img, zone)
+            
             if candidate is None:
                 continue
 

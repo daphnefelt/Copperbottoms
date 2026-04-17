@@ -110,11 +110,11 @@ class LineFollower(Node):
         min_dist[1] = min_dist[0]
         for idx, contour in enumerate(contours):
             # try distances to the bottom 20 points on the screen in case it curves away
-            idxs = contour[-30:, 1, 1] < self.height-10
+            idxs = contour[-30:, 0, 1] < self.height-10
             if len(idxs) == 0:
                 print(f"Not enough space for idxs meet criteria")
                 continue
-            dist = np.min(np.pow(self.robot_center - contour[-20:,1,idxs], 2))
+            dist = np.min(np.pow(self.robot_center - contour[-20:,0,idxs], 2))
 		
             if any(closest_contour_idx==-1):
                 i_dist = (closest_contour_idx==-1).argmax()

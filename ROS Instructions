@@ -183,6 +183,9 @@ SENDING DRIVE COMMANDS WITH ARROW KEY TELEOPERATOR:
 cd code/ros_ws/src/
 python3 teleoperator.py
 
+USE 
+python3 arrow_teleop_fixed.py
+
 LAUNCH FILES:
 --------------------------
 # Green paper following launch (must be in paper_following directory (src))

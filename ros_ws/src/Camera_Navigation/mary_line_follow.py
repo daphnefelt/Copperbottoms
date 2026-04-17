@@ -141,11 +141,15 @@ class LineFollower(Node):
         left = contours[left_idx]
         
         gap_threshold = 30
+
+        right = right.reshape(-1, 2)
+
+        left = left.reshape(-1, 2)
         
         # start of segment is after a gap
-        if right[1] > gap_threshold:
+        if right[-1, 1] > gap_threshold:
             # make a beeline to the segment
-            self.turn(right[-1])
+            self.turn_to_point(right[-1, :])
 
         else:
             # identify point in future - higher up in the image

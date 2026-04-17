@@ -149,6 +149,7 @@ class LineFollower(Node):
         # start of segment is after a gap
         if right[-1, 1] > gap_threshold:
             # make a beeline to the segment
+            print("Make a beeline across the gap")
             self.turn_to_point(right[-1, :])
 
         else:
@@ -157,6 +158,7 @@ class LineFollower(Node):
             # if there is a right angle it needs special handling
 
             # what are the orientations of directions
+            print("Look ahead")
 
             max_future_pixels = 50
             orientations = np.arctan2(*(right[-max_future_pixels:-1] - right[-(max_future_pixels-1):])[::-1])
@@ -168,6 +170,7 @@ class LineFollower(Node):
             else:
                 # follow local line
                 # can turn up to 45 degrees at -2 to 2
+                print("Following local line")
                 self.turn_to_point(right[-15])
 
 

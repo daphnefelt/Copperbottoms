@@ -218,6 +218,9 @@ ros2 run robo_rover rover_node --ros-args -p connection_string:=/dev/ttyACM0
 ros2 run realsense_publisher realsense_node
 ros2 run camera_navigation line_follow
 
+launch file for line_follow.py
+ros2 launch src/Camera_Navigation/line_follow.launch.py
+
 =======
 
 PAPER following

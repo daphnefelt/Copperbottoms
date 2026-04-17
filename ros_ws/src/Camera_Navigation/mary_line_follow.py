@@ -95,62 +95,77 @@ class LineFollower(Node):
 
         # alternatively could get the top two longest segments
         robot_center = np.array([int(width/2) + offset, 0])
-        closest_contour = np.array([-1, -1])
-        min_dist = np.max(height, width) + 50
+        closest_contour_idx = np.array([-1, -1])
+        min_dist = np.array([np.max(height, width) + 50, 0])
+        min_dist[1] = min_dist[0]
         for idx, contour in enumerate(contours):
-            # try distances to the bottom 20 points on the screen 
+            # try distances to the bottom 20 points on the screen in case it curves away
             dist = np.min(np.pow(robot_center - contour[-20:,1,:], 2))
 		
-            if any(closest_contour==-1) or dist < min_dist:
-                min_dist = dist
-                closest_contour = idx
-	
-
-
-			
-		
-	
-
-
-        if blue_count >= self.min_pixels:
-            self.see_line = True
-            
-        if blue_count < self.min_pixels:
-            self.get_logger().info("No tape detected, stopping.")
-            self.see_line = False
-            # twist = Twist()
-            # twist.linear.x = 0.0
-            # twist.angular.z = 0.0
-            # self.vel_pub.publish(twist)
-
-            self.turn_to_find_line()
-
-            return
-
-        # find tape position
-        weighted = blue_score * blue_mask
-        column_strength = weighted.mean(axis=0)  # average over rows
-        tape_x = np.argmax(column_strength)
-
-        # error
-        center_x = width / 2
-        error = (tape_x - center_x) / center_x  # normalize error
-        error += self.error_offset
-
-        # control
-        turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
-
-        # speed + publish
-
-        twist = Twist()
-        twist.linear.x = self.forward_speed
-        twist.angular.z = turn
-        self.vel_pub.publish(twist)
+            if any(closest_contour_idx==-1):
+                i_dist = (closest_contour_idx==-1).argmax()
+                min_dist[i_dist] = dist
+                closest_contour_idx[i_dist] = idx
+            elif any(dist < min_dist):
+                i_dist = (dist < min_dist).argmax()
+                min_dist[i_dist] = dist
+                closest_contour_idx[i_dist] = idx
         
-        if self.frame_count % 10 == 0:
-            self.get_logger().info(
-                f"tape_x={tape_x}, err={error:.3f}, blue_px={blue_count}, turn={turn:.3f}"
-            )
+        # got the two closest blue contours
+
+        # identify rightmost and leftmost - might not be two if there is a closed loop - MARY
+        right_idx = closest_contour_idx[0]
+        left_idx = closest_contour_idx[1]
+        if closest_contour_idx[1][-1][0] > closest_contour_idx[0][-1][0]:
+            right_idx = closest_contour_idx[1]
+            left_idx = closest_contour_idx[0]
+
+        right = contours[right_idx]
+        left = contours[left_idx]
+        
+        gap_threshold = 30
+        
+        # start of segment is after a gap
+        if right[1] > gap_threshold:
+            # make a beeline to the segment
+            dir = np.atan2(*(right[-1] - robot_center)[::-1])
+
+        else:
+            # identify point in future - higher up in the image
+
+            # if there is a right angle it needs special handling
+
+            # what are the orientations of directions
+
+            current_direction = np.atan2(*(right[-10] - right[-1] )[::-1])
+        
+
+            future_direction = np.atan2(*(right[-20] - right[-10] )[::-1])
+
+
+            # go towards future direction point
+            # angle_threshold = np.pi/4
+            # if np.abs(future_direction - current_direction) > angle_threshold:
+            #     # start turning
+            # else:
+            #     # go straight towards line
+
+	
+
+
+            turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
+
+            # speed + publish
+
+            twist = Twist()
+            twist.linear.x = self.forward_speed
+            twist.angular.z = turn
+            self.vel_pub.publish(twist)
+        
+            if self.frame_count % 10 == 0:
+                self.get_logger().info(
+                    f"tape_x={tape_x}, err={error:.3f}, blue_px={blue_count}, turn={turn:.3f}"
+                )
 
     def turn_to_find_line(self):
         # rotate in place to try to find the line when it is lost

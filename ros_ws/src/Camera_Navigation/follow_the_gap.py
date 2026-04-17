@@ -22,6 +22,7 @@ class FollowTheGap(Node):
         self.safety_dist = 0.25 # m - readings below this treated as 0
         self.fov_deg = 180.0 # degrees to consider in front of the robot
         self.min_gap_width  = 5 # min free beams in a row for a valid gap
+        self.range_group_delta = 0.5 # m - start a new gap when adjacent beams jump by more than this
         self.debug_show_cv = True
         self.debug_save_jpg = True
         self.debug_jpg_path = Path('/tmp/follow_the_gap_debug.jpg')
@@ -107,9 +108,8 @@ class FollowTheGap(Node):
         return working
 
     def _find_best_gap(self, ranges: np.ndarray):
-        # Pick the gap with the highest free-space score.
-        # Score is the sum of distances in the gap, which favors both
-        # wider gaps and gaps with farther obstacle clearance.
+        # Split free-space runs into groups with similar adjacent distances,
+        # then pick the group with the highest free-space score.
         in_gap = False
         cur_start = 0
         best_start = best_end = 0
@@ -136,6 +136,9 @@ class FollowTheGap(Node):
                 if not in_gap:
                     cur_start = i
                     in_gap = True
+                elif abs(float(r) - float(ranges[i - 1])) > self.range_group_delta:
+                    consider_gap(cur_start, i - 1)
+                    cur_start = i
             elif in_gap:
                 consider_gap(cur_start, i - 1)
                 in_gap = False
@@ -199,7 +202,7 @@ class FollowTheGap(Node):
         )
         self._emit_debug(frame)
 
-        # self._publish(self.forward_speed, turn)
+        self._publish(self.forward_speed, turn)
         self.get_logger().info(
             f'gap=[{gap_start},{gap_end}], '
             f'goal={np.degrees(goal_angle):.1f}°, turn={turn:.3f}')

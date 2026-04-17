@@ -25,7 +25,7 @@ try:
         right = []
         middle = []
 
-        # 🔁 Double for loop over all pixels
+        # Double for loop over all pixels
         for i in range(height):
             for j in range(width):
                 b, g, r = image[i, j]

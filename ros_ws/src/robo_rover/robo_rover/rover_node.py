@@ -272,9 +272,9 @@ class ArduPilotRoverNode(Node):
         
         self.last_cmd_time = time.time()
         
-        self.get_logger().debug(
-            f'Received cmd_vel: throttle={self.current_throttle}, '
-            f'steering={self.current_steering}'
+        self.get_logger().info(
+            f'Received cmd_vel: linear={msg.linear.x:.3f}, angular={msg.angular.z:.3f}, '
+            f'throttle={self.current_throttle}, steering={self.current_steering}'
         )
     
     def control_loop(self):
@@ -304,6 +304,12 @@ class ArduPilotRoverNode(Node):
 
             throttle = 0
             steering = 0
+
+        self.get_logger().info(
+            f'control_loop sending: throttle={throttle}, steering={steering}, '
+            f'stop_move={self.stop_move}, slow_move={self.slow_move.slowcmdlogi}, '
+            f'armed={self.armed}'
+        )
 
 
 

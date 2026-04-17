@@ -19,16 +19,20 @@ class LineFollower(Node):
         cmd_vel_topic = '/cmd_vel'
 
         # tuning
-        self.error_offset = -0.4 # to account for location of the camera lens
-        self.kp = 0.8
+        self.error_offset = -0.3 # to account for location of the camera lens
+        self.kp = 0.5
+        self.kd = 0.15  # derivative gain for damping oscillations
         self.color_threshold = 30
         self.min_pixels = 50
         self.forward_speed = 0.3
-        self.max_turn = 1.0
+        self.max_turn = 0.65
+        self.corner_min_speed = 0.20
+        self.corner_turn_gain = 1.10
+        self.corner_max_turn = 0.55
         self.zones = (1, 2, 3, 4) # 1=bottom quarter, 4=top quarter
-        self.bridge_max_frames = 12
-        self.bridge_speed = 0.18
-        self.search_spin_speed = 0.8
+        self.bridge_max_frames = 6
+        self.bridge_speed = 0.24
+        self.search_spin_speed = 1.0
 
         # operation states
         """
@@ -43,8 +47,10 @@ class LineFollower(Node):
         self.lost_frames = 0
         self.last_error = 0.0
         self.last_turn = 0.0
+        self.last_drive_turn = 0.0
         self.last_tape_x_norm = 0.0
         self.last_seen_zone = 1
+        self.preferred_zone = 1  # Prefer zone 1, only escalate if needed
         self.seen_first_frame = False
         self.rover_armed = False
         self._logged_waiting_for_arm = False
@@ -102,21 +108,54 @@ class LineFollower(Node):
                 self._logged_waiting_for_arm = True
             return
 
-        # Priority-based zone search: try lowest zone first, step up if no detection.
+        # Zone preference strategy: stay in zone 1 as much as possible.
+        # Only escalate to higher zones if the current zone loses the line.
+        # Zones checked in order: preferred_zone (1), then 2, then 3
+        zone_candidates = {}
         candidate = None
-        for zone in self.zones:
-            candidate = self.detect_candidate_in_zone(img, zone)
-            if candidate is not None:
-                break  # Found tape, stop searching higher zones.
+        
+        # Try preferred zone first (usually 1)
+        for zone in range(self.preferred_zone, 4):  # 1→2→3 starting from preferred
+            detected = self.detect_candidate_in_zone(img, zone)
+            if detected is not None:
+                zone_candidates[zone] = detected
+                if candidate is None:
+                    candidate = detected
+                    # Stick with this zone (only update if we had to escalate)
+                    if zone <= self.preferred_zone:
+                        self.preferred_zone = zone
+
+        # If preferred zone failed, try zones 1 through preferred_zone-1 (fallback)
+        if candidate is None and self.preferred_zone > 1:
+            for zone in range(1, self.preferred_zone):
+                detected = self.detect_candidate_in_zone(img, zone)
+                if detected is not None:
+                    zone_candidates[zone] = detected
+                    candidate = detected
+                    break  # Use first one found
+
+        # Scan zone 4 separately for corner detection (lookahead only)
+        zone4_candidate = self.detect_candidate_in_zone(img, 4)
+        if zone4_candidate is not None:
+            zone_candidates[4] = zone4_candidate
 
         twist = Twist()
         blue_count = 0
         zone_used = 0
+        far_zone = 0
         corner_mode = False
 
         if candidate is not None:
+            # Use zone 4 for corner detection only if available
+            if 4 in zone_candidates:
+                farthest_candidate = zone_candidates[4]
+            else:
+                farthest_candidate = candidate  # Fall back to highest zone 1-3
+            far_zone = farthest_candidate['zone']
+            corner_mode = self.corner_from_farthest_zone(candidate, farthest_candidate)
+
             # Tape found: follow it
-            twist, blue_count, zone_used, corner_mode = self.follow_line(candidate, width)
+            twist, blue_count, zone_used = self.follow_line(candidate, width, corner_mode)
 
             # update state and tracking info for potential future use 
             # in bridging or search
@@ -132,6 +171,8 @@ class LineFollower(Node):
             # No tape found: bridge or search
             self.see_line = False
             self.lost_frames += 1
+            # Reset preferred zone when we lose the line, so we restart at zone 1
+            self.preferred_zone = 1
 
             if self.lost_frames <= self.bridge_max_frames:
                 # Bridge short gaps, looking for tape on left or right edges
@@ -151,7 +192,7 @@ class LineFollower(Node):
             self.get_logger().info(
                 (
                     f"state={self.state}, zone={zone_used}, blue_px={blue_count}, "
-                    f"lost_frames={self.lost_frames}, corner={corner_mode}, "
+                    f"lost_frames={self.lost_frames}, corner={corner_mode}, far_zone={far_zone}, "
                     f"lin={twist.linear.x:.2f}, ang={twist.angular.z:.2f}"
                 )
             )
@@ -193,24 +234,41 @@ class LineFollower(Node):
             'right_count': right_count,
         }
 
-    def follow_line(self, candidate, width):
-        # follow detected tape line with steering and corner
+    def follow_line(self, candidate, width, corner_mode):
+        # follow detected tape line with PD steering control
         error = self.calculate_follow_error(candidate['tape_x'], width)
-        is_corner = self.is_side_heavy_turn(candidate)
+        if abs(error) < 0.05:
+            error = 0.0
 
-        if is_corner:
-            # Slow down and turn harder at 90-degree corners
-            turn = float(np.clip(-1.25 * self.kp * error, -self.max_turn, self.max_turn))
-            speed = max(0.20, self.forward_speed * 0.45)
+        # Compute error derivative (rate of change) for damping
+        error_rate = error - self.last_error
+        self.last_error = error
+
+        if corner_mode:
+            # Keep enough forward drive in corners while limiting steering saturation.
+            # PD: proportional + derivative damping
+            p_term = -self.corner_turn_gain * self.kp * error
+            d_term = -self.corner_turn_gain * self.kd * error_rate
+            turn = float(np.clip(
+                p_term + d_term,
+                -self.corner_max_turn,
+                self.corner_max_turn,
+            ))
+            speed = max(self.corner_min_speed, self.forward_speed * 0.65)
         else:
-            turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
+            # Normal follow: PD control with derivative damping
+            p_term = -self.kp * error
+            d_term = -self.kd * error_rate
+            turn = float(np.clip(p_term + d_term, -self.max_turn, self.max_turn))
             speed = self.forward_speed
 
         twist = Twist()
         twist.linear.x = speed
         twist.angular.z = turn
 
-        return twist, candidate['blue_count'], candidate['zone'], is_corner
+        self.last_drive_turn = turn
+
+        return twist, candidate['blue_count'], candidate['zone']
 
     def bridge_gap(self, img, width):
         # bridge short gaps by crawling forward and steering toward visible edges.
@@ -281,27 +339,33 @@ class LineFollower(Node):
         return None
 
     def search_for_line(self):
-        # Spin in place to search for the line after bridge timeout, 
-        # using last error sign to determine direction.
+        # Drive in a gentle arc while searching so the rover keeps moving.
         spin_sign = -1.0 if self.last_error >= 0.0 else 1.0
 
         twist = Twist()
-        twist.linear.x = 0.0
+        twist.linear.x = 0.12
         twist.angular.z = spin_sign * self.search_spin_speed
 
         return twist, 0, 0
 
-    def is_side_heavy_turn(self, candidate):
-        # looks for hard turns (like 90 degree corners) 
-        # where tape is heavily skewed to one side of the image
-        left_count = candidate['left_count']
-        right_count = candidate['right_count']
+    def corner_from_farthest_zone(self, primary_candidate, farthest_candidate):
+        # Corner mode comes from the highest visible zone, not bottom-only data.
+        if farthest_candidate['zone'] <= primary_candidate['zone']:
+            return False
+
+        left_count = farthest_candidate['left_count']
+        right_count = farthest_candidate['right_count']
         total = max(left_count + right_count, 1)
         side_imbalance = abs(left_count - right_count) / total
-        x_norm = self.pixel_to_norm(candidate['tape_x'], candidate['width'])
-        near_edge = abs(x_norm) > 0.60
-        # Corner cue only when line is both side-heavy and near an image edge.
-        return side_imbalance > 0.45 and near_edge
+
+        far_x_norm = self.pixel_to_norm(farthest_candidate['tape_x'], farthest_candidate['width'])
+        primary_x_norm = self.pixel_to_norm(primary_candidate['tape_x'], primary_candidate['width'])
+        near_edge = abs(far_x_norm) > 0.65
+
+        # Require consistent direction between near and far zones to avoid false latches.
+        same_turn_direction = (far_x_norm * primary_x_norm) >= 0.0
+
+        return side_imbalance > 0.55 and near_edge and same_turn_direction
 
     def pixel_to_norm(self, x, width):
         # Convert pixel x position to normalized -1.0 (left) to 1.0 (right)

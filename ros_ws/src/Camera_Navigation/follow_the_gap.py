@@ -107,32 +107,43 @@ class FollowTheGap(Node):
         return working
 
     def _find_best_gap(self, ranges: np.ndarray):
-        # widest continuous gap of nonzero readings
+        # Pick the gap with the highest free-space score.
+        # Score is the sum of distances in the gap, which favors both
+        # wider gaps and gaps with farther obstacle clearance.
         in_gap = False
-        best_start = best_end = cur_start = 0
+        cur_start = 0
+        best_start = best_end = 0
+        best_score = -1.0
         best_width = 0
+
+        def consider_gap(start_idx: int, end_idx: int):
+            nonlocal best_start, best_end, best_score, best_width
+            width = end_idx - start_idx + 1
+            if width < self.min_gap_width:
+                return
+
+            segment = ranges[start_idx:end_idx + 1]
+            score = float(np.sum(segment))
+
+            # Higher score wins; if tied, use wider gap.
+            if score > best_score or (score == best_score and width > best_width):
+                best_score = score
+                best_width = width
+                best_start, best_end = start_idx, end_idx
 
         for i, r in enumerate(ranges):
             if r > 0:
                 if not in_gap:
                     cur_start = i
                     in_gap = True
-            else:
-                if in_gap:
-                    width = i - cur_start
-                    if width > best_width:
-                        best_width = width
-                        best_start, best_end = cur_start, i - 1
-                    in_gap = False
+            elif in_gap:
+                consider_gap(cur_start, i - 1)
+                in_gap = False
 
-        # gap that runs to the end of the array
         if in_gap:
-            width = len(ranges) - cur_start
-            if width > best_width:
-                best_width = width
-                best_start, best_end = cur_start, len(ranges) - 1
+            consider_gap(cur_start, len(ranges) - 1)
 
-        return (best_start, best_end) if best_width >= self.min_gap_width else None
+        return (best_start, best_end) if best_score >= 0.0 else None
 
     def scan_callback(self, msg: LaserScan):
         ranges = np.array(msg.ranges, dtype=np.float32)
@@ -144,9 +155,7 @@ class FollowTheGap(Node):
         fov_ranges = ranges[fov_mask].copy()
         fov_angles = angles[fov_mask]
 
-        # replace inf (no return = open space) with range_max.
-        # zero out only nan and too-close readings.
-        fov_ranges = np.where(np.isposinf(fov_ranges), msg.range_max, fov_ranges)
+        # Ignore invalid readings (including inf/nan) and too-close returns.
         fov_ranges = np.where(np.isfinite(fov_ranges) & (fov_ranges > self.safety_dist), fov_ranges, 0.0)
 
         # safety bubble

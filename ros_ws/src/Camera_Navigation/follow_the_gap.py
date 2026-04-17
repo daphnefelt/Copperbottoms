@@ -141,9 +141,10 @@ class FollowTheGap(Node):
         turn = float(np.clip(-self.kp * goal_angle, -self.max_turn, self.max_turn))
 
         if self.plot:
+            print("plotting")
             self._debug_plot(fov_angles, fov_ranges_pre_bubble, fov_ranges, gap, best_in_gap, goal_angle)
 
-        self._publish(self.forward_speed, turn)
+        # self._publish(self.forward_speed, turn)
         self.get_logger().info(
             f'gap=[{gap_start},{gap_end}], '
             f'goal={np.degrees(goal_angle):.1f}°, turn={turn:.3f}')

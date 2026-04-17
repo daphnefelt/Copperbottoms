@@ -74,9 +74,9 @@ class ArrowTeleop(Node):
         
         # Forward/backward from throttle (neutral=1500)
         # rover_node uses linear.x for throttle/forward-backward
-        # Negate because rover_node multiplies by -400
+        # Keep sign positive so UP maps to forward and DOWN maps to reverse.
         throttle_normalized = (throttle - self.throttle_neutral) / 250.0
-        twist.linear.x = -throttle_normalized * 0.251
+        twist.linear.x = throttle_normalized * 0.251
         
         # Turning from steering
         # rover_node uses angular.z for steering/turning

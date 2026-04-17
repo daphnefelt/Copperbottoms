@@ -102,11 +102,11 @@ class LineFollower(Node):
 
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
-        print(f"Number of contours: {contours}")
+        print(f"Number of contours: {len(contours)}")
 	
         
         closest_contour_idx = np.array([-1, -1])
-        min_dist = np.array([np.max(height, width) + 50, 0])
+        min_dist = np.array([max(height, width) + 50, 0])
         min_dist[1] = min_dist[0]
         for idx, contour in enumerate(contours):
             # try distances to the bottom 20 points on the screen in case it curves away

@@ -114,7 +114,7 @@ class LineFollower(Node):
             if len(idxs) == 0:
                 print(f"Not enough space for idxs meet criteria")
                 continue
-            dist = np.min(np.power(self.robot_center - contour[-20:,0,idxs], 2))
+            dist = np.min(np.power(self.robot_center - contour[-30:][idxs, :, :], 2))
 		
             if any(closest_contour_idx==-1):
                 i_dist = (closest_contour_idx==-1).argmax()

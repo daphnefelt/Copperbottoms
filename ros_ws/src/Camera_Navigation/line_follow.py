@@ -159,7 +159,7 @@ class LineFollower(Node):
         }
 
     def follow_line(self, candidate, width):
-        """Follow detected tape line with steering control and corner handling."""
+        # follow detected tape line with steering and corner
         error = self.calculate_follow_error(candidate['tape_x'], width)
         is_corner = self.is_side_heavy_turn(candidate)
 
@@ -178,7 +178,7 @@ class LineFollower(Node):
         return twist, candidate['blue_count'], candidate['zone']
 
     def bridge_gap(self, img, width):
-        """Bridge short tape gaps by crawling forward and steering toward visible edges."""
+        # bridge short gaps by crawling forward and steering toward visible edges.
         # Hold last steering + crawl forward
         base_turn = float(np.clip(self.last_turn * 0.8, -self.max_turn, self.max_turn))
 

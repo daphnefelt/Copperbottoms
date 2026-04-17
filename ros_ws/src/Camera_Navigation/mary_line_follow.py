@@ -74,21 +74,21 @@ class LineFollower(Node):
         print(f"img shape is {img.shape}")
         height = img.shape[0]
         width = img.shape[1]
-        cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 	
 
         
 
         # blue color thresholding
-        b = cv2_img[:, :, 0]
-        g = cv2_img[:, :, 1]
-        r = cv2_img[:, :, 2]
+        b = img[:, :, 0]
+        g = img[:, :, 1]
+        r = img[:, :, 2]
 
 
         blue_score = b - int(0.5 * (g + r))  # simple blue score
-        blue_mask = (blue_score > self.color_threshold)
+        blue_mask = (blue_score > self.color_threshold)*255
 
+        #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	
         # blur to help with noise picked up
         blurred = cv2.GaussianBlur(blue_mask, (3, 3), 0)

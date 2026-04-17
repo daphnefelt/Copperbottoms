@@ -1,11 +1,11 @@
-import reclpy
+import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 
 class ImageSubscriber(Node):
 	def __init__(self):
 		super().__init__('image_subscriber')
-		self.subscription = self.create_subscription(Image, '/camera/image',
+		self.subscription = self.create_subscription(Image, '/camera/color/image_raw',
 			self.listener_callback,
 			10
 		)

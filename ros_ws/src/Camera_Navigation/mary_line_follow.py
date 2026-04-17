@@ -69,13 +69,14 @@ class LineFollower(Node):
         
         img = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, 3))
 
+
         # focus on ROI (bottom half)
         print(f"img shape is {img.shape}")
         height = img.shape[0]
         width = img.shape[1]
+        cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 	
-        cv2_img = cv2.imdecode(img, cv2.IMREAD_GRAYSCALE)
 
         
 

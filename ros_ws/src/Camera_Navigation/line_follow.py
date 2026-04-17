@@ -44,6 +44,7 @@ class LineFollower(Node):
         self.last_turn = 0.0
         self.last_tape_x_norm = 0.0
         self.last_seen_zone = 1
+        self.seen_first_frame = False
 
         # subscribers
         self.image_sub = self.create_subscription(
@@ -63,11 +64,14 @@ class LineFollower(Node):
     def image_callback(self, msg: Image):
         self.frame_count += 1
 
-        if msg.encoding.lower() != "bgr8":
-            self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
+        img = self.decode_image(msg)
+        if img is None:
             return
 
-        img = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, 3))
+        if not self.seen_first_frame:
+            self.seen_first_frame = True
+            self.get_logger().info(f"First camera frame received. encoding={msg.encoding}")
+
         _, width, _ = img.shape
 
         # Priority-based zone search: try lowest zone first, step up if no detection.
@@ -214,6 +218,36 @@ class LineFollower(Node):
 
         total_blue = left_edge_count + center_count + right_edge_count
         return twist, total_blue, 0
+
+    def decode_image(self, msg: Image):
+        # Support common raw camera encodings and convert to BGR.
+        enc = msg.encoding.lower()
+        data = np.frombuffer(msg.data, dtype=np.uint8)
+
+        try:
+            if enc in ("bgr8", "8uc3"):
+                return data.reshape((msg.height, msg.width, 3))
+
+            if enc == "rgb8":
+                rgb = data.reshape((msg.height, msg.width, 3))
+                return rgb[:, :, ::-1]
+
+            if enc == "bgra8":
+                bgra = data.reshape((msg.height, msg.width, 4))
+                return bgra[:, :, :3]
+
+            if enc == "rgba8":
+                rgba = data.reshape((msg.height, msg.width, 4))
+                return rgba[:, :, [2, 1, 0]]
+
+        except ValueError:
+            self.get_logger().warn(
+                f"Bad image buffer size for encoding={msg.encoding}, w={msg.width}, h={msg.height}"
+            )
+            return None
+
+        self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
+        return None
 
     def search_for_line(self):
         # Spin in place to search for the line after bridge timeout, 

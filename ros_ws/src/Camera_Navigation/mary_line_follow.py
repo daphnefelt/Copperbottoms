@@ -80,13 +80,13 @@ class LineFollower(Node):
         
 
         # blue color thresholding
-        b = img[:, :, 0]
-        g = img[:, :, 1]
-        r = img[:, :, 2]
+        b = img[:, :, 0].astype(np.uint16)
+        g = img[:, :, 1].astype(np.uint16)
+        r = img[:, :, 2].astype(np.uint16)
 
 
         blue_score = b - int(0.5 * (g + r))  # simple blue score
-        blue_mask = (blue_score > self.color_threshold)*255
+        blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
 
         #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	

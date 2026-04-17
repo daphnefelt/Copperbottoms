@@ -85,7 +85,7 @@ class LineFollower(Node):
         r = img[:, :, 2].astype(np.uint16)
 
 
-        blue_score = b - int(0.5 * (g + r))  # simple blue score
+        blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
         blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
 
         #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

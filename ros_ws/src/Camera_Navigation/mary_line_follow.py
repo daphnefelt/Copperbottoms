@@ -26,7 +26,7 @@ class LineFollower(Node):
         self.forward_speed = 0.3
         self.max_turn = 1.0
         self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
-	self.debug_count = 0
+        self.debug_count = 0
 
         # subscribers
         self.image_sub = self.create_subscription(
@@ -54,12 +54,12 @@ class LineFollower(Node):
         img = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, 3))
 
         # focus on ROI (bottom half)
-	print(f"img shape is {img.shape}")
+        print(f"img shape is {img.shape}")
         height = img.shape[0]
         width = img.shape[1]
 
 	
-	cv2_img = cv2.imdecode(img, cv2.IMREAD_GRAYSCALE)
+        cv2_img = cv2.imdecode(img, cv2.IMREAD_GRAYSCALE)
 
         
         roi_strt = int(height * 0.70) # bottom 30%
@@ -75,22 +75,42 @@ class LineFollower(Node):
         blue_mask = (blue_score > self.color_threshold)
 
 	
-	# blur to help with noise picked up
-	blurred = cv2.GaussianBlur(blue_mask, (3, 3), 0)
+        # blur to help with noise picked up
+        blurred = cv2.GaussianBlur(blue_mask, (3, 3), 0)
 	
-	# threshold for the lines
-	_, thresh = cv2.threshold(blurred, 127, 255, cv2.THRESH_BINARY)
+        # threshold for the lines
+        _, thresh = cv2.threshold(blurred, 127, 255, cv2.THRESH_BINARY)
 	
-	# 5. Find Contours
-	# cv2.RETR_EXTERNAL: Retrieves only the outermost contours
-	# cv2.CHAIN_APPROX_SIMPLE: Compresses horizontal, vertical, and diagonal segments
-	contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-	
-	edges = cv.Canny(img,100, 200)
-	contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        blue_count = np.sum(blue_mask)
+        # cv2.RETR_EXTERNAL: if contours are nested - retrieves only outermost
+        # cv2.CHAIN_APPROX_SIMPLE: Removes redundant points - memory efficient
+        contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-	blue_lines = np.logical_and(blue_mask, contours)
+        # want the two contours closest to us and closest to each other
+        # maybe want something other than a for loop, but i don't anticipate many curves
+        print(f"Number of contours: {contours}")
+	
+        # fraction grabbed from line_follow tuning 
+        offset = 0.4*int(width/2)
+
+
+        # alternatively could get the top two longest segments
+        robot_center = np.array([int(width/2) + offset, 0])
+        closest_contour = np.array([-1, -1])
+        min_dist = np.max(height, width) + 50
+        for idx, contour in enumerate(contours):
+            # try distances to the bottom 20 points on the screen 
+            dist = np.min(np.pow(robot_center - contour[-20:,1,:], 2))
+		
+            if any(closest_contour==-1) or dist < min_dist:
+                min_dist = dist
+                closest_contour = idx
+	
+
+
+			
+		
+	
+
 
         if blue_count >= self.min_pixels:
             self.see_line = True

@@ -133,7 +133,7 @@ class LineFollower(Node):
         # identify rightmost and leftmost - might not be two if there is a closed loop - MARY
         right_idx = closest_contour_idx[0]
         left_idx = closest_contour_idx[1]
-        if closest_contour_idx[1][-1][0] > closest_contour_idx[0][-1][0]:
+        if contours[left_idx][-1][0] > contours[right_idx][-1][0]:
             right_idx = closest_contour_idx[1]
             left_idx = closest_contour_idx[0]
 

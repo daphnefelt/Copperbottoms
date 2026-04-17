@@ -159,7 +159,7 @@ class LineFollower(Node):
             # what are the orientations of directions
 
             max_future_pixels = 50
-            orientations = np.arctan2(*(right[-max_future_pixels:] - right[-(max_future_pixels-1):])[::-1])
+            orientations = np.arctan2(*(right[-max_future_pixels:-1] - right[-(max_future_pixels-1):])[::-1])
             diff_orientations = orientations[1:] - orientations[:-1]
             # within 20 degrees - right angle
             if np.abs(np.max(diff_orientations) - np.pi/2) < 0.4:

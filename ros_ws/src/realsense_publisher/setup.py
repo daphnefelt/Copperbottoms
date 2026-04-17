@@ -25,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
 		'realsense_node = realsense_publisher.realsense_node:main',
+		'realsense_depth_node = realsense_publisher.realsense_depth_node:main',
         ],
     },
 )

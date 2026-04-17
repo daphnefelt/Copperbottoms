@@ -94,6 +94,7 @@ class ArrowTeleop(Node):
         print("  LEFT  = Turn left")
         print("  RIGHT = Turn right")
         print("  Q     = Quit\n")
+        print(" spacebar = Stop (center steering and throttle)\n")
         print("Hold UP + LEFT to go forward and turn left!\n")
         
         # Set terminal to non-blocking input

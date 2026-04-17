@@ -6,7 +6,6 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 class FollowTheGap(Node):

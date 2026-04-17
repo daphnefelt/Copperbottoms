@@ -1,4 +1,4 @@
-### Follow the Gap - 2D LiDAR Navigation ###
+### Follow the Gap w/ Lidar
 
 import rclpy
 import numpy as np
@@ -8,7 +8,6 @@ from sensor_msgs.msg import LaserScan
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-
 
 class FollowTheGap(Node):
 

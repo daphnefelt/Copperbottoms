@@ -113,9 +113,16 @@ class LineFollower(Node):
         # tape_x = np.argmax(column_strength)
 
         ## NEW
+        # roi
+        percent_off_top = 0.25
+        roi_strt = int(height * (1 - percent_off_top)) # bottom 25%
+        roi = img[roi_strt:height, :, :]
+        width = roi.shape[1]
+        height = roi.shape[0]
+
         rgb = np.array([164, 108, 7])
         plus_minus = np.array([50, 50, 90])
-        mask = cv2.inRange(img, rgb - plus_minus, rgb + plus_minus)
+        mask = cv2.inRange(roi, rgb - plus_minus, rgb + plus_minus)
 
         # check if tape is visible
         if np.sum(mask) < self.min_pixels * 255:

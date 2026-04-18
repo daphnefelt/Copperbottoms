@@ -22,17 +22,37 @@ class LineFollower(Node):
         self.error_offset = -0.3 # to account for location of the camera lens
         self.kp = 0.5
         self.kd = 0.15  # derivative gain for damping oscillations
+        self.kh = 0.30  # heading-alignment gain using near lookahead zone
+        self.error_filter_alpha = 0.35
+        self.max_turn_step = 0.10
         self.color_threshold = 30
         self.min_pixels = 50
-        self.forward_speed = 0.3
+        self.search_min_pixels = 30
+        self.forward_speed = 0.22
         self.max_turn = 0.65
         self.corner_min_speed = 0.20
         self.corner_turn_gain = 1.10
         self.corner_max_turn = 0.55
         self.zones = (1, 2, 3, 4) # 1=bottom quarter, 4=top quarter
         self.bridge_max_frames = 6
-        self.bridge_speed = 0.24
+        self.bridge_speed = 0.20
         self.search_spin_speed = 1.0
+        self.search_circle_turn_speed = 0.75
+        self.startup_relaxed_frames = 14
+        self.relaxed_pixel_floor = 20
+        self.relaxed_color_tolerance_scale = 1.30
+        self.relaxed_color_threshold_delta = 10
+        self.enable_adaptive_color = True
+        self.color_update_period_frames = 4
+        self.color_update_alpha = 0.08
+        self.color_update_min_blue_pixels = 120
+        self.max_target_drift = np.array([35.0, 35.0, 35.0], dtype=np.float32)
+        self.color_update_log_period_frames = 30
+
+        # Target tape color in BGR space (camera uses BGR ordering)
+        self.target_bgr = np.array([204.0, 146.0, 39.0], dtype=np.float32)
+        self.base_target_bgr = self.target_bgr.copy()
+        self.color_tolerance = np.array([55.0, 50.0, 45.0], dtype=np.float32)
 
         # operation states
         """
@@ -46,11 +66,17 @@ class LineFollower(Node):
         self.see_line = False
         self.lost_frames = 0
         self.last_error = 0.0
+        self.filtered_error = 0.0
         self.last_turn = 0.0
         self.last_drive_turn = 0.0
         self.last_tape_x_norm = 0.0
         self.last_seen_zone = 1
         self.preferred_zone = 1  # Prefer zone 1, only escalate if needed
+        self.search_mode = 'probe'  # probe zones 2->3->4 before circle drive
+        self.search_probe_zones = [2, 3, 4]
+        self.search_probe_index = 0
+        self.last_search_mode_logged = None
+        self.last_color_update_frame = -999
         self.seen_first_frame = False
         self.rover_armed = False
         self._logged_waiting_for_arm = False
@@ -108,44 +134,28 @@ class LineFollower(Node):
                 self._logged_waiting_for_arm = True
             return
 
-        # Zone preference strategy: stay in zone 1 as much as possible.
-        # Only escalate to higher zones if the current zone loses the line.
-        # Zones checked in order: preferred_zone (1), then 2, then 3
-        zone_candidates = {}
-        candidate = None
-        
-        # Try preferred zone first (usually 1)
-        for zone in range(self.preferred_zone, 4):  # 1→2→3 starting from preferred
-            detected = self.detect_candidate_in_zone(img, zone)
-            if detected is not None:
-                zone_candidates[zone] = detected
-                if candidate is None:
-                    candidate = detected
-                    # Stick with this zone (only update if we had to escalate)
-                    if zone <= self.preferred_zone:
-                        self.preferred_zone = zone
-
-        # If preferred zone failed, try zones 1 through preferred_zone-1 (fallback)
-        if candidate is None and self.preferred_zone > 1:
-            for zone in range(1, self.preferred_zone):
-                detected = self.detect_candidate_in_zone(img, zone)
-                if detected is not None:
-                    zone_candidates[zone] = detected
-                    candidate = detected
-                    break  # Use first one found
-
-        # Scan zone 4 separately for corner detection (lookahead only)
-        zone4_candidate = self.detect_candidate_in_zone(img, 4)
-        if zone4_candidate is not None:
-            zone_candidates[4] = zone4_candidate
+        zone_candidates = self.collect_zone_candidates(img)
+        if not zone_candidates and self.should_use_relaxed_detection():
+            zone_candidates = self.collect_zone_candidates(
+                img,
+                min_pixels=self.relaxed_pixel_floor,
+                relaxed_color=True
+            )
+        candidate = self.select_primary_candidate(zone_candidates)
 
         twist = Twist()
         blue_count = 0
         zone_used = 0
         far_zone = 0
         corner_mode = False
+        scan_zone = 0
+        circle_drive = False
 
         if candidate is not None:
+            self.search_mode = 'probe'
+            self.search_probe_index = 0
+            self.last_search_mode_logged = None
+
             # Use zone 4 for corner detection only if available
             if 4 in zone_candidates:
                 farthest_candidate = zone_candidates[4]
@@ -154,8 +164,19 @@ class LineFollower(Node):
             far_zone = farthest_candidate['zone']
             corner_mode = self.corner_from_farthest_zone(candidate, farthest_candidate)
 
+            # Use near lookahead only (zone 2 preferred) to avoid over-bias on snaky tape.
+            heading_error = self.compute_near_lookahead_heading_error(candidate, zone_candidates)
+
             # Tape found: follow it
-            twist, blue_count, zone_used = self.follow_line(candidate, width, corner_mode)
+            twist, blue_count, zone_used = self.follow_line(
+                candidate,
+                width,
+                corner_mode,
+                heading_error
+            )
+
+            # Adapt tape color slowly only during stable follow.
+            self.maybe_update_target_color(img, candidate)
 
             # update state and tracking info for potential future use 
             # in bridging or search
@@ -171,6 +192,8 @@ class LineFollower(Node):
             # No tape found: bridge or search
             self.see_line = False
             self.lost_frames += 1
+            if self.lost_frames == 1:
+                self.get_logger().warn('Line lost. Entering recovery flow (bridge -> probe -> circle).')
             # Reset preferred zone when we lose the line, so we restart at zone 1
             self.preferred_zone = 1
 
@@ -180,10 +203,14 @@ class LineFollower(Node):
                 # update state
                 self.state = 'bridge'
             else:
-                # Full recovery: spin in place
-                twist, blue_count, zone_used = self.search_for_line()
-                # update state
-                self.state = 'search'
+                search_result = self.run_recovery_search(img, width)
+                twist = search_result['twist']
+                blue_count = search_result['blue_count']
+                zone_used = search_result['zone_used']
+                scan_zone = search_result['scan_zone']
+                circle_drive = search_result['circle_drive']
+                self.state = search_result['state']
+                self.log_search_mode(scan_zone, circle_drive)
 
         # send velocity command
         self.vel_pub.publish(twist)
@@ -197,22 +224,201 @@ class LineFollower(Node):
                 )
             )
 
-    def detect_candidate_in_zone(self, img, zone):
+    def collect_zone_candidates(self, img, min_pixels=None, relaxed_color=False):
+        zone_candidates = {}
+        for zone in self.zones:
+            detected = self.detect_candidate_in_zone(
+                img,
+                zone,
+                min_pixels=min_pixels,
+                relaxed_color=relaxed_color
+            )
+            if detected is not None:
+                zone_candidates[zone] = detected
+        return zone_candidates
+
+    def should_use_relaxed_detection(self):
+        # Camera auto-exposure/white-balance can drift in first frames.
+        startup_window = self.frame_count <= self.startup_relaxed_frames
+        recent_loss = 0 < self.lost_frames <= 2
+        return startup_window or recent_loss
+
+    def select_primary_candidate(self, zone_candidates):
+        # Prefer near zones to keep control grounded in local geometry.
+        for zone in (1, 2, 3):
+            if zone in zone_candidates:
+                return zone_candidates[zone]
+        return None
+
+    def compute_near_lookahead_heading_error(self, candidate, zone_candidates):
+        # Estimate heading from near lookahead only to avoid overreacting to distant snake segments.
+        lookahead_candidate = zone_candidates.get(2)
+        if lookahead_candidate is None:
+            lookahead_candidate = zone_candidates.get(3)
+        if lookahead_candidate is None:
+            return 0.0
+
+        near_norm = self.pixel_to_norm(candidate['tape_x'], candidate['width'])
+        lookahead_norm = self.pixel_to_norm(
+            lookahead_candidate['tape_x'],
+            lookahead_candidate['width']
+        )
+        return float(np.clip(lookahead_norm - near_norm, -0.8, 0.8))
+
+    def run_recovery_search(self, img, width):
+        if self.search_mode == 'probe':
+            return self.run_probe_search(img, width)
+        return self.run_circle_search(img, width)
+
+    def run_probe_search(self, img, width):
+        scan_zone = self.search_probe_zones[self.search_probe_index]
+        probe_candidate = self.detect_candidate_in_zone(
+            img,
+            scan_zone,
+            min_pixels=self.search_min_pixels
+        )
+
+        if probe_candidate is not None:
+            twist, blue_count, zone_used = self.follow_line(
+                probe_candidate,
+                width,
+                corner_mode=False,
+                heading_error=0.0
+            )
+            self.see_line = True
+            self.lost_frames = 0
+            self.search_probe_index = 0
+            self.search_mode = 'probe'
+            self.last_turn = twist.angular.z
+            self.last_search_mode_logged = None
+            return {
+                'twist': twist,
+                'blue_count': blue_count,
+                'zone_used': zone_used,
+                'scan_zone': scan_zone,
+                'circle_drive': False,
+                'state': 'follow',
+            }
+
+        self.search_probe_index += 1
+        if self.search_probe_index >= len(self.search_probe_zones):
+            self.search_probe_index = 0
+            self.search_mode = 'circle'
+
+        twist = Twist()
+        twist.linear.x = 0.20
+        twist.angular.z = 0.0
+        return {
+            'twist': twist,
+            'blue_count': 0,
+            'zone_used': scan_zone,
+            'scan_zone': scan_zone,
+            'circle_drive': False,
+            'state': 'search',
+        }
+
+    def run_circle_search(self, img, width):
+        # In circle mode, scan every frame before commanding arc motion.
+        zone_candidates = self.collect_zone_candidates(img, min_pixels=self.search_min_pixels)
+        reacquired = self.select_primary_candidate(zone_candidates)
+
+        if reacquired is not None:
+            twist, blue_count, zone_used = self.follow_line(
+                reacquired,
+                width,
+                corner_mode=False,
+                heading_error=0.0
+            )
+            self.see_line = True
+            self.lost_frames = 0
+            self.search_probe_index = 0
+            self.search_mode = 'probe'
+            self.last_turn = twist.angular.z
+            self.last_search_mode_logged = None
+            return {
+                'twist': twist,
+                'blue_count': blue_count,
+                'zone_used': zone_used,
+                'scan_zone': 0,
+                'circle_drive': False,
+                'state': 'follow',
+            }
+
+        twist, blue_count, zone_used = self.search_for_line()
+        return {
+            'twist': twist,
+            'blue_count': blue_count,
+            'zone_used': zone_used,
+            'scan_zone': 0,
+            'circle_drive': True,
+            'state': 'search',
+        }
+
+    def log_search_mode(self, scan_zone, circle_drive):
+        mode = 'circle' if circle_drive else 'probe'
+        mode_changed = mode != self.last_search_mode_logged
+        should_log = mode_changed or (self.frame_count % 5 == 0)
+        if not should_log:
+            return
+
+        if circle_drive:
+            self.get_logger().warn('Lost line recovery: mode=circle, scanning zones=all(1-4)')
+        else:
+            self.get_logger().warn(f'Lost line recovery: mode=probe, scanning zone={scan_zone}')
+        self.last_search_mode_logged = mode
+
+    def maybe_update_target_color(self, img, candidate):
+        # Keep adaptive color updates conservative to avoid drift onto background.
+        if not self.enable_adaptive_color:
+            return
+
+        if self.lost_frames != 0:
+            return
+
+        if candidate['zone'] not in (1, 2):
+            return
+
+        if self.should_use_relaxed_detection():
+            return
+
+        frames_since_update = self.frame_count - self.last_color_update_frame
+        if frames_since_update < self.color_update_period_frames:
+            return
+
+        roi = self.roi_from_zone(img, candidate['zone'])
+        blue_mask, _ = self.compute_blue_mask(roi, relaxed_color=False)
+        blue_count = int(np.sum(blue_mask))
+        if blue_count < self.color_update_min_blue_pixels:
+            return
+
+        roi_f = roi.astype(np.float32)
+        measured_bgr = roi_f[blue_mask].mean(axis=0)
+        blended = (1.0 - self.color_update_alpha) * self.target_bgr + self.color_update_alpha * measured_bgr
+
+        lower = self.base_target_bgr - self.max_target_drift
+        upper = self.base_target_bgr + self.max_target_drift
+        self.target_bgr = np.clip(blended, lower, upper)
+        self.last_color_update_frame = self.frame_count
+
+        if self.frame_count % self.color_update_log_period_frames == 0:
+            self.get_logger().info(
+                (
+                    f"adaptive_color target_bgr="
+                    f"({self.target_bgr[0]:.1f}, {self.target_bgr[1]:.1f}, {self.target_bgr[2]:.1f})"
+                )
+            )
+
+    def detect_candidate_in_zone(self, img, zone, min_pixels=None, relaxed_color=False):
         roi = self.roi_from_zone(img, zone) # region of interest for this zone
         _, width, _ = roi.shape # width of the ROI for normalization
 
-        b = roi[:, :, 0].astype(np.float32)
-        g = roi[:, :, 1].astype(np.float32)
-        r = roi[:, :, 2].astype(np.float32)
-        # Simple blue detection: blue channel minus half of red and green to 
-        # reduce noise from non-blue areas.
-        blue_score = b - 0.5 * (g + r)
-        blue_mask = (blue_score > self.color_threshold)
+        blue_mask, blue_score = self.compute_blue_mask(roi, relaxed_color=relaxed_color)
         blue_count = int(np.sum(blue_mask))
+        required_pixels = self.min_pixels if min_pixels is None else int(min_pixels)
 
         # If not enough blue, we will change zones, if no blue in any zone
         # we will entually go into search mode
-        if blue_count < self.min_pixels:
+        if blue_count < required_pixels:
             return None
 
         # Use weighted column score for x position with better noise rejection.
@@ -234,11 +440,18 @@ class LineFollower(Node):
             'right_count': right_count,
         }
 
-    def follow_line(self, candidate, width, corner_mode):
+    def follow_line(self, candidate, width, corner_mode, heading_error=0.0):
         # follow detected tape line with PD steering control
-        error = self.calculate_follow_error(candidate['tape_x'], width)
-        if abs(error) < 0.05:
-            error = 0.0
+        raw_error = self.calculate_follow_error(candidate['tape_x'], width)
+        if abs(raw_error) < 0.05:
+            raw_error = 0.0
+
+        # Low-pass filter the lateral error to reduce steering twitch/oversteer.
+        self.filtered_error = (
+            (1.0 - self.error_filter_alpha) * self.filtered_error
+            + self.error_filter_alpha * raw_error
+        )
+        error = self.filtered_error
 
         # Compute error derivative (rate of change) for damping
         error_rate = error - self.last_error
@@ -249,8 +462,9 @@ class LineFollower(Node):
             # PD: proportional + derivative damping
             p_term = -self.corner_turn_gain * self.kp * error
             d_term = -self.corner_turn_gain * self.kd * error_rate
+            h_term = -self.corner_turn_gain * self.kh * heading_error
             turn = float(np.clip(
-                p_term + d_term,
+                p_term + d_term + h_term,
                 -self.corner_max_turn,
                 self.corner_max_turn,
             ))
@@ -259,8 +473,17 @@ class LineFollower(Node):
             # Normal follow: PD control with derivative damping
             p_term = -self.kp * error
             d_term = -self.kd * error_rate
-            turn = float(np.clip(p_term + d_term, -self.max_turn, self.max_turn))
+            h_term = -self.kh * heading_error
+            target_turn = p_term + d_term + h_term
+            turn = float(np.clip(target_turn, -self.max_turn, self.max_turn))
             speed = self.forward_speed
+
+        # Rate-limit steering changes to prevent sudden oversteer spikes.
+        turn = float(np.clip(
+            turn,
+            self.last_drive_turn - self.max_turn_step,
+            self.last_drive_turn + self.max_turn_step,
+        ))
 
         twist = Twist()
         twist.linear.x = speed
@@ -278,11 +501,7 @@ class LineFollower(Node):
         # Scan bottom zone for any blue on left or right edges to guide bridging
         roi = self.roi_from_zone(img, 1)
         _, roi_width, _ = roi.shape
-        b = roi[:, :, 0].astype(np.float32)
-        g = roi[:, :, 1].astype(np.float32)
-        r = roi[:, :, 2].astype(np.float32)
-        blue_score = b - 0.5 * (g + r)
-        blue_mask = (blue_score > self.color_threshold)
+        blue_mask, _ = self.compute_blue_mask(roi)
 
         # Check left and right fifths for tape presence
         left_fifth = int(roi_width / 5)
@@ -307,6 +526,27 @@ class LineFollower(Node):
 
         total_blue = left_edge_count + center_count + right_edge_count
         return twist, total_blue, 0
+
+    def compute_blue_mask(self, roi, relaxed_color=False):
+        # Match a tight BGR neighborhood around the known tape color.
+        roi_f = roi.astype(np.float32)
+        tolerance = self.color_tolerance
+        threshold = self.color_threshold
+        if relaxed_color:
+            tolerance = self.color_tolerance * self.relaxed_color_tolerance_scale
+            threshold = max(5.0, self.color_threshold - self.relaxed_color_threshold_delta)
+
+        channel_error = np.abs(roi_f - self.target_bgr)
+        near_target = np.all(channel_error <= tolerance, axis=2)
+
+        # Keep a blue dominance term to reject similarly colored noise.
+        b = roi_f[:, :, 0]
+        g = roi_f[:, :, 1]
+        r = roi_f[:, :, 2]
+        blue_score = b - 0.45 * (g + r)
+        blue_mask = near_target & (blue_score > threshold)
+
+        return blue_mask, blue_score
 
     def decode_image(self, msg: Image):
         # Support common raw camera encodings and convert to BGR.
@@ -339,12 +579,12 @@ class LineFollower(Node):
         return None
 
     def search_for_line(self):
-        # Drive in a gentle arc while searching so the rover keeps moving.
+        # Circle-drive search mode; image callback still checks every frame for reacquire.
         spin_sign = -1.0 if self.last_error >= 0.0 else 1.0
 
         twist = Twist()
-        twist.linear.x = 0.12
-        twist.angular.z = spin_sign * self.search_spin_speed
+        twist.linear.x = 0.20
+        twist.angular.z = spin_sign * self.search_circle_turn_speed
 
         return twist, 0, 0
 

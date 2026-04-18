@@ -94,14 +94,8 @@ class PaperFollower(Node):
                 self.get_logger().info("BLUE detected CENTER -> Going Straight")
                 self.go_straight()
 
-            elif left > 0:
-                self.blue_override = True
-                self.get_logger().info("BLUE detected LEFT -> Turning Left")
-                self.turn_left()
-
             else:
                 self.blue_override = False
-                self.get_logger().info("No blue detected -> Using angle_goal topic")
 
         except Exception as e:
             self.get_logger().error(str(e))

@@ -137,11 +137,13 @@ class HallwayCenterNode(Node):
 
 
 
-        directly_right = self._cone_indices(msg,math.pi /2, math.radians(5))
+        directly_right = self._cone_indices(msg,math.pi/2, math.radians(5))
         directly_right = np.arange(directly_right[0], directly_right[1] +1)
         if np.sum(ranges[directly_right] == np.inf) > 4:
             # time to move right
             print("Big distance turning")
+            print(ranges[directly_right])
+            print(directly_right)
             dir = 1.0
             twist.linear.x  = self.forward_speed
             twist.angular.z = dir

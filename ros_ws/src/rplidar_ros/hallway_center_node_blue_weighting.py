@@ -134,9 +134,9 @@ class HallwayCenterNode(Node):
 
 
         # fit a line 
-        left_angles = self.get_angle_from_indexes(msg, left_boundary)
         a = np.ones((len(left_angles), 3))
         left_boundary = left_boundary[np.logical_and(np.logical_not(np.isnan(ranges[left_boundary])), np.isfinite(ranges[left_boundary]))]
+        left_angles = self.get_angle_from_indexes(msg, left_boundary)
         a[:,0] = np.cos(left_angles)*ranges[left_boundary]
         a[:,1] = np.sin(left_angles)*ranges[left_boundary]
         left_c, left_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(left_angles)))
@@ -151,8 +151,8 @@ class HallwayCenterNode(Node):
             self.vel_pub.publish(twist)
             return
         
-        right_angles = self.get_angle_from_indexes(msg, right_boundary)
         right_boundary = right_boundary[np.logical_and(np.logical_not(np.isnan(ranges[right_boundary])), np.isfinite(ranges[right_boundary]))]
+        right_angles = self.get_angle_from_indexes(msg, right_boundary)
         a = np.ones((len(right_angles), 3))
         a[:,0] = np.cos(right_angles)*ranges[right_boundary]
         a[:,1] = np.sin(right_angles)*ranges[right_boundary]

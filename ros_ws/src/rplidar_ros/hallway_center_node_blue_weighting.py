@@ -239,7 +239,8 @@ class HallwayCenterNode(Node):
 
         # try to get to 2.5 meters away along wall
         print("Turning to future location")
-        goal_pt = np.array([shortest_dist_right*np.cos(towards_right), shortest_dist_left*np.sin(towards_right)]) + 2.5*np.array([np.cos(towards_right+np.pi/2), np.sin(towards_right+np.pi/2)])
+        goal_pt = np.array([shortest_dist_right*np.cos(towards_right), shortest_dist_left*np.sin(towards_right)]) + 3.0*np.array([np.cos(towards_right+np.pi/2), np.sin(towards_right+np.pi/2)])
+        print(f"Goal location {goal_pt}")
         if goal_pt[0] > 0:
             dir = 0.3
             if np.pi - np.arctan2(goal_pt[1], goal_pt[0]) > math.radians(25):

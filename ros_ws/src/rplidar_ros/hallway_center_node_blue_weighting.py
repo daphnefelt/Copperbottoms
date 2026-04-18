@@ -135,7 +135,7 @@ class HallwayCenterNode(Node):
 
         # fit a line 
         left_angles = self.get_angle_from_indexes(msg, left_boundary)
-        a = np.ones(len(left_angles), 3)
+        a = np.ones((len(left_angles), 3))
         a[:,0] = np.cos(left_angles)*ranges[left_boundary]
         a[:,1] = np.sin(left_angles)*ranges[left_boundary]
         left_c, left_residuals, _, _ = np.lstsq(a, np.zeros(len(left_angles)))

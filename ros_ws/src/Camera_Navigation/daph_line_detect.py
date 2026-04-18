@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 import os
-img = cv2.imread(os.path.join(os.path.dirname(__file__), '../img3.jpg'))
+img = cv2.imread(os.path.join(os.path.dirname(__file__), '../img4.jpg'))
 # blue mask
 rgb = [164, 108, 7]
 plus_minus = [50, 50, 90]
@@ -22,6 +22,8 @@ import matplotlib.pyplot as plt
 img_width = img.shape[1]
 img_center = img_width / 2
 third = img_width / 3
+third_left = third + 100
+third_right = third_left + third
 
 # draw lines and find highest point
 min_y = img.shape[0]
@@ -39,7 +41,7 @@ if lines is not None:
             target_x = x2
 
         # if not in middle third, set go_straight to False
-        if (x1 < third or x1 > 2 * third) or (x2 < third or x2 > 2 * third):
+        if (x1 < third_left or x1 > third_right) or (x2 < third_left or x2 > third_right):
             go_straight = False
 
 # To show the mask:
@@ -55,8 +57,8 @@ plt.title('Lines')
 # add the min y point
 if not go_straight:
     plt.plot(target_x, min_y, 'ro', markersize=12, label='Target Point')
-plt.axvline(third, color='yellow', linestyle='--', linewidth=1, label='Left/Mid Boundary')
-plt.axvline(2 * third, color='yellow', linestyle='--', linewidth=1, label='Mid/Right Boundary')
+plt.axvline(third_left, color='yellow', linestyle='--', linewidth=1, label='Left/Mid Boundary')
+plt.axvline(third_right, color='yellow', linestyle='--', linewidth=1, label='Mid/Right Boundary')
 plt.legend()
 
 plt.show()

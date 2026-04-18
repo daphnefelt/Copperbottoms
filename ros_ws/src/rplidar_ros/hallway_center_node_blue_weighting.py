@@ -134,6 +134,7 @@ class HallwayCenterNode(Node):
 
 
         # fit a line 
+        left_boundary = left_boundary[np.logical_and(np.logical_not(np.isnan(ranges[left_boundary])), np.isfinite(ranges[left_boundary]))]
         left_angles = self.get_angle_from_indexes(msg, left_boundary)
         a = np.ones((len(left_angles), 3))
         a[:,0] = np.cos(left_angles)*ranges[left_boundary]
@@ -141,17 +142,18 @@ class HallwayCenterNode(Node):
         left_c, left_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(left_angles)))
 
 
-        if np.any(ranges(right_boundary) == np.inf):
+        if np.any(ranges[right_boundary] == np.inf):
             # time to move right
             print("Big distance turning")
-            dir = 1
+            dir = 1.0
             twist.linear.x  = self.forward_speed
             twist.angular.z = dir
             self.vel_pub.publish(twist)
             return
         
+        right_boundary = right_boundary[np.logical_and(np.logical_not(np.isnan(ranges[right_boundary])), np.isfinite(ranges[right_boundary]))]
         right_angles = self.get_angle_from_indexes(msg, right_boundary)
-        a = np.ones(len(right_angles), 3)
+        a = np.ones((len(right_angles), 3))
         a[:,0] = np.cos(right_angles)*ranges[right_boundary]
         a[:,1] = np.sin(right_angles)*ranges[right_boundary]
         right_c, right_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(right_angles)))
@@ -203,11 +205,11 @@ class HallwayCenterNode(Node):
         if goal_pt[0] > 0:
             dir = 0.3
             if np.pi - np.arctan2(goal_pt[1], goal_pt[0]) > math.radians(25):
-                dir = 1
+                dir = 1.0
         else:
             dir = -0.3
             if np.arctan2(goal_pt[1], goal_pt[0]) - np.pi > math.radians(25):
-                dir = -1
+                dir = -1.0
 
         twist.linear.x  = self.forward_speed
         twist.angular.z = dir

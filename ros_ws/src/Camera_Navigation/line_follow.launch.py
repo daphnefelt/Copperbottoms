@@ -2,60 +2,99 @@
 
 import os
 from launch import LaunchDescription
-from launch.actions import ExecuteProcess, TimerAction
-from launch_ros.actions import Node
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, TimerAction
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
 	workspace_src_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 	camera_nav_dir = os.path.join(workspace_src_dir, 'Camera_Navigation')
 	fastsam_dir = os.path.expanduser('~/robo_realsense/fastsam')
+	cleanup_previous = LaunchConfiguration('cleanup_previous')
 
 	"""
 	To run
 	ros2 launch src/Camera_Navigation/line_follow.launch.py
+	ros2 launch src/Camera_Navigation/line_follow.launch.py cleanup_previous:=true
 	"""
 
-	# Kill prior instances to avoid stale node/process overlap from previous runs.
+	# Optional cleanup of prior instances to avoid stale overlap from previous runs.
+	# Disabled by default so launch does not kill other sessions/processes unexpectedly.
+	cleanup_arg = DeclareLaunchArgument(
+		'cleanup_previous',
+		default_value='false',
+		description='If true, pkill old line_follow/rover/realsense processes before launch.'
+	)
+
 	kill_line_follow = ExecuteProcess(
 		cmd=['bash', '-lc', "pkill -f 'Camera_Navigation/line_follow.py' || true"],
+		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,
 	)
 
 	kill_rover = ExecuteProcess(
 		cmd=['bash', '-lc', "pkill -f 'robo_rover/rover_node' || true; pkill -f ' --ros-args -r __node:=rover_node' || true"],
+		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,
 	)
 
 	kill_realsense = ExecuteProcess(
 		cmd=['bash', '-lc', "pkill -f 'fastsam/ros_stream_with_depth.py' || true"],
+		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,
 	)
 
 	line_follow = ExecuteProcess(
-		cmd=['python3', os.path.join(camera_nav_dir, 'line_follow.py')],
+		cmd=[
+			'bash',
+			'-lc',
+			(
+				f"if ros2 node list 2>/dev/null | grep -Fxq '/line_follower' "
+				f"; then "
+				f"echo '[launch] /line_follower already running; skipping start'; "
+				f"else exec python3 {os.path.join(camera_nav_dir, 'line_follow.py')}; fi"
+			),
+		],
 		output='screen',
 		emulate_tty=True,
 	)
 
-	rover_node = Node(
-		package='robo_rover',
-		executable='rover_node',
-		name='rover_node',
+	rover_node = ExecuteProcess(
+		cmd=[
+			'bash',
+			'-lc',
+			(
+				"if ros2 node list 2>/dev/null | grep -Fxq '/rover_node' "
+				"&& ros2 topic info /rover/armed 2>/dev/null | grep -Eq 'Publisher count: [1-9]'; then "
+				"echo '[launch] /rover_node already running with /rover/armed publisher; skipping start'; "
+				"else exec ros2 run robo_rover rover_node --ros-args -r __node:=rover_node; fi"
+			),
+		],
 		output='screen',
 		emulate_tty=True,
 	)
 
 	ros_stream_with_depth = ExecuteProcess(
-		cmd=['python3', os.path.join(fastsam_dir, 'ros_stream_with_depth.py')],
+		cmd=[
+			'bash',
+			'-lc',
+			(
+				f"if ros2 node list 2>/dev/null | grep -Fxq '/realsense_color_depth_publisher' "
+				f"; then "
+				f"echo '[launch] /realsense_color_depth_publisher already running; skipping start'; "
+				f"else exec python3 {os.path.join(fastsam_dir, 'ros_stream_with_depth.py')}; fi"
+			),
+		],
 		output='screen',
 		emulate_tty=True,
 	)
 
 	return LaunchDescription([
+		cleanup_arg,
 		kill_line_follow,
 		kill_rover,
 		kill_realsense,

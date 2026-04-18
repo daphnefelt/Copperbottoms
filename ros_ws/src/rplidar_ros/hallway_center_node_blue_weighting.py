@@ -143,6 +143,8 @@ class HallwayCenterNode(Node):
             # time to move right
             print("Big distance turning")
             print(ranges[directly_right])
+            print(ranges)
+            print(len(ranges))
             print(directly_right)
             dir = 1.0
             twist.linear.x  = self.forward_speed

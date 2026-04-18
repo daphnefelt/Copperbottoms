@@ -128,9 +128,9 @@ class HallwayCenterNode(Node):
 
         # ── 2. Side wall sampling ─────────────────────────────────────────────
         left_boundary  = self._cone_indices(msg, -math.pi / 2, math.radians(22.5))
-        left_boundary = range(left_boundary[0], left_boundary[1]+1)
+        left_boundary = np.arange(left_boundary[0], left_boundary[1]+1)
         right_boundary = self._cone_indices(msg, math.pi / 2, math.radians(22.5))
-        right_boundary = range(right_boundary[0], right_boundary[1]+1)
+        right_boundary = np.arange(right_boundary[0], right_boundary[1]+1)
 
 
         # fit a line 

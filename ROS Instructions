@@ -230,6 +230,7 @@ Terminal A
 cd /home/copperbottoms/code/Copperbottoms/ros_ws
 source /opt/ros/humble/setup.bash
 source install/setup.bash
+
 ros2 launch src/Camera_Navigation/line_follow_V2.launch.py cleanup_previous:=true
 
 Terminal B

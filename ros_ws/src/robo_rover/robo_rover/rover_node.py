@@ -305,11 +305,11 @@ class ArduPilotRoverNode(Node):
             throttle = 0
             steering = 0
 
-        self.get_logger().info(
-            f'control_loop sending: throttle={throttle}, steering={steering}, '
-            f'stop_move={self.stop_move}, slow_move={self.slow_move.slowcmdlogi}, '
-            f'armed={self.armed}'
-        )
+        #self.get_logger().info(
+        #    f'control_loop sending: throttle={throttle}, steering={steering}, '
+        #    f'stop_move={self.stop_move}, slow_move={self.slow_move.slowcmdlogi}, '
+        #    f'armed={self.armed}'
+        #)
 
 
 

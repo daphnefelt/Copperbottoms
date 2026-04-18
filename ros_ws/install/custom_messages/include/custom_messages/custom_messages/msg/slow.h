@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/slow.h

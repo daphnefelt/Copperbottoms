@@ -78,7 +78,8 @@ def generate_launch_description():
 	# line_follow.py creates this node name.
 	if not _is_any_running(running_nodes, ('mary_line_follow', '/mary_line_follow')):
 		launch_actions.append(line_follow)
-	else:
-		print("It thinks mary_line_follow is running")
+        print("mary not running")
+    else:
+        print("mary already running")
 
 	return LaunchDescription(launch_actions)

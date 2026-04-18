@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/ament_cmake_python/robo_rover/robo_rover.egg-info/SOURCES.txt

@@ -10,6 +10,7 @@ from collections import deque
 class PaperFollower(Node):
     def __init__(self):
         super().__init__('paper_follower')
+
         self.drive_pub = self.create_publisher(Twist, '/cmd_vel', 10)
 
         self.angle_goal_sub = self.create_subscription(
@@ -21,24 +22,45 @@ class PaperFollower(Node):
 
         self.previous_errors = deque(maxlen=10)
         self.update_rate = 10.0
-
-        self.pipeline = rs.pipeline()
-        config = rs.config()
-        config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-        self.pipeline.start(config)
-
-        self.timer = self.create_timer(0.1, self.camera_callback)
-
         self.blue_override = False
 
-        self.get_logger().info("Paper follower with blue override started.")
+        try:
+            self.pipeline = rs.pipeline()
+            config = rs.config()
+            config.enable_stream(
+                rs.stream.color,
+                640, 480,
+                rs.format.bgr8,
+                30
+            )
+
+            self.pipeline.start(config)
+            self.camera_connected = True
+            self.get_logger().info("RealSense camera connected successfully.")
+
+        except Exception as e:
+            self.camera_connected = False
+            self.get_logger().error(
+                f"FAILED to connect RealSense camera: {str(e)}"
+            )
+
+        # Run camera callback every 0.1 sec
+        self.timer = self.create_timer(0.1, self.camera_callback)
+
+        self.get_logger().info("Paper follower node started.")
 
     def camera_callback(self):
+
+        if not self.camera_connected:
+            self.get_logger().warn("Camera not connected.")
+            return
+        
         try:
             frames = self.pipeline.wait_for_frames()
             color_frame = frames.get_color_frame()
 
             if not color_frame:
+                self.get_logger().warn("No color frame received.")
                 return
 
             image = np.asanyarray(color_frame.get_data())
@@ -64,14 +86,22 @@ class PaperFollower(Node):
 
             if right > 0:
                 self.blue_override = True
+                self.get_logger().info("BLUE detected RIGHT -> Turning Right")
                 self.turn_right()
 
             elif middle > 0:
                 self.blue_override = True
+                self.get_logger().info("BLUE detected CENTER -> Going Straight")
                 self.go_straight()
+
+            elif left > 0:
+                self.blue_override = True
+                self.get_logger().info("BLUE detected LEFT -> Turning Left")
+                self.turn_left()
 
             else:
                 self.blue_override = False
+                self.get_logger().info("No blue detected -> Using angle_goal topic")
 
         except Exception as e:
             self.get_logger().error(str(e))

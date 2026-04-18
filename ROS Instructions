@@ -224,6 +224,9 @@ ros2 run camera_navigation line_follow
 launch file for line_follow.py
 ros2 launch src/Camera_Navigation/line_follow.launch.py
 
+ros2 launch src/Camera_Navigation/line_follow_V2.launch.py
+
+
 =======
 
 PAPER following

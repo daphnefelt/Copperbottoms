@@ -1,0 +1,51 @@
+RTES Application
+
+there are two motors. 
+servo controls steering 
+other motor controls speed of moving 
+
+hardware
+rpi, imu realsense camera 
+
+
+camera 
+s2 topic hz /camera/color/image_raw
+average rate: 28.504
+
+lidar laser 
+
+ros2 topic hz /imu/gyro
+average rate: 19.924
+  min: 0.042s max: 0.058s std dev: 0.00463s window: 21
+
+
+ros2 topic hz /imu/accelel
+average rate: 20.033
+        min: 0.041s max: 0.059s std dev: 0.00444s window: 22
+
+
+ros2 node info  /rover_node
+/rover_node
+  Subscribers:
+    /cmd_vel: geometry_msgs/msg/Twist
+    /slow_move: custom_messages/msg/Slow
+    /stop_move: std_msgs/msg/Bool
+  Publishers:
+    /imu/accel: geometry_msgs/msg/Vector3
+    /imu/gyro: geometry_msgs/msg/Vector3
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /rover/armed: std_msgs/msg/Bool
+  Service Servers:
+    /rover_node/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /rover_node/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /rover_node/get_parameters: rcl_interfaces/srv/GetParameters
+    /rover_node/list_parameters: rcl_interfaces/srv/ListParameters
+    /rover_node/set_parameters: rcl_interfaces/srv/SetParameters
+    /rover_node/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+

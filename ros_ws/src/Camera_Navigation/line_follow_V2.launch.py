@@ -15,8 +15,8 @@ def generate_launch_description():
 
 	"""
 	To run
-	ros2 launch src/Camera_Navigation/line_follow.launch.py
-	ros2 launch src/Camera_Navigation/line_follow.launch.py cleanup_previous:=true
+	ros2 launch src/Camera_Navigation/line_follow_V2.launch.py
+	ros2 launch src/Camera_Navigation/line_follow_V2.launch.py cleanup_previous:=true
 	"""
 
 	# Optional cleanup of prior instances to avoid stale overlap from previous runs.
@@ -24,11 +24,11 @@ def generate_launch_description():
 	cleanup_arg = DeclareLaunchArgument(
 		'cleanup_previous',
 		default_value='false',
-		description='If true, pkill old line_follow/rover/realsense processes before launch.'
+		description='If true, pkill old line_follow_V2/rover/realsense processes before launch.'
 	)
 
-	kill_line_follow = ExecuteProcess(
-		cmd=['bash', '-lc', "pkill -f 'Camera_Navigation/line_follow.py' || true"],
+	kill_line_follow_V2 = ExecuteProcess(
+		cmd=['bash', '-lc', "pkill -f 'Camera_Navigation/line_follow_V2.py' || true"],
 		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,
@@ -48,15 +48,15 @@ def generate_launch_description():
 		emulate_tty=True,
 	)
 
-	line_follow = ExecuteProcess(
+	line_follow_V2 = ExecuteProcess(
 		cmd=[
 			'bash',
 			'-lc',
 			(
-				f"if ros2 node list 2>/dev/null | grep -Fxq '/line_follower' "
+				f"if ros2 node list 2>/dev/null | grep -Fxq '/line_follower_v2' "
 				f"; then "
-				f"echo '[launch] /line_follower already running; skipping start'; "
-				f"else exec python3 {os.path.join(camera_nav_dir, 'line_follow.py')}; fi"
+				f"echo '[launch] /line_follower_v2 already running; skipping start'; "
+				f"else exec python3 {os.path.join(camera_nav_dir, 'line_follow_V2.py')}; fi"
 			),
 		],
 		output='screen',
@@ -95,7 +95,7 @@ def generate_launch_description():
 
 	return LaunchDescription([
 		cleanup_arg,
-		kill_line_follow,
+		kill_line_follow_V2,
 		kill_rover,
 		kill_realsense,
 		TimerAction(
@@ -113,7 +113,7 @@ def generate_launch_description():
 		TimerAction(
 			period=6.0,
 			actions=[
-				line_follow,
+				line_follow_V2,
 			],
 		),
 	])

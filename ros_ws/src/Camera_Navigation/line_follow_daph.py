@@ -170,16 +170,19 @@ class LineFollower(Node):
         if in_center_third: # old method
             print("CENTER METHOD")
             center_roi_strt = int(height * 0.70)
-            center_roi = roi[center_roi_strt:height, :, :]
+            # center_roi = roi[center_roi_strt:height, :, :]
 
-            b = center_roi[:, :, 0].astype(np.float32)
-            g = center_roi[:, :, 1].astype(np.float32)
-            r = center_roi[:, :, 2].astype(np.float32)
+            # b = center_roi[:, :, 0].astype(np.float32)
+            # g = center_roi[:, :, 1].astype(np.float32)
+            # r = center_roi[:, :, 2].astype(np.float32)
 
-            blue_score = b - 0.5 * (g + r)
-            blue_mask = (blue_score > self.color_threshold)
-            blue_count = np.sum(blue_mask)
-            weighted = blue_score * blue_mask
+            # blue_score = b - 0.5 * (g + r)
+            # blue_mask = (blue_score > self.color_threshold)
+            if lines is None:
+                blue_mask = mask # get whole img if no lines
+            else:
+                blue_mask = mask[center_roi_strt:height, :] # crop
+            weighted = np.sum(blue_mask)
             column_strength = weighted.mean(axis=0)
             tape_x = int(np.argmax(column_strength))
 

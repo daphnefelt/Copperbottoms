@@ -39,7 +39,7 @@ def generate_launch_description():
 	print(f"nodes already running at launch start: {running_nodes}")
 
 	line_follow_daph = ExecuteProcess(
-		cmd=['python3', os.path.join(camera_nav_dir, 'line_follow.py')],
+		cmd=['python3', os.path.join(camera_nav_dir, 'line_follow_daph.py')],
 		output='screen',
 		emulate_tty=True,
 	)

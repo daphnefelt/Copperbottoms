@@ -28,21 +28,21 @@ def generate_launch_description():
 	)
 
 	kill_line_follow_V2 = ExecuteProcess(
-		cmd=['bash', '-lc', "pkill -f 'Camera_Navigation/line_follow_V2.py' || true"],
+		cmd=['bash', '-lc', "pkill -f '[C]amera_Navigation/line_follow_V2.py' || true"],
 		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,
 	)
 
 	kill_rover = ExecuteProcess(
-		cmd=['bash', '-lc', "pkill -f 'robo_rover/rover_node' || true; pkill -f ' --ros-args -r __node:=rover_node' || true"],
+		cmd=['bash', '-lc', "pkill -f '[r]obo_rover/rover_node' || true; pkill -f ' --ros-args -r __node:=rover_node' || true"],
 		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,
 	)
 
 	kill_realsense = ExecuteProcess(
-		cmd=['bash', '-lc', "pkill -f 'fastsam/ros_stream_with_depth.py' || true"],
+		cmd=['bash', '-lc', "pkill -f '[f]astsam/ros_stream_with_depth.py' || true"],
 		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,

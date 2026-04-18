@@ -24,6 +24,16 @@ setup(
         'console_scripts': [
             'lio_odometry = amy_test.Slam_landmark.odometery.LIO:main',
             'odometry_monitor = amy_test.verification.odometry_monitor:main',
+            # Line following
+            'line_follow_amy = amy_test.line_follow_amy:main',
+            # Latency monitoring infrastructure
+            'topic_rate_monitor = amy_test.topic_rate_monitor:main',
+            'vision_latency_monitor = amy_test.vision_latency_monitor:main',
+            'motor_latency_monitor = amy_test.motor_latency_monitor:main',
+            'latency_aggregator = amy_test.latency_aggregator:main',
+            'performance_logger = amy_test.performance_logger:main',
+            'latency_dashboard = amy_test.latency_dashboard:main',
+            'automated_latency_test = amy_test.automated_latency_test:main',
         ],
     },
 )

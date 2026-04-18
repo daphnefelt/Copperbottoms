@@ -6,7 +6,15 @@ setup(
     name=package_name,
     version='0.0.0',
     packages=[],
-    py_modules=['line_follow'],
+    py_modules=[
+        'line_follow',
+        'line_follow_V2',
+        'line_follow_daph',
+        'mary_line_follow',
+        'blue_follow',
+        'line_detection',
+        'follow_the_gap',
+    ],
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
@@ -20,6 +28,12 @@ setup(
     entry_points={
         'console_scripts': [
             'line_follow = line_follow:main',
+            'line_follow_V2 = line_follow_V2:main',
+            'line_follow_daph = line_follow_daph:main',
+            'mary_line_follow = mary_line_follow:main',
+            'blue_follow = blue_follow:main',
+            'line_detection = line_detection:main',
+            'follow_the_gap = follow_the_gap:main',
         ],
     },
 )

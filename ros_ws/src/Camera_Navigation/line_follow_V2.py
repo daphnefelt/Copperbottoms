@@ -1,10 +1,18 @@
 import rclpy
 import numpy as np
+import os
 from numpy.lib.stride_tricks import as_strided
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
 from std_msgs.msg import Bool
+
+try:
+    import cv2
+    CV2_AVAILABLE = True
+except Exception:
+    cv2 = None
+    CV2_AVAILABLE = False
 
 
 class LineFollowerV2(Node):
@@ -14,11 +22,13 @@ class LineFollowerV2(Node):
 
         image_topic = '/camera/color/image_raw'
         cmd_vel_topic = '/cmd_vel'
+        debug_image_topic = '/line_follower_v2/debug_image'
 
         # parameters
         self.forward_speed = 0.22
         self.min_speed = 0.20
-        self.search_speed = 0.20
+        # Safety default: rotate in place while searching so the rover does not drift away.
+        self.search_speed = 0.0
         self.max_turn = 0.55
         self.search_turn = 0.35
         self.kp = 0.26
@@ -30,11 +40,32 @@ class LineFollowerV2(Node):
         self.normal_max_turn = 0.40
         self.min_edge_track_pixels = 120
 
+        # OpenCV GUI can hard-crash process over SSH when DISPLAY/X11 is unavailable.
+        # Keep window view opt-in; ROS debug topic remains enabled by default.
+        self.enable_debug_view = os.environ.get('LFV2_DEBUG_VIEW', '0') == '1'
+        self.enable_debug_topic = True
+        self.debug_window_name = 'LineFollowerV2 Debug'
+        self.enable_debug_snapshot = True
+        self.debug_snapshot_path = '/tmp/line_follower_v2_debug.jpg'
+        self.debug_snapshot_every_n_frames = 2
+        self.display_env = os.environ.get('DISPLAY', '')
+
         # blue-tape masking around target BGR
         self.target_bgr = np.array([204.0, 146.0, 39.0], dtype=np.float32)
         self.color_tolerance = np.array([62.0, 58.0, 55.0], dtype=np.float32)
         self.blue_score_threshold = 22.0
+
+        # Hybrid tracker tuning (legacy + edge-boost)
+        self.simple_blue_threshold = 30.0
+        self.edge_follow_boost = 1.6
+        self.min_column_peak = 2.5
+
         self.min_track_pixels = 90
+        self.track_lock_required = 3
+
+        # Adaptive Canny thresholds
+        self.canny_high_percentile = 86.0
+        self.canny_low_ratio = 0.45
 
         # focus tracking mostly on lower image region
         self.roi_top_ratio = 0.55
@@ -48,9 +79,15 @@ class LineFollowerV2(Node):
         self.last_turn = 0.0
         self.last_speed = 0.0
         self.lost_frames = 0
+        self.track_lock_frames = 0
         self.last_unbiased_error = 0.0
         self.last_biased_error = 0.0
         self.track_x_filtered = None
+        self._warned_no_cv2 = False
+
+        if self.enable_debug_view and not self.display_env:
+            self.get_logger().warn('LFV2_DEBUG_VIEW=1 set but DISPLAY is empty; disabling cv2 window view.')
+            self.enable_debug_view = False
 
         # subscribers
         self.image_sub = self.create_subscription(
@@ -68,12 +105,14 @@ class LineFollowerV2(Node):
 
         # publishers
         self.vel_pub = self.create_publisher(Twist, cmd_vel_topic, 10)
+        self.debug_image_pub = self.create_publisher(Image, debug_image_topic, 10)
 
         self.get_logger().info(
-            f'Line follower node started. image_topic={image_topic}, cmd_vel_topic={cmd_vel_topic}'
+            (
+                f'Line follower node started. image_topic={image_topic}, '
+                f'cmd_vel_topic={cmd_vel_topic}, debug_image_topic={debug_image_topic}'
+            )
         )
-
-
 
     """
     states
@@ -82,9 +121,6 @@ class LineFollowerV2(Node):
     # search
     # bridge
 
-
-    
-    
     """
     callbacks
     """
@@ -117,7 +153,7 @@ class LineFollowerV2(Node):
         y1 = int(height * self.roi_bottom_ratio)
         roi = img[y0:y1, :, :]
 
-        blue_mask = self.compute_blue_mask(roi)
+        blue_mask, blue_score = self.compute_blue_mask_and_score(roi)
         edge_map = self.canny_edge_detection(roi)
         edge_mask = edge_map > 0
 
@@ -131,7 +167,32 @@ class LineFollowerV2(Node):
         track_pixels = int(np.sum(track_mask))
 
         if track_pixels >= self.min_track_pixels:
-            track_x = self.compute_track_center_x(track_mask)
+            self.track_lock_frames += 1
+            if self.track_lock_frames < self.track_lock_required:
+                self.publish_stop()
+                if self.frame_count % 10 == 0:
+                    self.get_logger().info(
+                        (
+                            f"state=acquire, lock={self.track_lock_frames}/{self.track_lock_required}, "
+                            f"track_px={track_pixels}, edge_track_px={edge_track_pixels}"
+                        )
+                    )
+                self.show_debug_view(
+                    roi,
+                    blue_mask,
+                    edge_map,
+                    track_mask,
+                    track_pixels,
+                    edge_track_pixels,
+                    msg.header,
+                )
+                return
+
+            track_x = self.compute_track_center_x(
+                track_mask,
+                blue_score=blue_score,
+                edge_mask=edge_mask
+            )
             self.follow_track(track_x, width)
 
             if self.frame_count % 10 == 0:
@@ -145,13 +206,18 @@ class LineFollowerV2(Node):
                     )
                 )
         else:
+            self.track_lock_frames = 0
             self.search_for_track()
 
-
-        
-
-
-
+        self.show_debug_view(
+            roi,
+            blue_mask,
+            edge_map,
+            track_mask,
+            track_pixels,
+            edge_track_pixels,
+            msg.header,
+        )
 
     """
     Helper functions
@@ -160,6 +226,102 @@ class LineFollowerV2(Node):
     def publish_stop(self):
         cmd = Twist()
         self.vel_pub.publish(cmd)
+
+    def show_debug_view(
+        self,
+        roi: np.ndarray,
+        blue_mask: np.ndarray,
+        edge_map: np.ndarray,
+        track_mask: np.ndarray,
+        track_pixels: int,
+        edge_track_pixels: int,
+        header,
+    ):
+        if (not self.enable_debug_view) and (not self.enable_debug_topic):
+            return
+
+        if not CV2_AVAILABLE:
+            if not self._warned_no_cv2:
+                self.get_logger().warn('Debug view disabled: cv2 is not available.')
+                self._warned_no_cv2 = True
+            return
+
+        try:
+            roi_vis = roi.copy()
+            h, w, _ = roi_vis.shape
+            center_x = int(w / 2)
+
+            # Robot center line in green.
+            cv2.line(roi_vis, (center_x, 0), (center_x, h - 1), (0, 255, 0), 2)
+
+            # Tape line estimate in red.
+            if self.track_x_filtered is not None:
+                tape_x = int(np.clip(self.track_x_filtered, 0, w - 1))
+                cv2.line(roi_vis, (tape_x, 0), (tape_x, h - 1), (0, 0, 255), 2)
+
+            blue_u8 = (blue_mask.astype(np.uint8) * 255)
+            edge_u8 = edge_map.astype(np.uint8)
+            track_u8 = (track_mask.astype(np.uint8) * 255)
+
+            blue_vis = cv2.cvtColor(blue_u8, cv2.COLOR_GRAY2BGR)
+            edge_vis = cv2.cvtColor(edge_u8, cv2.COLOR_GRAY2BGR)
+            track_vis = cv2.cvtColor(track_u8, cv2.COLOR_GRAY2BGR)
+
+            cv2.putText(roi_vis, 'ROI', (8, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
+            cv2.putText(blue_vis, 'Blue Mask', (8, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
+            cv2.putText(edge_vis, 'Canny Edges', (8, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
+            cv2.putText(track_vis, 'Track Mask', (8, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
+
+            mode = 'follow' if track_pixels >= self.min_track_pixels else 'search'
+            telemetry = (
+                f"mode={mode}  err_u={self.last_unbiased_error:.3f}  "
+                f"err_b={self.last_biased_error:.3f}  off={self.error_offset:.3f}  "
+                f"ang={self.last_turn:.2f}  blue={int(np.sum(blue_mask))}  "
+                f"edge={int(np.sum(edge_u8 > 0))}  edge_track={edge_track_pixels}"
+            )
+
+            row = np.hstack((roi_vis, blue_vis, edge_vis, track_vis))
+            canvas = np.zeros((row.shape[0] + 34, row.shape[1], 3), dtype=np.uint8)
+            canvas[:row.shape[0], :, :] = row
+            cv2.putText(canvas, telemetry, (10, row.shape[0] + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (200, 255, 200), 1)
+
+            if self.enable_debug_topic:
+                self.publish_debug_image(canvas, header)
+
+            if self.enable_debug_snapshot:
+                self.write_debug_snapshot(canvas)
+
+            if self.enable_debug_view:
+                cv2.imshow(self.debug_window_name, canvas)
+                cv2.waitKey(1)
+        except Exception as exc:
+            # Disable visualization if display backend is unavailable.
+            if self.enable_debug_view:
+                self.get_logger().warn(f'Debug window view disabled at runtime: {exc}')
+                self.enable_debug_view = False
+
+    def publish_debug_image(self, canvas: np.ndarray, header):
+        msg = Image()
+        msg.header = header
+        msg.height = int(canvas.shape[0])
+        msg.width = int(canvas.shape[1])
+        msg.encoding = 'bgr8'
+        msg.is_bigendian = 0
+        msg.step = int(canvas.shape[1] * 3)
+        msg.data = canvas.tobytes()
+        self.debug_image_pub.publish(msg)
+
+    def write_debug_snapshot(self, canvas: np.ndarray):
+        if (self.frame_count % max(self.debug_snapshot_every_n_frames, 1)) != 0:
+            return
+        if not CV2_AVAILABLE:
+            return
+        try:
+            cv2.imwrite(self.debug_snapshot_path, canvas)
+        except Exception as exc:
+            if self.enable_debug_snapshot:
+                self.get_logger().warn(f'Debug snapshot disabled at runtime: {exc}')
+                self.enable_debug_snapshot = False
 
     def follow_track(self, track_x: int, width: int):
         # Smooth centroid to reduce frame-to-frame steering spikes.
@@ -215,8 +377,11 @@ class LineFollowerV2(Node):
 
     def search_for_track(self):
         self.lost_frames += 1
+        self.track_lock_frames = 0
         self.track_x_filtered = None
-        spin_sign = -1.0 if self.last_error >= 0.0 else 1.0
+
+        # Keep searching in direction of last commanded turn.
+        spin_sign = -1.0 if self.last_turn >= 0.0 else 1.0
 
         cmd = Twist()
         cmd.linear.x = self.search_speed
@@ -232,22 +397,52 @@ class LineFollowerV2(Node):
                 )
             )
 
-    def compute_track_center_x(self, mask: np.ndarray) -> int:
+    def compute_track_center_x(
+        self,
+        mask: np.ndarray,
+        blue_score: np.ndarray = None,
+        edge_mask: np.ndarray = None,
+    ) -> int:
+        # Prefer legacy-style column strength (stable), boosted by edge confidence.
+        if blue_score is not None:
+            weighted = np.maximum(blue_score, 0.0).astype(np.float32)
+            if edge_mask is not None:
+                weighted *= (1.0 + self.edge_follow_boost * edge_mask.astype(np.float32))
+            weighted *= mask.astype(np.float32)
+
+            column_strength = weighted.mean(axis=0)
+            if column_strength.size > 0 and float(np.max(column_strength)) >= self.min_column_peak:
+                return int(np.argmax(column_strength))
+
         ys, xs = np.where(mask)
         if xs.size == 0:
             return mask.shape[1] // 2
         return int(np.mean(xs))
 
-    def compute_blue_mask(self, roi: np.ndarray) -> np.ndarray:
+    def compute_blue_mask_and_score(self, roi: np.ndarray):
         roi_f = roi.astype(np.float32)
-        channel_error = np.abs(roi_f - self.target_bgr)
-        near_target = np.all(channel_error <= self.color_tolerance, axis=2)
-
         b = roi_f[:, :, 0]
         g = roi_f[:, :, 1]
         r = roi_f[:, :, 2]
-        blue_score = b - 0.45 * (g + r)
-        return near_target & (blue_score > self.blue_score_threshold)
+
+        # Legacy blue score
+        blue_score = b - 0.5 * (g + r)
+
+        # Target-color gate
+        channel_error = np.abs(roi_f - self.target_bgr)
+        near_target = np.all(channel_error <= self.color_tolerance, axis=2)
+        tuned_blue = near_target & (blue_score > self.blue_score_threshold)
+
+        # Hybrid: tuned OR simple
+        simple_blue = blue_score > self.simple_blue_threshold
+        blue_mask = tuned_blue | simple_blue
+
+        return blue_mask, blue_score
+
+    # Backward-compatible helper
+    def compute_blue_mask(self, roi: np.ndarray) -> np.ndarray:
+        blue_mask, _ = self.compute_blue_mask_and_score(roi)
+        return blue_mask
 
     def decode_image(self, msg: Image):
         # Support common raw camera encodings and convert to BGR.
@@ -339,29 +534,29 @@ class LineFollowerV2(Node):
         mag = magnitude
 
         # Shifted images
-        magN  = np.pad(mag, 1, mode='edge')
+        magN = np.pad(mag, 1, mode='edge')
 
-        # neighbors 
-        d0   = (angle < 22.5) | (angle >= 157.5)
-        d45  = (22.5 <= angle) & (angle < 67.5)
-        d90  = (67.5 <= angle) & (angle < 112.5)
+        # neighbors
+        d0 = (angle < 22.5) | (angle >= 157.5)
+        d45 = (22.5 <= angle) & (angle < 67.5)
+        d90 = (67.5 <= angle) & (angle < 112.5)
         d135 = (112.5 <= angle) & (angle < 157.5)
 
         # For each direction define neighbors
-        West  = magN[1:M+1, 0:N]
-        East = magN[1:M+1, 2:N+2]
+        West = magN[1:M + 1, 0:N]
+        East = magN[1:M + 1, 2:N + 2]
 
-        North    = magN[0:M,   1:N+1]
-        South  = magN[2:M+2, 1:N+1]
+        North = magN[0:M, 1:N + 1]
+        South = magN[2:M + 2, 1:N + 1]
 
-        NW    = magN[0:M,   0:N]
-        NE   = magN[0:M,   2:N+2]
-        SW  = magN[2:M+2, 0:N]
-        SE = magN[2:M+2, 2:N+2]
+        NW = magN[0:M, 0:N]
+        NE = magN[0:M, 2:N + 2]
+        SW = magN[2:M + 2, 0:N]
+        SE = magN[2:M + 2, 2:N + 2]
 
         # Performing non_max_supression
-        store0 = d0  & (mag >= West) & (mag >= East)
-        store90 = d90 & (mag >= North)   & (mag >= South)
+        store0 = d0 & (mag >= West) & (mag >= East)
+        store90 = d90 & (mag >= North) & (mag >= South)
 
         store45 = d45 & (mag >= NE) & (mag >= SW)
         store135 = d135 & (mag >= NW) & (mag >= SE)
@@ -374,17 +569,21 @@ class LineFollowerV2(Node):
 
     # Double thresholding
     def double_thresholding(self, image):
-        highThreshold = 166 
-        lowThreshold = 89 
-
-        M, N = image.shape
-        res = np.zeros((M,N), dtype=np.int32)
-
         strong = np.int32(255)
         weak = np.int32(75)
-        
+
+        M, N = image.shape
+        res = np.zeros((M, N), dtype=np.int32)
+
+        nonzero = image[image > 0]
+        if nonzero.size == 0:
+            return res, weak, strong
+
+        highThreshold = max(float(np.percentile(nonzero, self.canny_high_percentile)), 30.0)
+        lowThreshold = max(8.0, highThreshold * self.canny_low_ratio)
+
         strong_x, strong_y = np.where(image >= highThreshold)
-        weak_x, weak_y = np.where((image <= highThreshold) & (image >= lowThreshold))
+        weak_x, weak_y = np.where((image < highThreshold) & (image >= lowThreshold))
 
         res[strong_x, strong_y] = strong
         res[weak_x, weak_y] = weak
@@ -454,8 +653,6 @@ class LineFollowerV2(Node):
         # Return uint8 edge map (0 or 255)
         return np.uint8(final_img)
 
-    
-
 
 def main(args=None):
     rclpy.init(args=args)
@@ -466,10 +663,16 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
+        if CV2_AVAILABLE:
+            try:
+                cv2.destroyAllWindows()
+            except Exception:
+                pass
         if node is not None:
             node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

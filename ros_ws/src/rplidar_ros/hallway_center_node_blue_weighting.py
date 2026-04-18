@@ -142,7 +142,7 @@ class HallwayCenterNode(Node):
         left_c, left_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(left_angles)))
 
 
-        if np.any(ranges[right_boundary] == np.inf):
+        if np.sum(ranges[right_boundary] == np.inf or ranges[right_boundary]) > 4:
             # time to move right
             print("Big distance turning")
             dir = 1.0

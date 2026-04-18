@@ -17,7 +17,7 @@ class LineFollower(Node):
         cmd_vel_topic = '/cmd_vel'
 
         # tuning
-        self.error_offset = -0.4 # to account for location of the camera lens
+        self.error_offset = 0 # to account for location of the camera lens
         self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50
@@ -54,7 +54,29 @@ class LineFollower(Node):
         
         img = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, 3))
 
-        # focus on ROI (bottom half)
+        # WARP
+        h, w = img.shape[:2]
+
+        top_shift = 40   # shift top of image right (positive) or left (negative)
+        bottom_shift = -225 # shift bottom of image right (positive) or left (negative)
+
+        src = np.float32([
+            [0, 0],           # top-left
+            [w - top_shift, 0],       # top-right
+            [0, h],        # bottom-left
+            [w - bottom_shift, h]     # bottom-right
+        ])
+
+        dst = np.float32([
+            [0, 0],
+            [w, 0],
+            [0, h],
+            [w, h]
+        ])
+
+        M = cv2.getPerspectiveTransform(src, dst)
+        img = cv2.warpPerspective(img, M, (w, h))
+
         height = img.shape[0]
         width = img.shape[1]
         
@@ -112,6 +134,8 @@ class LineFollower(Node):
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
 
         # find topmost point to get tape_x
+        in_center_third = True
+        third = width / 3
         tape_x = width // 2  # default to center if no lines found
         if lines is not None:
             min_y = img.shape[0]
@@ -123,6 +147,28 @@ class LineFollower(Node):
                 if y2 < min_y:
                     min_y = y2
                     tape_x = x2
+
+                if not (third < x1 < 2 * third) or not (third < x2 < 2 * third):
+                    in_center_third = False
+
+        if in_center_third: # old method
+            print("Line in center third, using old method for tape_x")
+            roi_strt = int(height * 0.70) # bottom 30%
+            roi = img[roi_strt:height, :, :]
+
+            # blue color thresholding
+            b = roi[:, :, 0].astype(np.float32)
+            g = roi[:, :, 1].astype(np.float32)
+            r = roi[:, :, 2].astype(np.float32)
+
+
+            blue_score = b - 0.5 * (g + r)  # simple blue score
+            blue_mask = (blue_score > self.color_threshold)
+            blue_count = np.sum(blue_mask)
+            # find tape position
+            weighted = blue_score * blue_mask
+            column_strength = weighted.mean(axis=0)  # average over rows
+            tape_x = np.argmax(column_strength)
 
         # error
         center_x = width / 2
@@ -143,23 +189,23 @@ class LineFollower(Node):
                 f"tape_x={tape_x}, err={error:.3f}, turn={turn:.3f}"
             )
 
-        if self.debug_plot and self.frame_count % self.plot_interval == 0:
-            self.get_logger().info(f"Generating debug plot for frame {self.frame_count}")
-            target_y = min_y if lines is not None else img.shape[0] // 2
-            img_draw = img.copy()
-            if lines is not None:
-                for line in lines:
-                    x1, y1, x2, y2 = line[0]
-                    cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            cv2.circle(img_draw, (tape_x, target_y), 10, (0, 0, 255), -1)
-            cv2.line(img_draw, (width // 3, 0), (width // 3, height), (0, 255, 255), 1)
-            cv2.line(img_draw, (2 * width // 3, 0), (2 * width // 3, height), (0, 255, 255), 1)
-            cv2.putText(img_draw, f'turn={turn:.2f}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+            if self.debug_plot:
+                self.get_logger().info(f"Generating debug plot for frame {self.frame_count}")
+                target_y = min_y if lines is not None else img.shape[0] // 2
+                img_draw = img.copy()
+                if lines is not None:
+                    for line in lines:
+                        x1, y1, x2, y2 = line[0]
+                        cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.circle(img_draw, (tape_x, target_y), 10, (0, 0, 255), -1)
+                cv2.line(img_draw, (width // 3, 0), (width // 3, height), (0, 255, 255), 1)
+                cv2.line(img_draw, (2 * width // 3, 0), (2 * width // 3, height), (0, 255, 255), 1)
+                cv2.putText(img_draw, f'turn={turn:.2f}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
-            mask_bgr = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
-            combined = np.hstack([mask_bgr, img_draw])
-            cv2.imshow('debug', combined)
-            cv2.waitKey(1)
+                mask_bgr = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
+                combined = np.hstack([mask_bgr, img_draw])
+                cv2.imshow('debug', combined)
+                cv2.waitKey(1)
 
 def main(args=None):
     rclpy.init(args=args)

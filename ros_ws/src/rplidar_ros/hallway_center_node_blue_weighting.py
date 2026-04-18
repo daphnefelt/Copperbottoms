@@ -178,9 +178,11 @@ class HallwayCenterNode(Node):
 
         # get vector oriented towards lines
         
+        print("Val of cs for left: {left_c}")
         towards_left = np.arctan2(np.sign(left_c[2])*left_c[1], np.sign(left_c[2])*left_c[0]) + np.pi*2
         shortest_dist_left = np.abs(left_c[2])/np.sqrt(left_c[0]*left_c[0] + left_c[1]*left_c[1])
 
+        print("Val of cs for right: {right_c}")
         towards_right = np.arctan2(np.sign(right_c[2])*right_c[1], np.sign(right_c[2])*right_c[0])
         shortest_dist_right = np.sqrt(right_c[0]*right_c[0] + right_c[1]*right_c[1])
 

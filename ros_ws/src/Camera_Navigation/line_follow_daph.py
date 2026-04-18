@@ -207,7 +207,7 @@ class LineFollower(Node):
             if self.debug_plot:
                 self.get_logger().info(f"Generating debug plot for frame {self.frame_count}")
                 target_y = tape_y if lines is not None else img.shape[0] // 2
-                img_draw = img.copy()
+                img_draw = roi.copy()
                 if lines is not None:
                     for line in lines:
                         x1, y1, x2, y2 = line[0]

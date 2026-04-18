@@ -226,23 +226,18 @@ ros2 launch src/Camera_Navigation/line_follow.launch.py
 
 
 Justins V2
-ros2 launch src/Camera_Navigation/line_follow_V2.launch.py
+Terminal A
 cd /home/copperbottoms/code/Copperbottoms/ros_ws
+source /opt/ros/humble/setup.bash
 source install/setup.bash
-ros2 launch src/Camera_Navigation/line_follow_V2.launch.py
+ros2 launch src/Camera_Navigation/line_follow_V2.launch.py cleanup_previous:=true
 
-
-
-with visualization:
+Terminal B
 cd /home/copperbottoms/code/Copperbottoms/ros_ws
 source /opt/ros/humble/setup.bash
 source install/setup.bash
 ros2 run rqt_image_view rqt_image_view
 
-
-
-ros2 topic list | grep line_follower_v2
-ros2 topic hz /line_follower_v2/debug_image
 
 
 =======

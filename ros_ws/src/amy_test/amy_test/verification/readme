@@ -12,16 +12,25 @@ camera
 s2 topic hz /camera/color/image_raw
 average rate: 28.504
 
-lidar laser 
+
 
 ros2 topic hz /imu/gyro
 average rate: 19.924
   min: 0.042s max: 0.058s std dev: 0.00463s window: 21
 
 
-ros2 topic hz /imu/accelel
+ros2 topic hz /imu/accele
 average rate: 20.033
         min: 0.041s max: 0.059s std dev: 0.00444s window: 22
+
+
+LIDAR
+ros2 topic hz /scan
+average rate: 7.327
+        min: 0.132s max: 0.141s std dev: 0.00274s window: 9
+
+
+
 
 
 ros2 node info  /rover_node
@@ -49,3 +58,39 @@ ros2 node info  /rover_node
 
   Action Clients:
 
+
+
+
+measure end to end latency 
+add latency measurement node (recommended)
+Create a simple test node that:
+
+Publishes a command to /cmd_vel with a timestamp
+Subscribes to IMU data /imu/accel or /imu/gyro
+Calculates delta between command sent → sensor response
+
+
+Goal: 
+Tuning Control Algorithms
+
+Line following: If your camera processes at 28 Hz but motor commands lag by 200ms, the rover reacts to old vision data → poor tracking
+PID tuning: Controller gains depend on loop timing. Variable latency breaks PID assumptions → unstable control
+
+
+Debugging Performance Issues
+Your system has:
+
+Camera: 28 Hz
+IMU: 20 Hz
+LIDAR: 7 Hz
+If latency is high, you can identify bottlenecks:
+
+Is the RPi CPU overloaded?
+Is the /cmd_vel callback blocking on I2C/serial communication?
+Are there scheduling delays in ROS 2?
+
+
+System Integration
+
+Sensor-to-actuator loop: You need to know: "Camera sees line → process image → send steering command → motor moves" total time
+If this loop is >100ms, you're reacting to stale data at any speed > 1 m/s

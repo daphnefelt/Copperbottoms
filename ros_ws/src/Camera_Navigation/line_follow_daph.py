@@ -18,7 +18,7 @@ class LineFollower(Node):
 
         # tuning
         self.error_offset = 0 # to account for location of the camera lens
-        self.kp = 0.4
+        self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50
         self.forward_speed = 0.25

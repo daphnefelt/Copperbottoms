@@ -138,7 +138,7 @@ class HallwayCenterNode(Node):
         a = np.ones((len(left_angles), 3))
         a[:,0] = np.cos(left_angles)*ranges[left_boundary]
         a[:,1] = np.sin(left_angles)*ranges[left_boundary]
-        left_c, left_residuals, _, _ = np.lstsq(a, np.zeros(len(left_angles)))
+        left_c, left_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(left_angles)))
 
 
         if np.any(ranges(right_boundary) == np.inf):
@@ -154,7 +154,7 @@ class HallwayCenterNode(Node):
         a = np.ones(len(right_angles), 3)
         a[:,0] = np.cos(right_angles)*ranges[right_boundary]
         a[:,1] = np.sin(right_angles)*ranges[right_boundary]
-        right_c, right_residuals, _, _ = np.lstsq(a, np.zeros(len(right_angles)))
+        right_c, right_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(right_angles)))
 
         # significant error in mapping to a line
 

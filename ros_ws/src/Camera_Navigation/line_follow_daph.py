@@ -114,8 +114,7 @@ class LineFollower(Node):
 
         ## NEW
         # roi
-        percent_off_top = 0.25
-        roi_strt = int(height * (1 - percent_off_top)) # bottom 25%
+        roi_strt = int(height * 0.75) # bottom 75%
         roi = img[roi_strt:height, :, :]
         width = roi.shape[1]
         height = roi.shape[0]

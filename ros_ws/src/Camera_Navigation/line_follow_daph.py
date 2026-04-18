@@ -26,7 +26,7 @@ class LineFollower(Node):
         self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
 
         # plotting
-        self.debug_plot = False
+        self.debug_plot = True
         self.plot_interval = 10  # plot every N frames
 
         # subscribers

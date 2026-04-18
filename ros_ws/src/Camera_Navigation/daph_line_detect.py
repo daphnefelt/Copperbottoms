@@ -3,6 +3,30 @@ import cv2
 import numpy as np
 import os
 img = cv2.imread(os.path.join(os.path.dirname(__file__), '../img4.jpg'))
+
+# WARP
+h, w = img.shape[:2]
+
+top_shift = 40   # shift top of image right (positive) or left (negative)
+bottom_shift = -225 # shift bottom of image right (positive) or left (negative)
+
+src = np.float32([
+    [0, 0],           # top-left
+    [w - top_shift, 0],       # top-right
+    [0, h],        # bottom-left
+    [w - bottom_shift, h]     # bottom-right
+])
+
+dst = np.float32([
+    [0, 0],
+    [w, 0],
+    [0, h],
+    [w, h]
+])
+
+M = cv2.getPerspectiveTransform(src, dst)
+img = cv2.warpPerspective(img, M, (w, h))
+
 # blue mask
 rgb = [164, 108, 7]
 plus_minus = [50, 50, 90]
@@ -22,7 +46,7 @@ import matplotlib.pyplot as plt
 img_width = img.shape[1]
 img_center = img_width / 2
 third = img_width / 3
-third_left = third + 100
+third_left = third
 third_right = third_left + third
 
 # draw lines and find highest point

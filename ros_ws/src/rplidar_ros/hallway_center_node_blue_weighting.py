@@ -219,6 +219,7 @@ class HallwayCenterNode(Node):
         print(f"Val of cs for right: {right_c}")
         towards_right = np.arctan2(np.sign(right_c[2])*right_c[1], np.sign(right_c[2])*right_c[0])
         shortest_dist_right = np.sqrt(right_c[0]*right_c[0] + right_c[1]*right_c[1])
+        print(f"Towards right is {towards_right}")
 
 
         # the line is not that bad we want to align our heading with the right wall at some distance away

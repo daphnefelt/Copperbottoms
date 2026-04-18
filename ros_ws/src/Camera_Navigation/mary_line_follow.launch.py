@@ -67,6 +67,12 @@ def generate_launch_description():
 
 	running_nodes = _get_running_node_names()
 	launch_actions = []
+	# line_follow.py creates this node name.
+	if not _is_any_running(running_nodes, ('mary_line_follow', '/mary_line_follow')):
+		launch_actions.append(line_follow)
+		print("mary not running")
+	else:
+		print("mary already running")
 
 	# ros_stream_with_depth.py creates this node name.
 	if not _is_any_running(running_nodes, ('realsense_color_depth_publisher', '/realsense_color_depth_publisher')):
@@ -75,11 +81,5 @@ def generate_launch_description():
 	if not _is_any_running(running_nodes, ('rover_node', '/rover_node')):
 		launch_actions.append(rover_node)
 
-	# line_follow.py creates this node name.
-	if not _is_any_running(running_nodes, ('mary_line_follow', '/mary_line_follow')):
-		launch_actions.append(line_follow)
-		print("mary not running")
-	else:
-		print("mary already running")
 
 	return LaunchDescription(launch_actions)

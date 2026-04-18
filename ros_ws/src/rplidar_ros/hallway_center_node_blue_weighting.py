@@ -142,7 +142,8 @@ class HallwayCenterNode(Node):
         left_c, left_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(left_angles)))
 
 
-        if np.any(ranges[right_boundary] == np.inf):
+        directly_right = self._cone_indices(msg,math.pi /2, math.radians(5))
+        if np.any(ranges[directly_right] == np.inf):
             # time to move right
             print("Big distance turning")
             dir = 1.0

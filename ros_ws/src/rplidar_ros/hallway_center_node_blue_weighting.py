@@ -133,13 +133,8 @@ class HallwayCenterNode(Node):
         right_boundary = np.arange(right_boundary[0], right_boundary[1]+1)
 
 
-        # fit a line 
-        left_boundary = left_boundary[np.logical_and(np.logical_not(np.isnan(ranges[left_boundary])), np.isfinite(ranges[left_boundary]))]
-        left_angles = self.get_angle_from_indexes(msg, left_boundary)
-        a = np.ones((len(left_angles), 3))
-        a[:,0] = np.cos(left_angles)*ranges[left_boundary]
-        a[:,1] = np.sin(left_angles)*ranges[left_boundary]
-        left_c, left_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(left_angles)))
+        
+
 
 
         directly_right = self._cone_indices(msg,math.pi /2, math.radians(5))
@@ -153,16 +148,51 @@ class HallwayCenterNode(Node):
             self.vel_pub.publish(twist)
             return
         
+
+        # fit a line 
+        left_boundary = left_boundary[np.logical_and(np.logical_not(np.isnan(ranges[left_boundary])), np.isfinite(ranges[left_boundary]))]
+        left_angles = self.get_angle_from_indexes(msg, left_boundary)
+        a = np.ones((len(left_angles), 3))
+
+        x= np.cos(left_angles)*ranges[left_boundary]
+        y = np.sin(left_angles)*ranges[left_boundary]
+        points = np.column_stack((x, y))
+        centroid = np.mean(points, axis=0)
+        centered_points = points - centroid
+
+        _, _, Vh = np.linalg.svd(centered_points)
+
+        normal = Vh[-1] 
+        x_coeff, y_coeff = normal
+
+        # 4. Calculate 'c' using the centroid
+        c_coeff = -(x_coeff * centroid[0] + y_coeff * centroid[1])
+
+        left_c = np.array([x_coeff, y_coeff, c_coeff])
+        
         right_boundary = right_boundary[np.logical_and(np.logical_not(np.isnan(ranges[right_boundary])), np.isfinite(ranges[right_boundary]))]
         right_angles = self.get_angle_from_indexes(msg, right_boundary)
         a = np.ones((len(right_angles), 3))
-        a[:,0] = np.cos(right_angles)*ranges[right_boundary]
-        a[:,1] = np.sin(right_angles)*ranges[right_boundary]
-        right_c, right_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(right_angles)))
+        x= np.cos(right_angles)*ranges[right_boundary]
+        y = np.sin(right_angles)*ranges[right_boundary]
+        points = np.column_stack((x, y))
+        centroid = np.mean(points, axis=0)
+        centered_points = points - centroid
+
+        _, _, Vh = np.linalg.svd(centered_points)
+
+        normal = Vh[-1] 
+        x_coeff, y_coeff = normal
+
+        # 4. Calculate 'c' using the centroid
+        c_coeff = -(x_coeff * centroid[0] + y_coeff * centroid[1])
+
+        right_c = np.array([x_coeff, y_coeff, c_coeff])
+        
 
         # significant error in mapping to a line
 
-        error_vector = np.zeros(len(right_angles)) - np.dot(a, right_c)
+        error_vector = np.zeros(len(right_angles)) - np.dot(points, right_c)
         # the right is not mapping as well to a line - maybe time to move right
         if np.any(np.abs(error_vector) > 7):
             print("Error exceed max: turning")

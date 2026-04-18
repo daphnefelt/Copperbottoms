@@ -133,26 +133,33 @@ class LineFollower(Node):
         edges = cv2.Canny(mask, 50, 150, apertureSize=3)
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
 
-        # find topmost point to get tape_x
+        def score_func(x, y):
+            score = (0 - y) + (w - x) # prefer higher and more right
+            return score
+
+        # find highest score point to get tape_x
         in_center_third = True
         third = width / 3
         tape_x = width // 2  # default to center if no lines found
         if lines is not None:
-            min_y = img.shape[0]
+            max_score = -float('inf')
             for line in lines:
                 x1, y1, x2, y2 = line[0]
-                if y1 < min_y:
-                    min_y = y1
-                    tape_x = x1
-                if y2 < min_y:
-                    min_y = y2
-                    tape_x = x2
 
                 if not (third < x1 < 2 * third) or not (third < x2 < 2 * third):
                     in_center_third = False
+                    
+                    score1 = score_func(x1, y1)
+                    if score1 > max_score:
+                        max_score = score1
+                        tape_x = x1
+                    score2 = score_func(x2, y2)
+                    if score2 > max_score:
+                        max_score = score2
+                        tape_x = x2
 
         if in_center_third: # old method
-            print("Line in center third, using old method for tape_x")
+            print("CENTER METHOD")
             roi_strt = int(height * 0.70) # bottom 30%
             roi = img[roi_strt:height, :, :]
 
@@ -160,7 +167,6 @@ class LineFollower(Node):
             b = roi[:, :, 0].astype(np.float32)
             g = roi[:, :, 1].astype(np.float32)
             r = roi[:, :, 2].astype(np.float32)
-
 
             blue_score = b - 0.5 * (g + r)  # simple blue score
             blue_mask = (blue_score > self.color_threshold)

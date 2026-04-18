@@ -182,7 +182,7 @@ class LineFollower(Node):
                 blue_mask = mask # get whole img if no lines
             else:
                 blue_mask = mask[center_roi_strt:height, :] # crop
-            weighted = np.sum(blue_mask)
+            weighted = blue_mask.astype(np.float32)
             column_strength = weighted.mean(axis=0)
             tape_x = int(np.argmax(column_strength))
 

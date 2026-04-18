@@ -143,6 +143,7 @@ class HallwayCenterNode(Node):
 
 
         directly_right = self._cone_indices(msg,math.pi /2, math.radians(5))
+        directly_right = np.arange(directly_right[0], directly_right[1] +1)
         if np.any(ranges[directly_right] == np.inf):
             # time to move right
             print("Big distance turning")

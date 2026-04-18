@@ -144,6 +144,7 @@ class LineFollower(Node):
             )
 
         if self.debug_plot and self.frame_count % self.plot_interval == 0:
+            self.get_logger().info(f"Generating debug plot for frame {self.frame_count}")
             target_y = min_y if lines is not None else img.shape[0] // 2
             img_draw = img.copy()
             if lines is not None:

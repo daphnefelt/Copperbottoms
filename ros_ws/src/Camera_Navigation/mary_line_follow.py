@@ -27,7 +27,16 @@ class LineFollower(Node):
         self.max_turn = 1.0
         self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
         self.debug_count = 0
+        self.right_angle_detected = False
 
+        self.width = 720
+        self.height = 1280
+        # fraction grabbed from line_follow tuning 
+        offset = 0.4*int(self.width/2)
+
+
+        # alternatively could get the top two longest segments
+        self.robot_center = np.array([int(self.width/2) + offset, 0])
         # subscribers
         self.image_sub = self.create_subscription(
             Image,
@@ -44,8 +53,15 @@ class LineFollower(Node):
         )
 
     def image_callback(self, msg: Image):
-        # frame count
-        self.frame_count += 1
+        # skip the next 5 calls ~ 167 miliseconds
+        if self.right_angle_detected:
+            print(f"Skipping frame")
+            self.frame_count += 1
+            if self.frame_count == 5:
+                self.frame_count = 0
+                self.right_angle_detected = False
+            return
+        print(f"Received frame")
 
         if msg.encoding.lower() != "bgr8":
             self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
@@ -53,27 +69,26 @@ class LineFollower(Node):
         
         img = np.frombuffer(msg.data, dtype=np.uint8).reshape((msg.height, msg.width, 3))
 
+
         # focus on ROI (bottom half)
         print(f"img shape is {img.shape}")
         height = img.shape[0]
         width = img.shape[1]
 
 	
-        cv2_img = cv2.imdecode(img, cv2.IMREAD_GRAYSCALE)
 
         
-        roi_strt = int(height * 0.70) # bottom 30%
-        roi = img[roi_strt:height, :, :]
 
         # blue color thresholding
-        b = roi[:, :, 0]
-        g = roi[:, :, 1]
-        r = roi[:, :, 2]
+        b = img[:, :, 0].astype(np.uint16)
+        g = img[:, :, 1].astype(np.uint16)
+        r = img[:, :, 2].astype(np.uint16)
 
 
-        blue_score = b - int(0.5 * (g + r))  # simple blue score
-        blue_mask = (blue_score > self.color_threshold)
+        blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
+        blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
 
+        #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	
         # blur to help with noise picked up
         blurred = cv2.GaussianBlur(blue_mask, (3, 3), 0)
@@ -87,20 +102,19 @@ class LineFollower(Node):
 
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
-        print(f"Number of contours: {contours}")
+        print(f"Number of contours: {len(contours)}")
 	
-        # fraction grabbed from line_follow tuning 
-        offset = 0.4*int(width/2)
-
-
-        # alternatively could get the top two longest segments
-        robot_center = np.array([int(width/2) + offset, 0])
+        
         closest_contour_idx = np.array([-1, -1])
-        min_dist = np.array([np.max(height, width) + 50, 0])
+        min_dist = np.array([max(height, width) + 50, 0])
         min_dist[1] = min_dist[0]
         for idx, contour in enumerate(contours):
             # try distances to the bottom 20 points on the screen in case it curves away
-            dist = np.min(np.pow(robot_center - contour[-20:,1,:], 2))
+            idxs = contour[-30:, 0, 1] < self.height-10
+            if len(idxs) == 0:
+                print(f"Not enough space for idxs meet criteria")
+                continue
+            dist = np.min(np.power(self.robot_center - contour[-30:][idxs, :, :], 2))
 		
             if any(closest_contour_idx==-1):
                 i_dist = (closest_contour_idx==-1).argmax()
@@ -111,12 +125,15 @@ class LineFollower(Node):
                 min_dist[i_dist] = dist
                 closest_contour_idx[i_dist] = idx
         
+        if any(closest_contour_idx == -1):
+            print(f"Not all closest indexes initialized")
+            return
         # got the two closest blue contours
-
+        print(f"Distances recorded: {min_dist}")
         # identify rightmost and leftmost - might not be two if there is a closed loop - MARY
         right_idx = closest_contour_idx[0]
         left_idx = closest_contour_idx[1]
-        if closest_contour_idx[1][-1][0] > closest_contour_idx[0][-1][0]:
+        if contours[left_idx][-1][0][0] > contours[right_idx][-1][0][0]:
             right_idx = closest_contour_idx[1]
             left_idx = closest_contour_idx[0]
 
@@ -124,11 +141,16 @@ class LineFollower(Node):
         left = contours[left_idx]
         
         gap_threshold = 30
+
+        right = right.reshape(-1, 2)
+
+        left = left.reshape(-1, 2)
         
         # start of segment is after a gap
-        if right[1] > gap_threshold:
+        if right[-1, 1] > gap_threshold:
             # make a beeline to the segment
-            dir = np.atan2(*(right[-1] - robot_center)[::-1])
+            print("Make a beeline across the gap")
+            self.turn_to_point(right[-1, :])
 
         else:
             # identify point in future - higher up in the image
@@ -136,44 +158,39 @@ class LineFollower(Node):
             # if there is a right angle it needs special handling
 
             # what are the orientations of directions
+            print("Look ahead")
 
-            current_direction = np.atan2(*(right[-10] - right[-1] )[::-1])
-        
+            max_future_pixels = 50
+            # get difference between two points and reverse order so that closest points are first
+            diff_between_pts = (right[-max_future_pixels:-1] - right[-(max_future_pixels-1):])[::-1]
+            orientations = np.arctan2(diff_between_pts[:,1], diff_between_pts[:,0])
+            diff_orientations = orientations[1:] - orientations[:-1]
+            # within 20 degrees - right angle
+            if np.abs(np.max(diff_orientations) - np.pi/2) < 0.4:
+                self.right_angle_detected = True 
+                print("In right angle detected")
+            else:
+                # follow local line
+                # can turn up to 45 degrees at -2 to 2
+                print("Following local line")
+                self.turn_to_point(right[-15])
 
-            future_direction = np.atan2(*(right[-20] - right[-10] )[::-1])
 
-
-            # go towards future direction point
-            # angle_threshold = np.pi/4
-            # if np.abs(future_direction - current_direction) > angle_threshold:
-            #     # start turning
-            # else:
-            #     # go straight towards line
+            
+    def turn_to_point(self, pt):
+        print("Trying to command movement")
+        diff_between_pts = (pt - self.robot_center)
+        dir = np.arctan2(diff_between_pts[1], diff_between_pts[0])
+        turn_val = np.clip(-2.0 + 4*(dir + np.pi/4)*2/np.pi, -2.0, 2.0)
+        twist = Twist()
+        twist.linear.x = 0.2
+        twist.angular.z = turn_val  # turn right
+        self.vel_pub.publish(twist)
 
 	
 
 
-            turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
 
-            # speed + publish
-
-            twist = Twist()
-            twist.linear.x = self.forward_speed
-            twist.angular.z = turn
-            self.vel_pub.publish(twist)
-        
-            if self.frame_count % 10 == 0:
-                self.get_logger().info(
-                    f"tape_x={tape_x}, err={error:.3f}, blue_px={blue_count}, turn={turn:.3f}"
-                )
-
-    def turn_to_find_line(self):
-        # rotate in place to try to find the line when it is lost
-        twist = Twist()
-        twist.linear.x = 0.3
-        twist.angular.z = -1.0  # turn right
-        self.vel_pub.publish(twist)
-        self.get_logger().info("Line lost - turning to try to find it.")
 
 
 

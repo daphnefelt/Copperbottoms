@@ -1,12 +1,13 @@
 ### Follow the Gap w/ Lidar
 
+import os
+from pathlib import Path
 import rclpy
 import numpy as np
+import cv2
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
-import matplotlib
-import matplotlib.pyplot as plt
 
 class FollowTheGap(Node):
 
@@ -14,14 +15,17 @@ class FollowTheGap(Node):
         super().__init__('follow_the_gap')
 
         # params
-        self.forward_speed = 0.3
-        self.max_turn = 0.8
-        self.kp = 1.0 # p gain on heading error
-        self.bubble_radius = 0.5 # m - zeroed out around closest point
+        self.forward_speed = 0.25
+        self.max_turn = 0.5
+        self.kp = 0.25 # p gain on heading error
         self.safety_dist = 0.25 # m - readings below this treated as 0
-        self.fov_deg = 180.0  # degrees to consider in front of the robot
-        self.min_gap_width  = 5 # min free beams in a row for a valid gap
-        self.plot = True
+        self.fov_range_deg = (-90.0, 45.0) # [min, max] angle range to consider (degrees)
+        self.window_deg = 10.0 # sliding window half-width used when scoring each angle
+        self.debug_show_cv = True
+        self.debug_save_jpg = False
+        self.debug_jpg_path = Path('/tmp/follow_the_gap_debug.jpg')
+        self.cv_window_name = 'Follow The Gap Debug'
+        self.have_display = bool(os.environ.get('DISPLAY'))
 
         scan_topic = '/scan'
         cmd_vel_topic = '/cmd_vel'
@@ -32,121 +36,101 @@ class FollowTheGap(Node):
         self.get_logger().info(
             f'Follow The Gap node started')
 
-        if self.plot:
-            plt.ion()
-            self.fig, self.ax = plt.subplots(subplot_kw={'projection': 'polar'}, figsize=(6, 6))
+        self.get_logger().info(
+            f'Debug output: show_cv={self.debug_show_cv and self.have_display}, '
+            f'save_jpg={self.debug_save_jpg}, jpg_path={self.debug_jpg_path}')
 
     # helpers
 
-    def _debug_plot(self, fov_angles, fov_ranges_raw, fov_ranges_bubbled, gap, best_in_gap, goal_angle):
-        self.ax.clear()
-        self.ax.set_theta_zero_location('N') # 0 rad = top = forward
-        self.ax.set_theta_direction(-1) # clockwise matches robot-right
+    def _draw_debug_frame(self, fov_angles, fov_ranges, scores, goal_angle, status_text):
+        canvas = np.zeros((700, 700, 3), dtype=np.uint8)
+        cx, cy = 350, 650
 
-        # all FOV beams (after inf to range_max, before bubble)
-        self.ax.plot(fov_angles, fov_ranges_raw, color='steelblue', linewidth=0.8, label='scan')
+        max_range = float(np.max(fov_ranges)) if fov_ranges.size > 0 else 1.0
+        max_range = max(max_range, 1e-3)
+        scale = 560.0 / max_range
 
-        # gap beams highlighted
-        if gap is not None:
-            g_start, g_end = gap
-            self.ax.plot(fov_angles[g_start:g_end+1], fov_ranges_bubbled[g_start:g_end+1], color='limegreen', linewidth=2.0, label='best gap')
+        # Colour each beam by its normalised score (blue=low, green=high).
+        max_score = float(np.max(scores)) if scores.size > 0 else 1.0
+        max_score = max(max_score, 1e-3)
+        for a, r, s in zip(fov_angles, fov_ranges, scores):
+            if r <= 0:
+                continue
+            x = int(cx - (r * np.sin(a) * scale))
+            y = int(cy - (r * np.cos(a) * scale))
+            if 0 <= x < canvas.shape[1] and 0 <= y < canvas.shape[0]:
+                t = s / max_score  # 0..1
+                canvas[y, x] = (int(255 * (1 - t)), int(255 * t), 40)
 
-        # goal direction
-        self.ax.annotate('', xy=(goal_angle, max(fov_ranges_raw) * 0.85), xytext=(0, 0), arrowprops=dict(arrowstyle='->', color='red', lw=2))
+        # Goal direction in red.
+        goal_len = int(0.85 * 560)
+        gx = int(cx - goal_len * np.sin(goal_angle))
+        gy = int(cy - goal_len * np.cos(goal_angle))
+        cv2.arrowedLine(canvas, (cx, cy), (gx, gy), (30, 30, 255), 2, tipLength=0.05)
 
-        self.ax.set_title(f'goal={np.degrees(goal_angle):.1f}°', va='bottom')
-        self.ax.legend(loc='lower right', fontsize=8)
-        self.fig.canvas.draw()
-        self.fig.canvas.flush_events()
+        cv2.putText(canvas, f'goal={np.degrees(goal_angle):.1f} deg', (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (220, 220, 220), 2, cv2.LINE_AA)
+        cv2.putText(canvas, status_text, (20, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (180, 180, 180), 2, cv2.LINE_AA)
+        cv2.putText(canvas, 'Blue=low score  Green=high score  Red=goal', (20, 95), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (160, 160, 160), 1, cv2.LINE_AA)
 
-    def _apply_safety_bubble(self, ranges: np.ndarray, angles: np.ndarray) -> np.ndarray:
-        # Take out the bubble area around closest obstacle
-        working = ranges.copy()
-        closest_idx = int(np.argmin(np.where(working > 0, working, np.inf)))
-        closest_dist = working[closest_idx]
+        return canvas
 
-        half_angle = np.arctan2(self.bubble_radius, closest_dist)
-        bubble_mask = np.abs(angles - angles[closest_idx]) <= half_angle
-        working[bubble_mask] = 0.0
-        return working
+    def _emit_debug(self, frame: np.ndarray):
+        if self.debug_save_jpg:
+            cv2.imwrite(str(self.debug_jpg_path), frame)
 
-    def _find_best_gap(self, ranges: np.ndarray):
-        # widest continuous gap of nonzero readings
-        in_gap = False
-        best_start = best_end = cur_start = 0
-        best_width = 0
-
-        for i, r in enumerate(ranges):
-            if r > 0:
-                if not in_gap:
-                    cur_start = i
-                    in_gap = True
-            else:
-                if in_gap:
-                    width = i - cur_start
-                    if width > best_width:
-                        best_width = width
-                        best_start, best_end = cur_start, i - 1
-                    in_gap = False
-
-        # gap that runs to the end of the array
-        if in_gap:
-            width = len(ranges) - cur_start
-            if width > best_width:
-                best_width = width
-                best_start, best_end = cur_start, len(ranges) - 1
-
-        return (best_start, best_end) if best_width >= self.min_gap_width else None
+        if self.debug_show_cv and self.have_display:
+            try:
+                cv2.imshow(self.cv_window_name, frame)
+                cv2.waitKey(1)
+            except Exception as exc:
+                self.have_display = False
+                self.get_logger().warn(f'CV window unavailable, continuing with JPG only: {exc}')
 
     def scan_callback(self, msg: LaserScan):
         ranges = np.array(msg.ranges, dtype=np.float32)
         angles = np.arange(len(ranges)) * msg.angle_increment + msg.angle_min
 
-        # cut to front FOV
-        half_fov = np.radians(self.fov_deg / 2.0)
-        fov_mask = np.abs(angles) <= half_fov
+        # Restrict to configured angle range.
+        fov_min = np.radians(self.fov_range_deg[0])
+        fov_max = np.radians(self.fov_range_deg[1])
+        fov_mask = (angles >= fov_min) & (angles <= fov_max)
         fov_ranges = ranges[fov_mask].copy()
         fov_angles = angles[fov_mask]
 
-        # replace inf (no return = open space) with range_max.
-        # zero out only nan and too-close readings.
-        fov_ranges = np.where(np.isposinf(fov_ranges), msg.range_max, fov_ranges)
+        # Replace inf readings with the sensor's reported max range.
+        fov_ranges = np.where(np.isinf(fov_ranges), msg.range_max, fov_ranges)
         fov_ranges = np.where(np.isfinite(fov_ranges) & (fov_ranges > self.safety_dist), fov_ranges, 0.0)
-
-        # safety bubble
-        fov_ranges_pre_bubble = fov_ranges.copy()
-        fov_ranges = self._apply_safety_bubble(fov_ranges, fov_angles)
 
         if fov_ranges.max() == 0.0:
             self._publish(0.0, 0.0)
-            self.get_logger().warn('Too close to obstacles, stopping.')
+            scores = np.zeros_like(fov_ranges)
+            frame = self._draw_debug_frame(fov_angles, fov_ranges, scores, 0.0, 'No safe range, stopping')
+            self._emit_debug(frame)
+            self.get_logger().warn('No valid range readings, stopping.')
             return
 
-        # find widest gap
-        gap = self._find_best_gap(fov_ranges)
+        # Sliding-window score: for every beam, sum the distances of all beams
+        # within ±(window_deg/2) of that beam's angle.
+        half_window = np.radians(self.window_deg / 2.0)
+        scores = np.array([
+            float(np.sum(fov_ranges[np.abs(fov_angles - a) <= half_window]))
+            for a in fov_angles
+        ])
 
-        if gap is None:
-            self._publish(0.0, 0.0)
-            self.get_logger().warn('No valid gap found, stopping.')
-            return
+        best_idx = int(np.argmax(scores))
+        goal_angle = float(fov_angles[best_idx])
 
-        gap_start, gap_end = gap
+        turn = float(np.clip(self.kp * goal_angle, -self.max_turn, self.max_turn))
 
-        # aim for deepest point in gap
-        gap_ranges = fov_ranges[gap_start : gap_end + 1]
-        best_in_gap = gap_start + int(np.argmax(gap_ranges))
-        goal_angle  = float(fov_angles[best_in_gap])
-
-        # proportional steering (positive angle is left, positive angular.z)
-        turn = float(np.clip(-self.kp * goal_angle, -self.max_turn, self.max_turn))
-
-        if self.plot:
-            self._debug_plot(fov_angles, fov_ranges_pre_bubble, fov_ranges, gap, best_in_gap, goal_angle)
+        frame = self._draw_debug_frame(
+            fov_angles, fov_ranges, scores, goal_angle,
+            f'best_idx={best_idx} score={scores[best_idx]:.2f} turn={turn:.3f}',
+        )
+        self._emit_debug(frame)
 
         self._publish(self.forward_speed, turn)
         self.get_logger().info(
-            f'gap=[{gap_start},{gap_end}], '
-            f'goal={np.degrees(goal_angle):.1f}°, turn={turn:.3f}')
+            f'goal={np.degrees(goal_angle):.1f}°, score={scores[best_idx]:.2f}, turn={turn:.3f}')
             
     def _publish(self, linear: float, angular: float):
         twist = Twist()
@@ -163,6 +147,10 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
+        try:
+            cv2.destroyAllWindows()
+        except Exception:
+            pass
         if node is not None:
             node.destroy_node()
         rclpy.shutdown()

@@ -25,6 +25,10 @@ class LineFollower(Node):
         self.max_turn = 1.0
         self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
 
+        # plotting
+        self.debug_plot = True
+        self.plot_interval = 10  # plot every N frames
+
         # subscribers
         self.image_sub = self.create_subscription(
             Image,
@@ -138,6 +142,24 @@ class LineFollower(Node):
             self.get_logger().info(
                 f"tape_x={tape_x}, err={error:.3f}, turn={turn:.3f}"
             )
+
+        if self.debug_plot and self.frame_count % self.plot_interval == 0:
+            self.get_logger().info(f"Generating debug plot for frame {self.frame_count}")
+            target_y = min_y if lines is not None else img.shape[0] // 2
+            img_draw = img.copy()
+            if lines is not None:
+                for line in lines:
+                    x1, y1, x2, y2 = line[0]
+                    cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.circle(img_draw, (tape_x, target_y), 10, (0, 0, 255), -1)
+            cv2.line(img_draw, (width // 3, 0), (width // 3, height), (0, 255, 255), 1)
+            cv2.line(img_draw, (2 * width // 3, 0), (2 * width // 3, height), (0, 255, 255), 1)
+            cv2.putText(img_draw, f'turn={turn:.2f}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+            mask_bgr = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
+            combined = np.hstack([mask_bgr, img_draw])
+            cv2.imshow('debug', combined)
+            cv2.waitKey(1)
 
 def main(args=None):
     rclpy.init(args=args)

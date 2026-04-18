@@ -141,6 +141,7 @@ class LineFollower(Node):
         in_center_third = True
         third = width / 3
         tape_x = width // 2  # default to center if no lines found
+        tape_y = height // 2
         if lines is not None:
             max_score = -float('inf')
             for line in lines:
@@ -148,15 +149,17 @@ class LineFollower(Node):
 
                 if not (third < x1 < 2 * third) or not (third < x2 < 2 * third):
                     in_center_third = False
-                    
+
                     score1 = score_func(x1, y1)
                     if score1 > max_score:
                         max_score = score1
                         tape_x = x1
+                        tape_y = y1
                     score2 = score_func(x2, y2)
                     if score2 > max_score:
                         max_score = score2
                         tape_x = x2
+                        tape_y = y2
 
         if in_center_third: # old method
             print("CENTER METHOD")
@@ -197,7 +200,7 @@ class LineFollower(Node):
 
             if self.debug_plot:
                 self.get_logger().info(f"Generating debug plot for frame {self.frame_count}")
-                target_y = min_y if lines is not None else img.shape[0] // 2
+                target_y = tape_y if lines is not None else img.shape[0] // 2
                 img_draw = img.copy()
                 if lines is not None:
                     for line in lines:

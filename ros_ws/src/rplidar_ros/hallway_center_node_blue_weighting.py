@@ -229,6 +229,7 @@ class HallwayCenterNode(Node):
 
         if np.abs(towards_right) < math.radians(3) and shortest_dist_right > 1.5 and shortest_dist_left > 1.5:
             dir = 0.0
+            print("Going straight")
             twist.linear.x  = self.forward_speed
             twist.angular.z = dir
             self.vel_pub.publish(twist)
@@ -237,14 +238,18 @@ class HallwayCenterNode(Node):
 
 
         # try to get to 2.5 meters away along wall
+        print("Turning to future location")
         goal_pt = np.array([shortest_dist_right*np.cos(towards_right), shortest_dist_left*np.sin(towards_right)]) + 2.5*np.array([np.cos(towards_right+np.pi/2), np.sin(towards_right+np.pi/2)])
         if goal_pt[0] > 0:
             dir = 0.3
             if np.pi - np.arctan2(goal_pt[1], goal_pt[0]) > math.radians(25):
+                print("Big turn to future")
                 dir = 1.0
         else:
             dir = -0.3
             if np.arctan2(goal_pt[1], goal_pt[0]) - np.pi > math.radians(25):
+                print("Big turn to future")
+
                 dir = -1.0
 
         twist.linear.x  = self.forward_speed

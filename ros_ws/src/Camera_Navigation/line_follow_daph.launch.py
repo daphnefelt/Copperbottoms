@@ -63,7 +63,7 @@ def generate_launch_description():
 	if 'rover_node' not in running_nodes and '/rover_node' not in running_nodes:
 		launch_actions.insert(0, rover_node)
 		
-	if 'ros_stream_with_depth' not in running_nodes and '/ros_stream_with_depth' not in running_nodes:
+	if 'ros_stream_with_depth' not in running_nodes and '/ros_stream_with_depth' not in running_nodes and 'realsense_color_publisher' not in running_nodes and '/realsense_color_publisher' not in running_nodes:
 		launch_actions.insert(0, ros_stream_with_depth)
 
 	return LaunchDescription(launch_actions)

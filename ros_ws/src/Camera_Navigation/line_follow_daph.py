@@ -169,21 +169,19 @@ class LineFollower(Node):
 
         if in_center_third: # old method
             print("CENTER METHOD")
-            roi_strt = int(height * 0.70) # bottom 30%
-            roi = img[roi_strt:height, :, :]
+            center_roi_strt = int(height * 0.70)
+            center_roi = roi[center_roi_strt:height, :, :]
 
-            # blue color thresholding
-            b = roi[:, :, 0].astype(np.float32)
-            g = roi[:, :, 1].astype(np.float32)
-            r = roi[:, :, 2].astype(np.float32)
+            b = center_roi[:, :, 0].astype(np.float32)
+            g = center_roi[:, :, 1].astype(np.float32)
+            r = center_roi[:, :, 2].astype(np.float32)
 
-            blue_score = b - 0.5 * (g + r)  # simple blue score
+            blue_score = b - 0.5 * (g + r)
             blue_mask = (blue_score > self.color_threshold)
             blue_count = np.sum(blue_mask)
-            # find tape position
             weighted = blue_score * blue_mask
-            column_strength = weighted.mean(axis=0)  # average over rows
-            tape_x = np.argmax(column_strength)
+            column_strength = weighted.mean(axis=0)
+            tape_x = int(np.argmax(column_strength))
 
         # error
         center_x = width / 2

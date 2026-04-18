@@ -133,16 +133,13 @@ class HallwayCenterNode(Node):
         right_boundary = np.arange(right_boundary[0], right_boundary[1]+1)
 
 
-        # fit a line 
-        left_boundary = left_boundary[np.logical_and(np.logical_not(np.isnan(ranges[left_boundary])), np.isfinite(ranges[left_boundary]))]
-        left_angles = self.get_angle_from_indexes(msg, left_boundary)
-        a = np.ones((len(left_angles), 3))
-        a[:,0] = np.cos(left_angles)*ranges[left_boundary]
-        a[:,1] = np.sin(left_angles)*ranges[left_boundary]
-        left_c, left_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(left_angles)))
+        
 
 
-        if np.any(ranges[right_boundary] == np.inf):
+
+        directly_right = self._cone_indices(msg,math.pi /2, math.radians(5))
+        directly_right = np.arange(directly_right[0], directly_right[1] +1)
+        if np.sum(ranges[directly_right] == np.inf) > 4:
             # time to move right
             print("Big distance turning")
             dir = 1.0
@@ -151,14 +148,51 @@ class HallwayCenterNode(Node):
             self.vel_pub.publish(twist)
             return
         
+
+        # fit a line 
+        left_boundary = left_boundary[np.logical_and(np.logical_not(np.isnan(ranges[left_boundary])), np.isfinite(ranges[left_boundary]))]
+        left_angles = self.get_angle_from_indexes(msg, left_boundary)
+        a = np.ones((len(left_angles), 3))
+
+        x= np.cos(left_angles)*ranges[left_boundary]
+        y = np.sin(left_angles)*ranges[left_boundary]
+        points = np.column_stack((x, y))
+        centroid = np.mean(points, axis=0)
+        centered_points = points - centroid
+
+        _, _, Vh = np.linalg.svd(centered_points)
+
+        normal = Vh[-1] 
+        x_coeff, y_coeff = normal
+
+        # 4. Calculate 'c' using the centroid
+        c_coeff = -(x_coeff * centroid[0] + y_coeff * centroid[1])
+
+        left_c = np.array([x_coeff, y_coeff, c_coeff])
+        
         right_boundary = right_boundary[np.logical_and(np.logical_not(np.isnan(ranges[right_boundary])), np.isfinite(ranges[right_boundary]))]
         right_angles = self.get_angle_from_indexes(msg, right_boundary)
         a = np.ones((len(right_angles), 3))
-        a[:,0] = np.cos(right_angles)*ranges[right_boundary]
-        a[:,1] = np.sin(right_angles)*ranges[right_boundary]
-        right_c, right_residuals, _, _ = np.linalg.lstsq(a, np.zeros(len(right_angles)))
+        x= np.cos(right_angles)*ranges[right_boundary]
+        y = np.sin(right_angles)*ranges[right_boundary]
+        points = np.column_stack((x, y))
+        centroid = np.mean(points, axis=0)
+        centered_points = points - centroid
+
+        _, _, Vh = np.linalg.svd(centered_points)
+
+        normal = Vh[-1] 
+        x_coeff, y_coeff = normal
+
+        # 4. Calculate 'c' using the centroid
+        c_coeff = -(x_coeff * centroid[0] + y_coeff * centroid[1])
+
+        right_c = np.array([x_coeff, y_coeff, c_coeff])
+        
 
         # significant error in mapping to a line
+
+        a = np.column_stack((x, y, np.ones(len(x))))
 
         error_vector = np.zeros(len(right_angles)) - np.dot(a, right_c)
         # the right is not mapping as well to a line - maybe time to move right
@@ -178,11 +212,11 @@ class HallwayCenterNode(Node):
 
         # get vector oriented towards lines
         
-        print("Val of cs for left: {left_c}")
+        print(f"Val of cs for left: {left_c}")
         towards_left = np.arctan2(np.sign(left_c[2])*left_c[1], np.sign(left_c[2])*left_c[0]) + np.pi*2
         shortest_dist_left = np.abs(left_c[2])/np.sqrt(left_c[0]*left_c[0] + left_c[1]*left_c[1])
 
-        print("Val of cs for right: {right_c}")
+        print(f"Val of cs for right: {right_c}")
         towards_right = np.arctan2(np.sign(right_c[2])*right_c[1], np.sign(right_c[2])*right_c[0])
         shortest_dist_right = np.sqrt(right_c[0]*right_c[0] + right_c[1]*right_c[1])
 
@@ -195,6 +229,7 @@ class HallwayCenterNode(Node):
 
         if np.abs(towards_right) < math.radians(3) and shortest_dist_right > 1.5 and shortest_dist_left > 1.5:
             dir = 0.0
+            print("Going straight")
             twist.linear.x  = self.forward_speed
             twist.angular.z = dir
             self.vel_pub.publish(twist)
@@ -203,14 +238,19 @@ class HallwayCenterNode(Node):
 
 
         # try to get to 2.5 meters away along wall
-        goal_pt = np.array([shortest_dist_right*np.cos(towards_right), shortest_dist_left*np.sin(towards_right)]) + 2.5*np.array([np.cos(towards_right+np.pi/2), np.sin(towards_right+np.pi/2)])
+        print("Turning to future location")
+        goal_pt = np.array([shortest_dist_right*np.cos(towards_right), shortest_dist_left*np.sin(towards_right)]) + 3.0*np.array([np.cos(towards_right+np.pi/2), np.sin(towards_right+np.pi/2)])
+        print(f"Goal location {goal_pt}")
         if goal_pt[0] > 0:
             dir = 0.3
             if np.pi - np.arctan2(goal_pt[1], goal_pt[0]) > math.radians(25):
+                print("Big turn to future")
                 dir = 1.0
         else:
             dir = -0.3
             if np.arctan2(goal_pt[1], goal_pt[0]) - np.pi > math.radians(25):
+                print("Big turn to future")
+
                 dir = -1.0
 
         twist.linear.x  = self.forward_speed

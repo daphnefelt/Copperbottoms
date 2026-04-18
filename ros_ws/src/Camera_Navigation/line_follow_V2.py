@@ -20,10 +20,15 @@ class LineFollowerV2(Node):
         self.min_speed = 0.20
         self.search_speed = 0.20
         self.max_turn = 0.55
-        self.search_turn = 0.50
-        self.kp = 0.34
-        self.kd = 0.18
+        self.search_turn = 0.35
+        self.kp = 0.26
+        self.kd = 0.12
         self.error_offset = -0.18  # camera-lens offset calibrated for robot-frame centering
+        self.error_filter_alpha = 0.18
+        self.track_x_filter_alpha = 0.22
+        self.max_turn_step = 0.05
+        self.normal_max_turn = 0.40
+        self.min_edge_track_pixels = 120
 
         # blue-tape masking around target BGR
         self.target_bgr = np.array([204.0, 146.0, 39.0], dtype=np.float32)
@@ -41,9 +46,11 @@ class LineFollowerV2(Node):
         self.frame_count = 0
         self.last_error = 0.0
         self.last_turn = 0.0
+        self.last_speed = 0.0
         self.lost_frames = 0
         self.last_unbiased_error = 0.0
         self.last_biased_error = 0.0
+        self.track_x_filtered = None
 
         # subscribers
         self.image_sub = self.create_subscription(
@@ -115,11 +122,13 @@ class LineFollowerV2(Node):
         edge_mask = edge_map > 0
 
         # Primary signal: blue edges. Fallback: full blue mask.
-        track_mask = blue_mask & edge_mask
-        track_pixels = int(np.sum(track_mask))
-        if track_pixels < self.min_track_pixels:
+        edge_track_mask = blue_mask & edge_mask
+        edge_track_pixels = int(np.sum(edge_track_mask))
+        if edge_track_pixels >= self.min_edge_track_pixels:
+            track_mask = edge_track_mask
+        else:
             track_mask = blue_mask
-            track_pixels = int(np.sum(track_mask))
+        track_pixels = int(np.sum(track_mask))
 
         if track_pixels >= self.min_track_pixels:
             track_x = self.compute_track_center_x(track_mask)
@@ -129,7 +138,8 @@ class LineFollowerV2(Node):
                 self.get_logger().info(
                     (
                         f"state=follow, blue_px={int(np.sum(blue_mask))}, edge_px={int(np.sum(edge_mask))}, "
-                        f"track_px={track_pixels}, lin={self.forward_speed:.2f}, ang={self.last_turn:.2f}, "
+                        f"track_px={track_pixels}, edge_track_px={edge_track_pixels}, "
+                        f"lin={self.last_speed:.2f}, ang={self.last_turn:.2f}, "
                         f"err_unbiased={self.last_unbiased_error:.3f}, err_biased={self.last_biased_error:.3f}, "
                         f"offset={self.error_offset:.3f}"
                     )
@@ -152,9 +162,26 @@ class LineFollowerV2(Node):
         self.vel_pub.publish(cmd)
 
     def follow_track(self, track_x: int, width: int):
+        # Smooth centroid to reduce frame-to-frame steering spikes.
+        if self.track_x_filtered is None:
+            self.track_x_filtered = float(track_x)
+        else:
+            self.track_x_filtered = (
+                (1.0 - self.track_x_filter_alpha) * self.track_x_filtered
+                + self.track_x_filter_alpha * float(track_x)
+            )
+
         center_x = width / 2.0
-        unbiased_error = (track_x - center_x) / max(center_x, 1.0)
-        biased_error = unbiased_error + self.error_offset
+        unbiased_error = (self.track_x_filtered - center_x) / max(center_x, 1.0)
+        raw_biased_error = unbiased_error + self.error_offset
+
+        if abs(raw_biased_error) < 0.03:
+            raw_biased_error = 0.0
+
+        biased_error = (
+            (1.0 - self.error_filter_alpha) * self.last_error
+            + self.error_filter_alpha * raw_biased_error
+        )
 
         self.last_unbiased_error = float(unbiased_error)
         self.last_biased_error = float(biased_error)
@@ -163,22 +190,32 @@ class LineFollowerV2(Node):
         self.last_error = biased_error
 
         turn = -self.kp * biased_error - self.kd * d_error
-        turn = float(np.clip(turn, -self.max_turn, self.max_turn))
+        turn = float(np.clip(turn, -self.normal_max_turn, self.normal_max_turn))
+
+        # Rate-limit steering to prevent sudden oversteer.
+        turn = float(np.clip(
+            turn,
+            self.last_turn - self.max_turn_step,
+            self.last_turn + self.max_turn_step,
+        ))
 
         # Slow down as turn demand increases.
-        turn_load = min(abs(turn) / max(self.max_turn, 1e-6), 1.0)
-        speed = max(self.min_speed, self.forward_speed * (1.0 - 0.45 * turn_load))
+        turn_load = min(abs(turn) / max(self.normal_max_turn, 1e-6), 1.0)
+        error_load = min(abs(biased_error), 1.0)
+        speed = max(self.min_speed, self.forward_speed * (1.0 - 0.55 * turn_load - 0.25 * error_load))
 
         cmd = Twist()
         cmd.linear.x = speed
         cmd.angular.z = turn
         self.vel_pub.publish(cmd)
 
+        self.last_speed = speed
         self.last_turn = turn
         self.lost_frames = 0
 
     def search_for_track(self):
         self.lost_frames += 1
+        self.track_x_filtered = None
         spin_sign = -1.0 if self.last_error >= 0.0 else 1.0
 
         cmd = Twist()

@@ -192,7 +192,9 @@ class HallwayCenterNode(Node):
 
         # significant error in mapping to a line
 
-        error_vector = np.zeros(len(right_angles)) - np.dot(points, right_c)
+        a = np.column_stack((x, y, np.ones(len(x))))
+
+        error_vector = np.zeros(len(right_angles)) - np.dot(a, right_c)
         # the right is not mapping as well to a line - maybe time to move right
         if np.any(np.abs(error_vector) > 7):
             print("Error exceed max: turning")

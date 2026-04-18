@@ -161,7 +161,9 @@ class LineFollower(Node):
             print("Look ahead")
 
             max_future_pixels = 50
-            orientations = np.arctan2(*(right[-max_future_pixels:-1] - right[-(max_future_pixels-1):])[::-1])
+            # get difference between two points and reverse order so that closest points are first
+            diff_between_pts = (right[-max_future_pixels:-1] - right[-(max_future_pixels-1):])[::-1]
+            orientations = np.arctan2(diff_between_pts[:,1], diff_between_pts[:,0])
             diff_orientations = orientations[1:] - orientations[:-1]
             # within 20 degrees - right angle
             if np.abs(np.max(diff_orientations) - np.pi/2) < 0.4:
@@ -177,7 +179,8 @@ class LineFollower(Node):
             
     def turn_to_point(self, pt):
         print("Trying to command movement")
-        dir = np.arctan2(*((pt - self.robot_center)[::-1]))
+        diff_between_pts = (pt - self.robot_center)
+        dir = np.arctan2(diff_between_pts[1], diff_between_pts[0])
         turn_val = np.clip(-2.0 + 4*(dir + np.pi/4)*2/np.pi, -2.0, 2.0)
         twist = Twist()
         twist.linear.x = 0.2

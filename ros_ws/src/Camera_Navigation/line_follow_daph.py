@@ -21,12 +21,12 @@ class LineFollower(Node):
         self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50
-        self.forward_speed = 0.3
+        self.forward_speed = 0.25
         self.max_turn = 1.0
         self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
 
         # plotting
-        self.debug_plot = True
+        self.debug_plot = False
         self.plot_interval = 10  # plot every N frames
 
         # subscribers

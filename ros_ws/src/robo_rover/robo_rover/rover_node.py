@@ -272,10 +272,10 @@ class ArduPilotRoverNode(Node):
         
         self.last_cmd_time = time.time()
         
-        self.get_logger().info(
-            f'Received cmd_vel: linear={msg.linear.x:.3f}, angular={msg.angular.z:.3f}, '
-            f'throttle={self.current_throttle}, steering={self.current_steering}'
-        )
+        #self.get_logger().info(
+        #    f'Received cmd_vel: linear={msg.linear.x:.3f}, angular={msg.angular.z:.3f}, '
+        #    f'throttle={self.current_throttle}, steering={self.current_steering}'
+        #)
     
     def control_loop(self):
         """Main control loop - sends commands at fixed rate"""

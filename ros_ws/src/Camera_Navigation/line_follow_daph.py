@@ -134,7 +134,7 @@ class LineFollower(Node):
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
 
         def score_func(x, y):
-            score = (0 - y) + (w - x) # prefer higher and more right
+            score = (-y) + (x) # prefer higher and more right
             return score
 
         # find highest score point to get tape_x

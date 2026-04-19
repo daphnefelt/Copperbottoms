@@ -5,12 +5,11 @@ import numpy as np
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
-import cv2
-
+import cv2, logging
 
 class LineFollower(Node):
 
-    def __init__(self):
+    def __init__(self, debug=False):
         super().__init__('line_follower')
 
         # parameters
@@ -35,6 +34,12 @@ class LineFollower(Node):
         offset = 0.4*int(self.width/2)
 
 
+        self.debug = debug
+        logging.basicConfig(level=logging.INFO)
+        if debug:
+            logging.basicConfig(level=logging.DEBUG) 
+
+
         # alternatively could get the top two longest segments
         self.robot_center = np.array([int(self.width/2) + offset, 0])
         # subscribers
@@ -52,11 +57,41 @@ class LineFollower(Node):
             f'Line follower node started. image_topic={image_topic}, cmd_vel_topic={cmd_vel_topic}'
         )
 
+    def display_img_lines_contours(self, mask, roi, lines, contours, frame_count):
+        self.get_logger().debug(f"Generating debug plot for frame {self.frame_count}")
+        img_draw = roi.copy()
+        for line in lines:
+            x1, y1, x2, y2 = line[0]
+            cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        mask_bgr = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
+        combined = np.hstack([mask_bgr, img_draw])
+        cv2.imshow('debug', combined)
+        cv2.waitKey(1)
+
+    def get_lines_contours(self, mask):
+        #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+	
+        # blur to help with noise picked up
+        blurred = cv2.GaussianBlur(mask, (3, 3), 0)
+	
+        # threshold for the lines
+        _, thresh = cv2.threshold(blurred, 127, 255, cv2.THRESH_BINARY)
+	
+        # cv2.RETR_EXTERNAL: if contours are nested - retrieves only outermost
+        # cv2.CHAIN_APPROX_SIMPLE: Removes redundant points - memory efficient
+        contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        edges = cv2.Canny(thresh, 50, 150, apertureSize=3)
+        lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
+        return (lines, contours)
+
+
+
     def image_callback(self, msg: Image):
+        self.frame_count += 1
         # skip the next 5 calls ~ 167 miliseconds
         if self.right_angle_detected:
             print(f"Skipping frame")
-            self.frame_count += 1
             if self.frame_count == 5:
                 self.frame_count = 0
                 self.right_angle_detected = False
@@ -84,99 +119,49 @@ class LineFollower(Node):
         g = img[:, :, 1].astype(np.uint16)
         r = img[:, :, 2].astype(np.uint16)
 
+        # window the output to the bottom
+
 
         blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
         blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
 
-        #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-	
-        # blur to help with noise picked up
-        blurred = cv2.GaussianBlur(blue_mask, (3, 3), 0)
-	
-        # threshold for the lines
-        _, thresh = cv2.threshold(blurred, 127, 255, cv2.THRESH_BINARY)
-	
-        # cv2.RETR_EXTERNAL: if contours are nested - retrieves only outermost
-        # cv2.CHAIN_APPROX_SIMPLE: Removes redundant points - memory efficient
-        contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        lines, contours = self.get_lines_contours(blue_mask)
 
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
         print(f"Number of contours: {len(contours)}")
-	
-        
-        #closest_contour_idx = np.array([-1, -1])
-        #min_dist = np.array([max(height, width) + 50, 0])
-        #min_dist[1] = min_dist[0]
-        #for idx, contour in enumerate(contours):
-        #    # try distances to the bottom 20 points on the screen in case it curves away
-        #    idxs = contour[-30:, 0, 1] < self.height-10
-        #    if len(idxs) == 0:
-        #        print(f"Not enough space for idxs meet criteria")
-        #        continue
-        #    dist = np.min(np.power(self.robot_center - contour[-30:][idxs, :, :], 2))
-		
-        #    if any(closest_contour_idx==-1):
-        #        i_dist = (closest_contour_idx==-1).argmax()
-        #        min_dist[i_dist] = dist
-        #        closest_contour_idx[i_dist] = idx
-        #    elif any(dist < min_dist):
-        #        i_dist = (dist < min_dist).argmax()
-        #        min_dist[i_dist] = dist
-        #        closest_contour_idx[i_dist] = idx
-        
-        #if any(closest_contour_idx == -1):
-        #    print(f"Not all closest indexes initialized")
-        #    return
+
+
+        if self.frame_count % 10 == 0:
+            self.display_img_lines_contours()
 
 
         
-        # got the two closest blue contours
-        print(f"Distances recorded: {min_dist}")
-        # identify rightmost and leftmost - might not be two if there is a closed loop - MARY
-        right_idx = closest_contour_idx[0]
-        left_idx = closest_contour_idx[1]
-        if contours[left_idx][-1][0][0] > contours[right_idx][-1][0][0]:
-            right_idx = closest_contour_idx[1]
-            left_idx = closest_contour_idx[0]
 
-        right = contours[right_idx]
-        left = contours[left_idx]
         
-        gap_threshold = 30
+    
 
-        right = right.reshape(-1, 2)
+        # identify point in future - higher up in the image
 
-        left = left.reshape(-1, 2)
-        
-        # start of segment is after a gap
-        if right[-1, 1] > gap_threshold:
-            # make a beeline to the segment
-            print("Make a beeline across the gap")
-            self.turn_to_point(right[-1, :])
+        # if there is a right angle it needs special handling
 
-        else:
-            # identify point in future - higher up in the image
+        # what are the orientations of directions
+        # print("Look ahead")
 
-            # if there is a right angle it needs special handling
-
-            # what are the orientations of directions
-            print("Look ahead")
-
-            max_future_pixels = 50
-            # get difference between two points and reverse order so that closest points are first
-            diff_between_pts = (right[-max_future_pixels:-1] - right[-(max_future_pixels-1):])[::-1]
-            orientations = np.arctan2(diff_between_pts[:,1], diff_between_pts[:,0])
-            diff_orientations = orientations[1:] - orientations[:-1]
-            # within 20 degrees - right angle
-            if np.abs(np.max(diff_orientations) - np.pi/2) < 0.4:
-                self.right_angle_detected = True 
-                print("In right angle detected")
-            else:
-                # follow local line
-                # can turn up to 45 degrees at -2 to 2
-                print("Following local line")
-                self.turn_to_point(right[-15])
+        # max_future_pixels = 50
+        # # get difference between two points and reverse order so that closest points are first
+        # diff_between_pts = (right[-max_future_pixels:-1] - right[-(max_future_pixels-1):])[::-1]
+        # orientations = np.arctan2(diff_between_pts[:,1], diff_between_pts[:,0])
+        # diff_orientations = orientations[1:] - orientations[:-1]
+        # # within 20 degrees - right angle
+        # if np.abs(np.max(diff_orientations) - np.pi/2) < 0.4:
+        #     self.right_angle_detected = True 
+        #     print("In right angle detected")
+        # else:
+        #     # follow local line
+        #     # can turn up to 45 degrees at -2 to 2
+        #     print("Following local line")
+        #     self.turn_to_point(right[-15])
 
 
             

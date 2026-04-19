@@ -162,7 +162,6 @@ class LineFollower(Node):
 
         blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
         blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
-        blue_mask = blue_mask[start:, :]
 
         lines, contours = self.get_lines_contours(blue_mask)
 

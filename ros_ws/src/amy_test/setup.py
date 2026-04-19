@@ -26,6 +26,8 @@ setup(
             'odometry_monitor = amy_test.verification.odometry_monitor:main',
             # Line following
             'line_follow_amy = amy_test.line_follow_amy:main',
+            # Testing & verification
+            'tape_contour_rt = amy_test.verification.tape_contour_rt:main',
             # Latency monitoring infrastructure
             'topic_rate_monitor = amy_test.topic_rate_monitor:main',
             'vision_latency_monitor = amy_test.vision_latency_monitor:main',

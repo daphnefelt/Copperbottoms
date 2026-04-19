@@ -14,6 +14,13 @@ except Exception:
     cv2 = None
     CV2_AVAILABLE = False
 
+try:
+    import matplotlib.pyplot as plt
+    MPL_AVAILABLE = True
+except Exception:
+    plt = None
+    MPL_AVAILABLE = False
+
 
 class LineFollowerV2(Node):
 
@@ -24,31 +31,55 @@ class LineFollowerV2(Node):
         cmd_vel_topic = '/cmd_vel'
         debug_image_topic = '/line_follower_v2/debug_image'
 
-        # parameters
-        self.forward_speed = 0.22
+        # parameters (tuned from proven Dark Lane Following code)
+        self.forward_speed = 0.25  # Reduced from 0.30 for more stable camera processing during corners
         self.min_speed = 0.20
         # Safety default: rotate in place while searching so the rover does not drift away.
         self.search_speed = 0.0
-        self.max_turn = 0.55
+        self.max_turn = 1.0
         self.search_turn = 0.35
-        self.kp = 0.26
-        self.kd = 0.12
-        self.error_offset = -0.18  # camera-lens offset calibrated for robot-frame centering
+        self.kp = 0.80  # Proportional gain (P-only steering like proven old code)
+        self.kd = 0.0   # Derivative disabled to match simple old code behavior
+        self.error_offset = float(os.environ.get('LFV2_ERROR_OFFSET', '-0.40'))
         self.error_filter_alpha = 0.18
         self.track_x_filter_alpha = 0.22
         self.max_turn_step = 0.05
-        self.normal_max_turn = 0.40
+        self.normal_max_turn = 1.0
         self.min_edge_track_pixels = 120
+        # Corner detection thresholds
+        self.corner_near_vertical_min_deg = 62.0
+        self.corner_far_horizontal_max_deg = 38.0
+        self.corner_near_min_pixels = 36
+        self.corner_far_min_pixels = 28
+        self.corner_confirm_frames = 2
+        # Turn mode parameters
+        self.corner_turn_speed = 0.10  # Forward speed during corner (slow for camera processing)
+        self.corner_turn_rate = 0.65   # Angular velocity during corner turn (slightly reduced for deliberate turn)
+        self.corner_turn_hold_frames = 5  # Frames to commit to turn (reduced for faster reacquire check)
+        self.corner_reacquire_frames_required = 4  # Stable frames with line before exit
+        self.corner_reacquire_min_pixels = 80  # Minimum track pixels to consider line reacquired
+        self.corner_scan_full_image = True
+        self.corner_edge_support_min_pixels = 45
 
         # OpenCV GUI can hard-crash process over SSH when DISPLAY/X11 is unavailable.
         # Keep window view opt-in; ROS debug topic remains enabled by default.
         self.enable_debug_view = os.environ.get('LFV2_DEBUG_VIEW', '0') == '1'
-        self.enable_debug_topic = True
+        self.enable_debug_topic = os.environ.get('LFV2_DEBUG_TOPIC', '0') == '1'
+        self.debug_view_backend = os.environ.get('LFV2_DEBUG_BACKEND', 'cv2').strip().lower()
+        if self.debug_view_backend not in ('cv2', 'mpl'):
+            self.debug_view_backend = 'cv2'
+        self.debug_max_fps = max(float(os.environ.get('LFV2_DEBUG_FPS', '5.0')), 0.5)
+        self.debug_view_scale = min(max(float(os.environ.get('LFV2_DEBUG_SCALE', '1.0')), 0.2), 1.0)
+        self.debug_publish_every_n_frames = max(int(os.environ.get('LFV2_DEBUG_TOPIC_EVERY', '1')), 1)
         self.debug_window_name = 'LineFollowerV2 Debug'
-        self.enable_debug_snapshot = True
+        self.enable_debug_snapshot = os.environ.get('LFV2_DEBUG_SNAPSHOT', '0') == '1'
         self.debug_snapshot_path = '/tmp/line_follower_v2_debug.jpg'
-        self.debug_snapshot_every_n_frames = 2
+        self.debug_snapshot_every_n_frames = int(os.environ.get('LFV2_DEBUG_SNAPSHOT_EVERY', '10'))
         self.display_env = os.environ.get('DISPLAY', '')
+        self.last_debug_time_sec = 0.0
+        self._mpl_fig = None
+        self._mpl_ax = None
+        self._mpl_im = None
 
         # blue-tape masking around target BGR
         self.target_bgr = np.array([204.0, 146.0, 39.0], dtype=np.float32)
@@ -83,10 +114,26 @@ class LineFollowerV2(Node):
         self.last_unbiased_error = 0.0
         self.last_biased_error = 0.0
         self.track_x_filtered = None
+        self.drive_state = 'follow'
+        self.corner_turn_sign = 1.0
+        self.corner_streak = 0
+        self.turn_hold_frames_left = 0
+        self.turn_reacquire_frames = 0
+        self.last_corner_near_angle = -1.0
+        self.last_corner_far_angle = -1.0
+        self.last_corner_confidence = 0.0
         self._warned_no_cv2 = False
 
         if self.enable_debug_view and not self.display_env:
             self.get_logger().warn('LFV2_DEBUG_VIEW=1 set but DISPLAY is empty; disabling cv2 window view.')
+            self.enable_debug_view = False
+
+        if self.enable_debug_view and self.debug_view_backend == 'mpl' and (not MPL_AVAILABLE):
+            self.get_logger().warn('LFV2_DEBUG_BACKEND=mpl requested but matplotlib is unavailable; disabling debug view.')
+            self.enable_debug_view = False
+
+        if self.enable_debug_view and self.debug_view_backend == 'cv2' and (not CV2_AVAILABLE):
+            self.get_logger().warn('LFV2_DEBUG_BACKEND=cv2 requested but OpenCV is unavailable; disabling debug view.')
             self.enable_debug_view = False
 
         # subscribers
@@ -110,7 +157,10 @@ class LineFollowerV2(Node):
         self.get_logger().info(
             (
                 f'Line follower node started. image_topic={image_topic}, '
-                f'cmd_vel_topic={cmd_vel_topic}, debug_image_topic={debug_image_topic}'
+                f'cmd_vel_topic={cmd_vel_topic}, debug_image_topic={debug_image_topic}, '
+                f'debug_topic={self.enable_debug_topic}, debug_snapshot={self.enable_debug_snapshot}, '
+                f'debug_view={self.enable_debug_view}, debug_backend={self.debug_view_backend}, '
+                f'debug_fps={self.debug_max_fps}, debug_scale={self.debug_view_scale}'
             )
         )
 
@@ -120,6 +170,7 @@ class LineFollowerV2(Node):
     # follow
     # search
     # bridge
+    # turn
 
     """
     callbacks
@@ -154,21 +205,108 @@ class LineFollowerV2(Node):
         roi = img[y0:y1, :, :]
 
         blue_mask, blue_score = self.compute_blue_mask_and_score(roi)
+        blue_mask = self.refine_binary_mask(blue_mask)
         edge_map = self.canny_edge_detection(roi)
         edge_mask = edge_map > 0
 
-        # Primary signal: blue edges. Fallback: full blue mask.
+        # Use cleaned blue mask as primary follow signal.
+        # Edge overlap remains useful as confidence/shape support.
         edge_track_mask = blue_mask & edge_mask
         edge_track_pixels = int(np.sum(edge_track_mask))
-        if edge_track_pixels >= self.min_edge_track_pixels:
-            track_mask = edge_track_mask
-        else:
-            track_mask = blue_mask
+        track_mask = blue_mask
         track_pixels = int(np.sum(track_mask))
+
+        # Corner logic scans the full frame so hard turns near the top/edges are visible,
+        # while follow control still uses the lower ROI for stability.
+        corner_edge_track_pixels = edge_track_pixels
+        if self.corner_scan_full_image:
+            blue_mask_full, _ = self.compute_blue_mask_and_score(img)
+            blue_mask_full = self.refine_binary_mask(blue_mask_full)
+            edge_map_full = self.canny_edge_detection(img)
+            edge_mask_full = edge_map_full > 0
+            corner_edge_track_mask = blue_mask_full & edge_mask_full
+            corner_edge_track_pixels = int(np.sum(corner_edge_track_mask))
+        else:
+            corner_edge_track_mask = edge_track_mask
+            blue_mask_full = blue_mask
+            corner_edge_track_pixels = edge_track_pixels
+
+        corner_blue_candidate, corner_blue_turn_sign = self.detect_corner_signature(blue_mask_full)
+        corner_edge_candidate, corner_edge_turn_sign = self.detect_corner_signature(corner_edge_track_mask)
+        corner_candidate = corner_blue_candidate and (
+            corner_edge_candidate or (corner_edge_track_pixels >= self.corner_edge_support_min_pixels)
+        )
+        if corner_edge_candidate:
+            candidate_turn_sign = corner_edge_turn_sign
+        else:
+            candidate_turn_sign = corner_blue_turn_sign
+        if corner_candidate:
+            self.corner_streak += 1
+            if candidate_turn_sign != 0.0:
+                self.corner_turn_sign = candidate_turn_sign
+        else:
+            self.corner_streak = 0
+
+        corner_confirmed = self.corner_streak >= self.corner_confirm_frames
+
+        if self.drive_state != 'turn' and corner_confirmed and track_pixels >= self.min_track_pixels:
+            self.drive_state = 'turn'
+            self.turn_hold_frames_left = self.corner_turn_hold_frames
+            self.turn_reacquire_frames = 0
+            turn_dir_str = 'LEFT' if self.corner_turn_sign > 0 else 'RIGHT'
+            self.get_logger().warn(
+                (
+                    f"[TURN ENTER] direction={turn_dir_str}, sign={self.corner_turn_sign:+.0f}, "
+                    f"near_ang={self.last_corner_near_angle:.1f}°, far_ang={self.last_corner_far_angle:.1f}°, "
+                    f"confidence={self.last_corner_confidence:.2f}, hold_frames={self.corner_turn_hold_frames}, "
+                    f"track_px={track_pixels}"
+                )
+            )
+
+        if self.drive_state == 'turn':
+            # Turn mode is edge-triggered and temporarily overrides follow to handle hard corners.
+            if self.turn_hold_frames_left > 0:
+                self.turn_hold_frames_left -= 1
+            
+            # Check for line reacquisition: enough track pixels AND no longer corner signature
+            if (
+                track_pixels >= self.corner_reacquire_min_pixels
+                and (not corner_confirmed)
+                and self.turn_hold_frames_left <= 0
+            ):
+                self.turn_reacquire_frames += 1
+            else:
+                self.turn_reacquire_frames = 0
+
+            # Exit turn once reacquired for N stable frames
+            if self.turn_reacquire_frames >= self.corner_reacquire_frames_required:
+                self.drive_state = 'follow'
+                self.corner_streak = 0
+                self.turn_reacquire_frames = 0
+                turn_dir_str = 'LEFT' if self.corner_turn_sign > 0 else 'RIGHT'
+                self.get_logger().warn(
+                    (
+                        f"[TURN EXIT] direction={turn_dir_str}, reacquired_frames={self.corner_reacquire_frames_required}, "
+                        f"track_px={track_pixels}, resuming P follow"
+                    )
+                )
+            else:
+                self.command_corner_turn()
+                self.show_debug_view(
+                    roi,
+                    blue_mask,
+                    edge_map,
+                    track_mask,
+                    track_pixels,
+                    edge_track_pixels,
+                    msg.header,
+                )
+                return
 
         if track_pixels >= self.min_track_pixels:
             self.track_lock_frames += 1
             if self.track_lock_frames < self.track_lock_required:
+                self.drive_state = 'acquire'
                 self.publish_stop()
                 if self.frame_count % 10 == 0:
                     self.get_logger().info(
@@ -193,6 +331,7 @@ class LineFollowerV2(Node):
                 blue_score=blue_score,
                 edge_mask=edge_mask
             )
+            self.drive_state = 'follow'
             self.follow_track(track_x, width)
 
             if self.frame_count % 10 == 0:
@@ -200,12 +339,15 @@ class LineFollowerV2(Node):
                     (
                         f"state=follow, blue_px={int(np.sum(blue_mask))}, edge_px={int(np.sum(edge_mask))}, "
                         f"track_px={track_pixels}, edge_track_px={edge_track_pixels}, "
+                        f"corner_edge_track_px={corner_edge_track_pixels}, "
+                        f"corner_blue={corner_blue_candidate}, corner_edge={corner_edge_candidate}, "
                         f"lin={self.last_speed:.2f}, ang={self.last_turn:.2f}, "
                         f"err_unbiased={self.last_unbiased_error:.3f}, err_biased={self.last_biased_error:.3f}, "
                         f"offset={self.error_offset:.3f}"
                     )
                 )
         else:
+            self.drive_state = 'search'
             self.track_lock_frames = 0
             self.search_for_track()
 
@@ -240,6 +382,12 @@ class LineFollowerV2(Node):
         if (not self.enable_debug_view) and (not self.enable_debug_topic):
             return
 
+        now_sec = self.get_clock().now().nanoseconds * 1e-9
+        min_period = 1.0 / max(self.debug_max_fps, 0.5)
+        if (now_sec - self.last_debug_time_sec) < min_period:
+            return
+        self.last_debug_time_sec = now_sec
+
         if not CV2_AVAILABLE:
             if not self._warned_no_cv2:
                 self.get_logger().warn('Debug view disabled: cv2 is not available.')
@@ -272,33 +420,65 @@ class LineFollowerV2(Node):
             cv2.putText(edge_vis, 'Canny Edges', (8, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
             cv2.putText(track_vis, 'Track Mask', (8, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
 
-            mode = 'follow' if track_pixels >= self.min_track_pixels else 'search'
+            mode = self.drive_state
             telemetry = (
                 f"mode={mode}  err_u={self.last_unbiased_error:.3f}  "
                 f"err_b={self.last_biased_error:.3f}  off={self.error_offset:.3f}  "
                 f"ang={self.last_turn:.2f}  blue={int(np.sum(blue_mask))}  "
-                f"edge={int(np.sum(edge_u8 > 0))}  edge_track={edge_track_pixels}"
+                f"edge={int(np.sum(edge_u8 > 0))}  edge_track={edge_track_pixels}  "
+                f"near_a={self.last_corner_near_angle:.1f}  far_a={self.last_corner_far_angle:.1f}  "
+                f"corner_scan={'full' if self.corner_scan_full_image else 'roi'}"
             )
 
-            row = np.hstack((roi_vis, blue_vis, edge_vis, track_vis))
-            canvas = np.zeros((row.shape[0] + 34, row.shape[1], 3), dtype=np.uint8)
-            canvas[:row.shape[0], :, :] = row
-            cv2.putText(canvas, telemetry, (10, row.shape[0] + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (200, 255, 200), 1)
+            top_row = np.hstack((roi_vis, blue_vis))
+            bottom_row = np.hstack((edge_vis, track_vis))
+            grid = np.vstack((top_row, bottom_row))
+            canvas = np.zeros((grid.shape[0] + 34, grid.shape[1], 3), dtype=np.uint8)
+            canvas[:grid.shape[0], :, :] = grid
+            cv2.putText(canvas, telemetry, (10, grid.shape[0] + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (200, 255, 200), 1)
 
-            if self.enable_debug_topic:
-                self.publish_debug_image(canvas, header)
+            if self.debug_view_scale < 1.0:
+                target_w = max(int(canvas.shape[1] * self.debug_view_scale), 64)
+                target_h = max(int(canvas.shape[0] * self.debug_view_scale), 64)
+                canvas_vis = cv2.resize(canvas, (target_w, target_h), interpolation=cv2.INTER_AREA)
+            else:
+                canvas_vis = canvas
+
+            if self.enable_debug_topic and (self.frame_count % self.debug_publish_every_n_frames == 0):
+                self.publish_debug_image(canvas_vis, header)
 
             if self.enable_debug_snapshot:
-                self.write_debug_snapshot(canvas)
+                self.write_debug_snapshot(canvas_vis)
 
             if self.enable_debug_view:
-                cv2.imshow(self.debug_window_name, canvas)
-                cv2.waitKey(1)
+                if self.debug_view_backend == 'mpl':
+                    self.show_mpl_view(canvas_vis)
+                else:
+                    cv2.imshow(self.debug_window_name, canvas_vis)
+                    cv2.waitKey(1)
         except Exception as exc:
             # Disable visualization if display backend is unavailable.
             if self.enable_debug_view:
                 self.get_logger().warn(f'Debug window view disabled at runtime: {exc}')
                 self.enable_debug_view = False
+
+    def show_mpl_view(self, canvas_bgr: np.ndarray):
+        if not MPL_AVAILABLE:
+            return
+
+        rgb = canvas_bgr[:, :, ::-1]
+        if self._mpl_fig is None:
+            plt.ion()
+            self._mpl_fig, self._mpl_ax = plt.subplots(num=self.debug_window_name)
+            self._mpl_im = self._mpl_ax.imshow(rgb)
+            self._mpl_ax.set_axis_off()
+            self._mpl_fig.tight_layout(pad=0.05)
+            plt.show(block=False)
+        else:
+            self._mpl_im.set_data(rgb)
+
+        self._mpl_fig.canvas.draw_idle()
+        self._mpl_fig.canvas.flush_events()
 
     def publish_debug_image(self, canvas: np.ndarray, header):
         msg = Image()
@@ -348,11 +528,10 @@ class LineFollowerV2(Node):
         self.last_unbiased_error = float(unbiased_error)
         self.last_biased_error = float(biased_error)
 
-        d_error = biased_error - self.last_error
+        # Pure proportional steering (P-only, no derivative) - matches proven old code
         self.last_error = biased_error
-
-        turn = -self.kp * biased_error - self.kd * d_error
-        turn = float(np.clip(turn, -self.normal_max_turn, self.normal_max_turn))
+        turn = -self.kp * biased_error
+        turn = float(np.clip(turn, -self.max_turn, self.max_turn))
 
         # Rate-limit steering to prevent sudden oversteer.
         turn = float(np.clip(
@@ -361,10 +540,8 @@ class LineFollowerV2(Node):
             self.last_turn + self.max_turn_step,
         ))
 
-        # Slow down as turn demand increases.
-        turn_load = min(abs(turn) / max(self.normal_max_turn, 1e-6), 1.0)
-        error_load = min(abs(biased_error), 1.0)
-        speed = max(self.min_speed, self.forward_speed * (1.0 - 0.55 * turn_load - 0.25 * error_load))
+        # Constant forward speed (simple approach from proven code)
+        speed = self.forward_speed
 
         cmd = Twist()
         cmd.linear.x = speed
@@ -397,6 +574,80 @@ class LineFollowerV2(Node):
                 )
             )
 
+    def command_corner_turn(self):
+        cmd = Twist()
+        cmd.linear.x = self.corner_turn_speed
+        cmd.angular.z = float(np.clip(self.corner_turn_sign * self.corner_turn_rate, -self.max_turn, self.max_turn))
+        self.vel_pub.publish(cmd)
+        self.last_speed = cmd.linear.x
+        self.last_turn = cmd.angular.z
+
+    def detect_corner_signature(self, edge_track_mask: np.ndarray):
+        h, w = edge_track_mask.shape
+        split = int(h * 0.42)
+        split = min(max(split, 1), h - 1)
+
+        far_mask = edge_track_mask[:split, :]
+        near_mask = edge_track_mask[split:, :]
+
+        far_px = int(np.sum(far_mask))
+        near_px = int(np.sum(near_mask))
+
+        near_angle, _ = self.estimate_orientation_deg(near_mask)
+        far_angle, far_x_mean = self.estimate_orientation_deg(far_mask)
+
+        self.last_corner_near_angle = near_angle if near_angle is not None else -1.0
+        self.last_corner_far_angle = far_angle if far_angle is not None else -1.0
+
+        if near_angle is None or far_angle is None:
+            self.last_corner_confidence = 0.0
+            return False, 0.0
+
+        angle_conf = min(max((near_angle - far_angle) / 90.0, 0.0), 1.0)
+        pixel_conf = min(
+            near_px / max(float(self.corner_near_min_pixels), 1.0),
+            far_px / max(float(self.corner_far_min_pixels), 1.0),
+            1.0,
+        )
+        self.last_corner_confidence = 0.5 * angle_conf + 0.5 * pixel_conf
+
+        is_corner = (
+            near_px >= self.corner_near_min_pixels
+            and far_px >= self.corner_far_min_pixels
+            and near_angle >= self.corner_near_vertical_min_deg
+            and far_angle <= self.corner_far_horizontal_max_deg
+        )
+
+        if not is_corner:
+            return False, 0.0
+
+        if far_x_mean is None:
+            return True, self.corner_turn_sign
+
+        turn_sign = 1.0 if far_x_mean < (w / 2.0) else -1.0
+        return True, turn_sign
+
+    def estimate_orientation_deg(self, mask: np.ndarray):
+        ys, xs = np.where(mask)
+        if xs.size < 10:
+            return None, None
+
+        x = xs.astype(np.float64)
+        y = ys.astype(np.float64)
+        x_mean = float(np.mean(x))
+        y_mean = float(np.mean(y))
+        x -= x_mean
+        y -= y_mean
+
+        cov = np.cov(np.vstack((x, y)))
+        eigvals, eigvecs = np.linalg.eigh(cov)
+        axis = eigvecs[:, int(np.argmax(eigvals))]
+
+        angle = abs(np.degrees(np.arctan2(axis[1], axis[0])))
+        if angle > 90.0:
+            angle = 180.0 - angle
+        return float(angle), x_mean
+
     def compute_track_center_x(
         self,
         mask: np.ndarray,
@@ -418,6 +669,20 @@ class LineFollowerV2(Node):
         if xs.size == 0:
             return mask.shape[1] // 2
         return int(np.mean(xs))
+
+    def refine_binary_mask(self, mask: np.ndarray) -> np.ndarray:
+        # Lightweight binary-mask cleanup to suppress isolated noise before tracking.
+        m = mask.astype(np.uint8)
+        for _ in range(2):
+            p = np.pad(m, 1, mode='edge')
+            neighborhood = (
+                p[:-2, :-2] + p[:-2, 1:-1] + p[:-2, 2:] +
+                p[1:-1, :-2] + p[1:-1, 1:-1] + p[1:-1, 2:] +
+                p[2:, :-2] + p[2:, 1:-1] + p[2:, 2:]
+            )
+            # Majority-like filter: keep pixels with local support.
+            m = (neighborhood >= 4).astype(np.uint8)
+        return m.astype(bool)
 
     def compute_blue_mask_and_score(self, roi: np.ndarray):
         roi_f = roi.astype(np.float32)

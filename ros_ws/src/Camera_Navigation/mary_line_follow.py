@@ -77,8 +77,6 @@ class LineFollower(Node):
         #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	
         # blur to help with noise picked up
-        print(mask.shape)
-        print(mask)
         blurred = cv2.GaussianBlur(mask, (3, 3), 0)
 	
         # threshold for the lines
@@ -90,7 +88,6 @@ class LineFollower(Node):
 
         edges = cv2.Canny(thresh, 50, 150, apertureSize=3)
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
-        print(lines)
         return (lines, contours)
 
 
@@ -111,7 +108,6 @@ class LineFollower(Node):
 
             # should be right of robot - might want only segments past  a certain amount - for now don't worry
             
-            print(orientation_bins[i]*180/np.pi)
             dist = np.sum(np.sqrt(np.power(segments[:, 3] - segments[:, 1], 2) + np.power(segments[:, 2] - segments[:, 0], 2)))     
             if dist > pixel_dist_threshold:
                 return True
@@ -146,7 +142,6 @@ class LineFollower(Node):
 
 
         # focus on ROI (bottom half)
-        print(f"img shape is {img.shape}")
         height = img.shape[0]
         width = img.shape[1]
 
@@ -176,7 +171,6 @@ class LineFollower(Node):
 
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
-        print(f"Number of contours: {len(contours)}")
 
         if lines is not None:
             self.right_angle_detected = self.detect_right_angle(lines)

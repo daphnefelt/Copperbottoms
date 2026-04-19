@@ -127,13 +127,16 @@ class LineFollower(Node):
 
         lines, contours = self.get_lines_contours(blue_mask)
 
+        # last part of screen
+        roi = img[height*.3:, :]
+
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
         print(f"Number of contours: {len(contours)}")
 
 
         if self.frame_count % 10 == 0:
-            self.display_img_lines_contours()
+            self.display_img_lines_contours(blue_mask, roi, lines, contours, self.frame_count)
 
 
         

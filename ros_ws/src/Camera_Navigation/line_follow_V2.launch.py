@@ -35,7 +35,7 @@ def generate_launch_description():
 	)
 
 	kill_rover = ExecuteProcess(
-		cmd=['bash', '-lc', "pkill -f '[r]obo_rover/rover_node' || true; pkill -f ' --ros-args -r __node:=rover_node' || true"],
+		cmd=['bash', '-lc', "pkill -f '[r]obo_rover/rover_node' || true; pkill -f '[r]os2 run robo_rover rover_node --ros-args -r __node:=rover_node' || true"],
 		condition=IfCondition(cleanup_previous),
 		output='screen',
 		emulate_tty=True,

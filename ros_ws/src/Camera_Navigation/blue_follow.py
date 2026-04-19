@@ -107,7 +107,7 @@ class PaperFollower(Node):
     def turn_right(self):
         twist = Twist()
         twist.linear.x = 0.20
-        twist.angular.z = -0.5
+        twist.angular.z = -2
         self.drive_pub.publish(twist)
         self.get_logger().info("Turning Right")
 

@@ -46,11 +46,9 @@ class PaperFollower(Node):
             image = np.asanyarray(frame.get_data())
             h, w, _ = image.shape
 
-            # Split thirds
             left_end = w // 3
             mid_end = 2 * w // 3
 
-            # --- Vectorized blue mask (FAST) ---
             blue_mask = (
                 (image[:, :, 0] > 120) &   # B
                 (image[:, :, 1] < 100) &   # G
@@ -80,12 +78,11 @@ class PaperFollower(Node):
 
             else:
                 self.blue_override = False
-                self.go_straight()
+                self.go_left()
 
         except Exception as e:
             self.get_logger().error(str(e))
 
-    # ---------------- ANGLE CONTROL ----------------
     def angle_goal_callback(self, msg):
 
         if self.blue_override:
@@ -107,20 +104,27 @@ class PaperFollower(Node):
         twist.angular.z = turn
         self.drive_pub.publish(twist)
 
-    # ---------------- ALWAYS PUBLISH MOTIONS ----------------
     def turn_right(self):
         twist = Twist()
         twist.linear.x = 0.20
         twist.angular.z = -0.5
         self.drive_pub.publish(twist)
+        self.get_logger().info("Turning Right")
 
     def go_straight(self):
         twist = Twist()
         twist.linear.x = 0.25
         twist.angular.z = 0.0
         self.drive_pub.publish(twist)
+        self.get_logger().info("Turning Left")
 
-    # ---------------- CLEANUP ----------------
+    def go_left(self):
+        twist = Twist()
+        twist.linear.x = 0.20
+        twist.angular.z = 0.5
+        self.drive_pub.publish(twist)
+        self.get_logger().info("Going Left")
+
     def destroy_node(self):
         self.pipeline.stop()
         super().destroy_node()

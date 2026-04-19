@@ -19,7 +19,7 @@ class FollowTheGap(Node):
         self.max_turn = 0.5
 
         self.kp_dist  = 0.05
-        self.kp_angle = 0.1
+        self.kp_angle = 0.2
         
         self.target_dist = 1.524   # desired distance to right wall (m) — 5 ft
         self.wall_fov_deg = (-90.0 - 15.0, -90.0 + 15.0)  # right side: -105 to -75 deg

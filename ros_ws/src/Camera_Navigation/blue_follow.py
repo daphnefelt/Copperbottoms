@@ -22,7 +22,11 @@ class PaperFollower(Node):
 
         self.previous_errors = deque(maxlen=10)
         self.update_rate = 10.0
-        self.blue_override = False
+
+        # SEARCH STATE
+        self.search_mode = False
+        self.search_direction = "LEFT"
+        self.no_blue_count = 0
 
         # RealSense setup
         self.pipeline = rs.pipeline()
@@ -50,42 +54,66 @@ class PaperFollower(Node):
             mid_end = 2 * w // 3
 
             blue_mask = (
-                (image[:, :, 0] > 120) &   # B
-                (image[:, :, 1] < 100) &   # G
-                (image[:, :, 2] < 100)     # R
+                (image[:, :, 0] > 120) &
+                (image[:, :, 1] < 100) &
+                (image[:, :, 2] < 100)
             )
 
+            # ---------------- NO BLUE DETECTED ----------------
             if not np.any(blue_mask):
-                self.blue_override = False
-                self.go_straight()
+                self.no_blue_count += 1
+
+                # only enter search after a few missed frames (prevents flicker)
+                if self.no_blue_count > 3:
+                    self.search_mode = True
+
+                self.search_for_blue()
                 return
 
-            # Column-wise detection
+            # ---------------- BLUE FOUND ----------------
+            self.no_blue_count = 0
+            self.search_mode = False
+
             cols = np.where(blue_mask.any(axis=0))[0]
 
             left_count = np.sum(cols < left_end)
             middle_count = np.sum((cols >= left_end) & (cols < mid_end))
             right_count = np.sum(cols >= mid_end)
 
-            # Decide direction
             if right_count > max(left_count, middle_count):
-                self.blue_override = True
                 self.turn_right()
 
             elif middle_count > max(left_count, right_count):
-                self.blue_override = True
                 self.go_straight()
 
             else:
-                self.blue_override = False
                 self.go_left()
 
         except Exception as e:
             self.get_logger().error(str(e))
 
+    # ---------------- SEARCH BEHAVIOR ----------------
+    def search_for_blue(self):
+        twist = Twist()
+        twist.linear.x = 0.15
+
+        if self.search_direction == "LEFT":
+            twist.angular.z = 0.6
+            self.get_logger().info("SEARCHING LEFT")
+
+        else:
+            twist.angular.z = -0.6
+            self.get_logger().info("SEARCHING RIGHT")
+
+        # flip direction every cycle
+        self.search_direction = "RIGHT" if self.search_direction == "LEFT" else "LEFT"
+
+        self.drive_pub.publish(twist)
+
+    # ---------------- ANGLE CONTROL ----------------
     def angle_goal_callback(self, msg):
 
-        if self.blue_override:
+        if self.search_mode:
             return
 
         error = -msg.data
@@ -104,26 +132,24 @@ class PaperFollower(Node):
         twist.angular.z = turn
         self.drive_pub.publish(twist)
 
+    # ---------------- MOTION ----------------
     def turn_right(self):
         twist = Twist()
         twist.linear.x = 0.20
         twist.angular.z = -0.5
         self.drive_pub.publish(twist)
-        self.get_logger().info("Turning Right")
 
     def go_straight(self):
         twist = Twist()
         twist.linear.x = 0.25
         twist.angular.z = 0.0
         self.drive_pub.publish(twist)
-        self.get_logger().info("Turning Left")
 
     def go_left(self):
         twist = Twist()
         twist.linear.x = 0.20
         twist.angular.z = 0.5
         self.drive_pub.publish(twist)
-        self.get_logger().info("Going Left")
 
     def destroy_node(self):
         self.pipeline.stop()

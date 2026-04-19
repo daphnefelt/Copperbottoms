@@ -57,13 +57,14 @@ class LineFollowerV2(Node):
         self.corner_turn_rate = 0.65   # Angular velocity during corner turn (slightly reduced for deliberate turn)
         self.corner_turn_hold_frames = 5  # Frames to commit to turn (reduced for faster reacquire check)
         self.corner_reacquire_frames_required = 4  # Stable frames with line before exit
-        self.corner_reacquire_min_pixels = 80  # Minimum track pixels to consider line reacquired
+        self.corner_reacquire_min_pixels = 70  # Minimum track pixels to consider line reacquired
         self.corner_scan_full_image = True
         self.corner_edge_support_min_pixels = 45
         self.corner_max_turn_frames = 42
         self.corner_hint_top_ratio = 0.32
-        self.corner_hint_min_run_ratio = 0.24
-        self.corner_hint_min_stem_pixels = 140
+        self.corner_hint_min_run_ratio = 0.16
+        self.corner_hint_min_stem_pixels = 70
+        self.acquire_crawl_speed = 0.08
 
         # OpenCV GUI can hard-crash process over SSH when DISPLAY/X11 is unavailable.
         # Keep window view opt-in; ROS debug topic remains enabled by default.
@@ -88,7 +89,7 @@ class LineFollowerV2(Node):
         # blue-tape masking around calibrated BGR target
         self.target_bgr = np.array([164.0, 108.0, 7.0], dtype=np.float32)
         self.color_tolerance = np.array([50.0, 50.0, 90.0], dtype=np.float32)
-        self.blue_score_threshold = 12.0
+        self.blue_score_threshold = 15.0
 
         # Hybrid tracker tuning (legacy + edge-boost)
         self.simple_blue_threshold = 58.0
@@ -101,8 +102,8 @@ class LineFollowerV2(Node):
         self.hsv_blue_s_min = 60
         self.hsv_blue_v_min = 35
 
-        self.min_track_pixels = 90
-        self.track_lock_required = 3
+        self.min_track_pixels = 70
+        self.track_lock_required = 2
         self.component_min_area = 70
         self.component_bottom_band_rows = 10
         self.component_bottom_bonus = 1.8
@@ -258,7 +259,8 @@ class LineFollowerV2(Node):
         edge_far_angle = self.last_corner_far_angle
         edge_conf = self.last_corner_confidence
 
-        corner_hint_candidate, corner_hint_turn_sign, corner_hint_conf = self.detect_corner_turn_hint(blue_mask_full)
+        # Hint detection looks at full refined mask to retain disconnected horizontal branch evidence.
+        corner_hint_candidate, corner_hint_turn_sign, corner_hint_conf = self.detect_corner_turn_hint(blue_mask_full_raw)
         self.last_corner_hint_confidence = corner_hint_conf
 
         corner_candidate_geom = corner_blue_candidate and (
@@ -380,12 +382,13 @@ class LineFollowerV2(Node):
             self.track_lock_frames += 1
             if self.track_lock_frames < self.track_lock_required:
                 self.drive_state = 'acquire'
-                self.publish_stop()
+                self.publish_acquire_crawl()
                 if self.frame_count % 10 == 0:
                     self.get_logger().info(
                         (
                             f"state=acquire, lock={self.track_lock_frames}/{self.track_lock_required}, "
-                            f"track_px={track_pixels}, edge_track_px={edge_track_pixels}"
+                            f"track_px={track_pixels}, edge_track_px={edge_track_pixels}, "
+                            f"crawl={self.acquire_crawl_speed:.2f}"
                         )
                     )
                 self.show_debug_view(
@@ -443,6 +446,15 @@ class LineFollowerV2(Node):
     def publish_stop(self):
         cmd = Twist()
         self.vel_pub.publish(cmd)
+
+    def publish_acquire_crawl(self):
+        # Crawl slowly while building lock to avoid move-stop oscillation.
+        cmd = Twist()
+        cmd.linear.x = self.acquire_crawl_speed
+        cmd.angular.z = 0.0
+        self.vel_pub.publish(cmd)
+        self.last_speed = cmd.linear.x
+        self.last_turn = cmd.angular.z
 
     def show_debug_view(
         self,

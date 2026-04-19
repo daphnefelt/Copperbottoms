@@ -75,6 +75,8 @@ class LineFollower(Node):
         #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	
         # blur to help with noise picked up
+        print(mask.shape)
+        print(mask)
         blurred = cv2.GaussianBlur(mask, (3, 3), 0)
 	
         # threshold for the lines

@@ -166,8 +166,6 @@ class LineFollower(Node):
 
         lines, contours = self.get_lines_contours(blue_mask)
 
-        if lines is None:
-            lines = []
         if contours is None:
             contours = []
 
@@ -177,7 +175,8 @@ class LineFollower(Node):
         # maybe want something other than a for loop, but i don't anticipate many curves
         print(f"Number of contours: {len(contours)}")
 
-        self.right_angle_detected = self.detect_right_angle(lines)
+        if lines is not None:
+            self.right_angle_detected = self.detect_right_angle(lines)
 
         if self.right_angle_detected:
             twist = Twist()

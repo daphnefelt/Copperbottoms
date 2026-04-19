@@ -130,9 +130,9 @@ class LineFollower(Node):
 
         lines, contours = self.get_lines_contours(blue_mask)
 
-        if lines == None:
+        if lines is None:
             lines = []
-        if contours == None:
+        if contours is None:
             contours = []
 
         # last part of screen

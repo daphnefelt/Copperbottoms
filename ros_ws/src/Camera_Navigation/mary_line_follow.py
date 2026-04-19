@@ -177,7 +177,7 @@ class LineFollower(Node):
         if self.right_angle_detected:
             twist = Twist()
             twist.linear.x = 0.2
-            twist.angular.z = 2.0
+            twist.angular.z = -2.0
             self.vel_pub.publish(twist)
             self.get_logger().debug(f"Right angle found")
             self.timer = self.create_timer(1.5, self.end_turn_state_callback)

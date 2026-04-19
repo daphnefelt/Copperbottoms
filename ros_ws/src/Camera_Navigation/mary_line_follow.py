@@ -105,29 +105,32 @@ class LineFollower(Node):
         print(f"Number of contours: {len(contours)}")
 	
         
-        closest_contour_idx = np.array([-1, -1])
-        min_dist = np.array([max(height, width) + 50, 0])
-        min_dist[1] = min_dist[0]
-        for idx, contour in enumerate(contours):
-            # try distances to the bottom 20 points on the screen in case it curves away
-            idxs = contour[-30:, 0, 1] < self.height-10
-            if len(idxs) == 0:
-                print(f"Not enough space for idxs meet criteria")
-                continue
-            dist = np.min(np.power(self.robot_center - contour[-30:][idxs, :, :], 2))
+        #closest_contour_idx = np.array([-1, -1])
+        #min_dist = np.array([max(height, width) + 50, 0])
+        #min_dist[1] = min_dist[0]
+        #for idx, contour in enumerate(contours):
+        #    # try distances to the bottom 20 points on the screen in case it curves away
+        #    idxs = contour[-30:, 0, 1] < self.height-10
+        #    if len(idxs) == 0:
+        #        print(f"Not enough space for idxs meet criteria")
+        #        continue
+        #    dist = np.min(np.power(self.robot_center - contour[-30:][idxs, :, :], 2))
 		
-            if any(closest_contour_idx==-1):
-                i_dist = (closest_contour_idx==-1).argmax()
-                min_dist[i_dist] = dist
-                closest_contour_idx[i_dist] = idx
-            elif any(dist < min_dist):
-                i_dist = (dist < min_dist).argmax()
-                min_dist[i_dist] = dist
-                closest_contour_idx[i_dist] = idx
+        #    if any(closest_contour_idx==-1):
+        #        i_dist = (closest_contour_idx==-1).argmax()
+        #        min_dist[i_dist] = dist
+        #        closest_contour_idx[i_dist] = idx
+        #    elif any(dist < min_dist):
+        #        i_dist = (dist < min_dist).argmax()
+        #        min_dist[i_dist] = dist
+        #        closest_contour_idx[i_dist] = idx
         
-        if any(closest_contour_idx == -1):
-            print(f"Not all closest indexes initialized")
-            return
+        #if any(closest_contour_idx == -1):
+        #    print(f"Not all closest indexes initialized")
+        #    return
+
+
+        
         # got the two closest blue contours
         print(f"Distances recorded: {min_dist}")
         # identify rightmost and leftmost - might not be two if there is a closed loop - MARY

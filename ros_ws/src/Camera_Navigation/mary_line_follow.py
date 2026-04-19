@@ -87,6 +87,13 @@ class LineFollower(Node):
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
         return (lines, contours)
 
+    def detect_right_angle(self, lines):
+
+        for line in lines:
+            print(line)
+            pass
+        return False
+
 
 
     def image_callback(self, msg: Image):
@@ -142,6 +149,8 @@ class LineFollower(Node):
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
         print(f"Number of contours: {len(contours)}")
+
+        self.right_angle_detected = self.detect_right_angle(lines)
 
 
         if self.frame_count % 10 == 0:

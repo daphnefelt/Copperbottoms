@@ -146,20 +146,20 @@ class LineFollower(Node):
 
 	
 
+        start = int(height*.7)
+        roi = img[start:, :]
         
 
         # blue color thresholding
-        b = img[:, :, 0].astype(np.uint16)
-        g = img[:, :, 1].astype(np.uint16)
-        r = img[:, :, 2].astype(np.uint16)
+        b = roi[:, :, 0].astype(np.uint16)
+        g = roi[:, :, 1].astype(np.uint16)
+        r = roi[:, :, 2].astype(np.uint16)
 
         # window the output to the bottom
 
 
         blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
         blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
-        start = int(height*.3)
-        roi = img[start:, :]
         blue_mask = blue_mask[start:, :]
 
         lines, contours = self.get_lines_contours(blue_mask)
@@ -184,6 +184,29 @@ class LineFollower(Node):
 
         if self.frame_count % 10 == 0:
             self.display_img_lines_contours(blue_mask, roi, lines, contours, self.frame_count)
+
+
+        # find tape position
+        weighted = blue_score * blue_mask
+        column_strength = weighted.mean(axis=0)  # average over rows
+        tape_x = np.argmax(column_strength)
+
+        # error
+        center_x = width / 2
+        error = (tape_x - center_x) / center_x  # normalize error
+        error += self.error_offset
+
+        # control
+        turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
+
+        # speed + publish
+
+        twist = Twist()
+        twist.linear.x = self.forward_speed
+        twist.angular.z = turn
+        self.vel_pub.publish(twist)
+        
+
 
 
         

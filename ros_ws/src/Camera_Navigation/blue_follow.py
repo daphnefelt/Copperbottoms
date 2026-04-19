@@ -2,8 +2,8 @@ import pyrealsense2 as rs
 import numpy as np
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Float64
 from collections import deque
 
 
@@ -24,116 +24,90 @@ class PaperFollower(Node):
         self.update_rate = 10.0
         self.blue_override = False
 
-        try:
-            self.pipeline = rs.pipeline()
-            config = rs.config()
-            config.enable_stream(
-                rs.stream.color,
-                640, 480,
-                rs.format.bgr8,
-                30
-            )
+        # RealSense setup
+        self.pipeline = rs.pipeline()
+        config = rs.config()
+        config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+        self.pipeline.start(config)
 
-            self.pipeline.start(config)
-            self.camera_connected = True
-            self.get_logger().info("RealSense camera connected successfully.")
-
-        except Exception as e:
-            self.camera_connected = False
-            self.get_logger().error(
-                f"FAILED to connect RealSense camera: {str(e)}"
-            )
-
-        # Run camera callback every 0.1 sec
         self.timer = self.create_timer(0.1, self.camera_callback)
 
-        self.get_logger().info("Paper follower node started.")
+        self.get_logger().info("Paper follower started.")
 
+    # ---------------- CAMERA LOOP ----------------
     def camera_callback(self):
 
-        if not self.camera_connected:
-            self.get_logger().warn("Camera not connected.")
-            return
-        
         try:
             frames = self.pipeline.wait_for_frames()
-            color_frame = frames.get_color_frame()
-
-            if not color_frame:
-                self.get_logger().warn("No color frame received.")
+            frame = frames.get_color_frame()
+            if not frame:
                 return
 
-            image = np.asanyarray(color_frame.get_data())
-            height, width, _ = image.shape
+            image = np.asanyarray(frame.get_data())
+            h, w, _ = image.shape
 
-            right = 0
-            middle = 0
+            # Split thirds
+            left_end = w // 3
+            mid_end = 2 * w // 3
 
-            for i in range(height):
-                for j in range(width):
-                    b, g, r = image[i, j]
+            # --- Vectorized blue mask (FAST) ---
+            blue_mask = (
+                (image[:, :, 0] > 120) &   # B
+                (image[:, :, 1] < 100) &   # G
+                (image[:, :, 2] < 100)     # R
+            )
 
-                    # Blue detection
-                    if b > 100 and 100 < g < 150 and r < 100:
+            if not np.any(blue_mask):
+                self.blue_override = False
+                self.go_straight()
+                return
 
-                        # RIGHT THIRD = highest priority
-                        if j >= 2 * width // 3:
-                            right += 1
+            # Column-wise detection
+            cols = np.where(blue_mask.any(axis=0))[0]
 
-                        # MIDDLE THIRD
-                        elif j >= width // 3:
-                            middle += 1
+            left_count = np.sum(cols < left_end)
+            middle_count = np.sum((cols >= left_end) & (cols < mid_end))
+            right_count = np.sum(cols >= mid_end)
 
-            if right > 0:
+            # Decide direction
+            if right_count > max(left_count, middle_count):
                 self.blue_override = True
-                self.get_logger().info("BLUE detected RIGHT -> Turning Right")
                 self.turn_right()
 
-            elif middle > 0:
+            elif middle_count > max(left_count, right_count):
                 self.blue_override = True
-                self.get_logger().info("BLUE detected CENTER -> Going Straight")
                 self.go_straight()
 
             else:
-                self.go_straight()
                 self.blue_override = False
+                self.go_straight()
 
         except Exception as e:
             self.get_logger().error(str(e))
 
+    # ---------------- ANGLE CONTROL ----------------
     def angle_goal_callback(self, msg):
 
         if self.blue_override:
             return
 
-        angle_goal = -msg.data
+        error = -msg.data
+        self.previous_errors.append(error)
 
-        p = 0.2
-        i = 0.0
-        d = 0.0
-
-        self.previous_errors.append(angle_goal)
-
-        integral_error = sum(self.previous_errors)
+        integral = sum(self.previous_errors)
+        derivative = 0.0
 
         if len(self.previous_errors) > 1:
-            derivative_error = (
-                angle_goal - self.previous_errors[-2]
-            ) / (1.0 / self.update_rate)
-        else:
-            derivative_error = 0.0
+            derivative = (self.previous_errors[-1] - self.previous_errors[-2]) * self.update_rate
 
-        turn_amount = (
-            p * angle_goal +
-            i * integral_error +
-            d * derivative_error
-        )
+        turn = 0.2 * error + 0.0 * integral + 0.0 * derivative
 
         twist = Twist()
         twist.linear.x = 0.25
-        twist.angular.z = turn_amount
+        twist.angular.z = turn
         self.drive_pub.publish(twist)
 
+    # ---------------- ALWAYS PUBLISH MOTIONS ----------------
     def turn_right(self):
         twist = Twist()
         twist.linear.x = 0.20
@@ -146,6 +120,7 @@ class PaperFollower(Node):
         twist.angular.z = 0.0
         self.drive_pub.publish(twist)
 
+    # ---------------- CLEANUP ----------------
     def destroy_node(self):
         self.pipeline.stop()
         super().destroy_node()
@@ -153,7 +128,6 @@ class PaperFollower(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-
     node = PaperFollower()
 
     try:

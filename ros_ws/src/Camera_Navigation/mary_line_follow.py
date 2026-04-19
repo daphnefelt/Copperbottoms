@@ -61,11 +61,13 @@ class LineFollower(Node):
     def display_img_lines_contours(self, mask, roi, lines, contours, frame_count):
         self.get_logger().debug(f"Generating debug plot for frame {self.frame_count}")
         img_draw = roi.copy()
-        for line in lines:
-            x1, y1, x2, y2 = line[0]
-            cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        if line is not None:
+            for line in lines:
+                x1, y1, x2, y2 = line[0]
+                cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
         mask_bgr = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
-        cv2.drawContours(img_draw, contours, -1, (255, 0, 0), 3)
+        if contours is not None:
+            cv2.drawContours(img_draw, contours, -1, (255, 0, 0), 3)
 
         combined = np.hstack([mask_bgr, img_draw])
         cv2.imshow('debug', combined)

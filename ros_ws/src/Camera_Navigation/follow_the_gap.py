@@ -18,8 +18,9 @@ class FollowTheGap(Node):
         self.forward_speed = 0.25
         self.max_turn = 0.5
 
-        self.kp_dist  = 0.1   # P gain: turn per metre of distance error
-        self.kp_angle = 0.1  # P gain: turn per degree of heading error
+        # range of dist errors possible is like 3, range of angle errors is like 30
+        self.kp_dist  = 0.05  # P gain: turn per metre of distance error
+        self.kp_angle = 0.1 / 10  # P gain: turn per degree of heading error
         
         self.target_dist = 1.524   # desired distance to right wall (m) — 5 ft
         self.wall_fov_deg = (-90.0 - 15.0, -90.0 + 15.0)  # right side: -105 to -75 deg
@@ -39,7 +40,7 @@ class FollowTheGap(Node):
 
     # helpers
 
-    def _draw_debug_frame(self, fov_angles, fov_ranges, min_angle_rad, min_dist, dist_turn, angle_turn):
+    def _draw_debug_frame(self, fov_angles, fov_ranges, min_angle_rad, min_dist, dist_at_90, dist_turn, angle_turn):
         canvas = np.zeros((700, 700, 3), dtype=np.uint8)
         cx, cy = 350, 350
         scale = 280.0 / max(self.target_dist * 2, 1e-3)
@@ -55,6 +56,15 @@ class FollowTheGap(Node):
 
         # Target distance ring
         cv2.circle(canvas, (cx, cy), int(self.target_dist * scale), (0, 200, 200), 1)
+
+        # -90 deg reference beam — grey dot showing dist_at_90
+        ref_angle = np.radians(-90.0)
+        rx = int(cx - dist_at_90 * np.sin(ref_angle) * scale)
+        ry = int(cy - dist_at_90 * np.cos(ref_angle) * scale)
+        cv2.line(canvas, (cx, cy), (rx, ry), (100, 100, 100), 1)
+        cv2.circle(canvas, (rx, ry), 5, (160, 160, 160), 2)
+        cv2.putText(canvas, f'd90={dist_at_90:.2f}m', (rx + 8, ry + 4),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.4, (140, 140, 140), 1, cv2.LINE_AA)
 
         # Min-distance point — bright cyan dot + line showing angle to wall
         mx = int(cx - min_dist * np.sin(min_angle_rad) * scale)
@@ -88,15 +98,27 @@ class FollowTheGap(Node):
         _turn_arrow(55, dist_turn,  (30, 130, 255), 'dist ')   # orange
         _turn_arrow(85, angle_turn, (80, 220,  80), 'angle')   # green
 
+        # Resultant velocity arrow — forward + both corrections combined
+        total_turn = dist_turn + angle_turn
+        fwd_px  = 80  # fixed length for forward speed (visual reference)
+        turn_px = int(np.clip(abs(total_turn) / self.max_turn * 80, 0, 80))
+        turn_sign = -1 if total_turn > 0 else 1  # positive z = left = -x in image
+        res_end = (cx + turn_sign * turn_px, cy - fwd_px)
+        cv2.arrowedLine(canvas, (cx, cy), res_end, (255, 255, 0), 3, tipLength=0.2)  # yellow
+        cv2.putText(canvas, 'resultant', (res_end[0] + 5, res_end[1]),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 0), 1, cv2.LINE_AA)
+
         # Status overlay
         dist_err  = min_dist - self.target_dist
-        angle_err = np.degrees(min_angle_rad) - (-90.0)
-        cv2.putText(canvas, f'min_d={min_dist:.2f}m  err={dist_err:+.3f}m',
-                    (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (220, 220, 220), 1, cv2.LINE_AA)
-        cv2.putText(canvas, f'min_ang={np.degrees(min_angle_rad):.1f}deg  err={angle_err:+.1f}deg',
-                    (20, 58), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (220, 220, 220), 1, cv2.LINE_AA)
+        slope_mag = dist_at_90 - min_dist
+        angle_sign = np.sign(np.degrees(min_angle_rad) - (-90.0))
+        slope_err = float(angle_sign * slope_mag)
+        cv2.putText(canvas, f'min_d={min_dist:.2f}m  d90={dist_at_90:.2f}m  dist_err={dist_err:+.3f}m',
+                    (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
+        cv2.putText(canvas, f'min_ang={np.degrees(min_angle_rad):.1f}deg  slope_err={slope_err:+.3f}m',
+                    (20, 58), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (220, 220, 220), 1, cv2.LINE_AA)
         cv2.putText(canvas, f'total turn={dist_turn + angle_turn:+.3f}',
-                    (20, 86), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (180, 180, 180), 1, cv2.LINE_AA)
+                    (20, 86), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (180, 180, 180), 1, cv2.LINE_AA)
 
         return canvas
 
@@ -143,16 +165,23 @@ class FollowTheGap(Node):
         dist_error = min_dist - self.target_dist
         dist_turn = -self.kp_dist * dist_error
 
-        # Angle error: target is -90 deg (perpendicular to right wall)
-        # > -90 → angled towards wall, turn left (positive z)
-        # < -90 → angled away from wall, turn right (negative z)
-        angle_error = min_angle_deg - (-90.0)   # 0 when parallel
+        # dist_at_90: range of the beam closest to exactly -90 deg (use cleaned FOV arrays)
+        idx_90 = int(np.argmin(np.abs(fov_angles - np.radians(-90.0))))
+        dist_at_90 = float(fov_ranges[idx_90])
+
+        # Slope error: how much closer the min point is vs straight right
+        # Always >= 0; sign set by which side of -90 the min falls on
+        #   min_angle > -90 (nose angled toward wall) → turn left  (+z)
+        #   min_angle < -90 (nose angled away from wall) → turn right (-z)
+        slope_mag   = dist_at_90 - min_dist   # 0 when perfectly parallel
+        angle_sign  = np.sign(min_angle_deg - (-90.0))  # +1, 0, or -1
+        angle_error = float(angle_sign * slope_mag)
         angle_turn  = self.kp_angle * angle_error
 
         turn = float(np.clip(dist_turn + angle_turn, -self.max_turn, self.max_turn))
 
         frame = self._draw_debug_frame(fov_angles, fov_ranges,
-                               valid_angles[min_idx], min_dist,
+                               valid_angles[min_idx], min_dist, dist_at_90,
                                dist_turn, angle_turn)
         self._emit_debug(frame)
 

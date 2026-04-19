@@ -132,7 +132,6 @@ class LineFollower(Node):
             print(f"Skipping frame")
             return
 
-        print(f"Received frame")
 
         if msg.encoding.lower() != "bgr8":
             self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
@@ -205,6 +204,7 @@ class LineFollower(Node):
 
         # speed + publish
 
+        print(f"Going {self.forward_speed} {turn}")
         twist = Twist()
         twist.linear.x = self.forward_speed
         twist.angular.z = turn

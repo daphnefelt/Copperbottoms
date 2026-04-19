@@ -5,7 +5,7 @@ import numpy as np
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
-import cv2, logging
+import cv2, logging, math, time
 
 class LineFollower(Node):
 
@@ -27,6 +27,7 @@ class LineFollower(Node):
         self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
         self.debug_count = 0
         self.right_angle_detected = False
+        self.timer = 0
 
         self.width = 720
         self.height = 1280
@@ -87,12 +88,39 @@ class LineFollower(Node):
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
         return (lines, contours)
 
+
+    # segment the image before getting the lines if you only want to check for right angles in a certain zone
     def detect_right_angle(self, lines):
-        print("printing lines")
-        for line in lines:
-            print(line)
-            pass
+        lines = lines.reshape((-1, 4))
+        orientations = np.arctan2(lines[:,3] - lines[:,1], lines[:,2] - lines[:,0])
+        degree_range = 2
+        orientation_bins = np.arange(-math.radians(degree_range), math.radians(degree_range) + .0001, math.radians(1))
+
+
+        pixel_dist_threshold = 800
+        for i in range(0, degree_range*2):
+            o_mask = np.logical_and(orientations < orientation_bins[i+1], orientations >= orientation_bins[i])
+            segments = lines[o_mask]
+            if(len(segments) == 0):
+                continue
+
+            # should be right of robot - might want only segments past  a certain amount - for now don't worry
+            
+            print(orientation_bins[i]*180/np.pi)
+            dist = np.sum(np.sqrt(np.pow(segments[:, 3] - segments[:, 1], 2) + np.pow(segments[:, 2] - segments[:, 0], 2)))
+            if dist > pixel_dist_threshold:
+                return True
         return False
+    
+
+    def timer_callback(self):
+        self.right_angle_detected = False 
+        twist = Twist()
+        twist.linear.x = 0.2
+        twist.angular.z = 0.0  # straight
+        self.vel_pub.publish(twist)
+
+    
 
 
 
@@ -101,10 +129,7 @@ class LineFollower(Node):
         # skip the next 5 calls ~ 167 miliseconds
         if self.right_angle_detected:
             print(f"Skipping frame")
-            if self.frame_count == 5:
-                self.frame_count = 0
-                self.right_angle_detected = False
-            return
+
         print(f"Received frame")
 
         if msg.encoding.lower() != "bgr8":
@@ -152,6 +177,10 @@ class LineFollower(Node):
 
         self.right_angle_detected = self.detect_right_angle(lines)
 
+        if self.right_angle_detected:
+            self.timer = self.create_timer(2, self.end_turn_state_callback)
+
+
 
         if self.frame_count % 10 == 0:
             self.display_img_lines_contours(blue_mask, roi, lines, contours, self.frame_count)
@@ -196,7 +225,7 @@ class LineFollower(Node):
         twist.angular.z = turn_val  # turn right
         self.vel_pub.publish(twist)
 
-	
+	# b8f9f5
 
 
 

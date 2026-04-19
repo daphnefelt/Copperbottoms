@@ -17,9 +17,9 @@ class FollowTheGap(Node):
         # params
         self.forward_speed = 0.25
         self.max_turn = 0.5
-        self.kp = 0.5 # P gain: turn per metre of distance error
+        self.kp = 0.1 # P gain: turn per metre of distance error
         self.target_dist = 1.524   # desired distance to right wall (m) — 5 ft
-        self.wall_fov_deg = (-90.0 - 45.0, -90.0 + 45.0)  # right side: -135 to -45 deg
+        self.wall_fov_deg = (-90.0 - 15.0, -90.0 + 15.0)  # right side: -105 to -75 deg
         self.safety_dist = 0.0    # m - ignore readings below this
         self.debug_show_cv = True
         self.debug_save_jpg = False

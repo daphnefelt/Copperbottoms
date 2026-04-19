@@ -179,13 +179,13 @@ class FollowTheGap(Node):
         angle_turn  = self.kp_angle * angle_error
 
         turn = float(np.clip(dist_turn + angle_turn, -self.max_turn, self.max_turn))
+        self._publish(self.forward_speed, turn)
 
         frame = self._draw_debug_frame(fov_angles, fov_ranges,
                                valid_angles[min_idx], min_dist, dist_at_90,
                                dist_turn, angle_turn)
         self._emit_debug(frame)
 
-        self._publish(self.forward_speed, turn)
         self.get_logger().info(
             f'min_dist={min_dist:.2f}m  min_ang={min_angle_deg:.1f}°  '
             f'dist_err={dist_error:.3f}m  angle_err={angle_error:.1f}°  turn={turn:.3f}'

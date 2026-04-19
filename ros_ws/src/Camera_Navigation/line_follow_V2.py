@@ -60,6 +60,10 @@ class LineFollowerV2(Node):
         self.corner_reacquire_min_pixels = 80  # Minimum track pixels to consider line reacquired
         self.corner_scan_full_image = True
         self.corner_edge_support_min_pixels = 45
+        self.corner_max_turn_frames = 42
+        self.corner_hint_top_ratio = 0.32
+        self.corner_hint_min_run_ratio = 0.24
+        self.corner_hint_min_stem_pixels = 140
 
         # OpenCV GUI can hard-crash process over SSH when DISPLAY/X11 is unavailable.
         # Keep window view opt-in; ROS debug topic remains enabled by default.
@@ -69,7 +73,7 @@ class LineFollowerV2(Node):
         if self.debug_view_backend not in ('cv2', 'mpl'):
             self.debug_view_backend = 'cv2'
         self.debug_max_fps = max(float(os.environ.get('LFV2_DEBUG_FPS', '5.0')), 0.5)
-        self.debug_view_scale = min(max(float(os.environ.get('LFV2_DEBUG_SCALE', '1.0')), 0.2), 1.0)
+        self.debug_view_scale = min(max(float(os.environ.get('LFV2_DEBUG_SCALE', '1.0')), 0.2), 2.0)
         self.debug_publish_every_n_frames = max(int(os.environ.get('LFV2_DEBUG_TOPIC_EVERY', '1')), 1)
         self.debug_window_name = 'LineFollowerV2 Debug'
         self.enable_debug_snapshot = os.environ.get('LFV2_DEBUG_SNAPSHOT', '0') == '1'
@@ -81,18 +85,27 @@ class LineFollowerV2(Node):
         self._mpl_ax = None
         self._mpl_im = None
 
-        # blue-tape masking around target BGR
-        self.target_bgr = np.array([204.0, 146.0, 39.0], dtype=np.float32)
-        self.color_tolerance = np.array([62.0, 58.0, 55.0], dtype=np.float32)
-        self.blue_score_threshold = 22.0
+        # blue-tape masking around calibrated BGR target
+        self.target_bgr = np.array([164.0, 108.0, 7.0], dtype=np.float32)
+        self.color_tolerance = np.array([50.0, 50.0, 90.0], dtype=np.float32)
+        self.blue_score_threshold = 12.0
 
         # Hybrid tracker tuning (legacy + edge-boost)
-        self.simple_blue_threshold = 30.0
+        self.simple_blue_threshold = 58.0
         self.edge_follow_boost = 1.6
         self.min_column_peak = 2.5
+        # HSV-blue fusion helps recover dim/low-contrast tape segments that simple blue-score can miss.
+        self.use_hsv_blue_gate = os.environ.get('LFV2_USE_HSV_BLUE', '0') == '1'
+        self.hsv_blue_h_min = 82
+        self.hsv_blue_h_max = 126
+        self.hsv_blue_s_min = 60
+        self.hsv_blue_v_min = 35
 
         self.min_track_pixels = 90
         self.track_lock_required = 3
+        self.component_min_area = 70
+        self.component_bottom_band_rows = 10
+        self.component_bottom_bonus = 1.8
 
         # Adaptive Canny thresholds
         self.canny_high_percentile = 86.0
@@ -119,9 +132,12 @@ class LineFollowerV2(Node):
         self.corner_streak = 0
         self.turn_hold_frames_left = 0
         self.turn_reacquire_frames = 0
+        self.turn_frames = 0
         self.last_corner_near_angle = -1.0
         self.last_corner_far_angle = -1.0
         self.last_corner_confidence = 0.0
+        self.last_corner_source = 'none'
+        self.last_corner_hint_confidence = 0.0
         self._warned_no_cv2 = False
 
         if self.enable_debug_view and not self.display_env:
@@ -213,15 +229,16 @@ class LineFollowerV2(Node):
         # Edge overlap remains useful as confidence/shape support.
         edge_track_mask = blue_mask & edge_mask
         edge_track_pixels = int(np.sum(edge_track_mask))
-        track_mask = blue_mask
+        track_mask = self.select_primary_track_component(blue_mask, blue_score)
         track_pixels = int(np.sum(track_mask))
 
         # Corner logic scans the full frame so hard turns near the top/edges are visible,
         # while follow control still uses the lower ROI for stability.
         corner_edge_track_pixels = edge_track_pixels
         if self.corner_scan_full_image:
-            blue_mask_full, _ = self.compute_blue_mask_and_score(img)
-            blue_mask_full = self.refine_binary_mask(blue_mask_full)
+            blue_mask_full_raw, blue_score_full = self.compute_blue_mask_and_score(img)
+            blue_mask_full_raw = self.refine_binary_mask(blue_mask_full_raw)
+            blue_mask_full = self.select_primary_track_component(blue_mask_full_raw, blue_score_full)
             edge_map_full = self.canny_edge_detection(img)
             edge_mask_full = edge_map_full > 0
             corner_edge_track_mask = blue_mask_full & edge_mask_full
@@ -232,19 +249,56 @@ class LineFollowerV2(Node):
             corner_edge_track_pixels = edge_track_pixels
 
         corner_blue_candidate, corner_blue_turn_sign = self.detect_corner_signature(blue_mask_full)
+        blue_near_angle = self.last_corner_near_angle
+        blue_far_angle = self.last_corner_far_angle
+        blue_conf = self.last_corner_confidence
+
         corner_edge_candidate, corner_edge_turn_sign = self.detect_corner_signature(corner_edge_track_mask)
-        corner_candidate = corner_blue_candidate and (
+        edge_near_angle = self.last_corner_near_angle
+        edge_far_angle = self.last_corner_far_angle
+        edge_conf = self.last_corner_confidence
+
+        corner_hint_candidate, corner_hint_turn_sign, corner_hint_conf = self.detect_corner_turn_hint(blue_mask_full)
+        self.last_corner_hint_confidence = corner_hint_conf
+
+        corner_candidate_geom = corner_blue_candidate and (
             corner_edge_candidate or (corner_edge_track_pixels >= self.corner_edge_support_min_pixels)
         )
+        corner_candidate = corner_candidate_geom or corner_hint_candidate
         if corner_edge_candidate:
             candidate_turn_sign = corner_edge_turn_sign
+        elif corner_hint_candidate:
+            candidate_turn_sign = corner_hint_turn_sign
         else:
             candidate_turn_sign = corner_blue_turn_sign
         if corner_candidate:
+            if corner_edge_candidate:
+                self.last_corner_source = 'edge'
+            elif corner_hint_candidate:
+                self.last_corner_source = 'hint'
+            else:
+                self.last_corner_source = 'blue+edge_support'
+            if corner_edge_candidate:
+                self.last_corner_near_angle = edge_near_angle
+                self.last_corner_far_angle = edge_far_angle
+                self.last_corner_confidence = edge_conf
+            elif corner_hint_candidate:
+                self.last_corner_near_angle = blue_near_angle
+                self.last_corner_far_angle = blue_far_angle
+                self.last_corner_confidence = max(blue_conf, corner_hint_conf)
+            else:
+                self.last_corner_near_angle = blue_near_angle
+                self.last_corner_far_angle = blue_far_angle
+                self.last_corner_confidence = blue_conf
             self.corner_streak += 1
-            if candidate_turn_sign != 0.0:
+            # Lock turn direction while in turn-state to avoid LEFT->RIGHT flips mid-corner.
+            if candidate_turn_sign != 0.0 and self.drive_state != 'turn':
                 self.corner_turn_sign = candidate_turn_sign
         else:
+            self.last_corner_source = 'none'
+            self.last_corner_near_angle = blue_near_angle
+            self.last_corner_far_angle = blue_far_angle
+            self.last_corner_confidence = blue_conf
             self.corner_streak = 0
 
         corner_confirmed = self.corner_streak >= self.corner_confirm_frames
@@ -253,18 +307,24 @@ class LineFollowerV2(Node):
             self.drive_state = 'turn'
             self.turn_hold_frames_left = self.corner_turn_hold_frames
             self.turn_reacquire_frames = 0
+            self.turn_frames = 0
             turn_dir_str = 'LEFT' if self.corner_turn_sign > 0 else 'RIGHT'
             self.get_logger().warn(
                 (
                     f"[TURN ENTER] direction={turn_dir_str}, sign={self.corner_turn_sign:+.0f}, "
-                    f"near_ang={self.last_corner_near_angle:.1f}°, far_ang={self.last_corner_far_angle:.1f}°, "
-                    f"confidence={self.last_corner_confidence:.2f}, hold_frames={self.corner_turn_hold_frames}, "
+                    f"source={self.last_corner_source}, near_ang={self.last_corner_near_angle:.1f}°, "
+                    f"far_ang={self.last_corner_far_angle:.1f}°, confidence={self.last_corner_confidence:.2f}, "
+                    f"hint_c={corner_hint_conf:.2f}, "
+                    f"blue(near={blue_near_angle:.1f},far={blue_far_angle:.1f},c={blue_conf:.2f}), "
+                    f"edge(near={edge_near_angle:.1f},far={edge_far_angle:.1f},c={edge_conf:.2f}), "
+                    f"hold_frames={self.corner_turn_hold_frames}, "
                     f"track_px={track_pixels}"
                 )
             )
 
         if self.drive_state == 'turn':
             # Turn mode is edge-triggered and temporarily overrides follow to handle hard corners.
+            self.turn_frames += 1
             if self.turn_hold_frames_left > 0:
                 self.turn_hold_frames_left -= 1
             
@@ -283,6 +343,7 @@ class LineFollowerV2(Node):
                 self.drive_state = 'follow'
                 self.corner_streak = 0
                 self.turn_reacquire_frames = 0
+                self.turn_frames = 0
                 turn_dir_str = 'LEFT' if self.corner_turn_sign > 0 else 'RIGHT'
                 self.get_logger().warn(
                     (
@@ -290,6 +351,18 @@ class LineFollowerV2(Node):
                         f"track_px={track_pixels}, resuming P follow"
                     )
                 )
+            elif self.turn_frames >= self.corner_max_turn_frames:
+                self.drive_state = 'follow'
+                self.corner_streak = 0
+                self.turn_reacquire_frames = 0
+                turn_dir_str = 'LEFT' if self.corner_turn_sign > 0 else 'RIGHT'
+                self.get_logger().warn(
+                    (
+                        f"[TURN EXIT SAFETY] direction={turn_dir_str}, turn_frames={self.turn_frames}, "
+                        f"track_px={track_pixels}, forcing follow"
+                    )
+                )
+                self.turn_frames = 0
             else:
                 self.command_corner_turn()
                 self.show_debug_view(
@@ -341,6 +414,8 @@ class LineFollowerV2(Node):
                         f"track_px={track_pixels}, edge_track_px={edge_track_pixels}, "
                         f"corner_edge_track_px={corner_edge_track_pixels}, "
                         f"corner_blue={corner_blue_candidate}, corner_edge={corner_edge_candidate}, "
+                        f"corner_hint={corner_hint_candidate}, hint_c={corner_hint_conf:.2f}, "
+                        f"corner_source={self.last_corner_source}, "
                         f"lin={self.last_speed:.2f}, ang={self.last_turn:.2f}, "
                         f"err_unbiased={self.last_unbiased_error:.3f}, err_biased={self.last_biased_error:.3f}, "
                         f"offset={self.error_offset:.3f}"
@@ -427,6 +502,7 @@ class LineFollowerV2(Node):
                 f"ang={self.last_turn:.2f}  blue={int(np.sum(blue_mask))}  "
                 f"edge={int(np.sum(edge_u8 > 0))}  edge_track={edge_track_pixels}  "
                 f"near_a={self.last_corner_near_angle:.1f}  far_a={self.last_corner_far_angle:.1f}  "
+                f"corner_src={self.last_corner_source}  "
                 f"corner_scan={'full' if self.corner_scan_full_image else 'roi'}"
             )
 
@@ -437,10 +513,11 @@ class LineFollowerV2(Node):
             canvas[:grid.shape[0], :, :] = grid
             cv2.putText(canvas, telemetry, (10, grid.shape[0] + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (200, 255, 200), 1)
 
-            if self.debug_view_scale < 1.0:
+            if abs(self.debug_view_scale - 1.0) > 1e-6:
                 target_w = max(int(canvas.shape[1] * self.debug_view_scale), 64)
                 target_h = max(int(canvas.shape[0] * self.debug_view_scale), 64)
-                canvas_vis = cv2.resize(canvas, (target_w, target_h), interpolation=cv2.INTER_AREA)
+                interp = cv2.INTER_AREA if self.debug_view_scale < 1.0 else cv2.INTER_LINEAR
+                canvas_vis = cv2.resize(canvas, (target_w, target_h), interpolation=interp)
             else:
                 canvas_vis = canvas
 
@@ -624,8 +701,100 @@ class LineFollowerV2(Node):
         if far_x_mean is None:
             return True, self.corner_turn_sign
 
-        turn_sign = 1.0 if far_x_mean < (w / 2.0) else -1.0
+        turn_sign = self.estimate_turn_sign_from_far_region(far_mask, far_x_mean)
         return True, turn_sign
+
+    def estimate_turn_sign_from_far_region(self, far_mask: np.ndarray, far_x_mean: float) -> float:
+        h, w = far_mask.shape
+        band_h = max(1, int(h * 0.35))
+        top_band = far_mask[:band_h, :]
+
+        col_support = np.sum(top_band, axis=0)
+        active = col_support >= max(2, int(0.18 * band_h))
+        if np.any(active):
+            xs = np.where(active)[0]
+            x_min = int(xs[0])
+            x_max = int(xs[-1])
+            right_reach = x_max / max(float(w - 1), 1.0)
+            left_reach = 1.0 - (x_min / max(float(w - 1), 1.0))
+            if right_reach > 0.72 and x_min > int(0.28 * w):
+                return -1.0  # RIGHT turn
+            if left_reach > 0.72 and x_max < int(0.72 * w):
+                return 1.0   # LEFT turn
+
+        # Prefer the top-band horizontal evidence to infer direction.
+        left_strength = int(np.sum(top_band[:, :w // 2]))
+        right_strength = int(np.sum(top_band[:, w // 2:]))
+        support = left_strength + right_strength
+
+        if support >= 18:
+            imbalance = (right_strength - left_strength) / max(float(support), 1.0)
+            if imbalance > 0.08:
+                return -1.0  # RIGHT turn
+            if imbalance < -0.08:
+                return 1.0   # LEFT turn
+
+        # Fallback: far-region centroid.
+        return 1.0 if far_x_mean < (w / 2.0) else -1.0
+
+    def detect_corner_turn_hint(self, mask: np.ndarray):
+        # Secondary corner detector: look for a long horizontal branch in the top band
+        # plus opposite-side stem support in lower rows.
+        h, w = mask.shape
+        if h < 8 or w < 8:
+            return False, 0.0, 0.0
+
+        top_h = max(1, int(h * self.corner_hint_top_ratio))
+        top = mask[:top_h, :]
+        lower = mask[top_h:, :]
+
+        min_col_support = max(2, int(0.24 * top_h))
+        col_support = np.sum(top, axis=0)
+        active = col_support >= min_col_support
+        if not np.any(active):
+            return False, 0.0, 0.0
+
+        # Longest contiguous active run in the top band.
+        best_len = 0
+        best_start = 0
+        best_end = 0
+        run_start = None
+        for i, a in enumerate(active):
+            if a and run_start is None:
+                run_start = i
+            elif (not a) and run_start is not None:
+                run_len = i - run_start
+                if run_len > best_len:
+                    best_len = run_len
+                    best_start = run_start
+                    best_end = i - 1
+                run_start = None
+        if run_start is not None:
+            run_len = len(active) - run_start
+            if run_len > best_len:
+                best_len = run_len
+                best_start = run_start
+                best_end = len(active) - 1
+
+        run_ratio = best_len / max(float(w), 1.0)
+        if run_ratio < self.corner_hint_min_run_ratio:
+            return False, 0.0, 0.0
+
+        left_stem = int(np.sum(lower[:, :w // 2]))
+        right_stem = int(np.sum(lower[:, w // 2:]))
+
+        right_reach = best_end / max(float(w - 1), 1.0)
+        left_reach = 1.0 - (best_start / max(float(w - 1), 1.0))
+
+        if right_reach > 0.72 and left_stem >= self.corner_hint_min_stem_pixels:
+            conf = min(1.0, 0.55 * (run_ratio / max(self.corner_hint_min_run_ratio, 1e-6)) + 0.45 * (left_stem / max(float(self.corner_hint_min_stem_pixels * 2), 1.0)))
+            return True, -1.0, conf
+
+        if left_reach > 0.72 and right_stem >= self.corner_hint_min_stem_pixels:
+            conf = min(1.0, 0.55 * (run_ratio / max(self.corner_hint_min_run_ratio, 1e-6)) + 0.45 * (right_stem / max(float(self.corner_hint_min_stem_pixels * 2), 1.0)))
+            return True, 1.0, conf
+
+        return False, 0.0, 0.0
 
     def estimate_orientation_deg(self, mask: np.ndarray):
         ys, xs = np.where(mask)
@@ -684,6 +853,50 @@ class LineFollowerV2(Node):
             m = (neighborhood >= 4).astype(np.uint8)
         return m.astype(bool)
 
+    def select_primary_track_component(self, mask: np.ndarray, blue_score: np.ndarray) -> np.ndarray:
+        # Keep one likely tape component for follow control to avoid centroid pulls from reflections.
+        if (not CV2_AVAILABLE) or (mask.size == 0):
+            return mask
+
+        mask_u8 = (mask.astype(np.uint8) * 255)
+        n_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(mask_u8, connectivity=8)
+        if n_labels <= 1:
+            return mask
+
+        h, w = mask.shape
+        best_label = 0
+        best_score = -1.0
+        bottom_band = max(1, min(self.component_bottom_band_rows, h))
+
+        for label in range(1, n_labels):
+            area = int(stats[label, cv2.CC_STAT_AREA])
+            if area < self.component_min_area:
+                continue
+
+            comp = (labels == label)
+            x_mean = float(centroids[label][0])
+            has_bottom_support = bool(np.any(comp[h - bottom_band:, :]))
+
+            local_blue = np.maximum(blue_score[comp], 0.0)
+            blue_strength = float(np.mean(local_blue)) if local_blue.size > 0 else 0.0
+
+            continuity = 1.0
+            if self.track_x_filtered is not None:
+                dx = abs(x_mean - float(self.track_x_filtered))
+                continuity = max(0.2, 1.0 - dx / max(w * 0.6, 1.0))
+
+            score = area * continuity + 0.15 * blue_strength
+            if has_bottom_support:
+                score *= self.component_bottom_bonus
+
+            if score > best_score:
+                best_score = score
+                best_label = label
+
+        if best_label == 0:
+            return mask
+        return labels == best_label
+
     def compute_blue_mask_and_score(self, roi: np.ndarray):
         roi_f = roi.astype(np.float32)
         b = roi_f[:, :, 0]
@@ -693,14 +906,32 @@ class LineFollowerV2(Node):
         # Legacy blue score
         blue_score = b - 0.5 * (g + r)
 
-        # Target-color gate
+        # Target-color gate around calibrated tape color
         channel_error = np.abs(roi_f - self.target_bgr)
         near_target = np.all(channel_error <= self.color_tolerance, axis=2)
         tuned_blue = near_target & (blue_score > self.blue_score_threshold)
 
+        # Channel-order sanity check helps reject gray/specular regions that slip through tolerance.
+        channel_order_gate = (b > (g + 8.0)) & (b > (r + 25.0))
+        tuned_blue = tuned_blue & channel_order_gate
+
         # Hybrid: tuned OR simple
-        simple_blue = blue_score > self.simple_blue_threshold
-        blue_mask = tuned_blue | simple_blue
+        simple_blue = (blue_score > self.simple_blue_threshold) & channel_order_gate
+
+        hsv_blue = np.zeros_like(simple_blue, dtype=bool)
+        if CV2_AVAILABLE and self.use_hsv_blue_gate:
+            hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+            h = hsv[:, :, 0]
+            s = hsv[:, :, 1]
+            v = hsv[:, :, 2]
+            hsv_blue = (
+                (h >= self.hsv_blue_h_min)
+                & (h <= self.hsv_blue_h_max)
+                & (s >= self.hsv_blue_s_min)
+                & (v >= self.hsv_blue_v_min)
+            )
+
+        blue_mask = tuned_blue | simple_blue | hsv_blue
 
         return blue_mask, blue_score
 

@@ -40,7 +40,7 @@ class LineFollowerV2(Node):
         self.search_turn = 0.35
         self.kp = 0.80  # Proportional gain (P-only steering like proven old code)
         self.kd = 0.0   # Derivative disabled to match simple old code behavior
-        self.error_offset = -0.40  # camera-lens offset from proven calibration
+        self.error_offset = float(os.environ.get('LFV2_ERROR_OFFSET', '-0.40'))
         self.error_filter_alpha = 0.18
         self.track_x_filter_alpha = 0.22
         self.max_turn_step = 0.05
@@ -58,6 +58,8 @@ class LineFollowerV2(Node):
         self.corner_turn_hold_frames = 5  # Frames to commit to turn (reduced for faster reacquire check)
         self.corner_reacquire_frames_required = 4  # Stable frames with line before exit
         self.corner_reacquire_min_pixels = 80  # Minimum track pixels to consider line reacquired
+        self.corner_scan_full_image = True
+        self.corner_edge_support_min_pixels = 45
 
         # OpenCV GUI can hard-crash process over SSH when DISPLAY/X11 is unavailable.
         # Keep window view opt-in; ROS debug topic remains enabled by default.
@@ -203,19 +205,41 @@ class LineFollowerV2(Node):
         roi = img[y0:y1, :, :]
 
         blue_mask, blue_score = self.compute_blue_mask_and_score(roi)
+        blue_mask = self.refine_binary_mask(blue_mask)
         edge_map = self.canny_edge_detection(roi)
         edge_mask = edge_map > 0
 
-        # Primary signal: blue edges. Fallback: full blue mask.
+        # Use cleaned blue mask as primary follow signal.
+        # Edge overlap remains useful as confidence/shape support.
         edge_track_mask = blue_mask & edge_mask
         edge_track_pixels = int(np.sum(edge_track_mask))
-        if edge_track_pixels >= self.min_edge_track_pixels:
-            track_mask = edge_track_mask
-        else:
-            track_mask = blue_mask
+        track_mask = blue_mask
         track_pixels = int(np.sum(track_mask))
 
-        corner_candidate, candidate_turn_sign = self.detect_corner_signature(edge_track_mask)
+        # Corner logic scans the full frame so hard turns near the top/edges are visible,
+        # while follow control still uses the lower ROI for stability.
+        corner_edge_track_pixels = edge_track_pixels
+        if self.corner_scan_full_image:
+            blue_mask_full, _ = self.compute_blue_mask_and_score(img)
+            blue_mask_full = self.refine_binary_mask(blue_mask_full)
+            edge_map_full = self.canny_edge_detection(img)
+            edge_mask_full = edge_map_full > 0
+            corner_edge_track_mask = blue_mask_full & edge_mask_full
+            corner_edge_track_pixels = int(np.sum(corner_edge_track_mask))
+        else:
+            corner_edge_track_mask = edge_track_mask
+            blue_mask_full = blue_mask
+            corner_edge_track_pixels = edge_track_pixels
+
+        corner_blue_candidate, corner_blue_turn_sign = self.detect_corner_signature(blue_mask_full)
+        corner_edge_candidate, corner_edge_turn_sign = self.detect_corner_signature(corner_edge_track_mask)
+        corner_candidate = corner_blue_candidate and (
+            corner_edge_candidate or (corner_edge_track_pixels >= self.corner_edge_support_min_pixels)
+        )
+        if corner_edge_candidate:
+            candidate_turn_sign = corner_edge_turn_sign
+        else:
+            candidate_turn_sign = corner_blue_turn_sign
         if corner_candidate:
             self.corner_streak += 1
             if candidate_turn_sign != 0.0:
@@ -315,6 +339,8 @@ class LineFollowerV2(Node):
                     (
                         f"state=follow, blue_px={int(np.sum(blue_mask))}, edge_px={int(np.sum(edge_mask))}, "
                         f"track_px={track_pixels}, edge_track_px={edge_track_pixels}, "
+                        f"corner_edge_track_px={corner_edge_track_pixels}, "
+                        f"corner_blue={corner_blue_candidate}, corner_edge={corner_edge_candidate}, "
                         f"lin={self.last_speed:.2f}, ang={self.last_turn:.2f}, "
                         f"err_unbiased={self.last_unbiased_error:.3f}, err_biased={self.last_biased_error:.3f}, "
                         f"offset={self.error_offset:.3f}"
@@ -400,13 +426,16 @@ class LineFollowerV2(Node):
                 f"err_b={self.last_biased_error:.3f}  off={self.error_offset:.3f}  "
                 f"ang={self.last_turn:.2f}  blue={int(np.sum(blue_mask))}  "
                 f"edge={int(np.sum(edge_u8 > 0))}  edge_track={edge_track_pixels}  "
-                f"near_a={self.last_corner_near_angle:.1f}  far_a={self.last_corner_far_angle:.1f}"
+                f"near_a={self.last_corner_near_angle:.1f}  far_a={self.last_corner_far_angle:.1f}  "
+                f"corner_scan={'full' if self.corner_scan_full_image else 'roi'}"
             )
 
-            row = np.hstack((roi_vis, blue_vis, edge_vis, track_vis))
-            canvas = np.zeros((row.shape[0] + 34, row.shape[1], 3), dtype=np.uint8)
-            canvas[:row.shape[0], :, :] = row
-            cv2.putText(canvas, telemetry, (10, row.shape[0] + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (200, 255, 200), 1)
+            top_row = np.hstack((roi_vis, blue_vis))
+            bottom_row = np.hstack((edge_vis, track_vis))
+            grid = np.vstack((top_row, bottom_row))
+            canvas = np.zeros((grid.shape[0] + 34, grid.shape[1], 3), dtype=np.uint8)
+            canvas[:grid.shape[0], :, :] = grid
+            cv2.putText(canvas, telemetry, (10, grid.shape[0] + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (200, 255, 200), 1)
 
             if self.debug_view_scale < 1.0:
                 target_w = max(int(canvas.shape[1] * self.debug_view_scale), 64)
@@ -640,6 +669,20 @@ class LineFollowerV2(Node):
         if xs.size == 0:
             return mask.shape[1] // 2
         return int(np.mean(xs))
+
+    def refine_binary_mask(self, mask: np.ndarray) -> np.ndarray:
+        # Lightweight binary-mask cleanup to suppress isolated noise before tracking.
+        m = mask.astype(np.uint8)
+        for _ in range(2):
+            p = np.pad(m, 1, mode='edge')
+            neighborhood = (
+                p[:-2, :-2] + p[:-2, 1:-1] + p[:-2, 2:] +
+                p[1:-1, :-2] + p[1:-1, 1:-1] + p[1:-1, 2:] +
+                p[2:, :-2] + p[2:, 1:-1] + p[2:, 2:]
+            )
+            # Majority-like filter: keep pixels with local support.
+            m = (neighborhood >= 4).astype(np.uint8)
+        return m.astype(bool)
 
     def compute_blue_mask_and_score(self, roi: np.ndarray):
         roi_f = roi.astype(np.float32)

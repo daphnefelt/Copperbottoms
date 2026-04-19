@@ -21,6 +21,7 @@ class FollowTheGap(Node):
         self.kp_dist  = 0.05
         self.kp_angle = 0.2
         
+        self.n_min_avg = 3          # number of closest beams to average for min point
         self.target_dist = 1.524   # desired distance to right wall (m) — 5 ft
         self.wall_fov_deg = (-90.0 - 15.0, -90.0 + 15.0)  # right side: -105 to -75 deg
         self.debug_show_cv = True
@@ -154,11 +155,12 @@ class FollowTheGap(Node):
             self.get_logger().warn('No valid wall readings — going straight.')
             return
 
-        # Find closest point in FOV
+        # Average the N closest beams to reduce noise
         valid_angles = fov_angles[valid]
-        min_idx  = int(np.argmin(fov_ranges_valid))
-        min_dist = float(fov_ranges_valid[min_idx])
-        min_angle_deg = float(np.degrees(valid_angles[min_idx]))
+        n = min(self.n_min_avg, fov_ranges_valid.size)
+        closest_idx = np.argpartition(fov_ranges_valid, n - 1)[:n]
+        min_dist = float(np.mean(fov_ranges_valid[closest_idx]))
+        min_angle_deg = float(np.degrees(np.mean(valid_angles[closest_idx])))
 
         # dist_at_90: range of the beam closest to exactly -90 deg (use cleaned FOV arrays)
         idx_90 = int(np.argmin(np.abs(fov_angles - np.radians(-90.0))))
@@ -181,7 +183,7 @@ class FollowTheGap(Node):
         self._publish(self.forward_speed, turn)
 
         frame = self._draw_debug_frame(fov_angles, fov_ranges,
-                               valid_angles[min_idx], min_dist, dist_at_90,
+                               np.radians(min_angle_deg), min_dist, dist_at_90,
                                dist_turn, angle_turn)
         self._emit_debug(frame)
 

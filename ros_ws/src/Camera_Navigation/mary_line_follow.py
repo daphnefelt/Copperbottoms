@@ -9,7 +9,7 @@ import cv2, logging
 
 class LineFollower(Node):
 
-    def __init__(self, debug=False):
+    def __init__(self, debug=True):
         super().__init__('line_follower')
 
         # parameters
@@ -128,7 +128,7 @@ class LineFollower(Node):
         lines, contours = self.get_lines_contours(blue_mask)
 
         # last part of screen
-        roi = img[height*.3:, :]
+        roi = img[int(height*.3):, :]
 
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves

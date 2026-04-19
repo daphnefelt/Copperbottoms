@@ -64,7 +64,7 @@ class LineFollower(Node):
             x1, y1, x2, y2 = line[0]
             cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
         mask_bgr = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
-        cv2.drawContours(roi, contours, -1, (255, 0, 0), 3)
+        cv2.drawContours(img_draw, contours, -1, (255, 0, 0), 3)
 
         combined = np.hstack([mask_bgr, img_draw])
         cv2.imshow('debug', combined)

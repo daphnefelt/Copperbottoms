@@ -124,11 +124,13 @@ class LineFollower(Node):
 
         blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
         blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
+        start = int(height*.3)
+        roi = img[start:, :]
+        blue_mask = blue_mask[start:, :]
 
         lines, contours = self.get_lines_contours(blue_mask)
 
         # last part of screen
-        roi = img[int(height*.3):, :]
 
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
@@ -136,7 +138,7 @@ class LineFollower(Node):
 
 
         if self.frame_count % 10 == 0:
-            self.display_img_lines_contours(blue_mask[int(height*.3):, :], roi, lines, contours, self.frame_count)
+            self.display_img_lines_contours(blue_mask, roi, lines, contours, self.frame_count)
 
 
         

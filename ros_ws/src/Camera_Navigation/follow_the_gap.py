@@ -18,8 +18,9 @@ class FollowTheGap(Node):
         self.forward_speed = 0.25
         self.max_turn = 0.5
 
-        self.kp_dist  = 0.1   # P gain: turn per metre of distance error
-        self.kp_angle = 0.1  # P gain: turn per degree of heading error
+        # range of dist errors possible is like 3, range of angle errors is like 30
+        self.kp_dist  = 0.05  # P gain: turn per metre of distance error
+        self.kp_angle = 0.1 / 10  # P gain: turn per degree of heading error
         
         self.target_dist = 1.524   # desired distance to right wall (m) — 5 ft
         self.wall_fov_deg = (-90.0 - 15.0, -90.0 + 15.0)  # right side: -105 to -75 deg
@@ -87,6 +88,16 @@ class FollowTheGap(Node):
 
         _turn_arrow(55, dist_turn,  (30, 130, 255), 'dist ')   # orange
         _turn_arrow(85, angle_turn, (80, 220,  80), 'angle')   # green
+
+        # Resultant velocity arrow — forward + both corrections combined
+        total_turn = dist_turn + angle_turn
+        fwd_px  = 80  # fixed length for forward speed (visual reference)
+        turn_px = int(np.clip(abs(total_turn) / self.max_turn * 80, 0, 80))
+        turn_sign = -1 if total_turn > 0 else 1  # positive z = left = -x in image
+        res_end = (cx + turn_sign * turn_px, cy - fwd_px)
+        cv2.arrowedLine(canvas, (cx, cy), res_end, (255, 255, 0), 3, tipLength=0.2)  # yellow
+        cv2.putText(canvas, 'resultant', (res_end[0] + 5, res_end[1]),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 0), 1, cv2.LINE_AA)
 
         # Status overlay
         dist_err  = min_dist - self.target_dist

@@ -119,11 +119,11 @@ class LineFollower(Node):
     
 
     def timer_callback(self):
-        self.right_angle_detected = False 
         twist = Twist()
         twist.linear.x = 0.2
         twist.angular.z = 0.0  # straight
         self.vel_pub.publish(twist)
+        self.right_angle_detected = False 
 
     
 
@@ -134,6 +134,7 @@ class LineFollower(Node):
         # skip the next 5 calls ~ 167 miliseconds
         if self.right_angle_detected:
             print(f"Skipping frame")
+            return
 
         print(f"Received frame")
 
@@ -185,11 +186,13 @@ class LineFollower(Node):
             twist.linear.x = 0.2
             twist.angular.z = 1.0
             self.vel_pub.publish(twist)
+            self.get_logger().debug(f"Right angle found")
             self.timer = self.create_timer(2, self.end_turn_state_callback)
 
 
 
         if self.frame_count % 10 == 0:
+            self.get_logger().debug(f"Trying to display lines and contours")
             self.display_img_lines_contours(blue_mask, roi, lines, contours, self.frame_count)
 
 

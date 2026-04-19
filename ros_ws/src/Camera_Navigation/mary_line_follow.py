@@ -118,7 +118,7 @@ class LineFollower(Node):
         return False
     
 
-    def timer_callback(self):
+    def end_turn_state_callback(self):
         twist = Twist()
         twist.linear.x = 0.2
         twist.angular.z = 0.0  # straight

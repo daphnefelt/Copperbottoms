@@ -88,7 +88,7 @@ class LineFollower(Node):
         return (lines, contours)
 
     def detect_right_angle(self, lines):
-
+        print("printing lines")
         for line in lines:
             print(line)
             pass

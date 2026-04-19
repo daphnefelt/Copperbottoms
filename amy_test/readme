@@ -1,0 +1,152 @@
+cd ~/code/Copperbottoms/ros_ws
+source install/setup.bash
+ros2 launch amy_test test_full_launch.py
+
+launches the existing realsense_node and the realsense_publisher package 
+
+result 
+
+copperbottoms@copperbottoms-desktop:~/code/Copperbottoms/ros_ws$ ros2 node list
+/realsense_publisher
+/rover_node
+copperbottoms@copperbottoms-desktop:~/code/Copperbottoms/ros_ws$ ros2 topic list
+/camera/color/image_raw
+/cmd_vel
+/imu/accel
+/imu/gyro
+/parameter_events
+/rosout
+/rover/armed
+/slow_move
+/stop_move
+copperbottoms@copperbottoms-desktop:~/code/Copperbottoms/ros_ws$
+
+
+verification
+publish rate 
+ros2 topic hz /topic_name
+ros2 topic list
+ros2 topic info /topic_name
+ros2 topic echo /topic_name
+ros2 topic bw /topic_name
+ros2 topic type /topic_name
+ros2 interface show sensor_msgs/msg/Image
+
+
+ros2 topic hz /camera/color/image_raw
+
+average rate: 28.504
+        min: 0.015s max: 0.078s std dev: 0.00924s window: 60
+average rate: 28.982
+        min: 0.015s max: 0.078s std dev: 0.00779s window: 90
+average rate: 28.496
+        min: 0.015s max: 0.078s std dev: 0.00861s window: 117
+
+
+ros2 topic hz /imu/gyro
+WARNING: topic [/imu/gyro] does not appear to be published yet
+average rate: 19.924
+        min: 0.042s max: 0.058s std dev: 0.00463s window: 21
+average rate: 19.928
+        min: 0.041s max: 0.059s std dev: 0.00517s window: 41
+average rate: 20.006
+        min: 0.041s max: 0.059s std dev: 0.00532s window: 62
+average rate: 19.963
+        min: 0.041s max: 0.059s std dev: 0.00548s window: 83
+average rate: 19.968
+        min: 0.040s max: 0.059s std dev: 0.00574s window: 103
+average rate: 19.993
+        min: 0.040s max: 0.059s std dev: 0.00569s window: 124
+^Ccopperbottoms@copperbottoms-desktop:~/code/Copperbottoms/ros_wsros2 topic hz /imu/accelel
+average rate: 20.033
+        min: 0.041s max: 0.059s std dev: 0.00444s window: 22
+average rate: 20.008
+        min: 0.041s max: 0.059s std dev: 0.00429s window: 42
+
+
+
+ ros2 topic hz /scan
+average rate: 7.327
+        min: 0.132s max: 0.141s std dev: 0.00274s window: 9
+
+
+
+
+
+
+
+
+ros2 node info /rplidar_node
+/rplidar_node
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /scan: sensor_msgs/msg/LaserScan
+  Service Servers:
+    /rplidar_node/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /rplidar_node/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /rplidar_node/get_parameters: rcl_interfaces/srv/GetParameters
+    /rplidar_node/list_parameters: rcl_interfaces/srv/ListParameters
+    /rplidar_node/set_parameters: rcl_interfaces/srv/SetParameters
+    /rplidar_node/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+    /start_motor: std_srvs/srv/Empty
+    /stop_motor: std_srvs/srv/Empty
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+
+
+
+ros2 node info /realsense_color_publisher
+/realsense_color_publisher
+  Subscribers:
+
+  Publishers:
+    /camera/color/image_raw: sensor_msgs/msg/Image
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /realsense_color_publisher/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /realsense_color_publisher/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /realsense_color_publisher/get_parameters: rcl_interfaces/srv/GetParameters
+    /realsense_color_publisher/list_parameters: rcl_interfaces/srv/ListParameters
+    /realsense_color_publisher/set_parameters: rcl_interfaces/srv/SetParameters
+    /realsense_color_publisher/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+
+   ros2 node info  /rover_node
+/rover_node
+  Subscribers:
+    /cmd_vel: geometry_msgs/msg/Twist
+    /slow_move: custom_messages/msg/Slow
+    /stop_move: std_msgs/msg/Bool
+  Publishers:
+    /imu/accel: geometry_msgs/msg/Vector3
+    /imu/gyro: geometry_msgs/msg/Vector3
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /rover/armed: std_msgs/msg/Bool
+  Service Servers:
+    /rover_node/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /rover_node/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /rover_node/get_parameters: rcl_interfaces/srv/GetParameters
+    /rover_node/list_parameters: rcl_interfaces/srv/ListParameters
+    /rover_node/set_parameters: rcl_interfaces/srv/SetParameters
+    /rover_node/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+copperbottoms@copperbottoms-desktop:~/code/Copperbottoms/ros_ws$ 

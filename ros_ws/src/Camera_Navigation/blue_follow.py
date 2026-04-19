@@ -95,6 +95,7 @@ class PaperFollower(Node):
                 self.go_straight()
 
             else:
+                self.go_straight()
                 self.blue_override = False
 
         except Exception as e:

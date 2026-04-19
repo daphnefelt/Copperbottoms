@@ -29,6 +29,9 @@ class LineFollower(Node):
         self.right_angle_detected = False
         self.timer = 0
 
+        # 164, 108, 7
+        # 50, 50, 90
+
         self.width = 720
         self.height = 1280
         # fraction grabbed from line_follow tuning 
@@ -167,8 +170,9 @@ class LineFollower(Node):
         # window the output to the bottom
 
 
-        blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
-        blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
+        rgb = [164, 108, 7]
+        plus_minus = [50, 50, 90]
+        blue_mask = cv2.inRange(roi, np.array(rgb) - np.array(plus_minus), np.array(rgb) + np.array(plus_minus))
 
         lines, contours = self.get_lines_contours(blue_mask)
 

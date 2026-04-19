@@ -130,6 +130,11 @@ class LineFollower(Node):
 
         lines, contours = self.get_lines_contours(blue_mask)
 
+        if lines == None:
+            lines = []
+        if contours == None:
+            contours = []
+
         # last part of screen
 
         # want the two contours closest to us and closest to each other

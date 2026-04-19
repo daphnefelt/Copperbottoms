@@ -61,11 +61,13 @@ class LineFollower(Node):
     def display_img_lines_contours(self, mask, roi, lines, contours, frame_count):
         self.get_logger().debug(f"Generating debug plot for frame {self.frame_count}")
         img_draw = roi.copy()
-        for line in lines:
-            x1, y1, x2, y2 = line[0]
-            cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        if line is not None:
+            for line in lines:
+                x1, y1, x2, y2 = line[0]
+                cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
         mask_bgr = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
-        cv2.drawContours(img_draw, contours, -1, (255, 0, 0), 3)
+        if contours is not None:
+            cv2.drawContours(img_draw, contours, -1, (255, 0, 0), 3)
 
         combined = np.hstack([mask_bgr, img_draw])
         cv2.imshow('debug', combined)
@@ -88,6 +90,7 @@ class LineFollower(Node):
 
         edges = cv2.Canny(thresh, 50, 150, apertureSize=3)
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
+        print(lines)
         return (lines, contours)
 
 
@@ -162,12 +165,9 @@ class LineFollower(Node):
 
         blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
         blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
-        blue_mask = blue_mask[start:, :]
 
         lines, contours = self.get_lines_contours(blue_mask)
 
-        if lines is None:
-            lines = []
         if contours is None:
             contours = []
 
@@ -177,7 +177,8 @@ class LineFollower(Node):
         # maybe want something other than a for loop, but i don't anticipate many curves
         print(f"Number of contours: {len(contours)}")
 
-        self.right_angle_detected = self.detect_right_angle(lines)
+        if lines is not None:
+            self.right_angle_detected = self.detect_right_angle(lines)
 
         if self.right_angle_detected:
             twist = Twist()

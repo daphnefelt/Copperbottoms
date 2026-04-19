@@ -18,9 +18,8 @@ class FollowTheGap(Node):
         self.forward_speed = 0.25
         self.max_turn = 0.5
 
-        # range of dist errors possible is like 3, range of angle errors is like 30
-        self.kp_dist  = 0.05  # P gain: turn per metre of distance error
-        self.kp_angle = 0.1 / 10  # P gain: turn per degree of heading error
+        self.kp_dist  = 0.05
+        self.kp_angle = 0.1
         
         self.target_dist = 1.524   # desired distance to right wall (m) — 5 ft
         self.wall_fov_deg = (-90.0 - 15.0, -90.0 + 15.0)  # right side: -105 to -75 deg
@@ -155,19 +154,19 @@ class FollowTheGap(Node):
             self.get_logger().warn('No valid wall readings — going straight.')
             return
 
-        # Find closest point in FOV — this is our wall-distance and heading feedback
+        # Find closest point in FOV
         valid_angles = fov_angles[valid]
         min_idx  = int(np.argmin(fov_ranges_valid))
         min_dist = float(fov_ranges_valid[min_idx])
         min_angle_deg = float(np.degrees(valid_angles[min_idx]))
 
-        # Distance error: positive = too far, turn right (negative z)
-        dist_error = min_dist - self.target_dist
-        dist_turn = -self.kp_dist * dist_error
-
         # dist_at_90: range of the beam closest to exactly -90 deg (use cleaned FOV arrays)
         idx_90 = int(np.argmin(np.abs(fov_angles - np.radians(-90.0))))
         dist_at_90 = float(fov_ranges[idx_90])
+
+        # Distance error: use d90 as feedback (true perpendicular distance to wall)
+        dist_error = dist_at_90 - self.target_dist
+        dist_turn = -self.kp_dist * dist_error
 
         # Slope error: how much closer the min point is vs straight right
         # Always >= 0; sign set by which side of -90 the min falls on

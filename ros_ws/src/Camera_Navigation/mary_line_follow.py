@@ -112,8 +112,7 @@ class LineFollower(Node):
             # should be right of robot - might want only segments past  a certain amount - for now don't worry
             
             print(orientation_bins[i]*180/np.pi)
-
-            dist = np.sum(np.sqrt(np.power(segments[:, 3] - segments[:, 1], 2) + np.pow(segments[:, 2] - segments[:, 0], 2)))
+            dist = np.sum(np.sqrt(np.power(segments[:, 3] - segments[:, 1], 2) + np.power(segments[:, 2] - segments[:, 0], 2)))     
             if dist > pixel_dist_threshold:
                 return True
         return False

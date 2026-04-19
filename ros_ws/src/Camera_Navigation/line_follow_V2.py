@@ -1,6 +1,7 @@
 import rclpy
 import numpy as np
 import os
+import time
 from numpy.lib.stride_tricks import as_strided
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
@@ -120,6 +121,11 @@ class LineFollowerV2(Node):
         self.rover_armed = False
         self.seen_first_frame = False
         self.frame_count = 0
+        # FPS tracking
+        self.frame_times = []  # Ring buffer of frame timestamps (last 60 frames)
+        self.last_fps_log_time = 0.0
+        self.fps_log_interval_sec = 2.0  # Log FPS every 2 seconds
+        self.enable_profiling = os.environ.get('LFV2_PROFILE', '0') == '1'  # Per-step timing
         self.last_error = 0.0
         self.last_turn = 0.0
         self.last_speed = 0.0
@@ -202,6 +208,7 @@ class LineFollowerV2(Node):
             self.get_logger().warn('Rover disarmed. Holding zero cmd_vel.')
 
     def image_callback(self, msg):
+        callback_start_time = time.perf_counter()
         self.frame_count += 1
 
         img = self.decode_image(msg)
@@ -428,6 +435,25 @@ class LineFollowerV2(Node):
             self.drive_state = 'search'
             self.track_lock_frames = 0
             self.search_for_track()
+
+        # FPS tracking: measure actual callback processing rate
+        callback_end_time = time.perf_counter()
+        callback_elapsed = callback_end_time - callback_start_time
+        self.frame_times.append(callback_end_time)
+        if len(self.frame_times) > 60:  # Keep last 60 frame timestamps
+            self.frame_times.pop(0)
+        
+        # Log FPS periodically
+        now_sec = callback_end_time
+        if (now_sec - self.last_fps_log_time) >= self.fps_log_interval_sec and len(self.frame_times) >= 2:
+            time_span = self.frame_times[-1] - self.frame_times[0]
+            frame_span = len(self.frame_times) - 1
+            if time_span > 0:
+                achieved_fps = frame_span / time_span
+                self.get_logger().info(
+                    f'[FPS] {achieved_fps:.1f} Hz | callback_ms={callback_elapsed*1000:.2f}ms'
+                )
+                self.last_fps_log_time = now_sec
 
         self.show_debug_view(
             roi,
@@ -1184,3 +1210,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+

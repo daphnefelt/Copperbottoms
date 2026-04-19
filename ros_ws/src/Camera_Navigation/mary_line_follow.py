@@ -29,6 +29,9 @@ class LineFollower(Node):
         self.right_angle_detected = False
         self.timer = 0
 
+        # 164, 108, 7
+        # 50, 50, 90
+
         self.width = 720
         self.height = 1280
         # fraction grabbed from line_follow tuning 
@@ -58,6 +61,15 @@ class LineFollower(Node):
             f'Line follower node started. image_topic={image_topic}, cmd_vel_topic={cmd_vel_topic}'
         )
 
+
+    def pub_vel_cmd(self, vel, dir):
+        self.get_logger().debug(f"Vel Cmd: {vel} vel {dir} direction")
+        twist = Twist()
+        twist.linear.x = vel
+        twist.angular.z = dir
+        self.vel_pub.publish(twist)
+        
+
     def display_img_lines_contours(self, mask, roi, lines, contours, frame_count):
         self.get_logger().debug(f"Generating debug plot for frame {self.frame_count}")
         img_draw = roi.copy()
@@ -77,8 +89,6 @@ class LineFollower(Node):
         #cv2_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	
         # blur to help with noise picked up
-        print(mask.shape)
-        print(mask)
         blurred = cv2.GaussianBlur(mask, (3, 3), 0)
 	
         # threshold for the lines
@@ -90,7 +100,6 @@ class LineFollower(Node):
 
         edges = cv2.Canny(thresh, 50, 150, apertureSize=3)
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
-        print(lines)
         return (lines, contours)
 
 
@@ -111,7 +120,6 @@ class LineFollower(Node):
 
             # should be right of robot - might want only segments past  a certain amount - for now don't worry
             
-            print(orientation_bins[i]*180/np.pi)
             dist = np.sum(np.sqrt(np.power(segments[:, 3] - segments[:, 1], 2) + np.power(segments[:, 2] - segments[:, 0], 2)))     
             if dist > pixel_dist_threshold:
                 return True
@@ -136,7 +144,6 @@ class LineFollower(Node):
             print(f"Skipping frame")
             return
 
-        print(f"Received frame")
 
         if msg.encoding.lower() != "bgr8":
             self.get_logger().warn(f"Unsupported image encoding: {msg.encoding}")
@@ -146,7 +153,6 @@ class LineFollower(Node):
 
 
         # focus on ROI (bottom half)
-        print(f"img shape is {img.shape}")
         height = img.shape[0]
         width = img.shape[1]
 
@@ -164,8 +170,9 @@ class LineFollower(Node):
         # window the output to the bottom
 
 
-        blue_score = b - (0.5 * (g + r)).astype(np.uint16)  # simple blue score
-        blue_mask = ((blue_score > self.color_threshold)*255).astype(np.uint8)
+        rgb = [164, 108, 7]
+        plus_minus = [50, 50, 90]
+        blue_mask = cv2.inRange(roi, np.array(rgb) - np.array(plus_minus), np.array(rgb) + np.array(plus_minus))
 
         lines, contours = self.get_lines_contours(blue_mask)
 
@@ -176,18 +183,14 @@ class LineFollower(Node):
 
         # want the two contours closest to us and closest to each other
         # maybe want something other than a for loop, but i don't anticipate many curves
-        print(f"Number of contours: {len(contours)}")
 
         if lines is not None:
             self.right_angle_detected = self.detect_right_angle(lines)
 
         if self.right_angle_detected:
-            twist = Twist()
-            twist.linear.x = 0.2
-            twist.angular.z = 1.0
-            self.vel_pub.publish(twist)
+            self.pub_vel_cmd(self.forward_speed, -2.0)
             self.get_logger().debug(f"Right angle found")
-            self.timer = self.create_timer(2, self.end_turn_state_callback)
+            self.timer = self.create_timer(1.5, self.end_turn_state_callback)
 
 
 
@@ -197,8 +200,7 @@ class LineFollower(Node):
 
 
         # find tape position
-        weighted = blue_score * blue_mask
-        column_strength = weighted.mean(axis=0)  # average over rows
+        column_strength = blue_mask.mean(axis=0)  # average over rows
         tape_x = np.argmax(column_strength)
 
         # error
@@ -211,10 +213,8 @@ class LineFollower(Node):
 
         # speed + publish
 
-        twist = Twist()
-        twist.linear.x = self.forward_speed
-        twist.angular.z = turn
-        self.vel_pub.publish(twist)
+        print(f"Vel Cmd {self.forward_speed} {turn}")
+        self.pub_vel_cmd(self.forward_speed, turn)
         
 
 

@@ -60,7 +60,7 @@ def generate_launch_description():
 	)
 
 	ros_stream_with_depth = ExecuteProcess(
-		cmd=['python3', os.path.join(fastsam_dir, 'ros_stream_with_depth.py')],
+		cmd=['python3', os.path.join(fastsam_dir, 'desktop_stream.py')],
 		output='screen',
 		emulate_tty=True,
 	)

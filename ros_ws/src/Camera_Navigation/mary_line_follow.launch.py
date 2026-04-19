@@ -59,6 +59,11 @@ def generate_launch_description():
 		emulate_tty=True,
 	)
 
+	ros_stream_with_depth = ExecuteProcess(
+		cmd=['python3', os.path.join(fastsam_dir, 'desktop_stream.py')],
+		output='screen',
+		emulate_tty=True,
+	)
 
 	running_nodes = _get_running_node_names()
 	launch_actions = []

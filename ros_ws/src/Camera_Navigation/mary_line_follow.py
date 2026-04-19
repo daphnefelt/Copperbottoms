@@ -200,8 +200,7 @@ class LineFollower(Node):
 
 
         # find tape position
-        weighted = blue_score * blue_mask
-        column_strength = weighted.mean(axis=0)  # average over rows
+        column_strength = blue_mask.mean(axis=0)  # average over rows
         tape_x = np.argmax(column_strength)
 
         # error

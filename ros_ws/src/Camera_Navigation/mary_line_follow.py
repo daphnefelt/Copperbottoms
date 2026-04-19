@@ -58,6 +58,15 @@ class LineFollower(Node):
             f'Line follower node started. image_topic={image_topic}, cmd_vel_topic={cmd_vel_topic}'
         )
 
+
+    def pub_vel_cmd(self, vel, dir):
+        self.get_logger().debug(f"Vel Cmd: {vel} vel {dir} direction")
+        twist = Twist()
+        twist.linear.x = vel
+        twist.angular.z = dir
+        self.vel_pub.publish(twist)
+        
+
     def display_img_lines_contours(self, mask, roi, lines, contours, frame_count):
         self.get_logger().debug(f"Generating debug plot for frame {self.frame_count}")
         img_draw = roi.copy()
@@ -175,10 +184,7 @@ class LineFollower(Node):
             self.right_angle_detected = self.detect_right_angle(lines)
 
         if self.right_angle_detected:
-            twist = Twist()
-            twist.linear.x = 0.2
-            twist.angular.z = -2.0
-            self.vel_pub.publish(twist)
+            self.pub_vel_cmd(self.forward_speed, -2.0)
             self.get_logger().debug(f"Right angle found")
             self.timer = self.create_timer(1.5, self.end_turn_state_callback)
 
@@ -204,11 +210,8 @@ class LineFollower(Node):
 
         # speed + publish
 
-        print(f"Going {self.forward_speed} {turn}")
-        twist = Twist()
-        twist.linear.x = self.forward_speed
-        twist.angular.z = turn
-        self.vel_pub.publish(twist)
+        print(f"Vel Cmd {self.forward_speed} {turn}")
+        self.pub_vel_cmd(self.forward_speed, turn)
         
 
 

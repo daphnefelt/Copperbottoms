@@ -22,7 +22,7 @@ class LineFollower(Node):
         self.kp = 0.8
         self.color_threshold = 30
         self.min_pixels = 50
-        self.forward_speed = 0.3
+        self.forward_speed = 0.2
         self.max_turn = 1.0
         self.see_line = False # by default we assume we don't see the line until we do, to avoid spurious turns at startup
         self.debug_count = 0
@@ -61,7 +61,7 @@ class LineFollower(Node):
     def display_img_lines_contours(self, mask, roi, lines, contours, frame_count):
         self.get_logger().debug(f"Generating debug plot for frame {self.frame_count}")
         img_draw = roi.copy()
-        if line is not None:
+        if lines is not None:
             for line in lines:
                 x1, y1, x2, y2 = line[0]
                 cv2.line(img_draw, (x1, y1), (x2, y2), (0, 255, 0), 2)
@@ -102,7 +102,7 @@ class LineFollower(Node):
         orientation_bins = np.arange(-math.radians(degree_range), math.radians(degree_range) + .0001, math.radians(1))
 
 
-        pixel_dist_threshold = 800
+        pixel_dist_threshold = 600
         for i in range(0, degree_range*2):
             o_mask = np.logical_and(orientations < orientation_bins[i+1], orientations >= orientation_bins[i])
             segments = lines[o_mask]
@@ -118,7 +118,7 @@ class LineFollower(Node):
         return False
     
 
-    def timer_callback(self):
+    def end_turn_state_callback(self):
         twist = Twist()
         twist.linear.x = 0.2
         twist.angular.z = 0.0  # straight

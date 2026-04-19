@@ -136,7 +136,7 @@ class LineFollower(Node):
 
 
         if self.frame_count % 10 == 0:
-            self.display_img_lines_contours(blue_mask, roi, lines, contours, self.frame_count)
+            self.display_img_lines_contours(blue_mask[int(height*.3):, :], roi, lines, contours, self.frame_count)
 
 
         

@@ -88,6 +88,7 @@ class LineFollower(Node):
 
         edges = cv2.Canny(thresh, 50, 150, apertureSize=3)
         lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
+        print(lines)
         return (lines, contours)
 
 

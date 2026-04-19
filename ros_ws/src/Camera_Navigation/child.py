@@ -59,7 +59,7 @@ class CombinedFollower(Node):
         self.max_integral      = 0.25
         # adaptive speed
         self.adaptive_speed       = True
-        self.min_speed_ratio      = 0.6
+        self.min_speed_ratio      = 0.8
         self.error_threshold_slow = 0.25
 
         # ── state machine ────────────────────────────────────────────────
@@ -228,8 +228,8 @@ class CombinedFollower(Node):
         if self.mode == self.MODE_LIDAR:
             lin, ang = self._lidar_control(msg)
             self._publish(lin, ang)
-            self.get_logger().info(
-                f'[LIDAR] inf={inf_count}  lin={lin:.2f}  ang={ang:+.3f}')
+            # self.get_logger().info(
+            #     f'[LIDAR] inf={inf_count}  lin={lin:.2f}  ang={ang:+.3f}')
 
     def image_callback(self, msg: Image):
         try:

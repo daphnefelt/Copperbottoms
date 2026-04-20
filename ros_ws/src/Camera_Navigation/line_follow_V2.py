@@ -53,8 +53,12 @@ class LineFollowerV2(Node):
         self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
         self.corner_clear_frames     = 5    # corner detector must be clear for N frames before exit counts
         self.corner_max_frames       = 60   # safety timeout — raised so long turns don't force-exit
-        self.corner_turn_speed       = 0.25   # match forward_speed to clear rover minimum threshold
-        self.corner_turn_rate        = 0.45   # reduced from 0.65 — was overshooting
+        self.corner_turn_speed       = 0.25   # forward speed during blind turn phase
+        self.corner_turn_rate        = 0.65   # angular rate during blind commit phase (raised — guided phase corrects overshoot now)
+        self.corner_guided_speed     = 0.20   # forward speed during guided phase (slightly slower for accuracy)
+        self.corner_guided_kp        = 1.20   # steering gain toward tape centroid during guided phase
+        self.corner_guided_bias      = 0.25   # minimum angular push in turn direction during guided phase
+                                              # prevents rover stalling if tape briefly disappears mid-guide
 
         # --- Track / ROI params ---
         self.roi_top_ratio    = 0.55   # follow control only uses lower portion of frame
@@ -221,7 +225,7 @@ class LineFollowerV2(Node):
             elif self.turn_frames >= self.corner_max_frames:
                 self._exit_turn('safety timeout', track_px)
             else:
-                self.do_turn()
+                self.do_turn(blue_full, w)
                 self.publish_debug(roi, blue_mask, edge_map, track_mask, track_px,
                                    shift_val, corner_det, msg.header)
                 return
@@ -368,18 +372,57 @@ class LineFollowerV2(Node):
         self.last_speed = cmd.linear.x
         self.last_turn  = cmd.angular.z
 
-    def do_turn(self):
+    def do_turn(self, blue_full: np.ndarray, img_width: int):
+        """
+        Two-phase turn:
+          Phase 1 — blind commit (turn_commit_left > 0):
+            Fixed rate spin. Gets rover around the bulk of the corner regardless
+            of where the tape is. Duration set by corner_commit_frames.
+
+          Phase 2 — guided turn (turn_commit_left == 0):
+            Steer toward full-image blue centroid like bridge mode, but with a
+            minimum bias in the original turn direction so the rover keeps moving
+            around the corner even if the tape briefly disappears.
+            Self-corrects both overshoot and undershoot automatically.
+        """
         cmd = Twist()
-        cmd.linear.x  = self.corner_turn_speed
-        cmd.angular.z = float(np.clip(
-            self.corner_sign * self.corner_turn_rate, -self.max_turn, self.max_turn
-        ))
+
+        if self.turn_commit_left > 0:
+            # Phase 1: blind fixed-rate spin
+            cmd.linear.x  = self.corner_turn_speed
+            cmd.angular.z = float(np.clip(
+                self.corner_sign * self.corner_turn_rate, -self.max_turn, self.max_turn
+            ))
+            phase = 'blind'
+        else:
+            # Phase 2: guide toward tape centroid
+            full_px = int(np.sum(blue_full))
+            if full_px > 0:
+                cols    = np.arange(img_width, dtype=np.float32)
+                cx_full = float(np.dot(cols, blue_full.sum(axis=0))) / full_px
+                error   = (cx_full - img_width / 2.0) / max(img_width / 2.0, 1.0)
+                # P steer toward centroid, then add a directional bias so we
+                # keep turning even when tape is briefly near center during transition
+                guided_ang = -self.corner_guided_kp * error
+                bias       = self.corner_sign * self.corner_guided_bias
+                ang        = float(np.clip(guided_ang + bias, -self.max_turn, self.max_turn))
+            else:
+                # No tape visible — hold turn direction with reduced rate
+                ang = float(np.clip(
+                    self.corner_sign * self.corner_guided_bias, -self.max_turn, self.max_turn
+                ))
+            cmd.linear.x  = self.corner_guided_speed
+            cmd.angular.z = ang
+            phase = 'guided'
+
         self.vel_pub.publish(cmd)
         self.last_speed = cmd.linear.x
         self.last_turn  = cmd.angular.z
+
         if self.turn_frames % 5 == 1:
             self.get_logger().warn(
-                f'[DO_TURN] lin={cmd.linear.x:.2f}  ang={cmd.angular.z:.2f}  sign={self.corner_sign:.0f}'
+                f'[DO_TURN:{phase}] lin={cmd.linear.x:.2f}  ang={cmd.angular.z:.2f}  '
+                f'sign={self.corner_sign:.0f}  commit_left={self.turn_commit_left}'
             )
 
     # =========================================================================

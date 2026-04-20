@@ -396,7 +396,7 @@ class LineFollowerV2(Node):
 
         # Lower pixel floor for top since it covers fewer rows
         if top_px < 15 or bot_px < 20:
-            return False, 0.0
+            return False, 0.0, 0.0
 
         cols   = np.arange(w, dtype=np.float32)
         top_cx = float(np.dot(cols, top.sum(axis=0))) / top_px

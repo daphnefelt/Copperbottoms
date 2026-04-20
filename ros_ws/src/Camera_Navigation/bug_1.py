@@ -191,16 +191,18 @@ class Bug1(Node):
         # ── BACKING_UP ───────────────────────────────────────────────────
         print(f'[DEBUG] mode={self.mode}  right={right_dist:.2f}m  front={front_dist:.2f}m')
         if self.mode == self.MODE_BACKING_UP:
-            # set turn direction once the first time we ever back up
-            if not hasattr(self, '_turn_dir'):
-                quad_open = self._quadrant_is_open(ranges, msg)
-                self._turn_dir = -1.0 if quad_open else 1.0  # open quad → turn right, closed → turn left
+            # # set turn direction once the first time we ever back up
+            # if not hasattr(self, '_turn_dir'):
+            #     quad_open = self._quadrant_is_open(ranges, msg)
+            #     self._turn_dir = -1.0 if quad_open else 1.0  # open quad → turn right, closed → turn left
             if now - self.mode_start_time < self.backup_time:
-                self._publish(-self.backup_speed, self._turn_dir * self.turn_speed)
+                self._publish(-self.backup_speed, 0.0) # self._turn_dir * self.turn_speed
                 self.get_logger().info(
                     f'[BACKING_UP] front={front_dist:.2f}m',
                     throttle_duration_sec=0.5)
                 return
+            quad_open = self._quadrant_is_open(ranges, msg)
+            self._turn_dir = -1.0 if quad_open else 1.0  # open quad → turn right, closed → turn left
             self._enter_mode(self.MODE_TURNING)
             # fall through to TURNING this cycle
 

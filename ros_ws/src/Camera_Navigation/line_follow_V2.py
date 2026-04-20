@@ -52,7 +52,7 @@ class LineFollowerV2(Node):
         self.corner_reacquire_frames = 4    # stable follow frames needed to exit turn
         self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
         self.corner_max_frames       = 42   # safety: force-exit turn after this many frames
-        self.corner_turn_speed       = 0.18
+        self.corner_turn_speed       = 0.25   # match forward_speed to clear rover minimum threshold
         self.corner_turn_rate        = 0.65
 
         # --- Track / ROI params ---

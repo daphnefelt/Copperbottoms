@@ -72,6 +72,7 @@ class Bug1(Node):
         self.mode_start_time = time.time()
         self._shift_phase    = 'NONE'   # 'NONE', 'RIGHT', 'LEFT'
         self._shift_start    = 0.0
+        self._nudge_cooldown = 0.0  # time.time() when last nudge finished
 
         # startup settling delay
         self.ready = False
@@ -135,6 +136,7 @@ class Bug1(Node):
                 self._publish(self.forward_speed, self.shift_speed)
                 return True
             self._shift_phase = 'NONE'
+            self._nudge_cooldown = now  # start cooldown
 
         return False  # nudge complete
     
@@ -226,7 +228,10 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # wall is nearby but not close enough — nudge right to close the gap
-                if right_dist < 3:
+                if right_dist < 3: 
+                    if now - self._nudge_cooldown < 0.5:
+                        self._publish(self.forward_speed, 0.0)  # straight cooldown
+                        return
                     if self.nudge_right(now):
                         self.get_logger().info(
                             f'[FIND_WALL] nudging right  right={right_dist:.2f}m  phase={self._shift_phase}',

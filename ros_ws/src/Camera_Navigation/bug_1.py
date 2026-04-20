@@ -181,16 +181,17 @@ class Bug1(Node):
 
         # ── BACKING_UP ───────────────────────────────────────────────────
         if self.mode == self.MODE_BACKING_UP:
+            # if just initiated backup, decide which way to turn
+            if now - self.mode_start_time < 0.1:
+                quad_open = self._quadrant_is_open(ranges, msg)
+                turn_dir  = -1.0 if quad_open else 1.0  # open quad → turn right, closed → turn left
+                self._turn_dir = turn_dir
             if now - self.mode_start_time < self.backup_time:
-                self._publish(-self.backup_speed, 0.0)
+                self._publish(-self.backup_speed, turn_dir * self.turn_speed)
                 self.get_logger().info(
                     f'[BACKING_UP] front={front_dist:.2f}m',
                     throttle_duration_sec=0.5)
                 return
-            # decide which way to turn after backup
-            quad_open = self._quadrant_is_open(ranges, msg)
-            turn_dir  = -1.0 if quad_open else 1.0  # open quad → turn right, closed → turn left
-            self._turn_dir = turn_dir
             self._enter_mode(self.MODE_TURNING)
             # fall through to TURNING this cycle
 

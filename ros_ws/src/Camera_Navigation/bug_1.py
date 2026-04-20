@@ -55,11 +55,13 @@ class Bug1(Node):
 
         self.forward_speed  = 0.25    # m/s
         self.turn_speed     = 0.3     # rad/s (spin in place)
-        self.sharp_turn_speed = 0.5     # rad/s
+        self.sharp_turn_speed = 0.6     # rad/s
         self.backup_speed   = 0.25    # m/s magnitude during backup
-        self.backup_time    = 2.0     # seconds to reverse
+        self.backup_time    = 1.0     # seconds to reverse
         self.kp_angle       = 0.85     # P gain: turn per metre of slope error (parallel correction)
         self.n_min_avg      = 3       # number of closest beams to average for min point
+        self.shift_time     = 0.5     # seconds for each leg of the nudge-right maneuver
+        self.shift_speed    = 0.3     # rad/s used during the nudge
 
         # half-cone for sampling (single beam is fine, small cone is more robust)
         self.cone_half = math.radians(5.0)
@@ -67,6 +69,8 @@ class Bug1(Node):
         # ── state ────────────────────────────────────────────────────────
         self.mode            = self.MODE_FIND_WALL  # start by finding the wall
         self.mode_start_time = time.time()
+        self._shift_phase    = 'NONE'   # 'NONE', 'RIGHT', 'LEFT'
+        self._shift_start    = 0.0
 
         # startup settling delay
         self.ready = False
@@ -112,6 +116,32 @@ class Bug1(Node):
         self.mode            = mode
         self.mode_start_time = time.time()
         self.get_logger().info(f'→ {mode}')
+
+    def nudge_right(self, now: float) -> bool:
+        """
+        Lateral nudge: turn right for shift_time seconds, then turn left for
+        shift_time seconds to restore heading, producing a net rightward shift.
+        Returns True while the nudge is in progress, False when complete.
+        Call every scan tick; it self-manages phase transitions.
+        """
+        if self._shift_phase == 'NONE':
+            self._shift_phase = 'RIGHT'
+            self._shift_start = now
+
+        if self._shift_phase == 'RIGHT':
+            if now - self._shift_start < self.shift_time:
+                self._publish(self.forward_speed, -self.shift_speed)
+                return True
+            self._shift_phase = 'LEFT'
+            self._shift_start = now
+
+        if self._shift_phase == 'LEFT':
+            if now - self._shift_start < self.shift_time:
+                self._publish(self.forward_speed, self.shift_speed)
+                return True
+            self._shift_phase = 'NONE'
+
+        return False  # nudge complete
 
     def _publish(self, lin: float, ang: float):
         t = Twist()
@@ -171,13 +201,19 @@ class Bug1(Node):
         # ── FIND_WALL ────────────────────────────────────────────────────
         if self.mode == self.MODE_FIND_WALL:
             if right_dist <= self.right_wall_dist:
+                self._shift_phase = 'NONE'
                 self._enter_mode(self.MODE_FOLLOW)
                 # fall through to FOLLOW this cycle
             else:
-                # spin right until right arm finds the wall
+                # wall is nearby but not close enough — nudge right to close the gap
                 if right_dist < 3:
-                    self._publish(self.forward_speed, -self.turn_speed * 0.25) # TEST
+                    if self.nudge_right(now):
+                        self.get_logger().info(
+                            f'[FIND_WALL] nudging right  right={right_dist:.2f}m  phase={self._shift_phase}',
+                            throttle_duration_sec=0.3)
+                        return
                 else:
+                    self._shift_phase = 'NONE'  # reset nudge if we go back to sharp turn
                     self._publish(self.forward_speed, -self.sharp_turn_speed)
                 self.get_logger().info(
                     f'[FIND_WALL] right={right_dist:.2f}m — spinning right',

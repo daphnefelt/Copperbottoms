@@ -51,7 +51,7 @@ class Bug1(Node):
         self.front_clear_dist = 1.0   # m — hysteresis: need this to leave TURNING
         self.wall_fov_lo      = -105.0  # deg — left edge of right-wall FOV
         self.wall_fov_hi      = -75.0   # deg — right edge of right-wall FOV
-        self.quadrant_open_thresh = 3.0  # m — beam reading above this = open space
+        self.quadrant_open_thresh = 2.0  # m — beam reading above this = open space
 
         self.forward_speed  = 0.25    # m/s
         self.turn_speed     = 0.3     # rad/s (spin in place)

@@ -55,7 +55,7 @@ class CombinedFollower(Node):
         self.kp_tape           = 0.6
         self.ki_tape           = 0.03
         self.kd_tape           = 0.20
-        self.steering_deadband = 0.05
+        self.steering_deadband = 0.1
         self.max_integral      = 0.25
         # adaptive speed
         self.adaptive_speed       = True

@@ -45,13 +45,14 @@ class LineFollowerV2(Node):
         # A dead zone between the two bands avoids the "knee" of the L confusing both.
         self.corner_top_end          = 0.30  # top band: rows 0  → 30%
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
-        self.corner_shift_thresh     = 0.15  # 15% of frame width
-        self.corner_confirm_frames   = 2    # consecutive detections before committing
+        self.corner_shift_thresh     = 0.22  # raised from 0.15 — 15% was too sensitive at startup angles
+        self.corner_confirm_frames   = 3    # consecutive detections before committing
+        self.corner_min_follow_frames = 10  # must be in follow for N frames before corner can trigger
         self.corner_commit_frames    = 5    # frames to blind-turn before reacquisition check is allowed    # frames to blind-turn before checking reacquire
         self.corner_reacquire_frames = 4    # stable follow frames needed to exit turn
         self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
         self.corner_max_frames       = 42   # safety: force-exit turn after this many frames
-        self.corner_turn_speed       = 0.20
+        self.corner_turn_speed       = 0.18
         self.corner_turn_rate        = 0.65
 
         # --- Track / ROI params ---
@@ -59,6 +60,15 @@ class LineFollowerV2(Node):
         self.min_track_px     = 70
         self.track_lock_req   = 2      # frames of track presence before entering follow
         self.acquire_speed    = 0.08
+
+        # --- Bridge (gap crossing) params ---
+        # When the ROI loses the line, scan the full image before spinning.
+        # If blue is visible anywhere, creep forward steering toward it.
+        # Only fall through to spin-search if the full image also has nothing.
+        self.bridge_speed         = 0.15   # forward speed while bridging a gap
+        self.bridge_kp            = 0.60   # proportional steering toward full-image centroid
+        self.bridge_min_px        = 40     # min full-image blue pixels to count as a target
+        self.bridge_max_blank     = 15     # frames with no full-image blue before -> search
 
         # --- Blue color params (calibrated for blue tape, BGR space) ---
         self.target_bgr         = np.array([164.0, 108.0, 7.0], dtype=np.float32)
@@ -99,6 +109,8 @@ class LineFollowerV2(Node):
         self.turn_commit_left = 0
         self.turn_reacq     = 0
         self.turn_frames    = 0
+        self.bridge_blank_frames   = 0   # consecutive frames with no full-image blue
+        self.follow_frames_total    = 0   # total frames spent in follow state (guards corner trigger)
 
         self.get_logger().info('LineFollower started.')
 
@@ -150,8 +162,10 @@ class LineFollowerV2(Node):
 
         corner_confirmed = self.corner_streak >= self.corner_confirm_frames
 
-        # Enter turn state when corner is confirmed and we have enough track to be sure
-        if self.state != 'turn' and corner_confirmed and track_px >= self.min_track_px:
+        # Enter turn state when corner is confirmed, we have enough track, AND
+        # we've been following long enough that startup geometry can't false-trigger.
+        corner_armed = self.follow_frames_total >= self.corner_min_follow_frames
+        if self.state != 'turn' and corner_confirmed and track_px >= self.min_track_px and corner_armed:
             self.state          = 'turn'
             self.turn_commit_left = self.corner_commit_frames
             self.turn_reacq     = 0
@@ -191,9 +205,11 @@ class LineFollowerV2(Node):
                                    shift_val, corner_det, msg.header)
                 return
 
-        # ---- Follow / Search ----
+        # ---- Follow / Bridge / Search ----
         if track_px >= self.min_track_px:
+            # Line visible in ROI — normal follow path
             self.lock_frames += 1
+            self.bridge_blank_frames = 0
             if self.lock_frames < self.track_lock_req:
                 self.state = 'acquire'
                 self.publish_acquire()
@@ -205,19 +221,41 @@ class LineFollowerV2(Node):
             else:
                 track_x    = self.track_center_x(track_mask, blue_score, edge_map > 0)
                 self.state = 'follow'
+                self.follow_frames_total += 1
                 self.do_follow(track_x, roi.shape[1])
                 if self.frame_count % 10 == 0:
+                    corner_ready = self.follow_frames_total >= self.corner_min_follow_frames
                     self.get_logger().info(
                         f'[FOLLOW] lin={self.last_speed:.2f}  ang={self.last_turn:.2f}  '
                         f'err_unbiased={self.last_unbiased:.3f}  err_biased={self.last_biased:.3f}  '
                         f'offset={self.error_offset:.2f}  track_px={track_px}  '
-                        f'corner_shift={shift_val:.3f}  streak={self.corner_streak}'
+                        f'corner_shift={shift_val:.3f}  streak={self.corner_streak}  '
+                        f'corner_armed={corner_ready}({self.follow_frames_total}/{self.corner_min_follow_frames})'
                     )
         else:
-            self.state       = 'search'
-            self.lock_frames = 0
-            self.track_x_filt = None
-            self.do_search()
+            # ROI line lost — check the full image before giving up and spinning
+            self.lock_frames         = 0
+            self.track_x_filt        = None
+            self.follow_frames_total = 0   # reset so corner can't fire on re-acquisition before stable
+
+            full_blue_px = int(np.sum(blue_full))
+            if full_blue_px >= self.bridge_min_px:
+                # Blue is visible somewhere in the full frame — creep toward it
+                self.bridge_blank_frames = 0
+                self.state = 'bridge'
+                self.do_bridge(blue_full, w)
+                if self.frame_count % 10 == 0:
+                    self.get_logger().info(
+                        f'[BRIDGE] full_blue_px={full_blue_px}  '
+                        f'ang={self.last_turn:.2f}  lin={self.last_speed:.2f}'
+                    )
+            else:
+                # Nothing visible anywhere — spin and hunt
+                self.bridge_blank_frames += 1
+                self.state = 'search'
+                self.do_search()
+                if self.bridge_blank_frames == 1:
+                    self.get_logger().warn('[BRIDGE→SEARCH] no blue in full image, spinning')
 
         self.publish_debug(roi, blue_mask, edge_map, track_mask, track_px,
                            shift_val, corner_det, msg.header)
@@ -288,6 +326,26 @@ class LineFollowerV2(Node):
                 f'spinning={spin_dir}  ang={cmd.angular.z:.2f}'
             )
 
+    def do_bridge(self, blue_full: np.ndarray, img_width: int):
+        """Creep forward steering toward the centroid of blue pixels in the full image.
+        Used to cross intentional gaps in the tape without losing the line entirely."""
+        full_px = int(np.sum(blue_full))
+        if full_px > 0:
+            cols   = np.arange(img_width, dtype=np.float32)
+            cx_full = float(np.dot(cols, blue_full.sum(axis=0))) / full_px
+            # Normalize error to [-1, 1] same as follow
+            error  = (cx_full - img_width / 2.0) / max(img_width / 2.0, 1.0)
+            turn   = float(np.clip(-self.bridge_kp * error, -self.max_turn, self.max_turn))
+        else:
+            turn = self.last_turn  # hold last heading if centroid vanishes mid-call
+
+        cmd = Twist()
+        cmd.linear.x  = self.bridge_speed
+        cmd.angular.z = turn
+        self.vel_pub.publish(cmd)
+        self.last_speed = cmd.linear.x
+        self.last_turn  = cmd.angular.z
+
     def do_turn(self):
         cmd = Twist()
         cmd.linear.x  = self.corner_turn_speed
@@ -297,6 +355,10 @@ class LineFollowerV2(Node):
         self.vel_pub.publish(cmd)
         self.last_speed = cmd.linear.x
         self.last_turn  = cmd.angular.z
+        if self.turn_frames % 5 == 1:
+            self.get_logger().warn(
+                f'[DO_TURN] lin={cmd.linear.x:.2f}  ang={cmd.angular.z:.2f}  sign={self.corner_sign:.0f}'
+            )
 
     # =========================================================================
     # Corner Detection  (centroid-shift method)
@@ -483,6 +545,7 @@ class LineFollowerV2(Node):
                 'turn':    (100, 100, 255),
                 'search':  (100, 200, 255),
                 'acquire': (255, 200, 100),
+                'bridge':  (255, 255,   0),   # yellow — crossing a gap
             }.get(self.state, (200, 200, 200))
 
             line1 = (f'STATE={self.state.upper()}  '

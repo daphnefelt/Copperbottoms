@@ -28,10 +28,10 @@ class LineFollowerV2(Node):
 
         # --- Drive params ---
         self.forward_speed  = 0.25
-        self.search_speed   = 0.0
+        self.search_speed   = 0.2
         self.search_turn    = 0.35
-        self.max_turn       = 1.0
-        self.kp             = 0.80
+        self.max_turn       = 2.0 # THE MAX ANGULAR Z IS 2.0
+        self.kp             = 0.8 # tuning
         self.error_offset   = -0.39 # calibrated experimentally
         self.err_alpha      = 0.18   # low-pass on error signal
         self.x_alpha        = 0.22   # low-pass on track centroid X
@@ -333,16 +333,24 @@ class LineFollowerV2(Node):
         cx       = width / 2.0
         unbiased = (self.track_x_filt - cx) / max(cx, 1.0)
         raw      = unbiased + self.error_offset
-        if abs(raw) < 0.03:
-            raw = 0.0
+        # if abs(raw) < 0.03:
+        #     raw = 0.0
 
         biased = (1 - self.err_alpha) * self.last_error + self.err_alpha * raw
         self.last_error    = biased
         self.last_unbiased = unbiased
         self.last_biased   = biased
 
-        turn = float(np.clip(-self.kp * biased, -self.max_turn, self.max_turn))
-        turn = float(np.clip(turn, self.last_turn - self.max_turn_step,
+        # error updated
+        center_x = width / 2
+        error = (track_x - center_x) / center_x  # normalize error
+        error += self.error_offset
+
+        # control
+        turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
+
+        
+        # turn = float(np.clip(turn, self.last_turn - self.max_turn_step,
                                    self.last_turn + self.max_turn_step))
 
         cmd = Twist()

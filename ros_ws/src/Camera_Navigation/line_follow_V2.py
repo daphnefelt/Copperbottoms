@@ -50,6 +50,8 @@ class LineFollowerV2(Node):
         Negative corner_sign = right turn (CW)
 
         """
+        self.corner_detect_method = 'centroid_shift'  # 'centroid_shift' or 'alt_run_length'
+
         self.corner_top_end          = 0.30  # top band: rows 0  → 30%
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
         self.corner_shift_thresh     = 0.22  # raised from 0.15 — 15% was too sensitive at startup angles
@@ -166,7 +168,11 @@ class LineFollowerV2(Node):
         blue_full     = self.best_component(blue_full_raw, blue_score_full)
 
         # ---- Corner detection ----
-        corner_det, candidate_sign, shift_val = self.detect_corner(blue_full)
+        if self.corner_detect_method == 'centroid_shift':
+            corner_det, candidate_sign, shift_val = self.detect_corner(blue_full)
+        elif self.corner_detect_method == 'alt_run_length':
+            corner_det, candidate_sign, shift_val = self.alt_corner_detect(blue_full)
+
         if corner_det:
             self.corner_streak += 1
             if self.state != 'turn':
@@ -484,6 +490,51 @@ class LineFollowerV2(Node):
             return True, turn_sign, shift
 
         return False, 0.0, shift
+
+    def alt_corner_detect(self, mask: np.ndarray):
+
+
+        """
+        Splits image along vertical axis (left and right halves) and looks for consecutive 
+        blue pixels to the right or left of the center suggesting a horizontal piece of 
+        tape entering the frame. If it sees a run of blue pixels on one side, 
+        it signals a corner in that direction. Counts pixels from
+        the image edge inward,
+        """
+
+        h, w = mask.shape
+        mid = w // 2
+        left_half = mask[:, :mid]
+        right_half = mask[:, mid:]
+
+        # Count consecutive blue pixels from image edges inward for both halves
+
+        # Start from the left edge for the left half
+        left_runs = np.sum(left_half[:, ::-1], axis=0) 
+
+        # Start from the right edge for the right half
+        right_runs = np.sum(right_half, axis=0)
+
+        # only count consecutive runs of blue pixels starting from the edge, 
+        # so we look for the longest run of blue pixels from the edge inward
+        left_runs = np.maximum.accumulate(left_runs[::-1])[::-1]  # reverse to count from edge, then reverse back
+        right_runs = np.maximum.accumulate(right_runs)  # already counting from edge
+
+        # Check for a run of blue pixels exceeding the threshold on either side
+
+        left_corner = np.any(left_runs >= 15)  # Threshold for left corner
+        right_corner = np.any(right_runs >= 15)  # Threshold for right corner
+
+        if left_corner and not right_corner:
+            return True, 1.0, float(np.max(left_runs))  # Left turn
+        elif right_corner and not left_corner:
+            return True, -1.0, float(np.max(right_runs))  # Right turn
+        else:
+            return False, 0.0, 0.0  # No corner detected or ambiguous case
+
+
+
+    
 
     # =========================================================================
     # Image Processing

@@ -117,6 +117,7 @@ class Bug1(Node):
         t = Twist()
         t.linear.x  = float(lin)
         t.angular.z = float(ang)
+        print(f"Publishing: lin={t.linear.x:.2f} m/s  ang={t.angular.z:.2f} rad/s")
         self.vel_pub.publish(t)
 
     # ── main callback ────────────────────────────────────────────────────

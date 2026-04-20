@@ -56,7 +56,7 @@ class Bug1(Node):
         self.forward_speed  = 0.25    # m/s
         self.turn_speed     = 0.3     # rad/s (spin in place)
         self.sharp_turn_speed = 0.5     # rad/s
-        self.backup_speed   = 0.15    # m/s magnitude during backup
+        self.backup_speed   = 0.25    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
         self.kp_angle       = 0.45     # P gain: turn per metre of slope error (parallel correction)
         self.n_min_avg      = 3       # number of closest beams to average for min point
@@ -175,8 +175,8 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # spin right until right arm finds the wall
-                if right_dist < 6:
-                    self._publish(self.forward_speed, -self.turn_speed * 0.0) # TEST
+                if right_dist < 3:
+                    self._publish(self.forward_speed, -self.turn_speed * 0.25) # TEST
                 else:
                     self._publish(self.forward_speed, -self.sharp_turn_speed)
                 self.get_logger().info(

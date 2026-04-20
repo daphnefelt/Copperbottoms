@@ -32,7 +32,7 @@ class LineFollowerV2(Node):
         self.search_turn    = 0.35
         self.max_turn       = 1.0
         self.kp             = 0.80
-        self.error_offset   = float(os.environ.get('LF_ERROR_OFFSET', '-0.40'))
+        self.error_offset   = -0.39 # calibrated experimentally
         self.err_alpha      = 0.18   # low-pass on error signal
         self.x_alpha        = 0.22   # low-pass on track centroid X
         self.max_turn_step  = 0.05   # angular rate limiter

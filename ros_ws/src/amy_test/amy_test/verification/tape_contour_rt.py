@@ -1,11 +1,46 @@
 #!/usr/bin/env python3
 """
 Real-Time Tape Contour Detection Node
+to launch nodes 
+cd ~/code/Copperbottoms/ros_ws
+source install/setup.bash
+ros2 launch amy_test test_full_launch.py
 
 to test 
 
+just vision 
+
+
+source ~/code/Copperbottoms/ros_ws/install/setup.bash
+ros2 launch amy_test tape_contour_rt.launch.py enable_motor_control:=false 
+
+
+with motor control 
 source ~/code/Copperbottoms/ros_ws/install/setup.bash
 ros2 launch amy_test tape_contour_rt.launch.py enable_motor_control:=true
+
+with paramters 
+
+smooth , 
+ros2 launch amy_test tape_contour_rt.launch.py \
+  enable_motor_control:=true \
+  kp:=0.4 \
+  ki:=0.02 \
+  kd:=0.15\
+  steering_deadband:=0.15 \
+  forward_speed:=0.25 \
+  max_turn:=.8
+
+
+
+  ros2 launch amy_test tape_contour_rt.launch.py \
+  enable_motor_control:=true \
+  kp:=0.4 \
+  ki:=0.02 \
+  kd:=0.2 \
+  steering_deadband:=0.12 \
+  forward_speed:=0.22 \
+  max_turn:=1.2
 
 Based on FIFO_Hough.c template - Tests color filtering + contour detection
 Meets real-time deadlines for motor command input at 320x240
@@ -47,9 +82,9 @@ class TapeContourRT(Node):
         self.declare_parameter('kd', 0.20)  # Derivative gain (increased for damping)
         
         # Weave reduction parameters
-        self.declare_parameter('steering_deadband', 0.05)  # Don't steer for errors < 5%
+        self.declare_parameter('steering_deadband', 0.10)  # Don't steer for errors < 10%
         self.declare_parameter('adaptive_speed', True)  # Slow down for large errors
-        self.declare_parameter('min_speed_ratio', 0.6)  # Minimum speed (60% of forward_speed)
+        self.declare_parameter('min_speed_ratio', 0.8)  # Minimum speed (80% = 0.2 m/s at 0.25 forward_speed)
         self.declare_parameter('error_threshold_slow', 0.25)  # Start slowing at 25% error
         self.declare_parameter('max_integral', 0.25)  # Anti-windup limit (reduced)
         
@@ -91,22 +126,36 @@ class TapeContourRT(Node):
         
         # Lost tape handling state
         self.lost_tape_frames = 0
-        self.max_coast_frames = 5      # Coast for ~170ms @ 30Hz
+        self.max_coast_frames = 4      # Coast for ~170ms @ 30Hz
         self.max_search_frames = 20    # Search for ~700ms @ 30Hz
         self.last_contour_center = None
         self.last_turn = 0.0
         self.search_mode = False
         
-        # Advanced recovery state (for sharp turns)
-        self.recovery_phase = 'NONE'  # NONE, BACKING_UP, TURN_RIGHT, TURN_LEFT
+        # Trajectory continuity tracking (favor continuous paths)
+        self.continuity_weight = 300.0  # Penalty weight for distance from previous position (increased)
+        self.angle_continuity_weight = 100.0  # Penalty for angle deviation from trajectory
+        self.last_contour_angle = None  # Track angle for continuity
+        self.trajectory_prediction_weight = 0.8  # How much to trust predicted next position
+        
+        # Advanced recovery state (for sharp turns and dead ends)
+        self.recovery_phase = 'NONE'  # NONE, BACKING_UP, PROBE_FORWARD, TURN_RIGHT, TURN_LEFT, STOPPED
         self.recovery_start_time = None
-        self.backup_duration = 1.5  # Reduced from 3.0 seconds
+        self.backup_duration = 1.5  # Maximum backup duration if no tape found
+        self.backup_after_turn_found = 0.5  # Continue backing up 0.5s after finding turn
+        self.tape_turn_found_time = None  # Track when turn is detected during backup
         self.skip_backup_on_sharp_turn = True  # Skip backup for sharp turns
-        self.turn_search_angle = 45.0  # Increased from 30 degrees
+        self.turn_search_angle = 55.0  # Increased from 30 degrees
         self.turn_accumulated = 0.0
         self.sharp_turn_detected = False
         self.last_angle = None
         self.angle_change_threshold = 35.0  # Reduced from 45 - more sensitive
+        
+        # Dead end detection (tape path ends straight, not a turn)
+        self.dead_end_detected = False
+        self.dead_end_angle_threshold = 20.0  # If tape angle < 20°, consider it straight/dead-end
+        self.probe_forward_duration = 4.0  # Probe forward for 4 seconds looking for tape
+        self.probe_forward_speed = 0.5  # Moderate speed when probing (50% of normal)
         
         # PID control state
         self.error_integral = 0.0
@@ -181,7 +230,8 @@ class TapeContourRT(Node):
     
     def find_best_contour(self, mask):
         """
-        Find contours and select the best one (largest area)
+        Find contours and select the best one (largest area with continuity bias)
+        Favors contours near the previous position to maintain continuous path tracking
         Returns: (best_contour, contour_center, contour_angle) or (None, None, None)
         """
         # Find contours
@@ -190,14 +240,84 @@ class TapeContourRT(Node):
         if len(contours) == 0:
             return None, None, None
         
-        # Filter by minimum area and select largest
+        # Filter by minimum area
         valid_contours = [c for c in contours if cv2.contourArea(c) >= self.min_contour_area]
         
         if len(valid_contours) == 0:
             return None, None, None
         
-        # Get largest contour
-        best_contour = max(valid_contours, key=cv2.contourArea)
+        # Select best contour with continuity bias
+        if self.last_contour_center is not None and len(valid_contours) > 1:
+            # Multiple contours - score them with trajectory-aware continuity
+            best_score = -float('inf')
+            best_contour = None
+            
+            # Predict where tape should be based on previous trajectory
+            predicted_x = self.last_contour_center[0]
+            predicted_y = self.last_contour_center[1]
+            if self.last_contour_angle is not None:
+                # Project forward along the previous angle
+                move_distance = 20  # pixels to look ahead
+                angle_rad = np.radians(self.last_contour_angle)
+                predicted_x += int(move_distance * np.cos(angle_rad))
+                predicted_y += int(move_distance * np.sin(angle_rad))
+            
+            contour_scores = []  # For debugging
+            for contour in valid_contours:
+                # Calculate centroid for this contour
+                M = cv2.moments(contour)
+                if M['m00'] == 0:
+                    continue
+                cx = int(M['m10'] / M['m00'])
+                cy = int(M['m01'] / M['m00'])
+                
+                # Base score: area (larger is better)
+                area = cv2.contourArea(contour)
+                
+                # Distance penalty from PREDICTED position (trajectory-aware)
+                dx_pred = cx - predicted_x
+                dy_pred = cy - predicted_y
+                distance_from_prediction = np.sqrt(dx_pred*dx_pred + dy_pred*dy_pred)
+                trajectory_penalty = distance_from_prediction * self.continuity_weight * self.trajectory_prediction_weight
+                
+                # Distance penalty from LAST position (position continuity)
+                dx_last = cx - self.last_contour_center[0]
+                dy_last = cy - self.last_contour_center[1]
+                distance_from_last = np.sqrt(dx_last*dx_last + dy_last*dy_last)
+                position_penalty = distance_from_last * self.continuity_weight * (1 - self.trajectory_prediction_weight)
+                
+                # Combined distance penalty
+                distance_penalty = trajectory_penalty + position_penalty
+                
+                # Angle continuity penalty (if we have angle history)
+                angle_penalty = 0.0
+                if self.last_contour_angle is not None:
+                    # Calculate expected angle based on position change
+                    expected_angle = np.degrees(np.arctan2(dy_last, dx_last))
+                    angle_diff = abs(expected_angle - self.last_contour_angle)
+                    # Normalize angle difference to [0, 180]
+                    if angle_diff > 180:
+                        angle_diff = 360 - angle_diff
+                    angle_penalty = angle_diff * self.angle_continuity_weight
+                
+                # Combined score: area - distance_penalty - angle_penalty
+                # This favors large contours near the predicted trajectory
+                score = area - distance_penalty - angle_penalty
+                
+                contour_scores.append((score, area, distance_penalty, angle_penalty, cx, cy))
+                
+                if score > best_score:
+                    best_score = score
+                    best_contour = contour
+            
+            # Debug logging when choosing between multiple contours
+            if self.frame_count % 10 == 0 and len(contour_scores) > 1:
+                self.get_logger().info(f'Multiple contours ({len(contour_scores)}): Evaluating trajectory continuity')
+                for i, (score, area, dist_pen, ang_pen, cx, cy) in enumerate(sorted(contour_scores, key=lambda x: x[0], reverse=True)[:3]):
+                    self.get_logger().info(f'  [{i}] score={score:.0f} (area={area:.0f}, dist_pen={dist_pen:.0f}, ang_pen={ang_pen:.0f}) at ({cx},{cy})')
+        else:
+            # First frame or only one contour - just use largest
+            best_contour = max(valid_contours, key=cv2.contourArea)
         
         # Calculate contour center (centroid)
         M = cv2.moments(best_contour)
@@ -269,7 +389,7 @@ class TapeContourRT(Node):
         # D term: Rate of change of error (filtered to reduce noise)
         error_derivative = (error - self.last_error) / dt
         # Stronger low-pass filter on derivative to reduce oscillation/weaving
-        alpha = 0.15  # Was 0.3 - much more smoothing to prevent over-reaction
+        alpha = 0.08  # Was 0.15 - ULTRA smooth filtering to prevent weaving
         self.filtered_derivative = alpha * error_derivative + (1 - alpha) * self.filtered_derivative
         d_term = self.kd * self.filtered_derivative
         
@@ -327,7 +447,7 @@ class TapeContourRT(Node):
             cx, cy = contour_center
             lateral_err_magnitude = abs((cx - width/2) / (width/2))
             # If tape is near edge with high error, it's likely a sharp turn
-            if lateral_err_magnitude > 0.4:
+            if lateral_err_magnitude > 0.75:
                 self.sharp_turn_detected = True
                 if self.frame_count % 30 == 0:  # Log occasionally
                     self.get_logger().info(f'Sharp turn detected from position! Error: {lateral_err_magnitude:.2f}')
@@ -351,7 +471,7 @@ class TapeContourRT(Node):
                     lateral_error = 0.0  # Unknown
                     
                     twist = Twist()
-                    twist.linear.x = self.forward_speed * 0.7  # Slow down while coasting
+                    twist.linear.x = max(0.2, self.forward_speed * 0.7)  # At least 0.2 m/s (robot won't move below this)
                     twist.angular.z = turn
                     if self.enable_motor_control:
                         self.vel_pub.publish(twist)
@@ -400,7 +520,7 @@ class TapeContourRT(Node):
                             search_turn = 0.5   # Turn right (tape was on right)
                 
                 twist = Twist()
-                twist.linear.x = 0.0  # Stop forward motion during search
+                twist.linear.x = 0.2  # Minimum speed for robot to move while searching
                 twist.angular.z = search_turn
                 if self.enable_motor_control:
                     self.vel_pub.publish(twist)
@@ -418,41 +538,122 @@ class TapeContourRT(Node):
             
             # Phase 3: Advanced recovery (backup, then systematic turn search)
             else:
-                # Initialize recovery phase
+                # Initialize recovery phase - always start with backup to find tape
                 if self.recovery_phase == 'NONE':
-                    # Skip backup if sharp turn detected - go straight to turning
-                    if self.skip_backup_on_sharp_turn and self.sharp_turn_detected:
-                        self.recovery_phase = 'TURN_RIGHT'
-                        self.recovery_start_time = time.perf_counter()
-                        self.turn_accumulated = 0.0
-                        self.get_logger().warn('Sharp turn recovery: Skipping backup, going to TURN_RIGHT')
-                    else:
-                        self.recovery_phase = 'BACKING_UP'
-                        self.recovery_start_time = time.perf_counter()
-                        self.turn_accumulated = 0.0
-                        self.get_logger().warn('Starting advanced recovery: BACKING UP')
+                    self.recovery_phase = 'BACKING_UP'
+                    self.recovery_start_time = time.perf_counter()
+                    self.turn_accumulated = 0.0
+                    self.dead_end_detected = False
+                    self.tape_turn_found_time = None
+                    self.get_logger().warn('Starting recovery: BACKING UP to find tape')
                 
                 current_time = time.perf_counter()
                 
-                # Sub-phase 3a: Back up for 3 seconds
+                # Sub-phase 3a: Back up until tape is found (max 1.5 seconds)
                 if self.recovery_phase == 'BACKING_UP':
                     elapsed = current_time - self.recovery_start_time
                     
-                    if elapsed < self.backup_duration:
+                    # Check if we see tape during backup
+                    if best_contour is not None and contour_angle is not None:
+                        # Tape found! Check if it's a turn or a dead end
+                        tape_is_turn = abs(contour_angle) > self.dead_end_angle_threshold
+                        
+                        if tape_is_turn:
+                            # It's a turn - mark when we found it
+                            if self.tape_turn_found_time is None:
+                                self.tape_turn_found_time = current_time
+                                self.get_logger().info(f'Tape turn found during backup (angle={contour_angle:.1f}°), continuing backup for {self.backup_after_turn_found}s')
+                        else:
+                            # It's straight - likely a dead end
+                            if not self.dead_end_detected:
+                                self.dead_end_detected = True
+                                self.get_logger().warn(f'Dead end detected during backup! Tape angle: {contour_angle:.1f}° (straight)')
+                    
+                    # If turn found and 0.5s elapsed since finding it, exit recovery
+                    if self.tape_turn_found_time is not None:
+                        time_since_turn_found = current_time - self.tape_turn_found_time
+                        if time_since_turn_found >= self.backup_after_turn_found:
+                            # Reset recovery state and continue to normal tracking
+                            self.get_logger().info(f'Backup complete after finding turn - resuming tracking')
+                            self.recovery_phase = 'NONE'
+                            self.dead_end_detected = False
+                            self.lost_tape_frames = 0
+                            self.search_mode = False
+                            self.tape_turn_found_time = None
+                            # Don't return - fall through to normal tracking below
+                    
+                    # Continue backing up if conditions not met
+                    if self.recovery_phase == 'BACKING_UP':
+                        if elapsed < self.backup_duration:
+                            # Continue backing up
+                            twist = Twist()
+                            twist.linear.x = -max(0.2, self.forward_speed * 0.7)  # Reverse at least 0.2 m/s
+                            twist.angular.z = 0.0
+                            if self.enable_motor_control:
+                                self.vel_pub.publish(twist)
+                            
+                            # Update status text based on state
+                            if self.tape_turn_found_time is not None:
+                                time_since_turn = current_time - self.tape_turn_found_time
+                                status_text = f'BACKING_UP - turn found ({time_since_turn:.1f}s/{self.backup_after_turn_found:.1f}s)'
+                            else:
+                                status_text = f'BACKING_UP ({elapsed:.1f}s/{self.backup_duration:.1f}s)'
+                            
+                            end_time = time.perf_counter()
+                            process_time_ms = (end_time - start_time) * 1000.0
+                            self.update_statistics(process_time_ms)
+                            debug_img = self.create_debug_visualization(
+                                img, mask, best_contour if best_contour is not None else None, 
+                                contour_center if contour_center is not None else None, 
+                                contour_angle if contour_angle is not None else None,
+                                0.0, 0.0, 0.0, 0.0, 0.0, process_time_ms, False, status_text
+                            )
+                            self.publish_debug_image(debug_img, msg.header)
+                            return
+                        else:
+                            # Backup duration complete - check if dead end detected
+                            if self.dead_end_detected:
+                                # Dead end: try probing forward instead of turning
+                                self.recovery_phase = 'PROBE_FORWARD'
+                                self.recovery_start_time = current_time
+                                self.get_logger().warn('Dead end confirmed - starting PROBE_FORWARD')
+                            else:
+                                # Normal case: no tape found, move to right turn search
+                                self.recovery_phase = 'TURN_RIGHT'
+                                self.turn_accumulated = 0.0
+                                self.get_logger().warn('Backup complete, no tape - starting RIGHT turn search')
+                            
+                            status_text = 'BACKING_UP'
+                            end_time = time.perf_counter()
+                            process_time_ms = (end_time - start_time) * 1000.0
+                            self.update_statistics(process_time_ms)
+                            debug_img = self.create_debug_visualization(
+                                img, mask, None, None, None,
+                                0.0, 0.0, 0.0, 0.0, 0.0, process_time_ms, False, status_text
+                            )
+                            self.publish_debug_image(debug_img, msg.header)
+                            return
+                
+                # Sub-phase 3b: Probe forward slowly looking for tape (for gaps/dead ends)
+                elif self.recovery_phase == 'PROBE_FORWARD':
+                    elapsed = current_time - self.recovery_start_time
+                    
+                    if elapsed < self.probe_forward_duration:
                         twist = Twist()
-                        twist.linear.x = -self.forward_speed * 0.7  # Reverse at coasting speed
-                        twist.angular.z = 0.0
+                        twist.linear.x = max(0.2, self.forward_speed * self.probe_forward_speed)  # At least 0.2 m/s
+                        twist.angular.z = 0.0  # Straight forward
                         if self.enable_motor_control:
                             self.vel_pub.publish(twist)
                         
-                        status_text = f'BACKING_UP ({elapsed:.1f}s/{self.backup_duration:.1f}s)'
+                        status_text = f'PROBE_FORWARD ({elapsed:.1f}s/{self.probe_forward_duration:.1f}s)'
                     else:
-                        # Backup complete, move to right turn search
+                        # Probe failed to find tape - move to turn search
                         self.recovery_phase = 'TURN_RIGHT'
                         self.recovery_start_time = current_time
                         self.turn_accumulated = 0.0
-                        self.get_logger().warn('Backup complete. Starting RIGHT turn search')
-                        status_text = 'BACKING_UP'
+                        self.dead_end_detected = False  # Reset flag
+                        self.get_logger().warn('Probe forward complete. Starting RIGHT turn search')
+                        status_text = 'PROBE_FORWARD'
                     
                     end_time = time.perf_counter()
                     process_time_ms = (end_time - start_time) * 1000.0
@@ -464,7 +665,7 @@ class TapeContourRT(Node):
                     self.publish_debug_image(debug_img, msg.header)
                     return
                 
-                # Sub-phase 3b: Turn right 45 degrees and look for tape
+                # Sub-phase 3c: Turn right 45 degrees and look for tape
                 elif self.recovery_phase == 'TURN_RIGHT':
                     # More aggressive turn rate for recovery
                     turn_rate = 0.8 if self.sharp_turn_detected else 0.5  # Faster for sharp turns
@@ -473,7 +674,7 @@ class TapeContourRT(Node):
                     
                     if self.turn_accumulated < self.turn_search_angle:
                         twist = Twist()
-                        twist.linear.x = 0.0
+                        twist.linear.x = 0.2  # Minimum speed for robot to move while turning
                         twist.angular.z = turn_rate  # Turn right (positive)
                         if self.enable_motor_control:
                             self.vel_pub.publish(twist)
@@ -498,7 +699,7 @@ class TapeContourRT(Node):
                     self.publish_debug_image(debug_img, msg.header)
                     return
                 
-                # Sub-phase 3c: Return to center, then turn left 45 degrees
+                # Sub-phase 3d: Return to center, then turn left 45 degrees
                 elif self.recovery_phase == 'TURN_LEFT':
                     turn_rate = -0.6 if self.sharp_turn_detected else -0.4  # Faster for sharp turns
                     dt = 0.033
@@ -509,7 +710,7 @@ class TapeContourRT(Node):
                     
                     if self.turn_accumulated < total_turn_needed:
                         twist = Twist()
-                        twist.linear.x = 0.0
+                        twist.linear.x = 0.2  # Minimum speed for robot to move while turning
                         twist.angular.z = turn_rate  # Turn left (negative)
                         if self.enable_motor_control:
                             self.vel_pub.publish(twist)
@@ -551,6 +752,36 @@ class TapeContourRT(Node):
                     return
         
         # Tape found - reset lost counter and search mode
+        # BUT: if in PROBE_FORWARD mode, continue probing to get past dead end
+        if self.recovery_phase == 'PROBE_FORWARD':
+            # Continue PROBE_FORWARD even if tape is visible (pushing through dead end)
+            current_time = time.perf_counter()
+            elapsed = current_time - self.recovery_start_time
+            
+            if elapsed < self.probe_forward_duration:
+                twist = Twist()
+                twist.linear.x = max(0.2, self.forward_speed * self.probe_forward_speed)  # At least 0.2 m/s
+                twist.angular.z = 0.0
+                if self.enable_motor_control:
+                    self.vel_pub.publish(twist)
+                
+                # Create debug visualization and return (continue probing)
+                end_time = time.perf_counter()
+                process_time_ms = (end_time - start_time) * 1000.0
+                self.update_statistics(process_time_ms)
+                status_text = f'PROBE_FORWARD ({elapsed:.1f}s/{self.probe_forward_duration:.1f}s) - tape visible'
+                debug_img = self.create_debug_visualization(
+                    img, mask, best_contour, contour_center, contour_angle,
+                    0.0, 0.0, 0.0, 0.0, 0.0, process_time_ms, False, status_text
+                )
+                self.publish_debug_image(debug_img, msg.header)
+                return
+            else:
+                # Probe duration complete with tape found - exit recovery
+                self.get_logger().info('PROBE_FORWARD complete - tape found, resuming tracking')
+                self.recovery_phase = 'NONE'
+                self.dead_end_detected = False
+        
         if self.lost_tape_frames > self.max_coast_frames:
             # Was in search mode, reset PID
             self.reset_pid_state()
@@ -565,7 +796,11 @@ class TapeContourRT(Node):
         self.search_mode = False
         self.recovery_phase = 'NONE'
         self.sharp_turn_detected = False  # Reset sharp turn flag
+        self.dead_end_detected = False  # Reset dead end flag
+        
+        # Update trajectory tracking for next frame (continuity)
         self.last_contour_center = contour_center
+        self.last_contour_angle = contour_angle
         
         # Compute steering command
         turn, lateral_error, p_term, i_term, d_term = self.compute_steering_command(
@@ -584,14 +819,29 @@ class TapeContourRT(Node):
         self.last_turn = turn  # Remember for coasting
         
         # Adaptive speed control: slow down for large errors to reduce weaving
+        # BUT: don't slow down on sharp turns - they need momentum!
         speed = self.forward_speed
-        if self.adaptive_speed:
+        
+        if self.sharp_turn_detected:
+            # Sharp turns: maintain or boost speed to power through
+            speed = self.forward_speed * 1.0  # Full speed for sharp turns
+            if self.frame_count % 30 == 0:
+                self.get_logger().info(f'Sharp turn: maintaining full speed={speed:.2f}')
+        elif self.adaptive_speed:
+            # Normal tracking: slow down for large errors to reduce weaving
             error_magnitude = abs(lateral_error)
             if error_magnitude > self.error_threshold_slow:
+                # Ensure minimum speed is always at least 0.2 m/s absolute
+                min_absolute_speed = 0.2
+                effective_min_ratio = max(self.min_speed_ratio, min_absolute_speed / self.forward_speed)
+                
                 # Linear interpolation between min and max speed
                 speed_ratio = 1.0 - ((error_magnitude - self.error_threshold_slow) / (1.0 - self.error_threshold_slow))
-                speed_ratio = np.clip(speed_ratio, self.min_speed_ratio, 1.0)
+                speed_ratio = np.clip(speed_ratio, effective_min_ratio, 1.0)
                 speed = self.forward_speed * speed_ratio
+        
+        # Final safety check: ensure speed is always at least 0.2 m/s (robot won't move below this)
+        speed = max(0.2, speed)
         
         # End timing (core processing complete)
         end_time = time.perf_counter()
@@ -609,6 +859,7 @@ class TapeContourRT(Node):
             self.vel_pub.publish(twist)
         
         # STEP 5: Create debug visualization (after timing)
+        # Create debug visualization
         debug_img = self.create_debug_visualization(
             img, mask, best_contour, contour_center, contour_angle, 
             turn, lateral_error, p_term, i_term, d_term, process_time_ms, deadline_miss, 'TRACKING'
@@ -704,6 +955,7 @@ class TapeContourRT(Node):
         # Add text overlay with status
         status_colors = {
             'TRACKING': (0, 255, 0),
+            'CAUTIOUS': (0, 200, 255),  # Orange - approaching dead end
             'COASTING': (0, 255, 255),
             'SEARCHING': (0, 165, 255),
             'STOPPED': (0, 0, 255)

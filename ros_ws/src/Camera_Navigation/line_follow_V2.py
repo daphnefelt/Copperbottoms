@@ -15,10 +15,10 @@ except Exception:
     CV2_AVAILABLE = False
 
 
-class LineFollower(Node):
+class LineFollowerV2(Node):
 
     def __init__(self):
-        super().__init__('line_follower')
+        super().__init__('line_follower_v2')
 
         # --- Topics ---
         self.image_sub = self.create_subscription(Image, '/camera/color/image_raw', self.image_callback, 10)
@@ -596,7 +596,7 @@ class LineFollower(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = LineFollower()
+    node = LineFollowerV2()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

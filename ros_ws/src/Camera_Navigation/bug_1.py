@@ -58,7 +58,8 @@ class Bug1(Node):
         self.sharp_turn_speed = 0.6     # rad/s
         self.backup_speed   = 0.25    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
-        self.kp_angle       = 0.85     # P gain: turn per metre of slope error (parallel correction)
+        self.kp_angle       = 0.85     # P gain when correction is leftward (+z)
+        self.kp_angle_right = 1.25      # P gain when correction is rightward (-z)
         self.n_min_avg      = 3       # number of closest beams to average for min point
         self.shift_time     = 0.5     # seconds for each leg of the nudge-right maneuver
         self.shift_speed    = 0.3     # rad/s used during the nudge
@@ -289,7 +290,8 @@ class Bug1(Node):
                 slope_mag   = dist_at_90 - min_dist_fov
                 angle_sign  = math.copysign(1.0, min_angle_deg - (-90.0))
                 angle_error = angle_sign * slope_mag
-                turn = float(np.clip(self.kp_angle * angle_error,
+                kp = self.kp_angle_right if angle_error < 0 else self.kp_angle
+                turn = float(np.clip(kp * angle_error,
                                      -self.turn_speed, self.turn_speed))
             else:
                 turn = 0.0

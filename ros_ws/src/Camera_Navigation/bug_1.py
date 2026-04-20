@@ -140,7 +140,7 @@ class Bug1(Node):
 
         if self._shift_phase == 'STRAIGHT':
             if now - self._shift_start < self.shift_time * 2:
-                self._publish(self.forward_speed, self.shift_speed * 0.4
+                self._publish(self.forward_speed, self.shift_speed * 0.4)
                 return True
             self._shift_phase = 'NONE'
             self._nudge_cooldown = now  # start cooldown

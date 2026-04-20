@@ -55,6 +55,7 @@ class Bug1(Node):
 
         self.forward_speed  = 0.25    # m/s
         self.turn_speed     = 0.3     # rad/s (spin in place)
+        self.sharp_turn_speed = 0.5     # rad/s
         self.backup_speed   = 0.15    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
         self.kp_angle       = 0.35     # P gain: turn per metre of slope error (parallel correction)
@@ -153,7 +154,7 @@ class Bug1(Node):
                 self._enter_mode(self.MODE_FOLLOW)
                 self._publish(0.0, 0.0) # stop before moving forward
                 return
-            self._publish(self.forward_speed, self._turn_dir * self.turn_speed)
+            self._publish(self.forward_speed, self._turn_dir * self.sharp_turn_speed)
             self.get_logger().info(
                 f'[TURNING {"R" if self._turn_dir < 0 else "L"}] front={front_dist:.2f}m',
                 throttle_duration_sec=0.5)
@@ -173,7 +174,10 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # spin right until right arm finds the wall
-                self._publish(self.forward_speed, -self.turn_speed)
+                if right_dist < 6:
+                    self._publish(self.forward_speed, -self.turn_speed)
+                else:
+                    self._publish(self.forward_speed, -self.sharp_turn_speed)
                 self.get_logger().info(
                     f'[FIND_WALL] right={right_dist:.2f}m — spinning right',
                     throttle_duration_sec=0.5)

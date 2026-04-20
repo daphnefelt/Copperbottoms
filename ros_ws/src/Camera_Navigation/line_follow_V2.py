@@ -52,7 +52,7 @@ class LineFollowerV2(Node):
         self.corner_reacquire_frames = 4    # stable follow frames needed to exit turn
         self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
         self.corner_max_frames       = 42   # safety: force-exit turn after this many frames
-        self.corner_turn_speed       = 0.18
+        self.corner_turn_speed       = 0.25   # match forward_speed to clear rover minimum threshold
         self.corner_turn_rate        = 0.65
 
         # --- Track / ROI params ---
@@ -396,7 +396,7 @@ class LineFollowerV2(Node):
 
         # Lower pixel floor for top since it covers fewer rows
         if top_px < 15 or bot_px < 20:
-            return False, 0.0
+            return False, 0.0, 0.0
 
         cols   = np.arange(w, dtype=np.float32)
         top_cx = float(np.dot(cols, top.sum(axis=0))) / top_px

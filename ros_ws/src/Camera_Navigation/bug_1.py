@@ -118,18 +118,12 @@ class Bug1(Node):
         self.get_logger().info(f'→ {mode}')
 
     def nudge_right(self, now: float) -> bool:
-        """
-        Lateral nudge: turn right for shift_time seconds, then turn left for
-        shift_time seconds to restore heading, producing a net rightward shift.
-        Returns True while the nudge is in progress, False when complete.
-        Call every scan tick; it self-manages phase transitions.
-        """
         if self._shift_phase == 'NONE':
             self._shift_phase = 'RIGHT'
             self._shift_start = now
 
         if self._shift_phase == 'RIGHT':
-            if now - self._shift_start < self.shift_time:
+            if now - self._shift_start < self.shift_time * 2:
                 self._publish(self.forward_speed, -self.shift_speed)
                 return True
             self._shift_phase = 'LEFT'

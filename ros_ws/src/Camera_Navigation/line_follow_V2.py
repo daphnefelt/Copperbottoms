@@ -53,7 +53,7 @@ class LineFollowerV2(Node):
         self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
         self.corner_max_frames       = 42   # safety: force-exit turn after this many frames
         self.corner_turn_speed       = 0.25   # match forward_speed to clear rover minimum threshold
-        self.corner_turn_rate        = 0.65
+        self.corner_turn_rate        = 0.45   # reduced from 0.65 — was overshooting
 
         # --- Track / ROI params ---
         self.roi_top_ratio    = 0.55   # follow control only uses lower portion of frame
@@ -67,14 +67,14 @@ class LineFollowerV2(Node):
         # Only fall through to spin-search if the full image also has nothing.
         self.bridge_speed         = 0.15   # forward speed while bridging a gap
         self.bridge_kp            = 0.60   # proportional steering toward full-image centroid
-        self.bridge_min_px        = 40     # min full-image blue pixels to count as a target
+        self.bridge_min_px        = 120    # raised from 40 — noise was causing constant bridge cycling
         self.bridge_max_blank     = 15     # frames with no full-image blue before -> search
 
         # --- Blue color params (calibrated for blue tape, BGR space) ---
         self.target_bgr         = np.array([164.0, 108.0, 7.0], dtype=np.float32)
         self.color_tol          = np.array([50.0,  50.0,  90.0], dtype=np.float32)
         self.blue_score_thresh  = 15.0
-        self.simple_blue_thresh = 58.0
+        self.simple_blue_thresh = 75.0   # raised from 58 — 17k px on ROI means noise is being picked up
         self.edge_boost         = 1.6    # weight multiplier on edge-aligned pixels
         self.min_col_peak       = 2.5
 

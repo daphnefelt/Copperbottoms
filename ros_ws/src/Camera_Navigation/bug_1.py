@@ -189,6 +189,7 @@ class Bug1(Node):
         now        = time.time()
 
         # ── BACKING_UP ───────────────────────────────────────────────────
+        print(f'[DEBUG] mode={self.mode}  right={right_dist:.2f}m  front={front_dist:.2f}m')
         if self.mode == self.MODE_BACKING_UP:
             # set turn direction once the first time we ever back up
             if not hasattr(self, '_turn_dir'):

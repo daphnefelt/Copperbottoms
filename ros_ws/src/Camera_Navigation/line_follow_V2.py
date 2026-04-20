@@ -43,6 +43,13 @@ class LineFollowerV2(Node):
         # Using a narrow top band means even a short horizontal stretch entering the frame
         # dominates the top centroid while the long vertical approach dominates the bottom.
         # A dead zone between the two bands avoids the "knee" of the L confusing both.
+
+        """
+        TURNING CONVENTION: 
+        Positive corner_sign = left turn (CCW)
+        Negative corner_sign = right turn (CW)
+
+        """
         self.corner_top_end          = 0.30  # top band: rows 0  → 30%
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
         self.corner_shift_thresh     = 0.22  # raised from 0.15 — 15% was too sensitive at startup angles
@@ -58,7 +65,8 @@ class LineFollowerV2(Node):
         self.corner_guided_speed     = 0.20   # forward speed during guided phase (slightly slower for accuracy)
         self.corner_guided_kp        = 1.20   # steering gain toward tape centroid during guided phase
         self.corner_guided_bias      = 0.25   # minimum angular push in turn direction during guided phase
-                                              # prevents rover stalling if tape briefly disappears mid-guide
+                                                # prevents rover stalling if tape briefly disappears mid-guide
+
 
         # --- Track / ROI params ---
         self.roi_top_ratio    = 0.55   # follow control only uses lower portion of frame
@@ -111,8 +119,8 @@ class LineFollowerV2(Node):
         # Corner sub-state
         self.corner_streak       = 0
         self.corner_clear_streak = 0   # consecutive frames corner_det has been False during turn
-        self.corner_sign         = 1.0
-        self.turn_commit_left    = 0
+        self.corner_sign         = 1.0  # +1 = left turn, -1 = right turn
+        self.turn_commit_remaining    = 0
         self.turn_reacq          = 0
         self.turn_frames         = 0
         self.bridge_blank_frames   = 0   # consecutive frames with no full-image blue
@@ -173,7 +181,7 @@ class LineFollowerV2(Node):
         corner_armed = self.follow_frames_total >= self.corner_min_follow_frames
         if self.state != 'turn' and corner_confirmed and track_px >= self.min_track_px and corner_armed:
             self.state          = 'turn'
-            self.turn_commit_left    = self.corner_commit_frames
+            self.turn_commit_remaining    = self.corner_commit_frames
             self.turn_reacq          = 0
             self.corner_clear_streak = 0
             self.turn_frames         = 0
@@ -186,8 +194,8 @@ class LineFollowerV2(Node):
         # ---- Turn state execution ----
         if self.state == 'turn':
             self.turn_frames += 1
-            if self.turn_commit_left > 0:
-                self.turn_commit_left -= 1
+            if self.turn_commit_remaining > 0:
+                self.turn_commit_remaining -= 1
 
             # Track how long corner_det has been False — need it gone for N frames
             # before exit can count. This prevents exiting mid-turn when the detector
@@ -203,7 +211,7 @@ class LineFollowerV2(Node):
             #   3. corner shape gone for N consecutive frames
             # NOTE: vertical aspect ratio gate was removed — diagonal post-turn tape
             # has similar bbox width/height and was blocking exit every run.
-            if (self.turn_commit_left <= 0
+            if (self.turn_commit_remaining <= 0
                     and track_px >= self.corner_reacquire_px
                     and self.corner_clear_streak >= self.corner_clear_frames):
                 self.turn_reacq += 1
@@ -213,7 +221,7 @@ class LineFollowerV2(Node):
             if self.frame_count % 5 == 0:
                 self.get_logger().info(
                     f'[TURN] frame={self.turn_frames}/{self.corner_max_frames}  '
-                    f'commit_left={self.turn_commit_left}  '
+                    f'commit_left={self.turn_commit_remaining}  '
                     f'reacq={self.turn_reacq}/{self.corner_reacquire_frames}  '
                     f'track_px={track_px}  corner_det={corner_det}  '
                     f'clear={self.corner_clear_streak}/{self.corner_clear_frames}  '
@@ -340,7 +348,7 @@ class LineFollowerV2(Node):
 
     def do_search(self):
         self.lost_frames += 1
-        spin = -1.0 if self.last_turn >= 0 else 1.0   # keep spinning toward last known line
+        spin = 1.0 if self.last_turn >= 0 else -1.0   # keep spinning toward last known line
         cmd = Twist()
         cmd.linear.x  = self.search_speed
         cmd.angular.z = spin * self.search_turn
@@ -375,11 +383,11 @@ class LineFollowerV2(Node):
     def do_turn(self, blue_full: np.ndarray, img_width: int):
         """
         Two-phase turn:
-          Phase 1 — blind commit (turn_commit_left > 0):
+          Phase 1 — blind commit (turn_commit_remaining > 0):
             Fixed rate spin. Gets rover around the bulk of the corner regardless
             of where the tape is. Duration set by corner_commit_frames.
 
-          Phase 2 — guided turn (turn_commit_left == 0):
+          Phase 2 — guided turn (turn_commit_remaining == 0):
             Steer toward full-image blue centroid like bridge mode, but with a
             minimum bias in the original turn direction so the rover keeps moving
             around the corner even if the tape briefly disappears.
@@ -387,7 +395,7 @@ class LineFollowerV2(Node):
         """
         cmd = Twist()
 
-        if self.turn_commit_left > 0:
+        if self.turn_commit_remaining > 0:
             # Phase 1: blind fixed-rate spin
             cmd.linear.x  = self.corner_turn_speed
             cmd.angular.z = float(np.clip(
@@ -422,7 +430,7 @@ class LineFollowerV2(Node):
         if self.turn_frames % 5 == 1:
             self.get_logger().warn(
                 f'[DO_TURN:{phase}] lin={cmd.linear.x:.2f}  ang={cmd.angular.z:.2f}  '
-                f'sign={self.corner_sign:.0f}  commit_left={self.turn_commit_left}'
+                f'sign={self.corner_sign:.0f}  commit_left={self.turn_commit_remaining}'
             )
 
     # =========================================================================

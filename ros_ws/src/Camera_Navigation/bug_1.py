@@ -125,7 +125,7 @@ class Bug1(Node):
             self._shift_start = now
 
         if self._shift_phase == 'RIGHT':
-            if now - self._shift_start < self.shift_time * 1.5:
+            if now - self._shift_start < self.shift_time * 2.0:
                 self._publish(self.forward_speed, -self.shift_speed * 1.5)
                 return True
             self._shift_phase = 'LEFT'
@@ -139,8 +139,8 @@ class Bug1(Node):
             self._shift_start = now
 
         if self._shift_phase == 'STRAIGHT':
-            if now - self._shift_start < self.shift_time * 4:
-                self._publish(self.forward_speed, self.shift_speed * 0.5)
+            if now - self._shift_start < self.shift_time * 2:
+                self._publish(self.forward_speed, self.shift_speed * 0.2)
                 return True
             self._shift_phase = 'NONE'
             self._nudge_cooldown = now  # start cooldown
@@ -217,7 +217,7 @@ class Bug1(Node):
                 self._publish(0.0, 0.0)
                 self._enter_mode(self.MODE_BACKING_UP)
                 return
-            self._publish(self.forward_speed, self._turn_dir * self.sharp_turn_speed)
+            self._publish(self.forward_speed, self._turn_dir * self.sharp_turn_speed * 2)
             self.get_logger().info(
                 f'[TURNING {"R" if self._turn_dir < 0 else "L"}] front={front_dist:.2f}m',
                 throttle_duration_sec=0.5)

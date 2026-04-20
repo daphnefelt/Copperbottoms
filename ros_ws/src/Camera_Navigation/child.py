@@ -37,11 +37,11 @@ class CombinedFollower(Node):
         self.max_turn      = 0.8
 
         # ── lidar params ────────────────────────────────────────────────
-        self.kp_dist         = 0.1
-        self.kp_angle        = 0.25
-        self.n_min_avg       = 3
+        self.kp_dist         = 0.05
+        self.kp_angle        = 0.2
+        self.n_min_avg       = 1
         self.target_dist     = 1.524             # desired distance to right wall (m)
-        self.wall_fov_deg    = (-105.0, -75.0)   # right side window
+        self.wall_fov_deg    = (-105.0, -50.0)   # right side window
         self.inf_thresh      = 8                 # inf readings that trigger LIDAR mode
         self.lidar_min_dwell = 10.0               # minimum seconds to stay in LIDAR mode
 

@@ -34,7 +34,7 @@ class CombinedFollower(Node):
 
         # ── shared ──────────────────────────────────────────────────────
         self.forward_speed = 0.25
-        self.max_turn      = 0.5
+        self.max_turn      = 0.8
 
         # ── lidar params ────────────────────────────────────────────────
         self.kp_dist         = 0.1
@@ -42,8 +42,8 @@ class CombinedFollower(Node):
         self.n_min_avg       = 3
         self.target_dist     = 1.524             # desired distance to right wall (m)
         self.wall_fov_deg    = (-105.0, -75.0)   # right side window
-        self.inf_thresh      = 4                 # inf readings that trigger LIDAR mode
-        self.lidar_min_dwell = 4.0               # minimum seconds to stay in LIDAR mode
+        self.inf_thresh      = 8                 # inf readings that trigger LIDAR mode
+        self.lidar_min_dwell = 10.0               # minimum seconds to stay in LIDAR mode
 
         # ── tape params ─────────────────────────────────────────────────
         self.tape_color        = np.array([164, 108,  7])   # BGR

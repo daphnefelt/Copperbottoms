@@ -58,8 +58,8 @@ class Bug1(Node):
         self.sharp_turn_speed = 0.6     # rad/s
         self.backup_speed   = 0.25    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
-        self.kp_angle       = 0.85     # P gain when correction is leftward (+z)
-        self.kp_angle_right = 1.25      # P gain when correction is rightward (-z)
+        self.kp_angle       = 1.85     # P gain when correction is leftward (+z)
+        self.kp_angle_right = 0.85      # P gain when correction is rightward (-z)
         self.n_min_avg      = 3       # number of closest beams to average for min point
         self.shift_time     = 0.5     # seconds for each leg of the nudge-right maneuver
         self.shift_speed    = 0.3     # rad/s used during the nudge
@@ -124,7 +124,7 @@ class Bug1(Node):
             self._shift_start = now
 
         if self._shift_phase == 'RIGHT':
-            if now - self._shift_start < self.shift_time * 1.5:
+            if now - self._shift_start < self.shift_time * 2:
                 self._publish(self.forward_speed, -self.shift_speed * 2)
                 return True
             self._shift_phase = 'LEFT'
@@ -226,7 +226,7 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # wall is nearby but not close enough — nudge right to close the gap
-                if right_dist < 3:
+                if right_dist < 2:
                     if self.nudge_right(now):
                         self.get_logger().info(
                             f'[FIND_WALL] nudging right  right={right_dist:.2f}m  phase={self._shift_phase}',

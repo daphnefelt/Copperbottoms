@@ -19,7 +19,7 @@ class FollowTheGap(Node):
         self.max_turn = 0.5
 
         self.kp_dist  = 0.05
-        self.kp_angle = 0.2
+        self.kp_angle = 0.85
         
         self.n_min_avg = 3          # number of closest beams to average for min point
         self.target_dist = 1.524   # desired distance to right wall (m) — 5 ft
@@ -167,8 +167,9 @@ class FollowTheGap(Node):
         dist_at_90 = float(fov_ranges[idx_90])
 
         # Distance error: use d90 as feedback (true perpendicular distance to wall)
+        # If already within 2 m, skip dist correction — just focus on staying parallel
         dist_error = dist_at_90 - self.target_dist
-        dist_turn = -self.kp_dist * dist_error
+        dist_turn = 0.0 if dist_at_90 <= 2.0 else -self.kp_dist * dist_error
 
         # Slope error: how much closer the min point is vs straight right
         # Always >= 0; sign set by which side of -90 the min falls on

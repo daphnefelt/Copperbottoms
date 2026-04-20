@@ -22,14 +22,8 @@ ros2 launch amy_test tape_contour_rt.launch.py enable_motor_control:=true
 with paramters 
 
 smooth , 
-ros2 launch amy_test tape_contour_rt.launch.py \
-  enable_motor_control:=true \
-  kp:=0.4 \
-  ki:=0.02 \
-  kd:=0.15\
-  steering_deadband:=0.15 \
-  forward_speed:=0.25 \
-  max_turn:=.8
+
+
 
 
 
@@ -126,7 +120,7 @@ class TapeContourRT(Node):
         
         # Lost tape handling state
         self.lost_tape_frames = 0
-        self.max_coast_frames = 4      # Coast for ~170ms @ 30Hz
+        self.max_coast_frames = 2      # Coast for ~170ms @ 30Hz
         self.max_search_frames = 20    # Search for ~700ms @ 30Hz
         self.last_contour_center = None
         self.last_turn = 0.0
@@ -141,7 +135,7 @@ class TapeContourRT(Node):
         # Advanced recovery state (for sharp turns and dead ends)
         self.recovery_phase = 'NONE'  # NONE, BACKING_UP, PROBE_FORWARD, TURN_RIGHT, TURN_LEFT, STOPPED
         self.recovery_start_time = None
-        self.backup_duration = 1.5  # Maximum backup duration if no tape found
+        self.backup_duration = 2.5  # Maximum backup duration if no tape found
         self.backup_after_turn_found = 0.5  # Continue backing up 0.5s after finding turn
         self.tape_turn_found_time = None  # Track when turn is detected during backup
         self.skip_backup_on_sharp_turn = True  # Skip backup for sharp turns
@@ -587,7 +581,7 @@ class TapeContourRT(Node):
                         if elapsed < self.backup_duration:
                             # Continue backing up
                             twist = Twist()
-                            twist.linear.x = -max(0.2, self.forward_speed * 0.7)  # Reverse at least 0.2 m/s
+                            twist.linear.x = -max(0.15, self.forward_speed * 0.5)  # Reverse slower: 50% speed, min 0.15 m/s
                             twist.angular.z = 0.0
                             if self.enable_motor_control:
                                 self.vel_pub.publish(twist)
@@ -795,7 +789,6 @@ class TapeContourRT(Node):
         self.lost_tape_frames = 0
         self.search_mode = False
         self.recovery_phase = 'NONE'
-        self.sharp_turn_detected = False  # Reset sharp turn flag
         self.dead_end_detected = False  # Reset dead end flag
         
         # Update trajectory tracking for next frame (continuity)
@@ -808,13 +801,13 @@ class TapeContourRT(Node):
         )
         
         # Boost turn rate for sharp turns during normal tracking
-        if self.sharp_turn_detected and abs(lateral_error) > 0.25:
-            # Increase turn command by 50% for sharp turns
-            turn_boost = 1.5
+        if self.sharp_turn_detected:
+            # Increase turn command by 150% for sharp turns (2.5x multiplier)
+            turn_boost = 2.5
             turn = turn * turn_boost
             turn = float(np.clip(turn, -self.max_turn, self.max_turn))
             if self.frame_count % 30 == 0:
-                self.get_logger().info(f'Sharp turn boost applied! Turn: {turn:.2f}')
+                self.get_logger().info(f'Sharp turn boost applied! Turn: {turn:.2f} (boosted by {turn_boost}x)')
         
         self.last_turn = turn  # Remember for coasting
         
@@ -842,6 +835,9 @@ class TapeContourRT(Node):
         
         # Final safety check: ensure speed is always at least 0.2 m/s (robot won't move below this)
         speed = max(0.2, speed)
+        
+        # Reset sharp turn flag AFTER using it for both turn boost AND speed control
+        self.sharp_turn_detected = False
         
         # End timing (core processing complete)
         end_time = time.perf_counter()

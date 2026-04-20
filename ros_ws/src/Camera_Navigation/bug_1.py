@@ -58,7 +58,7 @@ class Bug1(Node):
         self.sharp_turn_speed = 0.5     # rad/s
         self.backup_speed   = 0.15    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
-        self.kp_angle       = 0.35     # P gain: turn per metre of slope error (parallel correction)
+        self.kp_angle       = 0.45     # P gain: turn per metre of slope error (parallel correction)
         self.n_min_avg      = 3       # number of closest beams to average for min point
 
         # half-cone for sampling (single beam is fine, small cone is more robust)
@@ -175,7 +175,7 @@ class Bug1(Node):
             else:
                 # spin right until right arm finds the wall
                 if right_dist < 6:
-                    self._publish(self.forward_speed, -self.turn_speed)
+                    self._publish(self.forward_speed, -self.turn_speed * 0.0) # TEST
                 else:
                     self._publish(self.forward_speed, -self.sharp_turn_speed)
                 self.get_logger().info(
@@ -197,13 +197,13 @@ class Bug1(Node):
                 quad_open = self._quadrant_is_open(ranges, msg)
                 if quad_open:
                     # open space between front and right → turn right (into opening)
-                    self._publish(self.forward_speed * 0.5, -self.turn_speed)
+                    self._publish(self.forward_speed, -self.turn_speed)
                     self.get_logger().info(
                         '[FOLLOW] front wall + open quadrant → turning right',
                         throttle_duration_sec=0.5)
                 else:
                     # no opening → turn left
-                    self._publish(self.forward_speed * 0.5, self.turn_speed)
+                    self._publish(self.forward_speed, self.turn_speed)
                     self.get_logger().info(
                         '[FOLLOW] front wall + closed quadrant → turning left',
                         throttle_duration_sec=0.5)

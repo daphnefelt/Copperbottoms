@@ -194,6 +194,13 @@ class Bug1(Node):
             self._enter_mode(self.MODE_TURNING)
             # fall through to TURNING this cycle
 
+        # ── hard stop: short front arm → BACKING_UP (preempts everything) ──
+        if front_dist <= self.front_stop_dist:
+            self.get_logger().warn(f'Front wall at {front_dist:.2f}m — backing up.')
+            self._publish(0.0, 0.0) # stop
+            self._enter_mode(self.MODE_BACKING_UP)
+            return
+
         # ── TURNING ──────────────────────────────────────────────────────
         if self.mode == self.MODE_TURNING:
             if front_dist >= self.front_clear_dist:
@@ -204,13 +211,6 @@ class Bug1(Node):
             self.get_logger().info(
                 f'[TURNING {"R" if self._turn_dir < 0 else "L"}] front={front_dist:.2f}m',
                 throttle_duration_sec=0.5)
-            return
-
-        # ── hard stop: short front arm → BACKING_UP (preempts everything) ──
-        if front_dist <= self.front_stop_dist:
-            self.get_logger().warn(f'Front wall at {front_dist:.2f}m — backing up.')
-            self._publish(0.0, 0.0) # stop
-            self._enter_mode(self.MODE_BACKING_UP)
             return
 
         # ── FIND_WALL ────────────────────────────────────────────────────

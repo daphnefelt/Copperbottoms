@@ -45,7 +45,7 @@ class Bug1(Node):
         super().__init__('bug_1')
 
         # ── tunable params ───────────────────────────────────────────────
-        self.right_wall_dist  = 2.0   # m — "right arm in wall" threshold
+        self.right_wall_dist  = 1.5   # m — "right arm in wall" threshold
         self.front_warn_dist  = 1.5   # m — long front arm: steer to avoid in FOLLOW
         self.front_stop_dist  = 0.5   # m — short front arm: trigger BACKING_UP
         self.front_clear_dist = 1.0   # m — hysteresis: need this to leave TURNING
@@ -226,7 +226,7 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # wall is nearby but not close enough — nudge right to close the gap
-                if right_dist < 2:
+                if right_dist < 4:
                     if self.nudge_right(now):
                         self.get_logger().info(
                             f'[FIND_WALL] nudging right  right={right_dist:.2f}m  phase={self._shift_phase}',

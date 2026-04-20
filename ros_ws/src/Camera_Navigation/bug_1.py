@@ -54,11 +54,10 @@ class Bug1(Node):
         self.quadrant_open_thresh = 6.0  # m — beam reading above this = open space
 
         self.forward_speed  = 0.25    # m/s
-        self.turn_speed     = 0.6     # rad/s (spin in place)
-        self.small_turn_speed = 0.3     # rad/s (gentle turn)
+        self.turn_speed     = 0.3     # rad/s (spin in place)
         self.backup_speed   = 0.15    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
-        self.kp_angle       = 0.25     # P gain: turn per metre of slope error (parallel correction)
+        self.kp_angle       = 0.35     # P gain: turn per metre of slope error (parallel correction)
         self.n_min_avg      = 3       # number of closest beams to average for min point
 
         # half-cone for sampling (single beam is fine, small cone is more robust)

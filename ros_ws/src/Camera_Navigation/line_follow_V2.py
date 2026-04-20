@@ -27,12 +27,12 @@ class LineFollowerV2(Node):
         self.debug_pub = self.create_publisher(Image, '/line_follower/debug_image', 10)
 
         # --- Drive params ---
-        self.forward_speed  = 0.25
-        self.search_speed   = 0.0
-        self.search_turn    = 0.35
-        self.max_turn       = 1.0
+        self.forward_speed  = 0.2
+        self.search_speed   = 0.2 # non zero to turn and look
+        self.search_turn    = 2
+        self.max_turn       = 2
         self.kp             = 0.80
-        self.error_offset   = float(os.environ.get('LF_ERROR_OFFSET', '-0.40'))
+        self.error_offset   = float(os.environ.get('LF_ERROR_OFFSET', '-0.39'))
         self.err_alpha      = 0.18   # low-pass on error signal
         self.x_alpha        = 0.22   # low-pass on track centroid X
         self.max_turn_step  = 0.05   # angular rate limiter
@@ -45,15 +45,15 @@ class LineFollowerV2(Node):
         # A dead zone between the two bands avoids the "knee" of the L confusing both.
         self.corner_top_end          = 0.30  # top band: rows 0  → 30%
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
-        self.corner_shift_thresh     = 0.22  # raised from 0.15 — 15% was too sensitive at startup angles
-        self.corner_confirm_frames   = 3    # consecutive detections before committing
-        self.corner_min_follow_frames = 10  # must be in follow for N frames before corner can trigger
-        self.corner_commit_frames    = 5    # frames to blind-turn before reacquisition check is allowed    # frames to blind-turn before checking reacquire
-        self.corner_reacquire_frames = 4    # stable follow frames needed to exit turn
-        self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
+        self.corner_shift_thresh     = 0.18  # raised from 0.15 — 15% was too sensitive at startup angles
+        self.corner_confirm_frames   = 2    # consecutive detections before committing
+        self.corner_min_follow_frames = 7  # must be in follow for N frames before corner can trigger
+        self.corner_commit_frames    = 3    # frames to blind-turn before reacquisition check is allowed    # frames to blind-turn before checking reacquire
+        self.corner_reacquire_frames = 2    # stable follow frames needed to exit turn
+        self.corner_reacquire_px     = 50   # min track pixels to count as reacquired
         self.corner_max_frames       = 42   # safety: force-exit turn after this many frames
-        self.corner_turn_speed       = 0.25   # match forward_speed to clear rover minimum threshold
-        self.corner_turn_rate        = 0.45   # reduced from 0.65 — was overshooting
+        self.corner_turn_speed       = 0.2   # match forward_speed to clear rover minimum threshold
+        self.corner_turn_rate        = 0.5   # reduced from 0.65 — was overshooting
 
         # --- Track / ROI params ---
         self.roi_top_ratio    = 0.55   # follow control only uses lower portion of frame
@@ -314,7 +314,7 @@ class LineFollowerV2(Node):
 
     def do_search(self):
         self.lost_frames += 1
-        spin = -1.0 if self.last_turn >= 0 else 1.0   # keep spinning toward last known line
+        spin = 1.0 if self.last_turn >= 0 else -1.0   # keep spinning toward last known line
         cmd = Twist()
         cmd.linear.x  = self.search_speed
         cmd.angular.z = spin * self.search_turn

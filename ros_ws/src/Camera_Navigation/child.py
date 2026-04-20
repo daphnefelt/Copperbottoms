@@ -37,8 +37,8 @@ class CombinedFollower(Node):
         self.max_turn      = 0.5
 
         # ── lidar params ────────────────────────────────────────────────
-        self.kp_dist         = 0.05
-        self.kp_angle        = 0.2
+        self.kp_dist         = 0.1
+        self.kp_angle        = 0.25
         self.n_min_avg       = 3
         self.target_dist     = 1.524             # desired distance to right wall (m)
         self.wall_fov_deg    = (-105.0, -75.0)   # right side window

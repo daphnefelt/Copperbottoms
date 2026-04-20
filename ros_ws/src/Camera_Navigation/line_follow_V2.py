@@ -14,6 +14,7 @@ except Exception:
     cv2 = None
     CV2_AVAILABLE = False
 
+
 class LineFollowerV2(Node):
 
     def __init__(self):
@@ -26,12 +27,12 @@ class LineFollowerV2(Node):
         self.debug_pub = self.create_publisher(Image, '/line_follower/debug_image', 10)
 
         # --- Drive params ---
-        self.forward_speed  = 0.25 # speed when in basic follow mode
-        self.search_speed   = 0.0 # speed when we are in search mode (stop)
-        self.search_turn    = 0.35 # angular twist in search mode
-        self.max_turn       = 2.0 # our max angular twist (it is 2.0)
-        self.kp             = 0.80 # tuning proportional gain
-        self.error_offset   = float(os.environ.get('LF_ERROR_OFFSET', '-0.40')) # because camera lense is not chasis centered
+        self.forward_speed  = 0.25
+        self.search_speed   = 0.0
+        self.search_turn    = 0.35
+        self.max_turn       = 1.0
+        self.kp             = 0.80
+        self.error_offset   = float(os.environ.get('LF_ERROR_OFFSET', '-0.40'))
         self.err_alpha      = 0.18   # low-pass on error signal
         self.x_alpha        = 0.22   # low-pass on track centroid X
         self.max_turn_step  = 0.05   # angular rate limiter
@@ -46,18 +47,18 @@ class LineFollowerV2(Node):
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
         self.corner_shift_thresh     = 0.15  # 15% of frame width
         self.corner_confirm_frames   = 2    # consecutive detections before committing
-        self.corner_hold_frames      = 5    # frames to blind-turn before checking reacquire
+        self.corner_commit_frames    = 5    # frames to blind-turn before reacquisition check is allowed    # frames to blind-turn before checking reacquire
         self.corner_reacquire_frames = 4    # stable follow frames needed to exit turn
         self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
         self.corner_max_frames       = 42   # safety: force-exit turn after this many frames
-        self.corner_turn_speed       = 0.10 # twist x speed
-        self.corner_turn_rate        = 0.65 # twist z speed (multiplied by corner_sign of ±1)
+        self.corner_turn_speed       = 0.20
+        self.corner_turn_rate        = 0.65
 
         # --- Track / ROI params ---
         self.roi_top_ratio    = 0.55   # follow control only uses lower portion of frame
-        self.min_track_px     = 70     # minimum track pixels to be considered valid (also used for turn exit reacquire)
+        self.min_track_px     = 70
         self.track_lock_req   = 2      # frames of track presence before entering follow
-        self.acquire_speed    = 0.1   # 
+        self.acquire_speed    = 0.08
 
         # --- Blue color params (calibrated for blue tape, BGR space) ---
         self.target_bgr         = np.array([164.0, 108.0, 7.0], dtype=np.float32)
@@ -95,7 +96,7 @@ class LineFollowerV2(Node):
         # Corner sub-state
         self.corner_streak = 0
         self.corner_sign   = 1.0
-        self.turn_hold_remaining = 0
+        self.turn_commit_left = 0
         self.turn_reacq     = 0
         self.turn_frames    = 0
 
@@ -127,7 +128,6 @@ class LineFollowerV2(Node):
         roi_y  = int(h * self.roi_top_ratio)
         roi    = img[roi_y:, :, :]
 
-        # image handling / masking
         blue_mask, blue_score = self.blue_mask_and_score(roi)
         blue_mask  = self.clean_mask(blue_mask)
         edge_map   = self.canny(roi)
@@ -153,10 +153,10 @@ class LineFollowerV2(Node):
         # Enter turn state when corner is confirmed and we have enough track to be sure
         if self.state != 'turn' and corner_confirmed and track_px >= self.min_track_px:
             self.state          = 'turn'
-            self.turn_hold_remaining = self.corner_hold_frames
+            self.turn_commit_left = self.corner_commit_frames
             self.turn_reacq     = 0
             self.turn_frames    = 0
-            dir_str = 'LEFT' if self.corner_sign > 0 else 'RIGHT' # + is left, - is right
+            dir_str = 'LEFT' if self.corner_sign > 0 else 'RIGHT'
             self.get_logger().warn(
                 f'[TURN ENTER] dir={dir_str}  sign={self.corner_sign:+.0f}  '
                 f'shift={shift_val:.3f}  streak={self.corner_streak}  track_px={track_px}'
@@ -165,11 +165,11 @@ class LineFollowerV2(Node):
         # ---- Turn state execution ----
         if self.state == 'turn':
             self.turn_frames += 1
-            if self.turn_hold_remaining > 0:
-                self.turn_hold_remaining -= 1
+            if self.turn_commit_left > 0:
+                self.turn_commit_left -= 1
 
             # Reacquisition check: line back AND no longer a corner shape
-            if track_px >= self.corner_reacquire_px and not corner_confirmed and self.turn_hold_remaining <= 0:
+            if track_px >= self.corner_reacquire_px and not corner_confirmed and self.turn_commit_left <= 0:
                 self.turn_reacq += 1
             else:
                 self.turn_reacq = 0
@@ -177,7 +177,7 @@ class LineFollowerV2(Node):
             if self.frame_count % 5 == 0:
                 self.get_logger().info(
                     f'[TURN] frame={self.turn_frames}/{self.corner_max_frames}  '
-                    f'hold_left={self.turn_hold_remaining}  reacq={self.turn_reacq}/{self.corner_reacquire_frames}  '
+                    f'hold_left={self.turn_commit_left}  reacq={self.turn_reacq}/{self.corner_reacquire_frames}  '
                     f'track_px={track_px}  corner_det={corner_det}  shift={shift_val:.3f}'
                 )
 
@@ -343,8 +343,9 @@ class LineFollowerV2(Node):
         shift = (top_cx - bot_cx) / w   # normalized, resolution-independent
 
         if abs(shift) > self.corner_shift_thresh:
-            # Positive shift → line bends right in top band → turn right (angular.z < 0)
-            turn_sign = -1.0 if shift > 0 else 1.0
+            # Positive shift → top centroid is RIGHT of bottom → tape bends right → turn right (sign=-1)
+            # Negative shift → top centroid is LEFT  of bottom → tape bends left  → turn left  (sign=+1)
+            turn_sign = 1.0 if shift > 0 else -1.0
             return True, turn_sign, shift
 
         return False, 0.0, shift

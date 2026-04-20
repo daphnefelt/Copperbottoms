@@ -58,8 +58,8 @@ class Bug1(Node):
         self.sharp_turn_speed = 0.6     # rad/s
         self.backup_speed   = 0.25    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
-        self.kp_angle       = 0.85     # P gain when correction is leftward (+z)
-        self.kp_angle_right = 1.85      # P gain when correction is rightward (-z)
+        self.kp_angle       = 1.85     # P gain when correction is leftward (+z)
+        self.kp_angle_right = 0.85      # P gain when correction is rightward (-z)
         self.n_min_avg      = 3       # number of closest beams to average for min point
         self.shift_time     = 0.5     # seconds for each leg of the nudge-right maneuver
         self.shift_speed    = 0.3     # rad/s used during the nudge

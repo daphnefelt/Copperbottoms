@@ -221,7 +221,7 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # wall is nearby but not close enough — nudge right to close the gap
-                if right_dist < 3:
+                if right_dist < 6:
                     if self.nudge_right(now):
                         self.get_logger().info(
                             f'[FIND_WALL] nudging right  right={right_dist:.2f}m  phase={self._shift_phase}',

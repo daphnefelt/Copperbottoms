@@ -120,7 +120,7 @@ class TapeContourRT(Node):
         
         # Lost tape handling state
         self.lost_tape_frames = 0
-        self.max_coast_frames = 3      # Coast for ~170ms @ 30Hz
+        self.max_coast_frames = 5      # Coast for ~170ms @ 30Hz
         self.max_search_frames = 20    # Search for ~700ms @ 30Hz
         self.last_contour_center = None
         self.last_turn = 0.0
@@ -585,7 +585,7 @@ class TapeContourRT(Node):
                         if last_x > width // 2:  # Tape was on right
                             search_turn = 1.0  # Maximum right turn
                         else:
-                            search_turn = -0.7  # Less aggressive left (was -0.6)
+                            search_turn = -1.0  # Maximum left turn (was -0.7)
                 else:
                     # Normal search - determine direction based on last known position
                     search_turn = 0.5
@@ -780,7 +780,7 @@ class TapeContourRT(Node):
                 
                 # Sub-phase 3d: Return to center, then turn left 45 degrees
                 elif self.recovery_phase == 'TURN_LEFT':
-                    turn_rate = -0.6 if self.sharp_turn_detected else -0.4  # Faster for sharp turns
+                    turn_rate = -0.8 if self.sharp_turn_detected else -0.5  # Match right turn rates
                     dt = 0.033
                     turn_degrees = np.degrees(abs(turn_rate * dt))
                     

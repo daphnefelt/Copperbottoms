@@ -124,7 +124,27 @@ class Bug1(Node):
 
         if self._shift_phase == 'RIGHT':
             if now - self._shift_start < self.shift_time * 2:
-                self._publish(self.forward_speed, -self.shift_speed)
+                self._publish(self.forward_speed, -self.shift_speed * 2)
+                return True
+            self._shift_phase = 'LEFT'
+            self._shift_start = now
+
+        if self._shift_phase == 'LEFT':
+            if now - self._shift_start < self.shift_time:
+                self._publish(self.forward_speed, self.shift_speed)
+                return True
+            self._shift_phase = 'NONE'
+
+        return False  # nudge complete
+    
+    def turn_right(self, now: float) -> bool:
+        if self._shift_phase == 'NONE':
+            self._shift_phase = 'RIGHT'
+            self._shift_start = now
+
+        if self._shift_phase == 'RIGHT':
+            if now - self._shift_start < self.shift_time * 4:
+                self._publish(self.forward_speed, -self.shift_speed * 2)
                 return True
             self._shift_phase = 'LEFT'
             self._shift_start = now
@@ -207,8 +227,10 @@ class Bug1(Node):
                             throttle_duration_sec=0.3)
                         return
                 else:
-                    self._shift_phase = 'NONE'  # reset nudge if we go back to sharp turn
-                    self._publish(self.forward_speed, -self.sharp_turn_speed)
+                    if self.turn_right(now):
+                        self.get_logger().info(
+                            f'[FIND_WALL] turning right  right={right_dist:.2f}m  phase={self._shift_phase}',
+                            throttle_duration_sec=0.3)
                 self.get_logger().info(
                     f'[FIND_WALL] right={right_dist:.2f}m — spinning right',
                     throttle_duration_sec=0.5)

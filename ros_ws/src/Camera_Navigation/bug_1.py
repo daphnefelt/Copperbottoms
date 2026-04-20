@@ -139,7 +139,7 @@ class Bug1(Node):
             self._shift_start = now
 
         if self._shift_phase == 'STRAIGHT':
-            if now - self._shift_start < self.shift_time * 2:
+            if now - self._shift_start < self.shift_time * 4:
                 self._publish(self.forward_speed, self.shift_speed * 0.5)
                 return True
             self._shift_phase = 'NONE'

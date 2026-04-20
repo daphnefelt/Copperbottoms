@@ -130,6 +130,7 @@ class ArrowTeleop(Node):
                 # Calculate and publish based on currently held keys
                 steering, throttle = self.calculate_servo_values()
                 twist = self.map_to_twist(steering, throttle)
+                print(f"Publishing: linear.x={twist.linear.x:.2f} m/s  angular.z={twist.angular.z:.2f} rad/s")
                 self.pub.publish(twist)
                 
                 # Small delay to prevent CPU spinning

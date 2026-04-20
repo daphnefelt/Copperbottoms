@@ -55,7 +55,7 @@ class Bug1(Node):
 
         self.forward_speed  = 0.25    # m/s
         self.turn_speed     = 0.3     # rad/s (spin in place)
-        self.sharp_turn_speed = 0.6     # rad/s
+        self.sharp_turn_speed = 0.75     # rad/s
         self.backup_speed   = 0.25    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
         self.kp_angle       = 1.85     # P gain when correction is leftward (+z)

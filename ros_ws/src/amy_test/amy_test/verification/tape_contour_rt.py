@@ -44,7 +44,7 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 from cv_bridge import CvBridge
 import cv2
 import numpy as np
@@ -164,6 +164,9 @@ class TapeContourRT(Node):
         self.last_time = None
         self.filtered_derivative = 0.0
         
+        # Contingency control
+        self.turn_right = False  # Latest value from /turn_right topic
+        
         # Real-time priority setup (requires sudo/root)
         self.setup_realtime_priority()
         
@@ -175,6 +178,12 @@ class TapeContourRT(Node):
             Image,
             image_topic,
             self.image_callback,
+            10
+        )
+        self.turn_right_sub = self.create_subscription(
+            Bool,
+            '/turn_right',
+            self._turn_right_cb,
             10
         )
         
@@ -409,6 +418,14 @@ class TapeContourRT(Node):
         self.last_error = 0.0
         self.last_time = None
         self.filtered_derivative = 0.0
+    
+    def _turn_right_cb(self, msg: Bool):
+        """Callback for /turn_right topic - contingency control"""
+        self.turn_right = msg.data
+        if msg.data:
+            self.get_logger().info('Turn right contingency ENABLED')
+        else:
+            self.get_logger().info('Turn right contingency DISABLED')
     
     def image_callback(self, msg: Image):
         """Main image processing callback - timed for real-time performance"""
@@ -795,11 +812,21 @@ class TapeContourRT(Node):
                     self.publish_debug_image(debug_img, msg.header)
                     return
                 
-                # Sub-phase 3d: Final stop
+                # Sub-phase 3e: Final stop (or contingency mode)
                 else:  # recovery_phase == 'STOPPED'
+                    # Contingency: Check turn_right toggle
                     twist = Twist()
-                    twist.linear.x = 0.0
-                    twist.angular.z = 0.0
+                    if self.turn_right:
+                        # Turn right contingency
+                        twist.linear.x = self.forward_speed
+                        twist.angular.z = -self.max_turn  # Turn right (negative)
+                        status_text = 'CONTINGENCY: TURN_RIGHT'
+                    else:
+                        # Coast forward contingency
+                        twist.linear.x = self.forward_speed
+                        twist.angular.z = 0.0
+                        status_text = 'CONTINGENCY: COAST_FORWARD'
+                    
                     if self.enable_motor_control:
                         self.vel_pub.publish(twist)
                     
@@ -808,7 +835,7 @@ class TapeContourRT(Node):
                     self.update_statistics(process_time_ms)
                     debug_img = self.create_debug_visualization(
                         img, mask, None, None, None,
-                        0.0, 0.0, 0.0, 0.0, 0.0, process_time_ms, False, 'STOPPED'
+                        twist.angular.z, 0.0, 0.0, 0.0, 0.0, process_time_ms, False, status_text
                     )
                     self.publish_debug_image(debug_img, msg.header)
                     return

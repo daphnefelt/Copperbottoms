@@ -45,7 +45,7 @@ class Bug1(Node):
         super().__init__('bug_1')
 
         # ── tunable params ───────────────────────────────────────────────
-        self.right_wall_dist  = 2.0   # m — "right arm in wall" threshold
+        self.right_wall_dist  = 3.0   # m — "right arm in wall" threshold
         self.front_warn_dist  = 1.5   # m — long front arm: steer to avoid in FOLLOW
         self.front_stop_dist  = 0.5   # m — short front arm: trigger BACKING_UP
         self.front_clear_dist = 1.0   # m — hysteresis: need this to leave TURNING

@@ -186,7 +186,7 @@ class Bug1(Node):
                 quad_open = self._quadrant_is_open(ranges, msg)
                 self._turn_dir = -1.0 if quad_open else 1.0  # open quad → turn right, closed → turn left
             if now - self.mode_start_time < self.backup_time:
-                self._publish(-self.backup_speed, -self._turn_dir * self.turn_speed)
+                self._publish(-self.backup_speed, self._turn_dir * self.turn_speed)
                 self.get_logger().info(
                     f'[BACKING_UP] front={front_dist:.2f}m',
                     throttle_duration_sec=0.5)

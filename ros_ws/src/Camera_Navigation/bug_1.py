@@ -111,7 +111,7 @@ class Bug1(Node):
         quad = ranges[lo:hi + 1]
         # count beams that are either inf or above threshold
         open_count = int(np.sum((quad > self.quadrant_open_thresh) | np.isinf(quad)))
-        return open_count > len(quad) // 3
+        return open_count > len(quad) // 2
 
     def _enter_mode(self, mode: str):
         self.mode            = mode

@@ -1,6 +1,7 @@
 import rclpy
 import numpy as np
 import os
+import time
 from numpy.lib.stride_tricks import as_strided
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
@@ -27,15 +28,21 @@ class LineFollowerV2(Node):
         self.debug_pub = self.create_publisher(Image, '/line_follower/debug_image', 10)
 
         # --- Drive params ---
-        self.forward_speed  = 0.25
-        self.search_speed   = 0.2
-        self.search_turn    = 0.35
-        self.max_turn       = 2.0 # THE MAX ANGULAR Z IS 2.0
-        self.kp             = 0.8 # tuning
-        self.error_offset   = -0.39 # calibrated experimentally
-        self.err_alpha      = 0.18   # low-pass on error signal
-        self.x_alpha        = 0.22   # low-pass on track centroid X
-        self.max_turn_step  = 0.05   # angular rate limiter
+        self.forward_speed  = 0.3
+        self.follow_min_speed = 0.14
+        self.follow_turn_slowdown = 0.10
+        self.search_speed   = 0.25 # SPIN NEEDS POSITIVE VELOCITY TO ACTUALLY TURN
+        self.search_turn    = 0.50
+        self.max_turn       = 1.5 # THE MAX ANGULAR Z IS 2.0
+        self.follow_max_turn = 1.20
+        self.kp             = 0.75
+        # Log-derived trim: when physically centered, err_unbiased sat around +0.36,
+        # so offset needs to cancel most of that static bias.
+        self.error_offset   = -0.36
+        self.follow_deadband = 0.012
+        self.err_alpha      = 0.35   # low-pass on error signal
+        self.x_alpha        = 0.45   # low-pass on track centroid X
+        self.max_turn_step  = 0.14
 
         # --- Corner / turn params ---
         # corner_shift_thresh: normalized centroid-X shift that signals a corner.
@@ -50,8 +57,11 @@ class LineFollowerV2(Node):
         Negative corner_sign = right turn (CW)
 
         """
-        self.corner_detect_method = 'centroid_shift'  # 'centroid_shift' or 'alt_run_length'
+        self.corner_detect_method = 'alt_run_length'  # 'centroid_shift' or 'alt_run_length'
         self.alt_corner_detect_run_length = 40  # number of consecutive blue pixels from edge to count as corner (for alt_run_length method)
+        self.alt_corner_top_ratio = 0.35        # only inspect top band for horizontal corner piece
+        self.alt_corner_min_rows = 8            # require enough rows with an edge-run to confirm
+        self.alt_corner_asymmetry = 1.6         # dominant side must exceed opposite side by this factor
 
         self.corner_top_end          = 0.30  # top band: rows 0  → 30%
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
@@ -72,7 +82,9 @@ class LineFollowerV2(Node):
 
 
         # --- Track / ROI params ---
-        self.roi_top_ratio    = 0.55   # follow control only uses lower portion of frame
+        self.roi_top_ratio    = 0.70   # match older stable behavior: use bottom 30% for follow
+        self.track_near_ratio = 0.60   # near lookahead emphasis helps with snaky curves
+        self.track_near_blend = 0.75   # blend near-field center with full ROI center
         self.min_track_px     = 70
         self.track_lock_req   = 2      # frames of track presence before entering follow
         self.acquire_speed    = 0.08
@@ -81,7 +93,7 @@ class LineFollowerV2(Node):
         # When the ROI loses the line, scan the full image before spinning.
         # If blue is visible anywhere, creep forward steering toward it.
         # Only fall through to spin-search if the full image also has nothing.
-        self.bridge_speed         = 0.15   # forward speed while bridging a gap
+        self.bridge_speed         = 0.25   # forward speed while bridging a gap
         self.bridge_kp            = 0.60   # proportional steering toward full-image centroid
         self.bridge_min_px        = 120    # raised from 40 — noise was causing constant bridge cycling
         self.bridge_max_blank     = 15     # frames with no full-image blue before -> search
@@ -100,10 +112,15 @@ class LineFollowerV2(Node):
         self.comp_bottom_bonus = 1.8
 
         # --- Canny params ---
+        self.use_edge_boost = os.environ.get('LF_USE_EDGE_BOOST', '0') == '1'
         self.canny_high_pct  = 86.0
         self.canny_low_ratio = 0.45
 
         # --- Debug ---
+        self.log_every   = max(int(os.environ.get('LF_LOG_EVERY', '10')), 1)
+        self.log_perf    = os.environ.get('LF_LOG_PERF', '1') == '1'
+        self.perf_alpha  = 0.12
+        self.perf_ema_ms = 0.0
         self.debug_topic   = os.environ.get('LF_DEBUG_TOPIC', '0') == '1'
         self.debug_every_n = max(int(os.environ.get('LF_DEBUG_EVERY', '1')), 1)
 
@@ -142,6 +159,7 @@ class LineFollowerV2(Node):
             self.get_logger().info(f'Armed: {self.armed}')
 
     def image_callback(self, msg: Image):
+        t0 = time.perf_counter()
         self.frame_count += 1
         img = self.decode_image(msg)
         if img is None:
@@ -159,7 +177,11 @@ class LineFollowerV2(Node):
 
         blue_mask, blue_score = self.blue_mask_and_score(roi)
         blue_mask  = self.clean_mask(blue_mask)
-        edge_map   = self.canny(roi)
+        if self.use_edge_boost or self.debug_topic:
+            edge_map = self.canny(roi)
+        else:
+            # Fast path: skip expensive Canny when edge weighting is disabled.
+            edge_map = np.zeros(blue_mask.shape, dtype=np.uint8)
         track_mask = self.best_component(blue_mask, blue_score)
         track_px   = int(np.sum(track_mask))
 
@@ -243,6 +265,7 @@ class LineFollowerV2(Node):
                 self.do_turn(blue_full, w)
                 self.publish_debug(roi, blue_mask, edge_map, track_mask, track_px,
                                    shift_val, corner_det, msg.header)
+                self.maybe_log_perf(t0)
                 return
 
         # ---- Follow / Bridge / Search ----
@@ -253,7 +276,7 @@ class LineFollowerV2(Node):
             if self.lock_frames < self.track_lock_req:
                 self.state = 'acquire'
                 self.publish_acquire()
-                if self.frame_count % 10 == 0:
+                if self.frame_count % self.log_every == 0:
                     self.get_logger().info(
                         f'[ACQUIRE] lock={self.lock_frames}/{self.track_lock_req}  '
                         f'track_px={track_px}'
@@ -263,7 +286,7 @@ class LineFollowerV2(Node):
                 self.state = 'follow'
                 self.follow_frames_total += 1
                 self.do_follow(track_x, roi.shape[1])
-                if self.frame_count % 10 == 0:
+                if self.frame_count % self.log_every == 0:
                     corner_ready = self.follow_frames_total >= self.corner_min_follow_frames
                     self.get_logger().info(
                         f'[FOLLOW] lin={self.last_speed:.2f}  ang={self.last_turn:.2f}  '
@@ -284,7 +307,7 @@ class LineFollowerV2(Node):
                 self.bridge_blank_frames = 0
                 self.state = 'bridge'
                 self.do_bridge(blue_full, w)
-                if self.frame_count % 10 == 0:
+                if self.frame_count % self.log_every == 0:
                     self.get_logger().info(
                         f'[BRIDGE] full_blue_px={full_blue_px}  '
                         f'ang={self.last_turn:.2f}  lin={self.last_speed:.2f}'
@@ -299,6 +322,23 @@ class LineFollowerV2(Node):
 
         self.publish_debug(roi, blue_mask, edge_map, track_mask, track_px,
                            shift_val, corner_det, msg.header)
+        self.maybe_log_perf(t0)
+
+    def maybe_log_perf(self, t0: float):
+        if not self.log_perf:
+            return
+        dt_ms = (time.perf_counter() - t0) * 1000.0
+        if self.perf_ema_ms <= 0.0:
+            self.perf_ema_ms = dt_ms
+        else:
+            self.perf_ema_ms = (1.0 - self.perf_alpha) * self.perf_ema_ms + self.perf_alpha * dt_ms
+
+        if self.frame_count % self.log_every == 0:
+            fps = 1000.0 / max(self.perf_ema_ms, 1e-3)
+            self.get_logger().info(
+                f'[PERF] proc_ms={dt_ms:.1f}  ema_ms={self.perf_ema_ms:.1f}  '
+                f'fps~={fps:.1f}  state={self.state}'
+            )
 
     def _exit_turn(self, reason: str, track_px: int = 0):
         dir_str = 'LEFT' if self.corner_sign > 0 else 'RIGHT'
@@ -330,31 +370,25 @@ class LineFollowerV2(Node):
         else:
             self.track_x_filt = (1 - self.x_alpha) * self.track_x_filt + self.x_alpha * track_x
 
-        cx       = width / 2.0
-        unbiased = (self.track_x_filt - cx) / max(cx, 1.0)
-        raw      = unbiased + self.error_offset
-        # if abs(raw) < 0.03:
-        #     raw = 0.0
+        center_x = width / 2.0
+        unbiased = (self.track_x_filt - center_x) / max(center_x, 1.0)
+        raw_error = unbiased + self.error_offset
+        error = (1 - self.err_alpha) * self.last_error + self.err_alpha * raw_error
+        if abs(error) < self.follow_deadband:
+            error = 0.0
 
-        biased = (1 - self.err_alpha) * self.last_error + self.err_alpha * raw
-        self.last_error    = biased
+        self.last_error    = error
         self.last_unbiased = unbiased
-        self.last_biased   = biased
+        self.last_biased   = error
 
-        # error updated
-        center_x = width / 2
-        error = (track_x - center_x) / center_x  # normalize error
-        error += self.error_offset
-
-        # control
-        turn = float(np.clip(-self.kp * error, -self.max_turn, self.max_turn))
-
-        
-        # turn = float(np.clip(turn, self.last_turn - self.max_turn_step,
-                                   self.last_turn + self.max_turn_step))
+        turn_cmd = float(np.clip(-self.kp * error, -self.follow_max_turn, self.follow_max_turn))
+        turn = float(np.clip(turn_cmd,
+                             self.last_turn - self.max_turn_step,
+                             self.last_turn + self.max_turn_step))
 
         cmd = Twist()
-        cmd.linear.x  = self.forward_speed
+        cmd.linear.x = max(self.follow_min_speed,
+                   self.forward_speed - self.follow_turn_slowdown * abs(turn))
         cmd.angular.z = turn
         self.vel_pub.publish(cmd)
         self.last_speed  = cmd.linear.x
@@ -368,7 +402,7 @@ class LineFollowerV2(Node):
         cmd.linear.x  = self.search_speed
         cmd.angular.z = spin * self.search_turn
         self.vel_pub.publish(cmd)
-        if self.lost_frames % 10 == 0:
+        if self.lost_frames % self.log_every == 0:
             spin_dir = 'LEFT' if spin > 0 else 'RIGHT'
             self.get_logger().warn(
                 f'[SEARCH] lost_frames={self.lost_frames}  '
@@ -518,7 +552,7 @@ class LineFollowerV2(Node):
         if abs(shift) > self.corner_shift_thresh:
             # Positive shift → top centroid is RIGHT of bottom → tape bends right → turn right (sign=-1)
             # Negative shift → top centroid is LEFT  of bottom → tape bends left  → turn left  (sign=+1)
-            turn_sign = 1.0 if shift > 0 else -1.0
+            turn_sign = -1.0 if shift > 0 else 1.0
             return True, turn_sign, shift
 
         return False, 0.0, shift
@@ -535,34 +569,42 @@ class LineFollowerV2(Node):
         """
 
         h, w = mask.shape
-        mid = w // 2
-        left_half = mask[:, :mid]
-        right_half = mask[:, mid:]
+        top_h = max(1, int(h * self.alt_corner_top_ratio))
+        top = mask[:top_h, :]
 
-        # Count consecutive blue pixels from image edges inward for both halves
+        # Run-length from left edge for each row in top band.
+        inv_left = ~top
+        left_first_zero = np.argmax(inv_left, axis=1)
+        left_all_blue = ~np.any(inv_left, axis=1)
+        left_runs = left_first_zero.astype(np.int32)
+        left_runs[left_all_blue] = w
 
-        # Start from the left edge for the left half
-        left_runs = np.sum(left_half[:, ::-1], axis=0) 
+        # Run-length from right edge for each row (flip and reuse same logic).
+        top_rev = top[:, ::-1]
+        inv_right = ~top_rev
+        right_first_zero = np.argmax(inv_right, axis=1)
+        right_all_blue = ~np.any(inv_right, axis=1)
+        right_runs = right_first_zero.astype(np.int32)
+        right_runs[right_all_blue] = w
 
-        # Start from the right edge for the right half
-        right_runs = np.sum(right_half, axis=0)
+        left_hits = int(np.sum(left_runs >= self.alt_corner_detect_run_length))
+        right_hits = int(np.sum(right_runs >= self.alt_corner_detect_run_length))
 
-        # only count consecutive runs of blue pixels starting from the edge, 
-        # so we look for the longest run of blue pixels from the edge inward
-        left_runs = np.maximum.accumulate(left_runs[::-1])[::-1]  # reverse to count from edge, then reverse back
-        right_runs = np.maximum.accumulate(right_runs)  # already counting from edge
-
-        # Check for a run of blue pixels exceeding the threshold on either side
-
-        left_corner = np.any(left_runs >= self.alt_corner_detect_run_length)  # Threshold for left corner
-        right_corner = np.any(right_runs >= self.alt_corner_detect_run_length)  # Threshold for right corner
+        left_corner = (
+            left_hits >= self.alt_corner_min_rows and
+            left_hits >= int(self.alt_corner_asymmetry * max(1, right_hits))
+        )
+        right_corner = (
+            right_hits >= self.alt_corner_min_rows and
+            right_hits >= int(self.alt_corner_asymmetry * max(1, left_hits))
+        )
 
         if left_corner and not right_corner:
-            return True, 1.0, float(np.max(left_runs))  # Left turn
-        elif right_corner and not left_corner:
-            return True, -1.0, float(np.max(right_runs))  # Right turn
-        else:
-            return False, 0.0, 0.0  # No corner detected or ambiguous case
+            return True, 1.0, float(left_hits)   # left turn
+        if right_corner and not left_corner:
+            return True, -1.0, float(right_hits)  # right turn
+
+        return False, 0.0, float(left_hits - right_hits)
 
 
 
@@ -629,8 +671,22 @@ class LineFollowerV2(Node):
         weighted = np.maximum(blue_score, 0).astype(np.float32)
         weighted *= (1.0 + self.edge_boost * edge_mask.astype(np.float32))
         weighted *= mask.astype(np.float32)
-        col_str = weighted.mean(axis=0)
+
+        # Emphasize near-field rows for faster response on snaky curves,
+        # while retaining a small full-ROI term for stability.
+        h = weighted.shape[0]
+        near_start = int((1.0 - self.track_near_ratio) * h)
+        near_start = int(np.clip(near_start, 0, max(h - 1, 0)))
+        col_near = weighted[near_start:, :].mean(axis=0)
+        col_full = weighted.mean(axis=0)
+        col_str = self.track_near_blend * col_near + (1.0 - self.track_near_blend) * col_full
+
         if col_str.size > 0 and float(col_str.max()) >= self.min_col_peak:
+            denom = float(np.sum(col_str))
+            if denom > 1e-6:
+                cols = np.arange(col_str.size, dtype=np.float32)
+                cx = float(np.dot(cols, col_str)) / denom
+                return int(np.clip(cx, 0, col_str.size - 1))
             return int(np.argmax(col_str))
         ys, xs = np.where(mask)
         return int(np.mean(xs)) if xs.size > 0 else mask.shape[1] // 2

@@ -51,14 +51,14 @@ class Bug1(Node):
         self.front_clear_dist = 1.0   # m — hysteresis: need this to leave TURNING
         self.wall_fov_lo      = -105.0  # deg — left edge of right-wall FOV
         self.wall_fov_hi      = -75.0   # deg — right edge of right-wall FOV
-        self.quadrant_open_thresh = 6.0  # m — beam reading above this = open space
+        self.quadrant_open_thresh = 3.0  # m — beam reading above this = open space
 
         self.forward_speed  = 0.25    # m/s
         self.turn_speed     = 0.3     # rad/s (spin in place)
         self.sharp_turn_speed = 0.5     # rad/s
         self.backup_speed   = 0.25    # m/s magnitude during backup
-        self.backup_time    = 1.0     # seconds to reverse
-        self.kp_angle       = 0.45     # P gain: turn per metre of slope error (parallel correction)
+        self.backup_time    = 2.0     # seconds to reverse
+        self.kp_angle       = 0.85     # P gain: turn per metre of slope error (parallel correction)
         self.n_min_avg      = 3       # number of closest beams to average for min point
 
         # half-cone for sampling (single beam is fine, small cone is more robust)

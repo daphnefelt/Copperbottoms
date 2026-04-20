@@ -404,6 +404,10 @@ class LineFollowerV2(Node):
 
         if self.turn_commit_remaining > 0:
             # Phase 1: blind fixed-rate spin
+            # Don't reduce turn rate for sharper corners — 
+            # the guided phase will correct overshoot, 
+            # but if we reduce the blind turn rate too much then we fail 
+            # to clear the corner at all and the turn never finishes.
             cmd.linear.x  = self.corner_turn_speed
             cmd.angular.z = float(np.clip(
                 self.corner_sign * self.corner_turn_rate, -self.max_turn, self.max_turn
@@ -411,8 +415,15 @@ class LineFollowerV2(Node):
             phase = 'blind'
         else:
             # Phase 2: guide toward tape centroid
-            full_px = int(np.sum(blue_full))
-            if full_px > 0:
+            # If the corner is very sharp, the tape may briefly vanish from the full-image view during the transition. 
+            # To prevent stalling, we add a bias that pushes in the turn direction even 
+            # when no tape is visible. The bias also helps ensure we keep turning in the correct direction 
+            # when the tape does reappear, since a sharp corner can cause the centroid to jump around and 
+            # potentially overshoot to the wrong side.
+
+            full_px = int(np.sum(blue_full)) #
+            if full_px > 0: 
+
                 cols    = np.arange(img_width, dtype=np.float32)
                 cx_full = float(np.dot(cols, blue_full.sum(axis=0))) / full_px
                 error   = (cx_full - img_width / 2.0) / max(img_width / 2.0, 1.0)
@@ -421,6 +432,18 @@ class LineFollowerV2(Node):
                 guided_ang = -self.corner_guided_kp * error
                 bias       = self.corner_sign * self.corner_guided_bias
                 ang        = float(np.clip(guided_ang + bias, -self.max_turn, self.max_turn))
+                
+                # alternatively, we can select an roi far ahead down the line
+                # in the turn and steer toward the centroid in that roi, 
+                # which is more stable but less responsive
+
+                # alt: steer toward a fixed point on the far side of the turn (not used since it doesn't self-correct for overshoot/undershoot)
+                # turn_dir = 1.0 if self.corner_sign > 0 else -1.0
+                # target_x = img_width * (0.5 + turn_dir * 0.25)  # e.g. 25% from center in the turn direction
+                # error    = (target_x - cx_full) / max(img_width / 2.0, 1.0)
+                # ang      = float(np.clip(-self.corner_guided_kp * error, -self.max_turn, self.max_turn))
+
+
             else:
                 # No tape visible — hold turn direction with reduced rate
                 ang = float(np.clip(

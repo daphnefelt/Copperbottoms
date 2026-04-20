@@ -47,7 +47,7 @@ class Bug1(Node):
         # ── tunable params ───────────────────────────────────────────────
         self.right_wall_dist  = 2.0   # m — "right arm in wall" threshold
         self.front_warn_dist  = 1.5   # m — long front arm: steer to avoid in FOLLOW
-        self.front_stop_dist  = 0.5   # m — short front arm: trigger BACKING_UP
+        self.front_stop_dist  = 0.75   # m — short front arm: trigger BACKING_UP
         self.front_clear_dist = 1.0   # m — hysteresis: need this to leave TURNING
         self.wall_fov_lo      = -105.0  # deg — left edge of right-wall FOV
         self.wall_fov_hi      = -75.0   # deg — right edge of right-wall FOV

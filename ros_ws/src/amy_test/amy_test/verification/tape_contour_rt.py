@@ -120,11 +120,18 @@ class TapeContourRT(Node):
         
         # Lost tape handling state
         self.lost_tape_frames = 0
-        self.max_coast_frames = 2      # Coast for ~170ms @ 30Hz
+        self.max_coast_frames = 3      # Coast for ~170ms @ 30Hz
         self.max_search_frames = 20    # Search for ~700ms @ 30Hz
         self.last_contour_center = None
         self.last_turn = 0.0
         self.search_mode = False
+        
+        # Gap/dead-end detection (centered vertical tape = straight ahead gap)
+        self.gap_detected_frames = 0
+        self.max_gap_coast_frames = 5  # Coast forward 5 frames through gap
+        self.gap_angle_min = 65.0  # Vertical range: 65-115° (90° ± 25°)
+        self.gap_angle_max = 115.0
+        self.gap_centered_threshold = 0.25  # Tape must be within 25% of center
         
         # Trajectory continuity tracking (favor continuous paths)
         self.continuity_weight = 300.0  # Penalty weight for distance from previous position (increased)
@@ -426,6 +433,7 @@ class TapeContourRT(Node):
         
         # STEP 2: Find contours and select best one
         best_contour, contour_center, contour_angle = self.find_best_contour(mask)
+        tape_detected = best_contour is not None
         
         # Detect sharp turns (sudden angle changes)
         if contour_angle is not None:
@@ -446,16 +454,74 @@ class TapeContourRT(Node):
                 if self.frame_count % 30 == 0:  # Log occasionally
                     self.get_logger().info(f'Sharp turn detected from position! Error: {lateral_err_magnitude:.2f}')
         
+        # Detect gap/dead-end: tape going straight ahead (vertical) AND centered
+        # This distinguishes from sharp turns where tape is at edge
+        gap_detected = False
+        if contour_center is not None and contour_angle is not None and tape_detected:
+            cx, cy = contour_center
+            lateral_err_magnitude = abs((cx - width/2) / (width/2))
+            
+            # Check if tape is vertical (going straight ahead from robot perspective)
+            angle_abs = abs(contour_angle)
+            is_vertical = (self.gap_angle_min <= angle_abs <= self.gap_angle_max)
+            is_centered = lateral_err_magnitude < self.gap_centered_threshold
+            
+            # Gap/dead-end: vertical tape that's CENTERED (not at edge like sharp turns)
+            if is_vertical and is_centered:
+                gap_detected = True
+                self.gap_detected_frames += 1
+                if self.gap_detected_frames == 1:
+                    self.get_logger().info(
+                        f'Gap/dead-end detected! Angle={contour_angle:.1f}° (vertical), '
+                        f'lateral_error={lateral_err_magnitude:.2f} (centered) - will coast forward'
+                    )
+            else:
+                self.gap_detected_frames = 0
+        else:
+            # Tape lost or not detected - keep gap counter if we just saw a gap
+            if not tape_detected and self.gap_detected_frames > 0:
+                # Keep the counter to trigger gap coasting
+                pass
+            else:
+                self.gap_detected_frames = 0
+        
         # STEP 3: Handle tape loss with temporal filtering and search
         turn = 0.0
         lateral_error = 0.0
         p_term = 0.0
         i_term = 0.0
         d_term = 0.0
-        tape_detected = best_contour is not None
         
         if not tape_detected:
             self.lost_tape_frames += 1
+            
+            # Special Phase: Gap coasting - if we just saw centered vertical tape, coast forward
+            # This handles small gaps where tape goes straight ahead
+            if 0 < self.gap_detected_frames <= self.max_gap_coast_frames:
+                twist = Twist()
+                twist.linear.x = self.forward_speed  # Full speed forward through gap
+                twist.angular.z = 0.0  # Straight ahead
+                if self.enable_motor_control:
+                    self.vel_pub.publish(twist)
+                
+                self.get_logger().info(
+                    f'Coasting forward through gap (frame {self.gap_detected_frames}/{self.max_gap_coast_frames})'
+                )
+                
+                # Visualize and return
+                end_time = time.perf_counter()
+                process_time_ms = (end_time - start_time) * 1000.0
+                self.update_statistics(process_time_ms)
+                debug_img = self.create_debug_visualization(
+                    img, mask, None, None, None,
+                    0.0, 0.0, 0.0, 0.0, 0.0, process_time_ms, False,
+                    f'GAP_COAST ({self.gap_detected_frames}/{self.max_gap_coast_frames})'
+                )
+                self.publish_debug_image(debug_img, msg.header)
+                return
+            elif self.gap_detected_frames > self.max_gap_coast_frames:
+                # Exceeded max gap coast frames - reset and fall through to normal loss handling
+                self.gap_detected_frames = 0
             
             # Phase 1: Coast mode - maintain last command for a few frames
             if self.lost_tape_frames <= self.max_coast_frames:
@@ -571,6 +637,7 @@ class TapeContourRT(Node):
                             self.get_logger().info(f'Backup complete after finding turn - resuming tracking')
                             self.recovery_phase = 'NONE'
                             self.dead_end_detected = False
+                            self.dead_end_confirmation_frames = 0
                             self.lost_tape_frames = 0
                             self.search_mode = False
                             self.tape_turn_found_time = None
@@ -645,7 +712,8 @@ class TapeContourRT(Node):
                         self.recovery_phase = 'TURN_RIGHT'
                         self.recovery_start_time = current_time
                         self.turn_accumulated = 0.0
-                        self.dead_end_detected = False  # Reset flag
+                        self.dead_end_detected = False
+                        self.dead_end_confirmation_frames = 0
                         self.get_logger().warn('Probe forward complete. Starting RIGHT turn search')
                         status_text = 'PROBE_FORWARD'
                     
@@ -775,6 +843,7 @@ class TapeContourRT(Node):
                 self.get_logger().info('PROBE_FORWARD complete - tape found, resuming tracking')
                 self.recovery_phase = 'NONE'
                 self.dead_end_detected = False
+                self.dead_end_confirmation_frames = 0
         
         if self.lost_tape_frames > self.max_coast_frames:
             # Was in search mode, reset PID
@@ -789,7 +858,11 @@ class TapeContourRT(Node):
         self.lost_tape_frames = 0
         self.search_mode = False
         self.recovery_phase = 'NONE'
-        self.dead_end_detected = False  # Reset dead end flag
+        self.dead_end_detected = False
+        self.dead_end_confirmation_frames = 0
+        # Reset gap counter when tape is found (unless we're currently in gap coast mode)
+        if self.gap_detected_frames > self.max_gap_coast_frames:
+            self.gap_detected_frames = 0
         
         # Update trajectory tracking for next frame (continuity)
         self.last_contour_center = contour_center

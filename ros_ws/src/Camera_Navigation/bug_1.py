@@ -45,7 +45,7 @@ class Bug1(Node):
         super().__init__('bug_1')
 
         # ── tunable params ───────────────────────────────────────────────
-        self.right_wall_dist  = 2.0   # m — "right arm in wall" threshold
+        self.right_wall_dist  = 3.0   # m — "right arm in wall" threshold
         self.front_warn_dist  = 1.5   # m — long front arm: steer to avoid in FOLLOW
         self.front_stop_dist  = 0.5   # m — short front arm: trigger BACKING_UP
         self.front_clear_dist = 1.0   # m — hysteresis: need this to leave TURNING
@@ -124,7 +124,7 @@ class Bug1(Node):
             self._shift_start = now
 
         if self._shift_phase == 'RIGHT':
-            if now - self._shift_start < self.shift_time * 2:
+            if now - self._shift_start < self.shift_time * 1.5:
                 self._publish(self.forward_speed, -self.shift_speed * 2)
                 return True
             self._shift_phase = 'LEFT'
@@ -196,14 +196,14 @@ class Bug1(Node):
 
         # ── TURNING ──────────────────────────────────────────────────────
         if self.mode == self.MODE_TURNING:
-            if front_dist <= self.front_stop_dist:
-                self.get_logger().warn(f'[TURNING] front wall at {front_dist:.2f}m — backing up again.')
-                self._publish(0.0, 0.0)
-                self._enter_mode(self.MODE_BACKING_UP)
-                return
             if front_dist >= self.front_clear_dist:
                 self._enter_mode(self.MODE_FOLLOW)
                 self._publish(0.0, 0.0) # stop before moving forward
+                return
+            if front_dist <= self.front_stop_dist and (now - self.mode_start_time) >= 0.5:
+                self.get_logger().warn(f'[TURNING] front wall at {front_dist:.2f}m — backing up again.')
+                self._publish(0.0, 0.0)
+                self._enter_mode(self.MODE_BACKING_UP)
                 return
             self._publish(self.forward_speed, self._turn_dir * self.sharp_turn_speed)
             self.get_logger().info(

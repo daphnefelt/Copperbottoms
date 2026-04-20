@@ -111,7 +111,7 @@ class Bug1(Node):
         quad = ranges[lo:hi + 1]
         # count beams that are either inf or above threshold
         open_count = int(np.sum((quad > self.quadrant_open_thresh) | np.isinf(quad)))
-        return open_count > len(quad) // 2
+        return open_count > len(quad) // 3
 
     def _enter_mode(self, mode: str):
         self.mode            = mode
@@ -226,7 +226,7 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # wall is nearby but not close enough — nudge right to close the gap
-                if right_dist < 4:
+                if right_dist < 3:
                     if self.nudge_right(now):
                         self.get_logger().info(
                             f'[FIND_WALL] nudging right  right={right_dist:.2f}m  phase={self._shift_phase}',

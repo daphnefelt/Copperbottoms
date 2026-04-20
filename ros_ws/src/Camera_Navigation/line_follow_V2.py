@@ -27,15 +27,15 @@ class LineFollowerV2(Node):
         self.debug_pub = self.create_publisher(Image, '/line_follower/debug_image', 10)
 
         # --- Drive params ---
-        self.forward_speed  = 0.2
-        self.search_speed   = 0.2 # non zero to turn and look
-        self.search_turn    = 2
-        self.max_turn       = 2
+        self.forward_speed  = 0.25
+        self.search_speed   = 0.0
+        self.search_turn    = 0.35
+        self.max_turn       = 1.0
         self.kp             = 0.80
-        self.error_offset   = float(os.environ.get('LF_ERROR_OFFSET', '-0.39'))
+        self.error_offset   = float(os.environ.get('LF_ERROR_OFFSET', '-0.40'))
         self.err_alpha      = 0.18   # low-pass on error signal
         self.x_alpha        = 0.22   # low-pass on track centroid X
-        self.max_turn_step  = 0.1   # angular rate limiter
+        self.max_turn_step  = 0.05   # angular rate limiter
 
         # --- Corner / turn params ---
         # corner_shift_thresh: normalized centroid-X shift that signals a corner.
@@ -45,16 +45,16 @@ class LineFollowerV2(Node):
         # A dead zone between the two bands avoids the "knee" of the L confusing both.
         self.corner_top_end          = 0.30  # top band: rows 0  → 30%
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
-        self.corner_shift_thresh     = 0.18  # raised from 0.15 — 15% was too sensitive at startup angles
-        self.corner_confirm_frames   = 2    # consecutive detections before committing
-        self.corner_min_follow_frames = 2  # must be in follow for N frames before corner can trigger
-        
-        self.corner_commit_frames    = 15    # frames to blind-turn before reacquisition check is allowed  
-        self.corner_reacquire_frames = 7   # stable follow frames needed to exit turn
+        self.corner_shift_thresh     = 0.22  # raised from 0.15 — 15% was too sensitive at startup angles
+        self.corner_confirm_frames   = 3    # consecutive detections before committing
+        self.corner_min_follow_frames = 10  # must be in follow for N frames before corner can trigger
+        self.corner_commit_frames    = 15   # frames to blind-turn before reacquisition check is allowed
+        self.corner_reacquire_frames = 4    # consecutive frames passing exit gates before exiting
         self.corner_reacquire_px     = 70   # min track pixels to count as reacquired
-        self.corner_max_frames       = 42   # safety: force-exit turn after this many frames
-        self.corner_turn_speed       = 0.2   # match forward_speed to clear rover minimum threshold
-        self.corner_turn_rate        = 0.8   # reduced from 0.65 — was overshooting
+        self.corner_clear_frames     = 5    # corner detector must be clear for N frames before exit counts
+        self.corner_max_frames       = 60   # safety timeout — raised so long turns don't force-exit
+        self.corner_turn_speed       = 0.25   # match forward_speed to clear rover minimum threshold
+        self.corner_turn_rate        = 0.45   # reduced from 0.65 — was overshooting
 
         # --- Track / ROI params ---
         self.roi_top_ratio    = 0.55   # follow control only uses lower portion of frame
@@ -66,7 +66,7 @@ class LineFollowerV2(Node):
         # When the ROI loses the line, scan the full image before spinning.
         # If blue is visible anywhere, creep forward steering toward it.
         # Only fall through to spin-search if the full image also has nothing.
-        self.bridge_speed         = 0.3   # forward speed while bridging a gap
+        self.bridge_speed         = 0.15   # forward speed while bridging a gap
         self.bridge_kp            = 0.60   # proportional steering toward full-image centroid
         self.bridge_min_px        = 120    # raised from 40 — noise was causing constant bridge cycling
         self.bridge_max_blank     = 15     # frames with no full-image blue before -> search
@@ -105,11 +105,12 @@ class LineFollowerV2(Node):
         self.lost_frames  = 0
         self.lock_frames  = 0
         # Corner sub-state
-        self.corner_streak = 0
-        self.corner_sign   = 1.0
-        self.turn_commit_left = 0
-        self.turn_reacq     = 0
-        self.turn_frames    = 0
+        self.corner_streak       = 0
+        self.corner_clear_streak = 0   # consecutive frames corner_det has been False during turn
+        self.corner_sign         = 1.0
+        self.turn_commit_left    = 0
+        self.turn_reacq          = 0
+        self.turn_frames         = 0
         self.bridge_blank_frames   = 0   # consecutive frames with no full-image blue
         self.follow_frames_total    = 0   # total frames spent in follow state (guards corner trigger)
 
@@ -168,9 +169,10 @@ class LineFollowerV2(Node):
         corner_armed = self.follow_frames_total >= self.corner_min_follow_frames
         if self.state != 'turn' and corner_confirmed and track_px >= self.min_track_px and corner_armed:
             self.state          = 'turn'
-            self.turn_commit_left = self.corner_commit_frames
-            self.turn_reacq     = 0
-            self.turn_frames    = 0
+            self.turn_commit_left    = self.corner_commit_frames
+            self.turn_reacq          = 0
+            self.corner_clear_streak = 0
+            self.turn_frames         = 0
             dir_str = 'LEFT' if self.corner_sign > 0 else 'RIGHT'
             self.get_logger().warn(
                 f'[TURN ENTER] dir={dir_str}  sign={self.corner_sign:+.0f}  '
@@ -183,8 +185,23 @@ class LineFollowerV2(Node):
             if self.turn_commit_left > 0:
                 self.turn_commit_left -= 1
 
-            # Reacquisition check: line back AND no longer a corner shape
-            if track_px >= self.corner_reacquire_px and not corner_confirmed and self.turn_commit_left <= 0:
+            # Track how long corner_det has been False — need it gone for N frames
+            # before exit can count. This prevents exiting mid-turn when the detector
+            # briefly drops out before the rover has actually cleared the corner.
+            if corner_det:
+                self.corner_clear_streak = 0
+            else:
+                self.corner_clear_streak += 1
+
+            # Exit requires ALL three:
+            #   1. commit period over (blind turn done)
+            #   2. line visible in ROI again
+            #   3. corner shape gone for N consecutive frames
+            # NOTE: vertical aspect ratio gate was removed — diagonal post-turn tape
+            # has similar bbox width/height and was blocking exit every run.
+            if (self.turn_commit_left <= 0
+                    and track_px >= self.corner_reacquire_px
+                    and self.corner_clear_streak >= self.corner_clear_frames):
                 self.turn_reacq += 1
             else:
                 self.turn_reacq = 0
@@ -192,8 +209,11 @@ class LineFollowerV2(Node):
             if self.frame_count % 5 == 0:
                 self.get_logger().info(
                     f'[TURN] frame={self.turn_frames}/{self.corner_max_frames}  '
-                    f'hold_left={self.turn_commit_left}  reacq={self.turn_reacq}/{self.corner_reacquire_frames}  '
-                    f'track_px={track_px}  corner_det={corner_det}  shift={shift_val:.3f}'
+                    f'commit_left={self.turn_commit_left}  '
+                    f'reacq={self.turn_reacq}/{self.corner_reacquire_frames}  '
+                    f'track_px={track_px}  corner_det={corner_det}  '
+                    f'clear={self.corner_clear_streak}/{self.corner_clear_frames}  '
+                    f'shift={shift_val:.3f}'
                 )
 
             if self.turn_reacq >= self.corner_reacquire_frames:
@@ -267,10 +287,11 @@ class LineFollowerV2(Node):
             f'[TURN EXIT] reason={reason}  dir={dir_str}  '
             f'frames={self.turn_frames}  track_px={track_px}'
         )
-        self.state         = 'follow'
-        self.corner_streak = 0
-        self.turn_reacq    = 0
-        self.turn_frames   = 0
+        self.state               = 'follow'
+        self.corner_streak       = 0
+        self.corner_clear_streak = 0
+        self.turn_reacq          = 0
+        self.turn_frames         = 0
 
     # =========================================================================
     # Drive Commands

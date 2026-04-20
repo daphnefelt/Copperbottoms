@@ -51,6 +51,7 @@ class LineFollowerV2(Node):
 
         """
         self.corner_detect_method = 'centroid_shift'  # 'centroid_shift' or 'alt_run_length'
+        self.alt_corner_detect_run_length = 40  # number of consecutive blue pixels from edge to count as corner (for alt_run_length method)
 
         self.corner_top_end          = 0.30  # top band: rows 0  → 30%
         self.corner_bot_start        = 0.50  # bot band: rows 50% → 100%
@@ -522,8 +523,8 @@ class LineFollowerV2(Node):
 
         # Check for a run of blue pixels exceeding the threshold on either side
 
-        left_corner = np.any(left_runs >= 15)  # Threshold for left corner
-        right_corner = np.any(right_runs >= 15)  # Threshold for right corner
+        left_corner = np.any(left_runs >= self.alt_corner_detect_run_length)  # Threshold for left corner
+        right_corner = np.any(right_runs >= self.alt_corner_detect_run_length)  # Threshold for right corner
 
         if left_corner and not right_corner:
             return True, 1.0, float(np.max(left_runs))  # Left turn

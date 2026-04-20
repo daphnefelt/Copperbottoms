@@ -55,9 +55,10 @@ class Bug1(Node):
 
         self.forward_speed  = 0.25    # m/s
         self.turn_speed     = 0.6     # rad/s (spin in place)
+        self.small_turn_speed = 0.3     # rad/s (gentle turn)
         self.backup_speed   = 0.15    # m/s magnitude during backup
         self.backup_time    = 1.0     # seconds to reverse
-        self.kp_angle       = 0.2     # P gain: turn per metre of slope error (parallel correction)
+        self.kp_angle       = 0.25     # P gain: turn per metre of slope error (parallel correction)
         self.n_min_avg      = 3       # number of closest beams to average for min point
 
         # half-cone for sampling (single beam is fine, small cone is more robust)
@@ -151,9 +152,9 @@ class Bug1(Node):
         if self.mode == self.MODE_TURNING:
             if front_dist >= self.front_clear_dist:
                 self._enter_mode(self.MODE_FOLLOW)
-                self._publish(0.0, 0.0)
+                self._publish(0.0, 0.0) # stop before moving forward
                 return
-            self._publish(0.0, self._turn_dir * self.turn_speed)
+            self._publish(self.forward_speed, self._turn_dir * self.turn_speed)
             self.get_logger().info(
                 f'[TURNING {"R" if self._turn_dir < 0 else "L"}] front={front_dist:.2f}m',
                 throttle_duration_sec=0.5)
@@ -162,7 +163,7 @@ class Bug1(Node):
         # ── hard stop: short front arm → BACKING_UP (preempts everything) ──
         if front_dist <= self.front_stop_dist:
             self.get_logger().warn(f'Front wall at {front_dist:.2f}m — backing up.')
-            self._publish(0.0, 0.0)
+            self._publish(0.0, 0.0) # stop
             self._enter_mode(self.MODE_BACKING_UP)
             return
 
@@ -173,7 +174,7 @@ class Bug1(Node):
                 # fall through to FOLLOW this cycle
             else:
                 # spin right until right arm finds the wall
-                self._publish(0.0, -self.turn_speed)
+                self._publish(self.forward_speed, -self.turn_speed)
                 self.get_logger().info(
                     f'[FIND_WALL] right={right_dist:.2f}m — spinning right',
                     throttle_duration_sec=0.5)
@@ -184,7 +185,7 @@ class Bug1(Node):
             if right_dist > self.right_wall_dist:
                 # lost the wall
                 self._enter_mode(self.MODE_FIND_WALL)
-                self._publish(0.0, -self.turn_speed)
+                self._publish(self.forward_speed, -self.turn_speed)
                 return
 
             # long front arm warning — steer before hitting the stop threshold

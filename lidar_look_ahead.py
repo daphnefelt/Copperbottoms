@@ -113,29 +113,74 @@ class HallwayCenterNode(Node):
         valid = cone[(cone > msg.range_min) & np.isfinite(cone)]
         return float(np.median(valid)) if valid.size > 0 else float('nan')
 
-    def _wall_angle(self, ranges_np: np.ndarray, msg: LaserScan,
-                    center_rad: float, half_cone_rad: float) -> float:
-        """PCA/SVD line fit through cone points. Returns wall angle (rad) or nan."""
-        s, e   = self._cone_indices(msg, center_rad, half_cone_rad)
-        cone   = ranges_np[s:e + 1]
-        angles = msg.angle_min + np.arange(s, e + 1) * msg.angle_increment
-        mask   = (cone > msg.range_min) & np.isfinite(cone)
-        if np.count_nonzero(mask) < 5:
+    def _wall_angle_from_cones(self, ranges_np, msg, cone_specs,
+                            median_filter_ratio=1.5,
+                            residual_thresh=0.05,
+                            min_points=8):
+        """
+        Fit a line through points collected from one or more cones.
+        cone_specs: list of (center_rad, half_cone_rad) tuples.
+        Returns wall angle in radians, or nan if fit is unreliable.
+        """
+        segments = []
+        for center_rad, half_cone in cone_specs:
+            s, e = self._cone_indices(msg, center_rad, half_cone)
+            cone = ranges_np[s:e+1]
+            angles = msg.angle_min + np.arange(s, e+1) * msg.angle_increment
+            mask = (cone > msg.range_min) & np.isfinite(cone)
+            r, a = cone[mask], angles[mask]
+            if r.size > 0:
+                segments.append(np.column_stack((r * np.cos(a), r * np.sin(a))))
+
+        if not segments:
             return float('nan')
-        r = cone[mask]
-        a = angles[mask]
-        x = r * np.cos(a)
-        y = r * np.sin(a)
-        xy = np.column_stack((x, y))
-        _, _, vt = np.linalg.svd(xy - xy.mean(axis=0))
-        dx, dy = vt[0]
-        # Reject bad fits via residuals
+
+        xy = np.vstack(segments)
+        if len(xy) < min_points:
+            return float('nan')
+
+        # 1. Distance-gate
+        dists = np.linalg.norm(xy, axis=1)
+        med = np.median(dists)
+        xy = xy[dists < median_filter_ratio * med]
+        if len(xy) < min_points:
+            return float('nan')
+
+        # 2. SVD fit + RANSAC-lite refit
+        def _svd_angle(pts):
+            _, _, vt = np.linalg.svd(pts - pts.mean(axis=0))
+            return vt[0]
+
+        dx, dy = _svd_angle(xy)
         cx, cy = xy.mean(axis=0)
-        residuals = (dx * (y - cy) - dy * (x - cx))
-        rms = float(np.sqrt(np.mean(residuals ** 2)))
-        if rms > 0.1:
+        residuals = np.abs(dx * (xy[:, 1] - cy) - dy * (xy[:, 0] - cx))
+        xy = xy[residuals < residual_thresh]
+        if len(xy) < min_points:
             return float('nan')
+
+        dx, dy = _svd_angle(xy)
         return float(np.arctan2(dy, dx))
+
+    # ---  Individual cone wall angles --------------------------------------
+
+    def _wall_angle_right(self, ranges_np, msg):
+    """Linear regression on the right cone only (-90°)."""
+    return self._wall_angle_from_cones(
+        ranges_np, msg,
+        [(-math.pi / 2, self.side_half_cone)])
+
+    def _wall_angle_angle(self, ranges_np, msg):
+        """Linear regression on the angle/lookahead cone only (-45°)."""
+        return self._wall_angle_from_cones(
+            ranges_np, msg,
+            [(-math.pi / 4, self.angle_half_cone)])
+
+    def _wall_angle_combined(self, ranges_np, msg):
+        """Linear regression across both cones combined."""
+        return self._wall_angle_from_cones(
+            ranges_np, msg,
+            [(-math.pi / 2, self.side_half_cone),
+            (-math.pi / 4, self.angle_half_cone)])
 
     # -------------------------------------------------------------------------
     # Hold-distance helper

@@ -51,6 +51,30 @@ def generate_launch_description():
         emulate_tty=True,
     )
     
+    tape_vision_node = Node(
+        package='amy_test',
+        executable='tape_vision_node',
+        name='tape_vision_node',
+        output='screen',
+        emulate_tty=True,
+    )
+
+    tape_control_node = Node(
+        package='amy_test',
+        executable='tape_control_node',
+        name='tape_control_node',
+        output='screen',
+        emulate_tty=True,
+    )
+
+    tape_recovery_node = Node(
+        package='amy_test',
+        executable='tape_recovery_node',
+        name='tape_recovery_node',
+        output='screen',
+        emulate_tty=True,
+    )
+    
     return LaunchDescription([
         # Arguments
         connection_string_arg,
@@ -59,4 +83,7 @@ def generate_launch_description():
         # Launch files and nodes
         rover_launch,
         realsense_node,
+        tape_vision_node,
+        tape_control_node,
+        tape_recovery_node,
     ])

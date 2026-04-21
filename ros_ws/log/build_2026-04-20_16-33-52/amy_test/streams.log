@@ -1,0 +1,220 @@
+[0.081s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test -- -j4 -l4
+[0.201s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.898s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.935s] -- Found rclpy: 3.3.19 (/opt/ros/humble/share/rclpy/cmake)
+[0.936s] -- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+[1.108s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.119s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.144s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.186s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.241s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.336s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.455s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[3.051s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[5.089s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[5.891s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[6.032s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[6.177s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[6.177s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[6.178s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[6.358s] -- Configuring done
+[6.597s] -- Generating done
+[6.678s] -- Build files have been written to: /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test
+[6.816s] [  3%] [34m[1mGenerating C code for ROS interfaces[0m
+[6.905s] [  6%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[6.936s] [  6%] Built target ament_cmake_python_symlink_amy_test
+[8.557s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_generator_c[0m
+[8.584s] [  6%] Built target amy_test__cpp
+[8.634s] [  9%] [32mBuilding C object CMakeFiles/amy_test__rosidl_generator_c.dir/rosidl_generator_c/amy_test/msg/detail/tape_contour__functions.c.o[0m
+[8.656s] [ 12%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[8.678s] [ 16%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[9.077s] running egg_info
+[9.082s] writing amy_test.egg-info/PKG-INFO
+[9.084s] writing dependency_links to amy_test.egg-info/dependency_links.txt
+[9.088s] writing top-level names to amy_test.egg-info/top_level.txt
+[9.108s] reading manifest file 'amy_test.egg-info/SOURCES.txt'
+[9.113s] writing manifest file 'amy_test.egg-info/SOURCES.txt'
+[9.122s] [ 19%] [32m[1mLinking C shared library libamy_test__rosidl_generator_c.so[0m
+[9.336s] [ 19%] Built target ament_cmake_python_build_amy_test_egg
+[9.416s] [ 22%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[9.446s] [ 22%] Built target amy_test__rosidl_generator_c
+[9.523s] [ 25%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[10.522s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_cpp[0m
+[10.607s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_fastrtps_cpp[0m
+[10.744s] [ 32%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/amy_test/msg/detail/dds_fastrtps/tape_contour__type_support.cpp.o[0m
+[10.753s] [ 32%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/amy_test/msg/tape_contour__type_support.cpp.o[0m
+[11.604s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_fastrtps_c[0m
+[11.622s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_introspection_cpp[0m
+[11.730s] [ 35%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/amy_test/msg/detail/tape_contour__type_support_c.cpp.o[0m
+[11.733s] [ 38%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/amy_test/msg/detail/tape_contour__type_support.cpp.o[0m
+[12.848s] [ 41%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_cpp.so[0m
+[13.152s] [ 41%] Built target amy_test__rosidl_typesupport_cpp
+[13.283s] [ 45%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[14.085s] [ 48%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_fastrtps_cpp.so[0m
+[14.462s] [ 51%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_fastrtps_c.so[0m
+[14.703s] [ 51%] Built target amy_test__rosidl_typesupport_fastrtps_cpp
+[14.845s] [ 54%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[14.944s] [ 58%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_introspection_cpp.so[0m
+[15.123s] [ 58%] Built target amy_test__rosidl_typesupport_fastrtps_c
+[15.245s] [ 58%] Built target amy_test__rosidl_typesupport_introspection_cpp
+[15.336s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_introspection_c[0m
+[15.398s] [ 61%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/amy_test/msg/detail/tape_contour__type_support.c.o[0m
+[15.616s] [ 64%] [32m[1mLinking C shared library libamy_test__rosidl_typesupport_introspection_c.so[0m
+[15.771s] [ 64%] Built target amy_test__rosidl_typesupport_introspection_c
+[16.109s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_c[0m
+[16.166s] [ 67%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_c.dir/rosidl_typesupport_c/amy_test/msg/tape_contour__type_support.cpp.o[0m
+[16.335s] [ 70%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_c.so[0m
+[16.522s] [ 70%] Built target amy_test__rosidl_typesupport_c
+[16.621s] [ 70%] Built target amy_test
+[16.725s] [ 74%] [34m[1mGenerating Python code for ROS interfaces[0m
+[18.213s] [ 74%] Built target amy_test__py
+[18.263s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_generator_py[0m
+[18.335s] [ 77%] [32mBuilding C object CMakeFiles/amy_test__rosidl_generator_py.dir/rosidl_generator_py/amy_test/msg/_tape_contour_s.c.o[0m
+[18.834s] [ 80%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/libamy_test__rosidl_generator_py.so[0m
+[19.059s] [ 80%] Built target amy_test__rosidl_generator_py
+[19.128s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_fastrtps_c__pyext[0m
+[19.140s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_introspection_c__pyext[0m
+[19.141s] [35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_c__pyext[0m
+[19.213s] [ 87%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/amy_test/_amy_test_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[19.219s] [ 87%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/amy_test/_amy_test_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[19.228s] [ 90%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/amy_test/_amy_test_s.ep.rosidl_typesupport_c.c.o[0m
+[19.828s] [ 93%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[19.871s] [ 96%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[19.930s] [100%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[20.131s] [100%] Built target amy_test__rosidl_typesupport_fastrtps_c__pyext
+[20.171s] [100%] Built target amy_test__rosidl_typesupport_introspection_c__pyext
+[20.223s] [100%] Built target amy_test__rosidl_typesupport_c__pyext
+[20.273s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test' returned '0': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test -- -j4 -l4
+[20.327s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test
+[20.355s] -- Install configuration: ""
+[20.357s] -- Execute custom install script
+[20.358s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/rosidl_interfaces/amy_test
+[20.361s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__functions.h
+[20.362s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__struct.h
+[20.364s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__type_support.h
+[20.365s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_generator_c__visibility_control.h
+[20.366s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/tape_contour.h
+[20.367s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/library_path.sh
+[20.369s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/library_path.dsv
+[20.372s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_fastrtps_c.h
+[20.373s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[20.376s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__builder.hpp
+[20.377s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__struct.hpp
+[20.397s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__traits.hpp
+[20.397s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__type_support.hpp
+[20.398s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_generator_cpp__visibility_control.hpp
+[20.398s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/tape_contour.hpp
+[20.399s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_fastrtps_cpp.hpp
+[20.399s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[20.399s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_introspection_c.h
+[20.400s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[20.408s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_introspection_cpp.hpp
+[20.409s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/pythonpath.sh
+[20.409s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/pythonpath.dsv
+[20.410s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/PKG-INFO
+[20.411s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/SOURCES.txt
+[20.411s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/dependency_links.txt
+[20.412s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/top_level.txt
+[20.416s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/__init__.py
+[20.417s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_c.c
+[20.418s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_fastrtps_c.c
+[20.420s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_introspection_c.c
+[20.421s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[20.423s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[20.425s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[20.426s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/libamy_test__rosidl_generator_py.so
+[20.427s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/__init__.py
+[20.429s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour.py
+[20.430s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour_s.c
+[20.431s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[20.433s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[20.436s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[20.437s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/msg/TapeContour.idl
+[20.439s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/msg/TapeContour.msg
+[20.441s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/odometry_launch.py
+[20.441s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/tape_contour_rt.launch.py
+[20.442s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/tape_pipeline.launch.py
+[20.443s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/test_full_launch.py
+[20.445s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/package_run_dependencies/amy_test
+[20.446s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/parent_prefix_path/amy_test
+[20.447s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/ament_prefix_path.sh
+[20.448s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/ament_prefix_path.dsv
+[20.449s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/path.sh
+[20.450s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/path.dsv
+[20.455s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.bash
+[20.456s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.sh
+[20.457s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.zsh
+[20.458s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.dsv
+[20.459s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.dsv
+[20.498s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages/amy_test
+[20.499s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake-extras.cmake
+[20.501s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_dependencies-extras.cmake
+[20.502s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_include_directories-extras.cmake
+[20.504s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_libraries-extras.cmake
+[20.505s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_targets-extras.cmake
+[20.506s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[20.508s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[20.509s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_testConfig.cmake
+[20.510s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_testConfig-version.cmake
+[20.511s] -- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.xml
+[20.513s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_c.so
+[20.517s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_c.so" to ""
+[20.518s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_c.so
+[20.521s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_c.so" to ""
+[20.522s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_cpp.so
+[20.525s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_cpp.so" to ""
+[20.527s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_c.so
+[20.530s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_c.so" to ""
+[20.531s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_c.so
+[20.535s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_c.so" to ""
+[20.536s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_cpp.so
+[20.539s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_cpp.so" to ""
+[20.540s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_cpp.so
+[20.543s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_cpp.so" to ""
+[20.798s] Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test'...
+[20.800s] Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/__init__.py'...
+[20.816s] Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg'...
+[20.817s] Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/__init__.py'...
+[20.819s] Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour.py'...
+[20.866s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_py.so
+[20.871s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_py.so" to ""
+[20.871s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+[20.872s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_control_node.py
+[20.873s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/msg
+[20.874s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification
+[20.874s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/odometry_monitor.py
+[20.875s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/__init__.py
+[20.876s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/tape_contour_rt.py
+[20.877s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/tape_contour_with_lidar.py
+[20.878s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/__init__.py
+[20.878s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/launch
+[20.878s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/launch/tape_pipeline.launch.py
+[20.879s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_vision_node.py
+[20.879s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/test_full_launch.py
+[20.880s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark
+[20.882s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/__init__.py
+[20.882s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery
+[20.883s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery/LIO.py
+[20.883s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery/__init__.py
+[20.884s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_recovery_node.py
+[20.884s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_vision_node
+[20.885s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_control_node
+[20.885s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_recovery_node
+[20.886s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cExport.cmake
+[20.886s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cExport-noconfig.cmake
+[20.887s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cExport.cmake
+[20.887s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[20.889s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cppExport.cmake
+[20.892s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cppExport.cmake
+[20.893s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[20.894s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cExport.cmake
+[20.895s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[20.896s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cExport.cmake
+[20.897s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cExport-noconfig.cmake
+[20.897s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cppExport.cmake
+[20.898s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[20.899s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cppExport.cmake
+[20.900s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cppExport-noconfig.cmake
+[20.903s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_pyExport.cmake
+[20.906s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_pyExport-noconfig.cmake
+[20.907s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test' returned '0': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test

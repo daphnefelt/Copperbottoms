@@ -1,0 +1,79 @@
+[0.220s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake /home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_rover -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover
+[1.023s] -- The C compiler identification is GNU 11.4.0
+[1.702s] -- The CXX compiler identification is GNU 11.4.0
+[1.785s] -- Detecting C compiler ABI info
+[2.711s] -- Detecting C compiler ABI info - done
+[2.811s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.812s] -- Detecting C compile features
+[2.828s] -- Detecting C compile features - done
+[2.847s] -- Detecting CXX compiler ABI info
+[4.083s] -- Detecting CXX compiler ABI info - done
+[4.151s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[4.154s] -- Detecting CXX compile features
+[4.159s] -- Detecting CXX compile features - done
+[4.213s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[6.107s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[6.650s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[7.704s] -- Found rclpy: 3.3.19 (/opt/ros/humble/share/rclpy/cmake)
+[7.788s] -- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+[8.708s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[8.840s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[9.022s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[9.371s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[9.736s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[10.214s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[10.447s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[11.747s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[13.553s] -- Added test 'copyright' to check source files copyright and LICENSE
+[13.606s] -- Added test 'flake8' to check Python code syntax and style conventions
+[13.614s] -- Added test 'lint_cmake' to check CMake code style
+[13.639s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[13.682s] -- Added test 'xmllint' to check XML markup files
+[13.707s] -- Configuring done
+[13.818s] -- Generating done
+[13.859s] -- Build files have been written to: /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover
+[13.919s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover' returned '0': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake /home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_rover -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover
+[13.922s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover -- -j4 -l4
+[14.654s] Built target ament_cmake_python_symlink_robo_rover
+[17.592s] running egg_info
+[17.597s] creating robo_rover.egg-info
+[17.601s] writing robo_rover.egg-info/PKG-INFO
+[17.614s] writing dependency_links to robo_rover.egg-info/dependency_links.txt
+[17.619s] writing top-level names to robo_rover.egg-info/top_level.txt
+[17.624s] writing manifest file 'robo_rover.egg-info/SOURCES.txt'
+[17.677s] reading manifest file 'robo_rover.egg-info/SOURCES.txt'
+[17.697s] writing manifest file 'robo_rover.egg-info/SOURCES.txt'
+[18.370s] Built target ament_cmake_python_build_robo_rover_egg
+[18.536s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover' returned '0': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover -- -j4 -l4
+[18.540s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover
+[18.642s] -- Install configuration: ""
+[18.659s] -- Execute custom install script
+[18.675s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.sh
+[18.766s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.dsv
+[18.908s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/PKG-INFO
+[18.977s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/SOURCES.txt
+[19.137s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/dependency_links.txt
+[19.299s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/top_level.txt
+[19.392s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/__init__.py
+[19.516s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/rover_node.py
+[19.575s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/launch/rover_launch.py
+[19.636s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/package_run_dependencies/robo_rover
+[19.692s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/parent_prefix_path/robo_rover
+[19.806s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.sh
+[19.953s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.dsv
+[20.017s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.sh
+[20.096s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.dsv
+[20.194s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.bash
+[20.342s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.sh
+[20.416s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.zsh
+[20.529s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.dsv
+[20.658s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.dsv
+[20.711s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/packages/robo_rover
+[20.775s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/cmake/robo_roverConfig.cmake
+[20.912s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/cmake/robo_roverConfig-version.cmake
+[21.014s] -- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.xml
+[21.649s] Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover'...
+[21.651s] Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/__init__.py'...
+[21.652s] Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/rover_node.py'...
+[21.736s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib/robo_rover/rover_node
+[21.758s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover' returned '0': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover

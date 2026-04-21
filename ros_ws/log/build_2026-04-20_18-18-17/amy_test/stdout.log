@@ -1,0 +1,216 @@
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclpy: 3.3.19 (/opt/ros/humble/share/rclpy/cmake)
+-- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test
+[  3%] [34m[1mGenerating C code for ROS interfaces[0m
+[  6%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[  6%] Built target ament_cmake_python_symlink_amy_test
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_generator_c[0m
+[  9%] [32mBuilding C object CMakeFiles/amy_test__rosidl_generator_c.dir/rosidl_generator_c/amy_test/msg/detail/tape_contour__functions.c.o[0m
+[  9%] Built target amy_test__cpp
+[ 12%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[ 16%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[ 19%] [32m[1mLinking C shared library libamy_test__rosidl_generator_c.so[0m
+running egg_info
+writing amy_test.egg-info/PKG-INFO
+writing dependency_links to amy_test.egg-info/dependency_links.txt
+writing top-level names to amy_test.egg-info/top_level.txt
+reading manifest file 'amy_test.egg-info/SOURCES.txt'
+writing manifest file 'amy_test.egg-info/SOURCES.txt'
+[ 19%] Built target amy_test__rosidl_generator_c
+[ 22%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[ 22%] Built target ament_cmake_python_build_amy_test_egg
+[ 25%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_cpp[0m
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_fastrtps_cpp[0m
+[ 29%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/amy_test/msg/tape_contour__type_support.cpp.o[0m
+[ 32%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/amy_test/msg/detail/dds_fastrtps/tape_contour__type_support.cpp.o[0m
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_introspection_cpp[0m
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_fastrtps_c[0m
+[ 35%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/amy_test/msg/detail/tape_contour__type_support.cpp.o[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/amy_test/msg/detail/tape_contour__type_support_c.cpp.o[0m
+[ 41%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_cpp.so[0m
+[ 41%] Built target amy_test__rosidl_typesupport_cpp
+[ 45%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[ 48%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_fastrtps_cpp.so[0m
+[ 48%] Built target amy_test__rosidl_typesupport_fastrtps_cpp
+[ 51%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[ 54%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_introspection_cpp.so[0m
+[ 54%] Built target amy_test__rosidl_typesupport_introspection_cpp
+[ 58%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_fastrtps_c.so[0m
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_introspection_c[0m
+[ 61%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/amy_test/msg/detail/tape_contour__type_support.c.o[0m
+[ 61%] Built target amy_test__rosidl_typesupport_fastrtps_c
+[ 64%] [32m[1mLinking C shared library libamy_test__rosidl_typesupport_introspection_c.so[0m
+[ 64%] Built target amy_test__rosidl_typesupport_introspection_c
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_c[0m
+[ 67%] [32mBuilding CXX object CMakeFiles/amy_test__rosidl_typesupport_c.dir/rosidl_typesupport_c/amy_test/msg/tape_contour__type_support.cpp.o[0m
+[ 70%] [32m[1mLinking CXX shared library libamy_test__rosidl_typesupport_c.so[0m
+[ 70%] Built target amy_test__rosidl_typesupport_c
+[ 70%] Built target amy_test
+[ 74%] [34m[1mGenerating Python code for ROS interfaces[0m
+[ 74%] Built target amy_test__py
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_generator_py[0m
+[ 77%] [32mBuilding C object CMakeFiles/amy_test__rosidl_generator_py.dir/rosidl_generator_py/amy_test/msg/_tape_contour_s.c.o[0m
+[ 80%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/libamy_test__rosidl_generator_py.so[0m
+[ 80%] Built target amy_test__rosidl_generator_py
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_introspection_c__pyext[0m
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_fastrtps_c__pyext[0m
+[35m[1mConsolidate compiler generated dependencies of target amy_test__rosidl_typesupport_c__pyext[0m
+[ 83%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/amy_test/_amy_test_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[ 87%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/amy_test/_amy_test_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[ 90%] [32mBuilding C object CMakeFiles/amy_test__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/amy_test/_amy_test_s.ep.rosidl_typesupport_c.c.o[0m
+[ 93%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[ 96%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[100%] [32m[1mLinking C shared library rosidl_generator_py/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[100%] Built target amy_test__rosidl_typesupport_c__pyext
+[100%] Built target amy_test__rosidl_typesupport_fastrtps_c__pyext
+[100%] Built target amy_test__rosidl_typesupport_introspection_c__pyext
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/rosidl_interfaces/amy_test
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__functions.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__struct.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__type_support.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_generator_c__visibility_control.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/tape_contour.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/library_path.sh
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/library_path.dsv
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__builder.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__struct.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__traits.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__type_support.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_generator_cpp__visibility_control.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/tape_contour.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_introspection_c.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/pythonpath.sh
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/pythonpath.dsv
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/PKG-INFO
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/SOURCES.txt
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/dependency_links.txt
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/top_level.txt
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/__init__.py
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_c.c
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_fastrtps_c.c
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_introspection_c.c
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/libamy_test__rosidl_generator_py.so
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/__init__.py
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour.py
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour_s.c
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/msg/TapeContour.idl
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/msg/TapeContour.msg
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/odometry_launch.py
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/tape_contour_rt.launch.py
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/tape_pipeline.launch.py
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/test_full_launch.py
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/package_run_dependencies/amy_test
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/parent_prefix_path/amy_test
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/path.sh
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/path.dsv
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.bash
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.sh
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.zsh
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.dsv
+-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.dsv
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages/amy_test
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake-extras.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_libraries-extras.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_testConfig.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_testConfig-version.cmake
+-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.xml
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_c.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_c.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_cpp.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_cpp.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_c.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_c.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_cpp.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_cpp.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_cpp.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_cpp.so" to ""
+Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/__init__.py'...
+Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/__init__.py'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour.py'...
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_py.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_py.so" to ""
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_control_node.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/msg
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/odometry_monitor.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/__init__.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/tape_contour_rt.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/tape_contour_with_lidar.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/__init__.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/launch
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/launch/tape_pipeline.launch.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_vision_node.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/test_full_launch.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/__init__.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery/LIO.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery/__init__.py
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_recovery_node.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_vision_node
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_control_node
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_recovery_node
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cExport-noconfig.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cppExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cppExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cExport-noconfig.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cppExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cppExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cppExport-noconfig.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_pyExport.cmake
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_pyExport-noconfig.cmake

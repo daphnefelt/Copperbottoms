@@ -1,0 +1,47 @@
+[0.091s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test -- -j4 -l4
+[0.249s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.074s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.168s] -- Found rclpy: 3.3.19 (/opt/ros/humble/share/rclpy/cmake)
+[1.171s] -- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+[1.414s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.430s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.473s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.539s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.626s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.776s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.955s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[3.656s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[5.938s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[6.827s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[6.986s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[7.142s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[7.143s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[7.143s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[7.292s] [31mCMake Error at /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:106 (add_custom_target):
+[7.295s]   add_custom_target cannot create target
+[7.297s]   "ament_cmake_python_symlink_amy_test" because another target with the same
+[7.300s]   name already exists.  The existing target is a custom target created in
+[7.301s]   source directory
+[7.302s]   "/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test".  See
+[7.303s]   documentation for policy CMP0002 for more details.
+[7.306s] Call Stack (most recent call first):
+[7.309s]   /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:39 (_ament_cmake_python_install_package)
+[7.310s]   CMakeLists.txt:20 (ament_python_install_package)
+[7.311s] 
+[7.311s] [0m
+[7.312s] [31mCMake Error at /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:141 (add_custom_target):
+[7.314s]   add_custom_target cannot create target
+[7.314s]   "ament_cmake_python_build_amy_test_egg" because another target with the
+[7.315s]   same name already exists.  The existing target is a custom target created
+[7.316s]   in source directory
+[7.317s]   "/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test".  See
+[7.318s]   documentation for policy CMP0002 for more details.
+[7.318s] Call Stack (most recent call first):
+[7.319s]   /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:39 (_ament_cmake_python_install_package)
+[7.319s]   CMakeLists.txt:20 (ament_python_install_package)
+[7.319s] 
+[7.320s] [0m
+[7.393s] -- Configuring incomplete, errors occurred!
+[7.394s] See also "/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/CMakeOutput.log".
+[7.427s] gmake: *** [Makefile:747: cmake_check_build_system] Error 1
+[7.434s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test' returned '2': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test -- -j4 -l4

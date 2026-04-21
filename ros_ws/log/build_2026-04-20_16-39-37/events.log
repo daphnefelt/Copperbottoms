@@ -1,0 +1,932 @@
+[0.000000] (-) TimerEvent: {}
+[0.001685] (camera_navigation) JobQueued: {'identifier': 'camera_navigation', 'dependencies': OrderedDict()}
+[0.002433] (custom_messages) JobQueued: {'identifier': 'custom_messages', 'dependencies': OrderedDict()}
+[0.002877] (landmark_slam) JobQueued: {'identifier': 'landmark_slam', 'dependencies': OrderedDict()}
+[0.013467] (realsense_publisher) JobQueued: {'identifier': 'realsense_publisher', 'dependencies': OrderedDict()}
+[0.013909] (rplidar_ros) JobQueued: {'identifier': 'rplidar_ros', 'dependencies': OrderedDict()}
+[0.014203] (obstacle_avoidance) JobQueued: {'identifier': 'obstacle_avoidance', 'dependencies': OrderedDict([('custom_messages', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages')])}
+[0.014437] (robo_rover) JobQueued: {'identifier': 'robo_rover', 'dependencies': OrderedDict([('custom_messages', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages')])}
+[0.014742] (amy_test) JobQueued: {'identifier': 'amy_test', 'dependencies': OrderedDict([('custom_messages', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'), ('realsense_publisher', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher'), ('robo_rover', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover')])}
+[0.015369] (custom_messages) JobStarted: {'identifier': 'custom_messages'}
+[0.074107] (realsense_publisher) JobStarted: {'identifier': 'realsense_publisher'}
+[0.094656] (-) TimerEvent: {}
+[0.158124] (camera_navigation) JobStarted: {'identifier': 'camera_navigation'}
+[0.194940] (-) TimerEvent: {}
+[0.251196] (landmark_slam) JobStarted: {'identifier': 'landmark_slam'}
+[0.295267] (-) TimerEvent: {}
+[0.331268] (custom_messages) JobProgress: {'identifier': 'custom_messages', 'progress': 'cmake'}
+[0.336754] (custom_messages) JobProgress: {'identifier': 'custom_messages', 'progress': 'build'}
+[0.344654] (custom_messages) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', '--', '-j4', '-l4'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[0.395954] (-) TimerEvent: {}
+[0.497723] (-) TimerEvent: {}
+[0.600749] (-) TimerEvent: {}
+[0.705357] (-) TimerEvent: {}
+[0.806846] (-) TimerEvent: {}
+[0.907910] (-) TimerEvent: {}
+[1.013418] (-) TimerEvent: {}
+[1.119907] (-) TimerEvent: {}
+[1.221366] (-) TimerEvent: {}
+[1.323417] (-) TimerEvent: {}
+[1.428724] (-) TimerEvent: {}
+[1.530102] (-) TimerEvent: {}
+[1.646112] (-) TimerEvent: {}
+[1.749542] (-) TimerEvent: {}
+[1.853417] (-) TimerEvent: {}
+[1.954655] (-) TimerEvent: {}
+[2.055584] (-) TimerEvent: {}
+[2.157412] (-) TimerEvent: {}
+[2.259599] (-) TimerEvent: {}
+[2.361611] (-) TimerEvent: {}
+[2.464760] (-) TimerEvent: {}
+[2.569148] (-) TimerEvent: {}
+[2.675817] (-) TimerEvent: {}
+[2.777274] (-) TimerEvent: {}
+[2.880112] (-) TimerEvent: {}
+[2.984025] (-) TimerEvent: {}
+[3.089369] (-) TimerEvent: {}
+[3.190530] (-) TimerEvent: {}
+[3.292003] (-) TimerEvent: {}
+[3.395634] (-) TimerEvent: {}
+[3.498703] (-) TimerEvent: {}
+[3.602527] (-) TimerEvent: {}
+[3.706991] (-) TimerEvent: {}
+[3.808461] (-) TimerEvent: {}
+[3.910652] (-) TimerEvent: {}
+[4.021348] (-) TimerEvent: {}
+[4.122829] (-) TimerEvent: {}
+[4.223949] (-) TimerEvent: {}
+[4.327818] (-) TimerEvent: {}
+[4.436743] (-) TimerEvent: {}
+[4.541171] (-) TimerEvent: {}
+[4.645415] (-) TimerEvent: {}
+[4.750120] (-) TimerEvent: {}
+[4.854136] (-) TimerEvent: {}
+[4.958152] (-) TimerEvent: {}
+[5.060851] (-) TimerEvent: {}
+[5.162015] (-) TimerEvent: {}
+[5.266199] (-) TimerEvent: {}
+[5.369749] (-) TimerEvent: {}
+[5.472846] (-) TimerEvent: {}
+[5.577411] (-) TimerEvent: {}
+[5.681320] (-) TimerEvent: {}
+[5.782647] (-) TimerEvent: {}
+[5.884550] (-) TimerEvent: {}
+[5.986348] (-) TimerEvent: {}
+[6.087656] (-) TimerEvent: {}
+[6.190207] (-) TimerEvent: {}
+[6.291546] (-) TimerEvent: {}
+[6.392691] (-) TimerEvent: {}
+[6.494902] (-) TimerEvent: {}
+[6.599847] (-) TimerEvent: {}
+[6.700965] (-) TimerEvent: {}
+[6.805277] (-) TimerEvent: {}
+[6.906776] (-) TimerEvent: {}
+[7.008446] (-) TimerEvent: {}
+[7.111854] (-) TimerEvent: {}
+[7.213138] (-) TimerEvent: {}
+[7.324829] (-) TimerEvent: {}
+[7.430137] (-) TimerEvent: {}
+[7.531922] (-) TimerEvent: {}
+[7.637307] (-) TimerEvent: {}
+[7.738192] (-) TimerEvent: {}
+[7.846517] (-) TimerEvent: {}
+[7.949740] (-) TimerEvent: {}
+[8.053359] (-) TimerEvent: {}
+[8.154440] (-) TimerEvent: {}
+[8.257474] (-) TimerEvent: {}
+[8.362171] (-) TimerEvent: {}
+[8.464155] (-) TimerEvent: {}
+[8.565343] (-) TimerEvent: {}
+[8.668405] (-) TimerEvent: {}
+[8.769814] (-) TimerEvent: {}
+[8.883412] (-) TimerEvent: {}
+[8.985754] (-) TimerEvent: {}
+[9.088650] (-) TimerEvent: {}
+[9.191890] (-) TimerEvent: {}
+[9.293917] (-) TimerEvent: {}
+[9.338174] (custom_messages) StdoutLine: {'line': b'[  2%] Built target custom_messages__cpp\n'}
+[9.355697] (custom_messages) StdoutLine: {'line': b'[  2%] Built target ament_cmake_python_symlink_custom_messages\n'}
+[9.356755] (custom_messages) StdoutLine: {'line': b'[ 12%] Built target custom_messages__rosidl_typesupport_fastrtps_cpp\n'}
+[9.357870] (custom_messages) StdoutLine: {'line': b'[ 23%] Built target custom_messages__rosidl_typesupport_introspection_cpp\n'}
+[9.359476] (custom_messages) StdoutLine: {'line': b'running egg_info\n'}
+[9.360997] (custom_messages) StdoutLine: {'line': b'writing custom_messages.egg-info/PKG-INFO\n'}
+[9.361802] (custom_messages) StdoutLine: {'line': b'writing dependency_links to custom_messages.egg-info/dependency_links.txt\n'}
+[9.362707] (custom_messages) StdoutLine: {'line': b'writing top-level names to custom_messages.egg-info/top_level.txt\n'}
+[9.365740] (custom_messages) StdoutLine: {'line': b"reading manifest file 'custom_messages.egg-info/SOURCES.txt'\n"}
+[9.366423] (custom_messages) StdoutLine: {'line': b"writing manifest file 'custom_messages.egg-info/SOURCES.txt'\n"}
+[9.367038] (custom_messages) StdoutLine: {'line': b'[ 23%] Built target ament_cmake_python_build_custom_messages_egg\n'}
+[9.367741] (custom_messages) StdoutLine: {'line': b'[ 34%] Built target custom_messages__rosidl_typesupport_cpp\n'}
+[9.368263] (custom_messages) StdoutLine: {'line': b'[ 44%] Built target custom_messages__rosidl_generator_c\n'}
+[9.368793] (custom_messages) StdoutLine: {'line': b'[ 55%] Built target custom_messages__rosidl_typesupport_fastrtps_c\n'}
+[9.369388] (custom_messages) StdoutLine: {'line': b'[ 65%] Built target custom_messages__rosidl_typesupport_c\n'}
+[9.370648] (custom_messages) StdoutLine: {'line': b'[ 76%] Built target custom_messages__rosidl_typesupport_introspection_c\n'}
+[9.372541] (custom_messages) StdoutLine: {'line': b'[ 76%] Built target custom_messages\n'}
+[9.373424] (custom_messages) StdoutLine: {'line': b'[ 78%] Built target custom_messages__py\n'}
+[9.374801] (custom_messages) StdoutLine: {'line': b'[ 87%] Built target custom_messages__rosidl_generator_py\n'}
+[9.375971] (custom_messages) StdoutLine: {'line': b'[ 91%] Built target custom_messages__rosidl_typesupport_fastrtps_c__pyext\n'}
+[9.383050] (custom_messages) StdoutLine: {'line': b'[ 95%] Built target custom_messages__rosidl_typesupport_c__pyext\n'}
+[9.384513] (custom_messages) StdoutLine: {'line': b'[100%] Built target custom_messages__rosidl_typesupport_introspection_c__pyext\n'}
+[9.386313] (custom_messages) CommandEnded: {'returncode': 0}
+[9.396135] (-) TimerEvent: {}
+[9.397335] (custom_messages) JobProgress: {'identifier': 'custom_messages', 'progress': 'install'}
+[9.454896] (custom_messages) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[9.497445] (-) TimerEvent: {}
+[9.599098] (-) TimerEvent: {}
+[9.699887] (-) TimerEvent: {}
+[9.800697] (-) TimerEvent: {}
+[9.904131] (-) TimerEvent: {}
+[10.005060] (-) TimerEvent: {}
+[10.106298] (-) TimerEvent: {}
+[10.208226] (-) TimerEvent: {}
+[10.311707] (-) TimerEvent: {}
+[10.413023] (-) TimerEvent: {}
+[10.516490] (-) TimerEvent: {}
+[10.619411] (-) TimerEvent: {}
+[10.720703] (-) TimerEvent: {}
+[10.823527] (-) TimerEvent: {}
+[10.924425] (-) TimerEvent: {}
+[11.025521] (-) TimerEvent: {}
+[11.126465] (-) TimerEvent: {}
+[11.227632] (-) TimerEvent: {}
+[11.328563] (-) TimerEvent: {}
+[11.429441] (-) TimerEvent: {}
+[11.530503] (-) TimerEvent: {}
+[11.631266] (-) TimerEvent: {}
+[11.734346] (-) TimerEvent: {}
+[11.836614] (-) TimerEvent: {}
+[11.938644] (-) TimerEvent: {}
+[12.039569] (-) TimerEvent: {}
+[12.140584] (-) TimerEvent: {}
+[12.242601] (-) TimerEvent: {}
+[12.297719] (custom_messages) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[12.298828] (custom_messages) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[12.299512] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/rosidl_interfaces/custom_messages\n'}
+[12.300215] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__functions.h\n'}
+[12.300759] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__struct.h\n'}
+[12.304646] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__type_support.h\n'}
+[12.305521] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__functions.h\n'}
+[12.306238] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__struct.h\n'}
+[12.306917] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__type_support.h\n'}
+[12.307538] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__functions.h\n'}
+[12.308280] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__struct.h\n'}
+[12.319646] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.h\n'}
+[12.321039] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/latency_stats.h\n'}
+[12.322054] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rate_stats.h\n'}
+[12.323571] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_generator_c__visibility_control.h\n'}
+[12.340935] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/slow.h\n'}
+[12.342705] (-) TimerEvent: {}
+[12.371389] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/library_path.sh\n'}
+[12.372708] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/library_path.dsv\n'}
+[12.373602] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_fastrtps_c.h\n'}
+[12.383174] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_fastrtps_c.h\n'}
+[12.384976] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_fastrtps_c.h\n'}
+[12.386047] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[12.401580] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_introspection_c.h\n'}
+[12.403086] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_introspection_c.h\n'}
+[12.404263] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h\n'}
+[12.406022] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[12.407582] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__builder.hpp\n'}
+[12.408851] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__struct.hpp\n'}
+[12.465577] (-) TimerEvent: {}
+[12.466724] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__traits.hpp\n'}
+[12.468661] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__type_support.hpp\n'}
+[12.470984] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__builder.hpp\n'}
+[12.475859] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__struct.hpp\n'}
+[12.479599] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__traits.hpp\n'}
+[12.494949] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__type_support.hpp\n'}
+[12.497010] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__builder.hpp\n'}
+[12.499594] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__struct.hpp\n'}
+[12.501895] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__traits.hpp\n'}
+[12.504255] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.hpp\n'}
+[12.506034] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/latency_stats.hpp\n'}
+[12.508384] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rate_stats.hpp\n'}
+[12.511096] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[12.515123] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/slow.hpp\n'}
+[12.521581] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[12.537149] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[12.540728] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[12.543480] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[12.547663] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_introspection_cpp.hpp\n'}
+[12.551962] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_introspection_cpp.hpp\n'}
+[12.564154] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_cpp.hpp\n'}
+[12.567239] (-) TimerEvent: {}
+[12.568573] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/pythonpath.sh\n'}
+[12.572594] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/pythonpath.dsv\n'}
+[12.578217] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[12.599371] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[12.602996] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[12.607000] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[12.609922] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/__init__.py\n'}
+[12.620199] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_c.c\n'}
+[12.630582] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[12.636810] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[12.649519] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.652827] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.657561] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.667055] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/libcustom_messages__rosidl_generator_py.so\n'}
+[12.669549] (-) TimerEvent: {}
+[12.672454] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/__init__.py\n'}
+[12.685226] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_latency_stats.py\n'}
+[12.699464] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_latency_stats_s.c\n'}
+[12.702503] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_rate_stats.py\n'}
+[12.711627] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_rate_stats_s.c\n'}
+[12.713017] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow.py\n'}
+[12.714308] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow_s.c\n'}
+[12.715012] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.715728] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.716465] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[12.717243] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/Slow.idl\n'}
+[12.718131] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/LatencyStats.idl\n'}
+[12.719429] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/RateStats.idl\n'}
+[12.721650] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/Slow.msg\n'}
+[12.722546] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/LatencyStats.msg\n'}
+[12.723184] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/RateStats.msg\n'}
+[12.724158] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/package_run_dependencies/custom_messages\n'}
+[12.725892] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/parent_prefix_path/custom_messages\n'}
+[12.727176] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/ament_prefix_path.sh\n'}
+[12.728912] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/ament_prefix_path.dsv\n'}
+[12.731843] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/path.sh\n'}
+[12.733395] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/path.dsv\n'}
+[12.734846] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.bash\n'}
+[12.736076] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.sh\n'}
+[12.737876] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.zsh\n'}
+[12.739619] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.dsv\n'}
+[12.740902] (custom_messages) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.dsv\n'}
+[12.742202] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/packages/custom_messages\n'}
+[12.743784] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake-extras.cmake\n'}
+[12.745169] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[12.746836] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[12.747846] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[12.748595] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[12.749419] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[12.749985] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[12.750500] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messagesConfig.cmake\n'}
+[12.751126] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messagesConfig-version.cmake\n'}
+[12.751579] (custom_messages) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.xml\n'}
+[12.752155] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_c.so\n'}
+[12.753075] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_c.so\n'}
+[12.757758] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_c.so\n'}
+[12.758432] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_c.so\n'}
+[12.759450] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_cpp.so\n'}
+[12.761381] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_cpp.so\n'}
+[12.762373] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_cpp.so\n'}
+[12.770645] (-) TimerEvent: {}
+[12.872919] (-) TimerEvent: {}
+[12.961020] (custom_messages) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages'...\n"}
+[12.962818] (custom_messages) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg'...\n"}
+[12.981344] (-) TimerEvent: {}
+[13.065340] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_py.so\n'}
+[13.080211] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cExport.cmake\n'}
+[13.089332] (-) TimerEvent: {}
+[13.111350] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cExport-noconfig.cmake\n'}
+[13.116843] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[13.119851] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[13.138274] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cExport.cmake\n'}
+[13.141196] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[13.151333] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cExport.cmake\n'}
+[13.154501] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[13.171349] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cppExport.cmake\n'}
+[13.171962] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[13.172475] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[13.173069] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[13.183327] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[13.191117] (-) TimerEvent: {}
+[13.192201] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cppExport.cmake\n'}
+[13.194452] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[13.198770] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_pyExport.cmake\n'}
+[13.208160] (custom_messages) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_pyExport-noconfig.cmake\n'}
+[13.219612] (custom_messages) CommandEnded: {'returncode': 0}
+[13.291698] (-) TimerEvent: {}
+[13.410724] (-) TimerEvent: {}
+[13.519777] (-) TimerEvent: {}
+[13.647363] (-) TimerEvent: {}
+[13.728987] (custom_messages) JobEnded: {'identifier': 'custom_messages', 'rc': 0}
+[13.734523] (robo_rover) JobStarted: {'identifier': 'robo_rover'}
+[13.747520] (-) TimerEvent: {}
+[13.849892] (-) TimerEvent: {}
+[13.954766] (-) TimerEvent: {}
+[14.022991] (robo_rover) JobProgress: {'identifier': 'robo_rover', 'progress': 'cmake'}
+[14.057306] (robo_rover) JobProgress: {'identifier': 'robo_rover', 'progress': 'build'}
+[14.057617] (-) TimerEvent: {}
+[14.059043] (robo_rover) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', '--', '-j4', '-l4'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[14.160037] (-) TimerEvent: {}
+[14.262306] (-) TimerEvent: {}
+[14.364374] (-) TimerEvent: {}
+[14.466499] (-) TimerEvent: {}
+[14.568267] (-) TimerEvent: {}
+[14.676580] (-) TimerEvent: {}
+[14.781941] (-) TimerEvent: {}
+[14.883853] (-) TimerEvent: {}
+[14.975900] (robo_rover) StdoutLine: {'line': b'Built target ament_cmake_python_symlink_robo_rover\n'}
+[14.984028] (-) TimerEvent: {}
+[15.086408] (-) TimerEvent: {}
+[15.188851] (-) TimerEvent: {}
+[15.292974] (-) TimerEvent: {}
+[15.395868] (-) TimerEvent: {}
+[15.498031] (-) TimerEvent: {}
+[15.600647] (-) TimerEvent: {}
+[15.706654] (-) TimerEvent: {}
+[15.809961] (-) TimerEvent: {}
+[15.917014] (-) TimerEvent: {}
+[16.018243] (-) TimerEvent: {}
+[16.119370] (-) TimerEvent: {}
+[16.225596] (-) TimerEvent: {}
+[16.327448] (-) TimerEvent: {}
+[16.428755] (-) TimerEvent: {}
+[16.530440] (-) TimerEvent: {}
+[16.631687] (-) TimerEvent: {}
+[16.734319] (-) TimerEvent: {}
+[16.837461] (-) TimerEvent: {}
+[16.945014] (-) TimerEvent: {}
+[17.052453] (-) TimerEvent: {}
+[17.153664] (-) TimerEvent: {}
+[17.254846] (-) TimerEvent: {}
+[17.355972] (-) TimerEvent: {}
+[17.457442] (-) TimerEvent: {}
+[17.566374] (-) TimerEvent: {}
+[17.676648] (-) TimerEvent: {}
+[17.779966] (-) TimerEvent: {}
+[17.885090] (-) TimerEvent: {}
+[17.988082] (-) TimerEvent: {}
+[18.092136] (-) TimerEvent: {}
+[18.201737] (-) TimerEvent: {}
+[18.305288] (-) TimerEvent: {}
+[18.409266] (-) TimerEvent: {}
+[18.510343] (-) TimerEvent: {}
+[18.626087] (-) TimerEvent: {}
+[18.730239] (-) TimerEvent: {}
+[18.845185] (-) TimerEvent: {}
+[18.947099] (-) TimerEvent: {}
+[19.057443] (-) TimerEvent: {}
+[19.158924] (-) TimerEvent: {}
+[19.269313] (-) TimerEvent: {}
+[19.389472] (-) TimerEvent: {}
+[19.407418] (realsense_publisher) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build', '--no-deps', 'symlink_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.124.219.92 38730 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms', 'TERM_PROGRAM_VERSION': '1.116.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '4', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-a15f8731e0.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/vscode-ssh-auth-sock-966288025', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher', 'SSH_CONNECTION': '100.124.219.92 38730 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[19.493088] (-) TimerEvent: {}
+[19.596941] (-) TimerEvent: {}
+[19.706904] (-) TimerEvent: {}
+[19.809019] (-) TimerEvent: {}
+[19.922152] (-) TimerEvent: {}
+[20.029361] (-) TimerEvent: {}
+[20.131219] (-) TimerEvent: {}
+[20.255653] (-) TimerEvent: {}
+[20.368848] (-) TimerEvent: {}
+[20.473337] (-) TimerEvent: {}
+[20.587407] (landmark_slam) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build', '--no-deps', 'symlink_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.124.219.92 38730 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms', 'TERM_PROGRAM_VERSION': '1.116.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '4', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-a15f8731e0.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/vscode-ssh-auth-sock-966288025', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam', 'SSH_CONNECTION': '100.124.219.92 38730 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[20.596744] (-) TimerEvent: {}
+[20.713338] (-) TimerEvent: {}
+[20.817369] (-) TimerEvent: {}
+[20.918450] (-) TimerEvent: {}
+[21.030341] (-) TimerEvent: {}
+[21.150072] (-) TimerEvent: {}
+[21.253349] (-) TimerEvent: {}
+[21.355184] (-) TimerEvent: {}
+[21.472979] (-) TimerEvent: {}
+[21.484488] (robo_rover) StdoutLine: {'line': b'running egg_info\n'}
+[21.493591] (robo_rover) StdoutLine: {'line': b'writing robo_rover.egg-info/PKG-INFO\n'}
+[21.494315] (robo_rover) StdoutLine: {'line': b'writing dependency_links to robo_rover.egg-info/dependency_links.txt\n'}
+[21.495255] (robo_rover) StdoutLine: {'line': b'writing top-level names to robo_rover.egg-info/top_level.txt\n'}
+[21.541310] (robo_rover) StdoutLine: {'line': b"reading manifest file 'robo_rover.egg-info/SOURCES.txt'\n"}
+[21.550488] (robo_rover) StdoutLine: {'line': b"writing manifest file 'robo_rover.egg-info/SOURCES.txt'\n"}
+[21.583554] (-) TimerEvent: {}
+[21.695736] (-) TimerEvent: {}
+[21.789200] (camera_navigation) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build', '--no-deps', 'symlink_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.124.219.92 38730 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms', 'TERM_PROGRAM_VERSION': '1.116.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '4', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-a15f8731e0.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/vscode-ssh-auth-sock-966288025', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation', 'SSH_CONNECTION': '100.124.219.92 38730 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[21.806889] (-) TimerEvent: {}
+[21.917368] (-) TimerEvent: {}
+[22.025351] (-) TimerEvent: {}
+[22.029287] (robo_rover) StdoutLine: {'line': b'Built target ament_cmake_python_build_robo_rover_egg\n'}
+[22.125534] (-) TimerEvent: {}
+[22.177638] (robo_rover) CommandEnded: {'returncode': 0}
+[22.187823] (robo_rover) JobProgress: {'identifier': 'robo_rover', 'progress': 'install'}
+[22.188148] (robo_rover) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[22.228232] (-) TimerEvent: {}
+[22.324511] (robo_rover) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[22.328384] (-) TimerEvent: {}
+[22.333066] (robo_rover) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[22.343984] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.sh\n'}
+[22.369086] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/pythonpath.dsv\n'}
+[22.380266] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/PKG-INFO\n'}
+[22.386581] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[22.395875] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[22.403522] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover-1.0.0-py3.10.egg-info/top_level.txt\n'}
+[22.425233] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/__init__.py\n'}
+[22.427390] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover/rover_node.py\n'}
+[22.430900] (-) TimerEvent: {}
+[22.439886] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/launch/rover_launch.py\n'}
+[22.445425] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/package_run_dependencies/robo_rover\n'}
+[22.462891] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/parent_prefix_path/robo_rover\n'}
+[22.465064] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.sh\n'}
+[22.475343] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/ament_prefix_path.dsv\n'}
+[22.480554] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.sh\n'}
+[22.490849] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/environment/path.dsv\n'}
+[22.507947] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.bash\n'}
+[22.518369] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.sh\n'}
+[22.538018] (-) TimerEvent: {}
+[22.540617] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.zsh\n'}
+[22.543949] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/local_setup.dsv\n'}
+[22.553747] (robo_rover) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.dsv\n'}
+[22.587028] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/ament_index/resource_index/packages/robo_rover\n'}
+[22.587900] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/cmake/robo_roverConfig.cmake\n'}
+[22.588494] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/cmake/robo_roverConfig-version.cmake\n'}
+[22.588948] (robo_rover) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.xml\n'}
+[22.638946] (-) TimerEvent: {}
+[22.739822] (-) TimerEvent: {}
+[22.841498] (-) TimerEvent: {}
+[22.943205] (-) TimerEvent: {}
+[23.051384] (-) TimerEvent: {}
+[23.111521] (robo_rover) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages/robo_rover'...\n"}
+[23.158588] (-) TimerEvent: {}
+[23.195013] (robo_rover) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib/robo_rover/rover_node\n'}
+[23.214441] (robo_rover) CommandEnded: {'returncode': 0}
+[23.263238] (-) TimerEvent: {}
+[23.367165] (-) TimerEvent: {}
+[23.476611] (-) TimerEvent: {}
+[23.580340] (-) TimerEvent: {}
+[23.631308] (robo_rover) JobEnded: {'identifier': 'robo_rover', 'rc': 0}
+[23.643696] (rplidar_ros) JobStarted: {'identifier': 'rplidar_ros'}
+[23.681201] (-) TimerEvent: {}
+[23.778110] (rplidar_ros) JobProgress: {'identifier': 'rplidar_ros', 'progress': 'cmake'}
+[23.783014] (-) TimerEvent: {}
+[23.790798] (rplidar_ros) JobProgress: {'identifier': 'rplidar_ros', 'progress': 'build'}
+[23.798029] (rplidar_ros) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros', '--', '-j4', '-l4'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[23.883376] (-) TimerEvent: {}
+[23.986419] (-) TimerEvent: {}
+[24.092741] (-) TimerEvent: {}
+[24.195185] (-) TimerEvent: {}
+[24.297568] (-) TimerEvent: {}
+[24.402912] (-) TimerEvent: {}
+[24.509281] (-) TimerEvent: {}
+[24.610429] (-) TimerEvent: {}
+[24.648448] (realsense_publisher) StdoutLine: {'line': b'running develop\n'}
+[24.713342] (-) TimerEvent: {}
+[24.815711] (-) TimerEvent: {}
+[24.920082] (-) TimerEvent: {}
+[24.991107] (rplidar_ros) StdoutLine: {'line': b'[ 47%] Built target rplidar_node\n'}
+[25.021457] (-) TimerEvent: {}
+[25.130240] (-) TimerEvent: {}
+[25.233419] (-) TimerEvent: {}
+[25.340764] (rplidar_ros) StdoutLine: {'line': b'[ 52%] Built target rplidar_client\n'}
+[25.341717] (-) TimerEvent: {}
+[25.443614] (-) TimerEvent: {}
+[25.546981] (-) TimerEvent: {}
+[25.561555] (landmark_slam) StdoutLine: {'line': b'running develop\n'}
+[25.657409] (-) TimerEvent: {}
+[25.761273] (-) TimerEvent: {}
+[25.863770] (-) TimerEvent: {}
+[25.977361] (-) TimerEvent: {}
+[26.044254] (rplidar_ros) StdoutLine: {'line': b'[100%] Built target rplidar_composition\n'}
+[26.079385] (-) TimerEvent: {}
+[26.188633] (-) TimerEvent: {}
+[26.291431] (-) TimerEvent: {}
+[26.322695] (rplidar_ros) CommandEnded: {'returncode': 0}
+[26.324462] (rplidar_ros) JobProgress: {'identifier': 'rplidar_ros', 'progress': 'install'}
+[26.324661] (rplidar_ros) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[26.393325] (-) TimerEvent: {}
+[26.485619] (rplidar_ros) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[26.493539] (-) TimerEvent: {}
+[26.496483] (rplidar_ros) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[26.514980] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/__pycache__/view_rplidar_a1_launch.cpython-310.pyc\n'}
+[26.517256] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/hallway_launch.py\n'}
+[26.535922] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a1_launch.py\n'}
+[26.537538] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a1_launch.py\n'}
+[26.540193] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m12_launch.py\n'}
+[26.543410] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m7_launch.py\n'}
+[26.544101] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m8_launch.py\n'}
+[26.557746] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a3_launch.py\n'}
+[26.558552] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_c1_launch.py\n'}
+[26.560794] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_launch.py\n'}
+[26.562730] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_tcp_launch.py\n'}
+[26.566062] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2_launch.py\n'}
+[26.576141] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2e_launch.py\n'}
+[26.579382] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s3_launch.py\n'}
+[26.582573] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_t1_launch.py\n'}
+[26.587606] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/rviz/rplidar_ros.rviz\n'}
+[26.591024] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_node\n'}
+[26.597431] (-) TimerEvent: {}
+[26.602187] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_composition\n'}
+[26.610657] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_client\n'}
+[26.617797] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/ament_index/resource_index/package_run_dependencies/rplidar_ros\n'}
+[26.623848] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/ament_index/resource_index/parent_prefix_path/rplidar_ros\n'}
+[26.628707] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.sh\n'}
+[26.632151] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.dsv\n'}
+[26.636895] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/path.sh\n'}
+[26.643048] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/path.dsv\n'}
+[26.652853] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.bash\n'}
+[26.667729] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.sh\n'}
+[26.671180] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.zsh\n'}
+[26.673568] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.dsv\n'}
+[26.676137] (rplidar_ros) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.dsv\n'}
+[26.698002] (-) TimerEvent: {}
+[26.747538] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/ament_index/resource_index/packages/rplidar_ros\n'}
+[26.754754] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[26.760214] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[26.768942] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig.cmake\n'}
+[26.775252] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig-version.cmake\n'}
+[26.780589] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.xml\n'}
+[26.804885] (rplidar_ros) CommandEnded: {'returncode': 0}
+[26.811508] (-) TimerEvent: {}
+[26.923270] (-) TimerEvent: {}
+[27.025649] (-) TimerEvent: {}
+[27.145328] (-) TimerEvent: {}
+[27.195293] (rplidar_ros) JobEnded: {'identifier': 'rplidar_ros', 'rc': 0}
+[27.199520] (obstacle_avoidance) JobStarted: {'identifier': 'obstacle_avoidance'}
+[27.245486] (-) TimerEvent: {}
+[27.346738] (-) TimerEvent: {}
+[27.447829] (-) TimerEvent: {}
+[27.550942] (-) TimerEvent: {}
+[27.654263] (-) TimerEvent: {}
+[27.756933] (-) TimerEvent: {}
+[27.861923] (-) TimerEvent: {}
+[27.977362] (-) TimerEvent: {}
+[28.081216] (-) TimerEvent: {}
+[28.197407] (-) TimerEvent: {}
+[28.298484] (-) TimerEvent: {}
+[28.354275] (camera_navigation) StdoutLine: {'line': b'running develop\n'}
+[28.399580] (-) TimerEvent: {}
+[28.522742] (-) TimerEvent: {}
+[28.625684] (-) TimerEvent: {}
+[28.729223] (-) TimerEvent: {}
+[28.837264] (-) TimerEvent: {}
+[28.941785] (-) TimerEvent: {}
+[29.047766] (-) TimerEvent: {}
+[29.150043] (-) TimerEvent: {}
+[29.251331] (-) TimerEvent: {}
+[29.371058] (-) TimerEvent: {}
+[29.472867] (-) TimerEvent: {}
+[29.575236] (-) TimerEvent: {}
+[29.674923] (realsense_publisher) StdoutLine: {'line': b'running egg_info\n'}
+[29.680926] (-) TimerEvent: {}
+[29.683158] (realsense_publisher) StdoutLine: {'line': b'writing realsense_publisher.egg-info/PKG-INFO\n'}
+[29.686987] (realsense_publisher) StdoutLine: {'line': b'writing dependency_links to realsense_publisher.egg-info/dependency_links.txt\n'}
+[29.692844] (realsense_publisher) StdoutLine: {'line': b'writing entry points to realsense_publisher.egg-info/entry_points.txt\n'}
+[29.705677] (realsense_publisher) StdoutLine: {'line': b'writing requirements to realsense_publisher.egg-info/requires.txt\n'}
+[29.706717] (realsense_publisher) StdoutLine: {'line': b'writing top-level names to realsense_publisher.egg-info/top_level.txt\n'}
+[29.717950] (realsense_publisher) StdoutLine: {'line': b"reading manifest file 'realsense_publisher.egg-info/SOURCES.txt'\n"}
+[29.723108] (realsense_publisher) StdoutLine: {'line': b"writing manifest file 'realsense_publisher.egg-info/SOURCES.txt'\n"}
+[29.740793] (realsense_publisher) StdoutLine: {'line': b'running build_ext\n'}
+[29.749754] (realsense_publisher) StdoutLine: {'line': b'Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense-publisher.egg-link (link to .)\n'}
+[29.766197] (realsense_publisher) StdoutLine: {'line': b'Installing realsense_depth_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher\n'}
+[29.768164] (realsense_publisher) StdoutLine: {'line': b'Installing realsense_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher\n'}
+[29.769484] (realsense_publisher) StdoutLine: {'line': b'\n'}
+[29.773460] (realsense_publisher) StdoutLine: {'line': b'Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher\n'}
+[29.774970] (realsense_publisher) StdoutLine: {'line': b'running symlink_data\n'}
+[29.803722] (-) TimerEvent: {}
+[29.910149] (-) TimerEvent: {}
+[30.025018] (-) TimerEvent: {}
+[30.128108] (-) TimerEvent: {}
+[30.237323] (-) TimerEvent: {}
+[30.288253] (landmark_slam) StdoutLine: {'line': b'running egg_info\n'}
+[30.288985] (landmark_slam) StdoutLine: {'line': b'writing landmark_slam.egg-info/PKG-INFO\n'}
+[30.291350] (landmark_slam) StdoutLine: {'line': b'writing dependency_links to landmark_slam.egg-info/dependency_links.txt\n'}
+[30.305352] (landmark_slam) StdoutLine: {'line': b'writing entry points to landmark_slam.egg-info/entry_points.txt\n'}
+[30.306160] (landmark_slam) StdoutLine: {'line': b'writing requirements to landmark_slam.egg-info/requires.txt\n'}
+[30.306754] (landmark_slam) StdoutLine: {'line': b'writing top-level names to landmark_slam.egg-info/top_level.txt\n'}
+[30.311660] (landmark_slam) StdoutLine: {'line': b"reading manifest file 'landmark_slam.egg-info/SOURCES.txt'\n"}
+[30.315213] (landmark_slam) StdoutLine: {'line': b"writing manifest file 'landmark_slam.egg-info/SOURCES.txt'\n"}
+[30.333538] (landmark_slam) StdoutLine: {'line': b'running build_ext\n'}
+[30.334268] (landmark_slam) StdoutLine: {'line': b'Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark-slam.egg-link (link to .)\n'}
+[30.339360] (-) TimerEvent: {}
+[30.341662] (landmark_slam) StdoutLine: {'line': b'Installing landmark_slam script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/landmark_slam\n'}
+[30.343902] (landmark_slam) StdoutLine: {'line': b'\n'}
+[30.344786] (landmark_slam) StdoutLine: {'line': b'Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam\n'}
+[30.347685] (landmark_slam) StdoutLine: {'line': b'running symlink_data\n'}
+[30.445285] (-) TimerEvent: {}
+[30.550876] (-) TimerEvent: {}
+[30.657926] (-) TimerEvent: {}
+[30.766757] (-) TimerEvent: {}
+[30.869454] (-) TimerEvent: {}
+[30.973316] (-) TimerEvent: {}
+[31.074782] (-) TimerEvent: {}
+[31.176026] (-) TimerEvent: {}
+[31.283021] (-) TimerEvent: {}
+[31.384112] (-) TimerEvent: {}
+[31.485460] (-) TimerEvent: {}
+[31.589362] (-) TimerEvent: {}
+[31.690630] (-) TimerEvent: {}
+[31.793092] (-) TimerEvent: {}
+[31.898114] (-) TimerEvent: {}
+[32.000544] (-) TimerEvent: {}
+[32.110032] (-) TimerEvent: {}
+[32.189980] (realsense_publisher) CommandEnded: {'returncode': 0}
+[32.210419] (-) TimerEvent: {}
+[32.317397] (-) TimerEvent: {}
+[32.375689] (realsense_publisher) JobEnded: {'identifier': 'realsense_publisher', 'rc': 0}
+[32.389390] (amy_test) JobStarted: {'identifier': 'amy_test'}
+[32.417633] (-) TimerEvent: {}
+[32.449585] (landmark_slam) CommandEnded: {'returncode': 0}
+[32.459550] (camera_navigation) StdoutLine: {'line': b'running egg_info\n'}
+[32.461017] (camera_navigation) StdoutLine: {'line': b'writing camera_navigation.egg-info/PKG-INFO\n'}
+[32.484798] (camera_navigation) StdoutLine: {'line': b'writing dependency_links to camera_navigation.egg-info/dependency_links.txt\n'}
+[32.491761] (camera_navigation) StdoutLine: {'line': b'writing entry points to camera_navigation.egg-info/entry_points.txt\n'}
+[32.498855] (camera_navigation) StdoutLine: {'line': b'writing requirements to camera_navigation.egg-info/requires.txt\n'}
+[32.507464] (camera_navigation) StdoutLine: {'line': b'writing top-level names to camera_navigation.egg-info/top_level.txt\n'}
+[32.511452] (camera_navigation) StdoutLine: {'line': b"reading manifest file 'camera_navigation.egg-info/SOURCES.txt'\n"}
+[32.527169] (-) TimerEvent: {}
+[32.528231] (camera_navigation) StdoutLine: {'line': b"writing manifest file 'camera_navigation.egg-info/SOURCES.txt'\n"}
+[32.537520] (camera_navigation) StdoutLine: {'line': b'running build_ext\n'}
+[32.547710] (camera_navigation) StdoutLine: {'line': b'Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/camera-navigation.egg-link (link to .)\n'}
+[32.551305] (camera_navigation) StdoutLine: {'line': b'Installing blue_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.552637] (camera_navigation) StdoutLine: {'line': b'Installing follow_the_gap script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.553586] (camera_navigation) StdoutLine: {'line': b'Installing line_detection script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.555201] (camera_navigation) StdoutLine: {'line': b'Installing line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.599304] (camera_navigation) StdoutLine: {'line': b'Installing line_follow_V2 script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.601497] (camera_navigation) StdoutLine: {'line': b'Installing line_follow_daph script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.603152] (camera_navigation) StdoutLine: {'line': b'Installing mary_line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.605035] (camera_navigation) StdoutLine: {'line': b'Installing turn_right_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation\n'}
+[32.606574] (camera_navigation) StdoutLine: {'line': b'\n'}
+[32.610068] (camera_navigation) StdoutLine: {'line': b'Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation\n'}
+[32.611873] (camera_navigation) StdoutLine: {'line': b'running symlink_data\n'}
+[32.642347] (-) TimerEvent: {}
+[32.746471] (-) TimerEvent: {}
+[32.787492] (landmark_slam) JobEnded: {'identifier': 'landmark_slam', 'rc': 0}
+[32.847056] (-) TimerEvent: {}
+[32.848954] (amy_test) JobProgress: {'identifier': 'amy_test', 'progress': 'cmake'}
+[32.871853] (amy_test) JobProgress: {'identifier': 'amy_test', 'progress': 'build'}
+[32.872611] (amy_test) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test', '--', '-j4', '-l4'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[32.949246] (-) TimerEvent: {}
+[32.979223] (camera_navigation) CommandEnded: {'returncode': 0}
+[33.060801] (-) TimerEvent: {}
+[33.164938] (-) TimerEvent: {}
+[33.179383] (camera_navigation) JobEnded: {'identifier': 'camera_navigation', 'rc': 0}
+[33.265265] (-) TimerEvent: {}
+[33.366335] (-) TimerEvent: {}
+[33.469292] (-) TimerEvent: {}
+[33.486613] (amy_test) StdoutLine: {'line': b'[  3%] Built target amy_test__cpp\n'}
+[33.569554] (-) TimerEvent: {}
+[33.671017] (-) TimerEvent: {}
+[33.809593] (-) TimerEvent: {}
+[33.909433] (amy_test) StdoutLine: {'line': b'[  3%] Built target ament_cmake_python_symlink_amy_test\n'}
+[33.934525] (-) TimerEvent: {}
+[34.037286] (-) TimerEvent: {}
+[34.140112] (-) TimerEvent: {}
+[34.170733] (amy_test) StdoutLine: {'line': b'[ 12%] Built target amy_test__rosidl_typesupport_fastrtps_cpp\n'}
+[34.240320] (-) TimerEvent: {}
+[34.345046] (-) TimerEvent: {}
+[34.392788] (amy_test) StdoutLine: {'line': b'[ 22%] Built target amy_test__rosidl_typesupport_introspection_cpp\n'}
+[34.445332] (-) TimerEvent: {}
+[34.552420] (-) TimerEvent: {}
+[34.656743] (-) TimerEvent: {}
+[34.758710] (-) TimerEvent: {}
+[34.868456] (-) TimerEvent: {}
+[34.971980] (-) TimerEvent: {}
+[35.073171] (-) TimerEvent: {}
+[35.179433] (-) TimerEvent: {}
+[35.280509] (-) TimerEvent: {}
+[35.383572] (-) TimerEvent: {}
+[35.486084] (-) TimerEvent: {}
+[35.588425] (-) TimerEvent: {}
+[35.692220] (-) TimerEvent: {}
+[35.795813] (-) TimerEvent: {}
+[35.897410] (-) TimerEvent: {}
+[35.999764] (-) TimerEvent: {}
+[36.102749] (-) TimerEvent: {}
+[36.204525] (-) TimerEvent: {}
+[36.307984] (-) TimerEvent: {}
+[36.409894] (-) TimerEvent: {}
+[36.511633] (-) TimerEvent: {}
+[36.613404] (-) TimerEvent: {}
+[36.714755] (-) TimerEvent: {}
+[36.818490] (-) TimerEvent: {}
+[36.920502] (-) TimerEvent: {}
+[37.025258] (-) TimerEvent: {}
+[37.126464] (-) TimerEvent: {}
+[37.229520] (-) TimerEvent: {}
+[37.333474] (-) TimerEvent: {}
+[37.434816] (-) TimerEvent: {}
+[37.541426] (-) TimerEvent: {}
+[37.642351] (-) TimerEvent: {}
+[37.744704] (-) TimerEvent: {}
+[37.848002] (-) TimerEvent: {}
+[37.949140] (-) TimerEvent: {}
+[38.052772] (-) TimerEvent: {}
+[38.119339] (amy_test) StdoutLine: {'line': b'running egg_info\n'}
+[38.126059] (amy_test) StdoutLine: {'line': b'writing amy_test.egg-info/PKG-INFO\n'}
+[38.128461] (amy_test) StdoutLine: {'line': b'writing dependency_links to amy_test.egg-info/dependency_links.txt\n'}
+[38.140741] (amy_test) StdoutLine: {'line': b'writing top-level names to amy_test.egg-info/top_level.txt\n'}
+[38.163806] (-) TimerEvent: {}
+[38.167177] (amy_test) StdoutLine: {'line': b"reading manifest file 'amy_test.egg-info/SOURCES.txt'\n"}
+[38.181177] (amy_test) StdoutLine: {'line': b"writing manifest file 'amy_test.egg-info/SOURCES.txt'\n"}
+[38.264239] (-) TimerEvent: {}
+[38.317424] (obstacle_avoidance) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build', '--no-deps', 'symlink_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.124.219.92 38730 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms', 'TERM_PROGRAM_VERSION': '1.116.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '4', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-a15f8731e0.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/vscode-ssh-auth-sock-966288025', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance', 'SSH_CONNECTION': '100.124.219.92 38730 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover'}, 'shell': False}
+[38.365345] (-) TimerEvent: {}
+[38.466632] (-) TimerEvent: {}
+[38.560067] (amy_test) StdoutLine: {'line': b'[ 22%] Built target ament_cmake_python_build_amy_test_egg\n'}
+[38.566889] (-) TimerEvent: {}
+[38.671369] (-) TimerEvent: {}
+[38.764198] (amy_test) StdoutLine: {'line': b'[ 32%] Built target amy_test__rosidl_typesupport_cpp\n'}
+[38.771588] (-) TimerEvent: {}
+[38.874612] (-) TimerEvent: {}
+[38.975847] (-) TimerEvent: {}
+[39.025628] (amy_test) StdoutLine: {'line': b'[ 41%] Built target amy_test__rosidl_generator_c\n'}
+[39.076067] (-) TimerEvent: {}
+[39.178149] (-) TimerEvent: {}
+[39.217251] (amy_test) StdoutLine: {'line': b'[ 51%] Built target amy_test__rosidl_typesupport_fastrtps_c\n'}
+[39.278347] (-) TimerEvent: {}
+[39.380520] (-) TimerEvent: {}
+[39.444704] (amy_test) StdoutLine: {'line': b'[ 61%] Built target amy_test__rosidl_typesupport_c\n'}
+[39.482319] (-) TimerEvent: {}
+[39.590980] (-) TimerEvent: {}
+[39.680939] (amy_test) StdoutLine: {'line': b'[ 70%] Built target amy_test__rosidl_typesupport_introspection_c\n'}
+[39.692719] (-) TimerEvent: {}
+[39.795604] (-) TimerEvent: {}
+[39.860736] (amy_test) StdoutLine: {'line': b'[ 70%] Built target amy_test\n'}
+[39.897559] (-) TimerEvent: {}
+[40.000077] (-) TimerEvent: {}
+[40.085998] (amy_test) StdoutLine: {'line': b'[ 74%] Built target amy_test__py\n'}
+[40.100552] (-) TimerEvent: {}
+[40.205994] (-) TimerEvent: {}
+[40.309169] (-) TimerEvent: {}
+[40.313827] (amy_test) StdoutLine: {'line': b'[ 80%] Built target amy_test__rosidl_generator_py\n'}
+[40.409375] (-) TimerEvent: {}
+[40.510542] (-) TimerEvent: {}
+[40.585438] (amy_test) StdoutLine: {'line': b'[ 87%] Built target amy_test__rosidl_typesupport_fastrtps_c__pyext\n'}
+[40.611269] (-) TimerEvent: {}
+[40.712860] (-) TimerEvent: {}
+[40.811021] (amy_test) StdoutLine: {'line': b'[ 93%] Built target amy_test__rosidl_typesupport_c__pyext\n'}
+[40.815774] (-) TimerEvent: {}
+[40.920049] (-) TimerEvent: {}
+[41.005713] (amy_test) StdoutLine: {'line': b'[100%] Built target amy_test__rosidl_typesupport_introspection_c__pyext\n'}
+[41.020287] (-) TimerEvent: {}
+[41.123018] (-) TimerEvent: {}
+[41.147908] (amy_test) CommandEnded: {'returncode': 0}
+[41.158671] (amy_test) JobProgress: {'identifier': 'amy_test', 'progress': 'install'}
+[41.159045] (amy_test) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-96597fe9-841c-4d91-919c-3cce42c01f53.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[41.226171] (-) TimerEvent: {}
+[41.237998] (amy_test) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[41.241747] (amy_test) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[41.244335] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/rosidl_interfaces/amy_test\n'}
+[41.247230] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__functions.h\n'}
+[41.247883] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__struct.h\n'}
+[41.259095] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__type_support.h\n'}
+[41.262124] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_generator_c__visibility_control.h\n'}
+[41.273278] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/tape_contour.h\n'}
+[41.280732] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/library_path.sh\n'}
+[41.282713] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/library_path.dsv\n'}
+[41.289470] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_fastrtps_c.h\n'}
+[41.306366] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[41.310977] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__builder.hpp\n'}
+[41.311938] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__struct.hpp\n'}
+[41.316112] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__traits.hpp\n'}
+[41.319990] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__type_support.hpp\n'}
+[41.320775] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[41.328270] (-) TimerEvent: {}
+[41.333371] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/tape_contour.hpp\n'}
+[41.334323] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[41.336292] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[41.344173] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_introspection_c.h\n'}
+[41.345656] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[41.352517] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/include/amy_test/amy_test/msg/detail/tape_contour__rosidl_typesupport_introspection_cpp.hpp\n'}
+[41.353737] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/pythonpath.sh\n'}
+[41.354551] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/pythonpath.dsv\n'}
+[41.355480] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/PKG-INFO\n'}
+[41.356209] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/SOURCES.txt\n'}
+[41.356878] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/dependency_links.txt\n'}
+[41.386775] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test-0.0.1-py3.10.egg-info/top_level.txt\n'}
+[41.387839] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/__init__.py\n'}
+[41.388919] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_c.c\n'}
+[41.389895] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[41.390962] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/_amy_test_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[41.391952] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[41.414082] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[41.423712] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[41.429835] (-) TimerEvent: {}
+[41.430964] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/libamy_test__rosidl_generator_py.so\n'}
+[41.431768] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/__init__.py\n'}
+[41.432323] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour.py\n'}
+[41.433167] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg/_tape_contour_s.c\n'}
+[41.433691] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[41.438214] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[41.446666] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/amy_test_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[41.448584] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/msg/TapeContour.idl\n'}
+[41.453270] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/msg/TapeContour.msg\n'}
+[41.454018] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/odometry_launch.py\n'}
+[41.454746] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/tape_contour_rt.launch.py\n'}
+[41.455411] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/tape_pipeline.launch.py\n'}
+[41.456004] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test//launch/test_full_launch.py\n'}
+[41.456692] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/package_run_dependencies/amy_test\n'}
+[41.459271] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/parent_prefix_path/amy_test\n'}
+[41.463962] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/ament_prefix_path.sh\n'}
+[41.466421] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/ament_prefix_path.dsv\n'}
+[41.467083] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/path.sh\n'}
+[41.467626] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/environment/path.dsv\n'}
+[41.470285] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.bash\n'}
+[41.472658] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.sh\n'}
+[41.476816] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.zsh\n'}
+[41.477995] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/local_setup.dsv\n'}
+[41.479920] (amy_test) StdoutLine: {'line': b'-- Symlinking: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.dsv\n'}
+[41.530049] (-) TimerEvent: {}
+[41.534107] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/ament_index/resource_index/packages/amy_test\n'}
+[41.534929] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake-extras.cmake\n'}
+[41.536982] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[41.539301] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[41.545830] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[41.546424] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[41.547073] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[41.548738] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[41.551432] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_testConfig.cmake\n'}
+[41.562409] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_testConfig-version.cmake\n'}
+[41.563012] (amy_test) StdoutLine: {'line': b'-- Up-to-date symlink: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.xml\n'}
+[41.563614] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_c.so\n'}
+[41.569081] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_c.so\n'}
+[41.569779] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_fastrtps_cpp.so\n'}
+[41.574701] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_c.so\n'}
+[41.575413] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_c.so\n'}
+[41.576161] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_introspection_cpp.so\n'}
+[41.576897] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_typesupport_cpp.so\n'}
+[41.630245] (-) TimerEvent: {}
+[41.740014] (-) TimerEvent: {}
+[41.842723] (-) TimerEvent: {}
+[41.945905] (-) TimerEvent: {}
+[42.016877] (amy_test) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test'...\n"}
+[42.018753] (amy_test) StdoutLine: {'line': b"Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages/amy_test/msg'...\n"}
+[42.046123] (-) TimerEvent: {}
+[42.076260] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/libamy_test__rosidl_generator_py.so\n'}
+[42.079318] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test\n'}
+[42.081818] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_control_node.py\n'}
+[42.086112] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/msg\n'}
+[42.095079] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification\n'}
+[42.099281] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/odometry_monitor.py\n'}
+[42.107141] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/__init__.py\n'}
+[42.112134] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/tape_contour_rt.py\n'}
+[42.117354] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/verification/tape_contour_with_lidar.py\n'}
+[42.121293] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/__init__.py\n'}
+[42.125091] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/launch\n'}
+[42.145243] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/launch/tape_pipeline.launch.py\n'}
+[42.147395] (-) TimerEvent: {}
+[42.148546] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_vision_node.py\n'}
+[42.150013] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/test_full_launch.py\n'}
+[42.152485] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark\n'}
+[42.154516] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/__init__.py\n'}
+[42.170456] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery\n'}
+[42.174961] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery/LIO.py\n'}
+[42.176042] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/Slam_landmark/odometery/__init__.py\n'}
+[42.177072] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages/amy_test/tape_recovery_node.py\n'}
+[42.179538] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_vision_node\n'}
+[42.192030] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_control_node\n'}
+[42.195859] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/amy_test/tape_recovery_node\n'}
+[42.201310] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cExport.cmake\n'}
+[42.204160] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cExport-noconfig.cmake\n'}
+[42.214958] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[42.221048] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[42.222247] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_cppExport.cmake\n'}
+[42.224598] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[42.225458] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[42.227390] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cExport.cmake\n'}
+[42.236981] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[42.237982] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cExport.cmake\n'}
+[42.239565] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[42.240821] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[42.241678] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[42.244145] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cppExport.cmake\n'}
+[42.246292] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/amy_test__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[42.247890] (-) TimerEvent: {}
+[42.249251] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_pyExport.cmake\n'}
+[42.250836] (amy_test) StdoutLine: {'line': b'-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/cmake/export_amy_test__rosidl_generator_pyExport-noconfig.cmake\n'}
+[42.253712] (amy_test) CommandEnded: {'returncode': 0}
+[42.348449] (-) TimerEvent: {}
+[42.450727] (-) TimerEvent: {}
+[42.530041] (amy_test) JobEnded: {'identifier': 'amy_test', 'rc': 0}
+[42.550928] (-) TimerEvent: {}
+[42.592048] (obstacle_avoidance) StdoutLine: {'line': b'running develop\n'}
+[42.651099] (-) TimerEvent: {}
+[42.751942] (-) TimerEvent: {}
+[42.852897] (-) TimerEvent: {}
+[42.954000] (-) TimerEvent: {}
+[43.054755] (-) TimerEvent: {}
+[43.155617] (-) TimerEvent: {}
+[43.257162] (-) TimerEvent: {}
+[43.358595] (-) TimerEvent: {}
+[43.461076] (-) TimerEvent: {}
+[43.562030] (-) TimerEvent: {}
+[43.662823] (-) TimerEvent: {}
+[43.763527] (-) TimerEvent: {}
+[43.864497] (-) TimerEvent: {}
+[43.965429] (-) TimerEvent: {}
+[44.067603] (-) TimerEvent: {}
+[44.169745] (-) TimerEvent: {}
+[44.270886] (-) TimerEvent: {}
+[44.372175] (-) TimerEvent: {}
+[44.473292] (-) TimerEvent: {}
+[44.576409] (-) TimerEvent: {}
+[44.677319] (-) TimerEvent: {}
+[44.685226] (obstacle_avoidance) StdoutLine: {'line': b'running egg_info\n'}
+[44.694638] (obstacle_avoidance) StdoutLine: {'line': b'writing obstacle_avoidance.egg-info/PKG-INFO\n'}
+[44.695962] (obstacle_avoidance) StdoutLine: {'line': b'writing dependency_links to obstacle_avoidance.egg-info/dependency_links.txt\n'}
+[44.697636] (obstacle_avoidance) StdoutLine: {'line': b'writing entry points to obstacle_avoidance.egg-info/entry_points.txt\n'}
+[44.698360] (obstacle_avoidance) StdoutLine: {'line': b'writing requirements to obstacle_avoidance.egg-info/requires.txt\n'}
+[44.699040] (obstacle_avoidance) StdoutLine: {'line': b'writing top-level names to obstacle_avoidance.egg-info/top_level.txt\n'}
+[44.704203] (obstacle_avoidance) StdoutLine: {'line': b"reading manifest file 'obstacle_avoidance.egg-info/SOURCES.txt'\n"}
+[44.708979] (obstacle_avoidance) StdoutLine: {'line': b"writing manifest file 'obstacle_avoidance.egg-info/SOURCES.txt'\n"}
+[44.719657] (obstacle_avoidance) StdoutLine: {'line': b'running build_ext\n'}
+[44.720723] (obstacle_avoidance) StdoutLine: {'line': b'Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages/obstacle-avoidance.egg-link (link to .)\n'}
+[44.728227] (obstacle_avoidance) StdoutLine: {'line': b'Installing collision script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/obstacle_avoidance\n'}
+[44.729934] (obstacle_avoidance) StdoutLine: {'line': b'\n'}
+[44.730815] (obstacle_avoidance) StdoutLine: {'line': b'Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance\n'}
+[44.734187] (obstacle_avoidance) StdoutLine: {'line': b'running symlink_data\n'}
+[44.777620] (-) TimerEvent: {}
+[44.879840] (-) TimerEvent: {}
+[44.981641] (-) TimerEvent: {}
+[44.996806] (obstacle_avoidance) CommandEnded: {'returncode': 0}
+[45.081879] (-) TimerEvent: {}
+[45.102471] (obstacle_avoidance) JobEnded: {'identifier': 'obstacle_avoidance', 'rc': 0}
+[45.118636] (-) EventReactorShutdown: {}

@@ -1,0 +1,17 @@
+[20.344s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build --no-deps symlink_data
+[25.311s] running develop
+[30.037s] running egg_info
+[30.038s] writing landmark_slam.egg-info/PKG-INFO
+[30.041s] writing dependency_links to landmark_slam.egg-info/dependency_links.txt
+[30.055s] writing entry points to landmark_slam.egg-info/entry_points.txt
+[30.055s] writing requirements to landmark_slam.egg-info/requires.txt
+[30.056s] writing top-level names to landmark_slam.egg-info/top_level.txt
+[30.061s] reading manifest file 'landmark_slam.egg-info/SOURCES.txt'
+[30.064s] writing manifest file 'landmark_slam.egg-info/SOURCES.txt'
+[30.083s] running build_ext
+[30.083s] Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages/landmark-slam.egg-link (link to .)
+[30.091s] Installing landmark_slam script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/landmark_slam
+[30.093s] 
+[30.094s] Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam
+[30.097s] running symlink_data
+[32.200s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build --no-deps symlink_data

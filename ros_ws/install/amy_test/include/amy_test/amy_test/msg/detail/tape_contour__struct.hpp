@@ -1,0 +1,1 @@
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/rosidl_generator_cpp/amy_test/msg/detail/tape_contour__struct.hpp

@@ -1,0 +1,203 @@
+[0.000000] (-) TimerEvent: {}
+[0.001722] (-) JobUnselected: {'identifier': 'camera_navigation'}
+[0.002312] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.002988] (-) JobUnselected: {'identifier': 'landmark_slam'}
+[0.003328] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.003529] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.003663] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.003772] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.003925] (amy_test) JobQueued: {'identifier': 'amy_test', 'dependencies': OrderedDict([('custom_messages', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'), ('realsense_publisher', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher'), ('robo_rover', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover')])}
+[0.004057] (amy_test) JobStarted: {'identifier': 'amy_test'}
+[0.089419] (amy_test) JobProgress: {'identifier': 'amy_test', 'progress': 'cmake'}
+[0.094709] (amy_test) Command: {'cmd': ['/usr/bin/cmake', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.124.219.92 38730 22'), ('GIT_EDITOR', ':'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws'), ('TERM_PROGRAM_VERSION', '1.116.0'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-99fca5a7-07c3-43f2-9e3b-f433c18bef5b.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('HISTCONTROL', 'ignorespace'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/bin/560a9dba96f961efea7b1612916f89e5d5d4d679/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-a15f8731e0.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/vscode-ssh-auth-sock-966288025'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('GIT_PAGER', 'cat'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test'), ('GIT_MERGE_AUTOEDIT', 'no'), ('SSH_CONNECTION', '100.124.219.92 38730 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble')]), 'shell': False}
+[0.099596] (-) TimerEvent: {}
+[0.200606] (-) TimerEvent: {}
+[0.301486] (-) TimerEvent: {}
+[0.402184] (-) TimerEvent: {}
+[0.502979] (-) TimerEvent: {}
+[0.603788] (-) TimerEvent: {}
+[0.704796] (-) TimerEvent: {}
+[0.805537] (-) TimerEvent: {}
+[0.906288] (-) TimerEvent: {}
+[1.007199] (-) TimerEvent: {}
+[1.108029] (-) TimerEvent: {}
+[1.166663] (amy_test) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[1.208229] (-) TimerEvent: {}
+[1.309054] (-) TimerEvent: {}
+[1.410604] (-) TimerEvent: {}
+[1.511805] (-) TimerEvent: {}
+[1.612759] (-) TimerEvent: {}
+[1.713829] (-) TimerEvent: {}
+[1.814715] (-) TimerEvent: {}
+[1.915608] (-) TimerEvent: {}
+[2.007283] (amy_test) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[2.015905] (-) TimerEvent: {}
+[2.053583] (amy_test) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[2.116028] (-) TimerEvent: {}
+[2.218327] (-) TimerEvent: {}
+[2.320469] (-) TimerEvent: {}
+[2.424285] (-) TimerEvent: {}
+[2.526226] (-) TimerEvent: {}
+[2.553143] (amy_test) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[2.590963] (amy_test) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[2.593063] (amy_test) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[2.595447] (amy_test) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[2.607766] (amy_test) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[2.626429] (-) TimerEvent: {}
+[2.727437] (-) TimerEvent: {}
+[2.828295] (-) TimerEvent: {}
+[2.929173] (-) TimerEvent: {}
+[3.030320] (-) TimerEvent: {}
+[3.131266] (-) TimerEvent: {}
+[3.132590] (amy_test) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[3.167742] (amy_test) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[3.170390] (amy_test) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[3.172475] (amy_test) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[3.221963] (amy_test) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[3.231579] (-) TimerEvent: {}
+[3.332463] (-) TimerEvent: {}
+[3.433164] (-) TimerEvent: {}
+[3.533953] (-) TimerEvent: {}
+[3.634861] (-) TimerEvent: {}
+[3.735692] (-) TimerEvent: {}
+[3.836422] (-) TimerEvent: {}
+[3.937112] (-) TimerEvent: {}
+[4.037888] (-) TimerEvent: {}
+[4.138627] (-) TimerEvent: {}
+[4.239839] (-) TimerEvent: {}
+[4.341154] (-) TimerEvent: {}
+[4.391821] (amy_test) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[4.441351] (-) TimerEvent: {}
+[4.542216] (-) TimerEvent: {}
+[4.643151] (-) TimerEvent: {}
+[4.745377] (-) TimerEvent: {}
+[4.846318] (-) TimerEvent: {}
+[4.905499] (amy_test) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[4.946493] (-) TimerEvent: {}
+[5.047558] (-) TimerEvent: {}
+[5.148240] (-) TimerEvent: {}
+[5.248956] (-) TimerEvent: {}
+[5.349716] (-) TimerEvent: {}
+[5.418323] (amy_test) StdoutLine: {'line': b'-- Found rclpy: 3.3.19 (/opt/ros/humble/share/rclpy/cmake)\n'}
+[5.449885] (-) TimerEvent: {}
+[5.453248] (amy_test) StdoutLine: {'line': b'-- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)\n'}
+[5.550072] (-) TimerEvent: {}
+[5.650816] (-) TimerEvent: {}
+[5.751700] (-) TimerEvent: {}
+[5.852936] (-) TimerEvent: {}
+[5.907652] (amy_test) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[5.953165] (-) TimerEvent: {}
+[5.986736] (amy_test) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[6.053381] (-) TimerEvent: {}
+[6.080930] (amy_test) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[6.153617] (-) TimerEvent: {}
+[6.198482] (amy_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[6.254985] (-) TimerEvent: {}
+[6.355867] (-) TimerEvent: {}
+[6.361126] (amy_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[6.456150] (-) TimerEvent: {}
+[6.557305] (-) TimerEvent: {}
+[6.567602] (amy_test) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[6.657570] (-) TimerEvent: {}
+[6.759569] (-) TimerEvent: {}
+[6.773239] (amy_test) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[6.859838] (-) TimerEvent: {}
+[6.961768] (-) TimerEvent: {}
+[7.063464] (-) TimerEvent: {}
+[7.164898] (-) TimerEvent: {}
+[7.265631] (-) TimerEvent: {}
+[7.366357] (-) TimerEvent: {}
+[7.467196] (-) TimerEvent: {}
+[7.568565] (-) TimerEvent: {}
+[7.670003] (-) TimerEvent: {}
+[7.770935] (-) TimerEvent: {}
+[7.871775] (-) TimerEvent: {}
+[7.972524] (-) TimerEvent: {}
+[8.073311] (-) TimerEvent: {}
+[8.174383] (-) TimerEvent: {}
+[8.275249] (-) TimerEvent: {}
+[8.376161] (-) TimerEvent: {}
+[8.477172] (-) TimerEvent: {}
+[8.565766] (amy_test) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[8.577358] (-) TimerEvent: {}
+[8.678031] (-) TimerEvent: {}
+[8.778777] (-) TimerEvent: {}
+[8.879722] (-) TimerEvent: {}
+[8.980496] (-) TimerEvent: {}
+[9.081325] (-) TimerEvent: {}
+[9.181997] (-) TimerEvent: {}
+[9.282631] (-) TimerEvent: {}
+[9.383381] (-) TimerEvent: {}
+[9.484216] (-) TimerEvent: {}
+[9.585036] (-) TimerEvent: {}
+[9.685786] (-) TimerEvent: {}
+[9.786627] (-) TimerEvent: {}
+[9.887507] (-) TimerEvent: {}
+[9.989317] (-) TimerEvent: {}
+[10.090187] (-) TimerEvent: {}
+[10.191948] (-) TimerEvent: {}
+[10.293218] (-) TimerEvent: {}
+[10.394365] (-) TimerEvent: {}
+[10.496476] (-) TimerEvent: {}
+[10.599940] (-) TimerEvent: {}
+[10.701259] (-) TimerEvent: {}
+[10.802204] (-) TimerEvent: {}
+[10.903012] (-) TimerEvent: {}
+[10.947294] (amy_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[11.003200] (-) TimerEvent: {}
+[11.103970] (-) TimerEvent: {}
+[11.205018] (-) TimerEvent: {}
+[11.305849] (-) TimerEvent: {}
+[11.406572] (-) TimerEvent: {}
+[11.507434] (-) TimerEvent: {}
+[11.608563] (-) TimerEvent: {}
+[11.709656] (-) TimerEvent: {}
+[11.810525] (-) TimerEvent: {}
+[11.833658] (amy_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[11.910689] (-) TimerEvent: {}
+[11.987805] (amy_test) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[12.010872] (-) TimerEvent: {}
+[12.022926] (amy_test) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[12.111040] (-) TimerEvent: {}
+[12.205377] (amy_test) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[12.208615] (amy_test) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[12.209710] (amy_test) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[12.211184] (-) TimerEvent: {}
+[12.212917] (amy_test) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so\n'}
+[12.311452] (-) TimerEvent: {}
+[12.372577] (amy_test) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[12.411788] (-) TimerEvent: {}
+[12.512757] (-) TimerEvent: {}
+[12.613538] (-) TimerEvent: {}
+[12.704062] (amy_test) StderrLine: {'line': b'\x1b[31mCMake Error at /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:106 (add_custom_target):\n'}
+[12.705007] (amy_test) StderrLine: {'line': b'  add_custom_target cannot create target\n'}
+[12.705488] (amy_test) StderrLine: {'line': b'  "ament_cmake_python_symlink_amy_test" because another target with the same\n'}
+[12.705881] (amy_test) StderrLine: {'line': b'  name already exists.  The existing target is a custom target created in\n'}
+[12.706314] (amy_test) StderrLine: {'line': b'  source directory\n'}
+[12.706741] (amy_test) StderrLine: {'line': b'  "/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test".  See\n'}
+[12.707207] (amy_test) StderrLine: {'line': b'  documentation for policy CMP0002 for more details.\n'}
+[12.707623] (amy_test) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[12.708171] (amy_test) StderrLine: {'line': b'  /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:39 (_ament_cmake_python_install_package)\n'}
+[12.709896] (amy_test) StderrLine: {'line': b'  CMakeLists.txt:20 (ament_python_install_package)\n'}
+[12.710453] (amy_test) StderrLine: {'line': b'\n'}
+[12.712001] (amy_test) StderrLine: {'line': b'\x1b[0m\n'}
+[12.712674] (amy_test) StderrLine: {'line': b'\x1b[31mCMake Error at /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:141 (add_custom_target):\n'}
+[12.713184] (amy_test) StderrLine: {'line': b'  add_custom_target cannot create target\n'}
+[12.713625] (-) TimerEvent: {}
+[12.714353] (amy_test) StderrLine: {'line': b'  "ament_cmake_python_build_amy_test_egg" because another target with the\n'}
+[12.715084] (amy_test) StderrLine: {'line': b'  same name already exists.  The existing target is a custom target created\n'}
+[12.716048] (amy_test) StderrLine: {'line': b'  in source directory\n'}
+[12.716887] (amy_test) StderrLine: {'line': b'  "/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test".  See\n'}
+[12.717585] (amy_test) StderrLine: {'line': b'  documentation for policy CMP0002 for more details.\n'}
+[12.718263] (amy_test) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[12.718977] (amy_test) StderrLine: {'line': b'  /opt/ros/humble/share/ament_cmake_python/cmake/ament_python_install_package.cmake:39 (_ament_cmake_python_install_package)\n'}
+[12.719596] (amy_test) StderrLine: {'line': b'  CMakeLists.txt:20 (ament_python_install_package)\n'}
+[12.720201] (amy_test) StderrLine: {'line': b'\n'}
+[12.721705] (amy_test) StderrLine: {'line': b'\x1b[0m\n'}
+[12.787145] (amy_test) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[12.787748] (amy_test) StdoutLine: {'line': b'See also "/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/CMakeOutput.log".\n'}
+[12.813938] (-) TimerEvent: {}
+[12.835101] (amy_test) CommandEnded: {'returncode': 1}
+[12.916794] (-) TimerEvent: {}
+[12.941683] (amy_test) JobEnded: {'identifier': 'amy_test', 'rc': 1}
+[12.953395] (-) EventReactorShutdown: {}

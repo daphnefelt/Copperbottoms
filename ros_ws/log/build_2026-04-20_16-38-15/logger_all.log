@@ -1,0 +1,672 @@
+[0.519s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.520s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0xffffaa9d77f0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffffaabc0790>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffffaabc0790>>, mixin_verb=('build',))
+[1.470s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.471s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.471s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.471s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.471s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.472s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.472s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/copperbottoms/code/Copperbottoms/ros_ws'
+[1.473s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.473s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.474s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.475s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.475s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.519s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.519s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.520s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.520s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.520s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.521s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.521s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.521s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.522s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.523s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.523s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.523s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.524s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.524s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.525s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.525s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[1.525s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[1.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[1.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[1.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[1.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[1.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[1.526s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[1.527s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[1.527s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[1.527s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[1.527s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[1.527s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[1.528s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extensions ['ignore', 'ignore_ament_install']
+[1.529s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extension 'ignore'
+[1.529s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extension 'ignore_ament_install'
+[1.529s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extensions ['colcon_pkg']
+[1.529s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extension 'colcon_pkg'
+[1.529s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extensions ['colcon_meta']
+[1.530s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extension 'colcon_meta'
+[1.530s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extensions ['ros']
+[1.530s] Level 1:colcon.colcon_core.package_identification:_identify(src/Camera_Navigation) by extension 'ros'
+[1.539s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Camera_Navigation' with type 'ros.ament_python' and name 'camera_navigation'
+[1.540s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[1.540s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'ignore'
+[1.540s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'ignore_ament_install'
+[1.541s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extensions ['colcon_pkg']
+[1.541s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'colcon_pkg'
+[1.541s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extensions ['colcon_meta']
+[1.541s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'colcon_meta'
+[1.541s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extensions ['ros']
+[1.542s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'ros'
+[1.542s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extensions ['cmake', 'python']
+[1.543s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'cmake'
+[1.543s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'python'
+[1.544s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extensions ['python_setup_py']
+[1.544s] Level 1:colcon.colcon_core.package_identification:_identify(src/__pycache__) by extension 'python_setup_py'
+[1.545s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extensions ['ignore', 'ignore_ament_install']
+[1.545s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extension 'ignore'
+[1.545s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extension 'ignore_ament_install'
+[1.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extensions ['colcon_pkg']
+[1.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extension 'colcon_pkg'
+[1.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extensions ['colcon_meta']
+[1.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extension 'colcon_meta'
+[1.546s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extensions ['ros']
+[1.547s] Level 1:colcon.colcon_core.package_identification:_identify(src/amy_test) by extension 'ros'
+[1.556s] DEBUG:colcon.colcon_core.package_identification:Package 'src/amy_test' with type 'ros.ament_cmake' and name 'amy_test'
+[1.557s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extensions ['ignore', 'ignore_ament_install']
+[1.557s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extension 'ignore'
+[1.558s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extension 'ignore_ament_install'
+[1.558s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extensions ['colcon_pkg']
+[1.558s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extension 'colcon_pkg'
+[1.558s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extensions ['colcon_meta']
+[1.558s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extension 'colcon_meta'
+[1.559s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extensions ['ros']
+[1.559s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_messages) by extension 'ros'
+[1.562s] DEBUG:colcon.colcon_core.package_identification:Package 'src/custom_messages' with type 'ros.ament_cmake' and name 'custom_messages'
+[1.563s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extensions ['ignore', 'ignore_ament_install']
+[1.563s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extension 'ignore'
+[1.564s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extension 'ignore_ament_install'
+[1.564s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extensions ['colcon_pkg']
+[1.564s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extension 'colcon_pkg'
+[1.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extensions ['colcon_meta']
+[1.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extension 'colcon_meta'
+[1.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extensions ['ros']
+[1.565s] Level 1:colcon.colcon_core.package_identification:_identify(src/landmark_slam) by extension 'ros'
+[1.567s] DEBUG:colcon.colcon_core.package_identification:Package 'src/landmark_slam' with type 'ros.ament_python' and name 'landmark_slam'
+[1.568s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extensions ['ignore', 'ignore_ament_install']
+[1.569s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extension 'ignore'
+[1.569s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extension 'ignore_ament_install'
+[1.569s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extensions ['colcon_pkg']
+[1.569s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extension 'colcon_pkg'
+[1.570s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extensions ['colcon_meta']
+[1.570s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extension 'colcon_meta'
+[1.570s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extensions ['ros']
+[1.570s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_avoidance) by extension 'ros'
+[1.573s] DEBUG:colcon.colcon_core.package_identification:Package 'src/obstacle_avoidance' with type 'ros.ament_python' and name 'obstacle_avoidance'
+[1.574s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extensions ['ignore', 'ignore_ament_install']
+[1.575s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extension 'ignore'
+[1.575s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extension 'ignore_ament_install'
+[1.575s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extensions ['colcon_pkg']
+[1.575s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extension 'colcon_pkg'
+[1.576s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extensions ['colcon_meta']
+[1.576s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extension 'colcon_meta'
+[1.576s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extensions ['ros']
+[1.576s] Level 1:colcon.colcon_core.package_identification:_identify(src/realsense_publisher) by extension 'ros'
+[1.578s] DEBUG:colcon.colcon_core.package_identification:Package 'src/realsense_publisher' with type 'ros.ament_python' and name 'realsense_publisher'
+[1.579s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extensions ['ignore', 'ignore_ament_install']
+[1.580s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'ignore'
+[1.580s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'ignore_ament_install'
+[1.580s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extensions ['colcon_pkg']
+[1.580s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'colcon_pkg'
+[1.580s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extensions ['colcon_meta']
+[1.581s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'colcon_meta'
+[1.581s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extensions ['ros']
+[1.581s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'ros'
+[1.581s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extensions ['cmake', 'python']
+[1.581s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'cmake'
+[1.582s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'python'
+[1.582s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extensions ['python_setup_py']
+[1.582s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense) by extension 'python_setup_py'
+[1.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extensions ['ignore', 'ignore_ament_install']
+[1.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'ignore'
+[1.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'ignore_ament_install'
+[1.583s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extensions ['colcon_pkg']
+[1.584s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'colcon_pkg'
+[1.584s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extensions ['colcon_meta']
+[1.584s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'colcon_meta'
+[1.584s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extensions ['ros']
+[1.584s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'ros'
+[1.585s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extensions ['cmake', 'python']
+[1.585s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'cmake'
+[1.585s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'python'
+[1.585s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extensions ['python_setup_py']
+[1.585s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam) by extension 'python_setup_py'
+[1.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extensions ['ignore', 'ignore_ament_install']
+[1.586s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'ignore'
+[1.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'ignore_ament_install'
+[1.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extensions ['colcon_pkg']
+[1.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'colcon_pkg'
+[1.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extensions ['colcon_meta']
+[1.587s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'colcon_meta'
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extensions ['ros']
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'ros'
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extensions ['cmake', 'python']
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'cmake'
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'python'
+[1.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extensions ['python_setup_py']
+[1.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam) by extension 'python_setup_py'
+[1.589s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'ignore'
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'ignore_ament_install'
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extensions ['colcon_pkg']
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'colcon_pkg'
+[1.591s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extensions ['colcon_meta']
+[1.591s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'colcon_meta'
+[1.591s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extensions ['ros']
+[1.591s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'ros'
+[1.591s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extensions ['cmake', 'python']
+[1.592s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'cmake'
+[1.592s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'python'
+[1.592s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extensions ['python_setup_py']
+[1.592s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/fastsam/slam/__pycache__) by extension 'python_setup_py'
+[1.593s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extensions ['ignore', 'ignore_ament_install']
+[1.594s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'ignore'
+[1.594s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'ignore_ament_install'
+[1.594s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extensions ['colcon_pkg']
+[1.595s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'colcon_pkg'
+[1.595s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extensions ['colcon_meta']
+[1.595s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'colcon_meta'
+[1.596s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extensions ['ros']
+[1.596s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'ros'
+[1.596s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extensions ['cmake', 'python']
+[1.596s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'cmake'
+[1.597s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'python'
+[1.597s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extensions ['python_setup_py']
+[1.597s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch) by extension 'python_setup_py'
+[1.598s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extensions ['ignore', 'ignore_ament_install']
+[1.598s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'ignore'
+[1.598s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'ignore_ament_install'
+[1.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extensions ['colcon_pkg']
+[1.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'colcon_pkg'
+[1.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extensions ['colcon_meta']
+[1.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'colcon_meta'
+[1.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extensions ['ros']
+[1.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'ros'
+[1.600s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extensions ['cmake', 'python']
+[1.600s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'cmake'
+[1.600s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'python'
+[1.600s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extensions ['python_setup_py']
+[1.601s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_realsense/launch/__pycache__) by extension 'python_setup_py'
+[1.601s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extensions ['ignore', 'ignore_ament_install']
+[1.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extension 'ignore'
+[1.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extension 'ignore_ament_install'
+[1.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extensions ['colcon_pkg']
+[1.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extension 'colcon_pkg'
+[1.602s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extensions ['colcon_meta']
+[1.603s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extension 'colcon_meta'
+[1.603s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extensions ['ros']
+[1.603s] Level 1:colcon.colcon_core.package_identification:_identify(src/robo_rover) by extension 'ros'
+[1.607s] DEBUG:colcon.colcon_core.package_identification:Package 'src/robo_rover' with type 'ros.ament_cmake' and name 'robo_rover'
+[1.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['ignore', 'ignore_ament_install']
+[1.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ignore'
+[1.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ignore_ament_install'
+[1.608s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['colcon_pkg']
+[1.609s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'colcon_pkg'
+[1.609s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['colcon_meta']
+[1.609s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'colcon_meta'
+[1.609s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['ros']
+[1.609s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ros'
+[1.648s] DEBUG:colcon.colcon_core.package_identification:Package 'src/rplidar_ros' with type 'ros.ament_cmake' and name 'rplidar_ros'
+[1.649s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.649s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.649s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.649s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.649s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.738s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[1.739s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[1.753s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 8 installed packages in /home/copperbottoms/code/Copperbottoms/ros_ws/install
+[1.763s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 297 installed packages in /opt/ros/humble
+[1.770s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[1.966s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'cmake_args' from command line to 'None'
+[1.966s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'cmake_target' from command line to 'None'
+[1.966s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.966s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'cmake_clean_cache' from command line to 'False'
+[1.966s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'cmake_clean_first' from command line to 'False'
+[1.966s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'cmake_force_configure' from command line to 'False'
+[1.967s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'ament_cmake_args' from command line to 'None'
+[1.967s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'catkin_cmake_args' from command line to 'None'
+[1.967s] Level 5:colcon.colcon_core.verb:set package 'camera_navigation' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.967s] DEBUG:colcon.colcon_core.verb:Building package 'camera_navigation' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/Camera_Navigation', 'symlink_install': True, 'test_result_base': None}
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'cmake_args' from command line to 'None'
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'cmake_target' from command line to 'None'
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'cmake_clean_cache' from command line to 'False'
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'cmake_clean_first' from command line to 'False'
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'cmake_force_configure' from command line to 'False'
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'ament_cmake_args' from command line to 'None'
+[1.969s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'catkin_cmake_args' from command line to 'None'
+[1.970s] Level 5:colcon.colcon_core.verb:set package 'custom_messages' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.970s] DEBUG:colcon.colcon_core.verb:Building package 'custom_messages' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages', 'symlink_install': True, 'test_result_base': None}
+[1.971s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'cmake_args' from command line to 'None'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'cmake_target' from command line to 'None'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'cmake_clean_cache' from command line to 'False'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'cmake_clean_first' from command line to 'False'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'cmake_force_configure' from command line to 'False'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'ament_cmake_args' from command line to 'None'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'catkin_cmake_args' from command line to 'None'
+[1.972s] Level 5:colcon.colcon_core.verb:set package 'landmark_slam' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.972s] DEBUG:colcon.colcon_core.verb:Building package 'landmark_slam' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/landmark_slam', 'symlink_install': True, 'test_result_base': None}
+[1.974s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'cmake_args' from command line to 'None'
+[1.974s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'cmake_target' from command line to 'None'
+[1.974s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.974s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'cmake_clean_cache' from command line to 'False'
+[1.975s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'cmake_clean_first' from command line to 'False'
+[1.975s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'cmake_force_configure' from command line to 'False'
+[1.975s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'ament_cmake_args' from command line to 'None'
+[1.975s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'catkin_cmake_args' from command line to 'None'
+[1.975s] Level 5:colcon.colcon_core.verb:set package 'realsense_publisher' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.975s] DEBUG:colcon.colcon_core.verb:Building package 'realsense_publisher' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher', 'symlink_install': True, 'test_result_base': None}
+[1.977s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_args' from command line to 'None'
+[1.977s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target' from command line to 'None'
+[1.977s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.977s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[1.977s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_first' from command line to 'False'
+[1.977s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_force_configure' from command line to 'False'
+[1.978s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'ament_cmake_args' from command line to 'None'
+[1.978s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[1.978s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.978s] DEBUG:colcon.colcon_core.verb:Building package 'rplidar_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros', 'symlink_install': True, 'test_result_base': None}
+[1.979s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'cmake_args' from command line to 'None'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'cmake_target' from command line to 'None'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'cmake_clean_cache' from command line to 'False'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'cmake_clean_first' from command line to 'False'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'cmake_force_configure' from command line to 'False'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'ament_cmake_args' from command line to 'None'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'catkin_cmake_args' from command line to 'None'
+[1.980s] Level 5:colcon.colcon_core.verb:set package 'obstacle_avoidance' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.981s] DEBUG:colcon.colcon_core.verb:Building package 'obstacle_avoidance' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance', 'symlink_install': True, 'test_result_base': None}
+[1.982s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'cmake_args' from command line to 'None'
+[1.982s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'cmake_target' from command line to 'None'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'cmake_clean_cache' from command line to 'False'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'cmake_clean_first' from command line to 'False'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'cmake_force_configure' from command line to 'False'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'ament_cmake_args' from command line to 'None'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'catkin_cmake_args' from command line to 'None'
+[1.983s] Level 5:colcon.colcon_core.verb:set package 'robo_rover' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.983s] DEBUG:colcon.colcon_core.verb:Building package 'robo_rover' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_rover', 'symlink_install': True, 'test_result_base': None}
+[1.985s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'cmake_args' from command line to 'None'
+[1.985s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'cmake_target' from command line to 'None'
+[1.985s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.985s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'cmake_clean_cache' from command line to 'False'
+[1.985s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'cmake_clean_first' from command line to 'False'
+[1.986s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'cmake_force_configure' from command line to 'False'
+[1.986s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'ament_cmake_args' from command line to 'None'
+[1.986s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'catkin_cmake_args' from command line to 'None'
+[1.986s] Level 5:colcon.colcon_core.verb:set package 'amy_test' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.986s] DEBUG:colcon.colcon_core.verb:Building package 'amy_test' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test', 'symlink_install': True, 'test_result_base': None}
+[1.987s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.990s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.991s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages' with build type 'ament_cmake'
+[1.992s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages'
+[2.007s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[2.008s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.008s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.032s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher' with build type 'ament_python'
+[2.033s] Level 1:colcon.colcon_core.shell:create_environment_hook('realsense_publisher', 'ament_prefix_path')
+[2.034s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/hook/ament_prefix_path.ps1'
+[2.038s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/hook/ament_prefix_path.dsv'
+[2.040s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/hook/ament_prefix_path.sh'
+[2.046s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.046s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.069s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/Camera_Navigation' with build type 'ament_python'
+[2.070s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_navigation', 'ament_prefix_path')
+[2.071s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/hook/ament_prefix_path.ps1'
+[2.074s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/hook/ament_prefix_path.dsv'
+[2.076s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/hook/ament_prefix_path.sh'
+[2.080s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.080s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.105s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/landmark_slam' with build type 'ament_python'
+[2.105s] Level 1:colcon.colcon_core.shell:create_environment_hook('landmark_slam', 'ament_prefix_path')
+[2.107s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/hook/ament_prefix_path.ps1'
+[2.110s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/hook/ament_prefix_path.dsv'
+[2.114s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/hook/ament_prefix_path.sh'
+[2.118s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.118s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.159s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages -- -j4 -l4
+[3.879s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher'
+[3.880s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.880s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.683s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/Camera_Navigation'
+[5.686s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.686s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.300s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/landmark_slam'
+[7.301s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[7.302s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.354s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages -- -j4 -l4
+[7.411s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages
+[8.285s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(custom_messages)
+[8.294s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages
+[8.307s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages' for CMake module files
+[8.313s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages' for CMake config files
+[8.325s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_messages', 'cmake_prefix_path')
+[8.327s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/cmake_prefix_path.ps1'
+[8.331s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/cmake_prefix_path.dsv'
+[8.334s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/cmake_prefix_path.sh'
+[8.340s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib'
+[8.341s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_messages', 'ld_library_path_lib')
+[8.343s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/ld_library_path_lib.ps1'
+[8.347s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/ld_library_path_lib.dsv'
+[8.350s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/ld_library_path_lib.sh'
+[8.354s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/bin'
+[8.355s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/pkgconfig/custom_messages.pc'
+[8.357s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/python3.10/site-packages'
+[8.359s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/bin'
+[8.362s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.ps1'
+[8.367s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.dsv'
+[8.373s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.sh'
+[8.380s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.bash'
+[8.386s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.zsh'
+[8.391s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/colcon-core/packages/custom_messages)
+[8.396s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(custom_messages)
+[8.399s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages' for CMake module files
+[8.404s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages' for CMake config files
+[8.417s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_messages', 'cmake_prefix_path')
+[8.419s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/cmake_prefix_path.ps1'
+[8.422s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/cmake_prefix_path.dsv'
+[8.426s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/cmake_prefix_path.sh'
+[8.431s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib'
+[8.432s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_messages', 'ld_library_path_lib')
+[8.434s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/ld_library_path_lib.ps1'
+[8.438s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/ld_library_path_lib.dsv'
+[8.441s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/hook/ld_library_path_lib.sh'
+[8.445s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/bin'
+[8.446s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/pkgconfig/custom_messages.pc'
+[8.448s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/python3.10/site-packages'
+[8.451s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/bin'
+[8.453s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.ps1'
+[8.458s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.dsv'
+[8.463s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.sh'
+[8.467s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.bash'
+[8.473s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.zsh'
+[8.477s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/colcon-core/packages/custom_messages)
+[8.485s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_rover' with build type 'ament_cmake'
+[8.487s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_rover'
+[8.490s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[8.492s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.567s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover -- -j4 -l4
+[10.349s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build --no-deps symlink_data
+[10.990s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build --no-deps symlink_data
+[11.031s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build --no-deps symlink_data
+[11.924s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover' returned '0': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover -- -j4 -l4
+[11.928s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover
+[12.455s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(robo_rover)
+[12.457s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover' for CMake module files
+[12.462s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover' for CMake config files
+[12.458s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover' returned '0': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover
+[12.482s] Level 1:colcon.colcon_core.shell:create_environment_hook('robo_rover', 'cmake_prefix_path')
+[12.485s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/hook/cmake_prefix_path.ps1'
+[12.490s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/hook/cmake_prefix_path.dsv'
+[12.493s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/hook/cmake_prefix_path.sh'
+[12.497s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib'
+[12.498s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/bin'
+[12.498s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib/pkgconfig/robo_rover.pc'
+[12.500s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib/python3.10/site-packages'
+[12.502s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/bin'
+[12.505s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.ps1'
+[12.510s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.dsv'
+[12.513s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.sh'
+[12.516s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.bash'
+[12.519s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.zsh'
+[12.522s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/colcon-core/packages/robo_rover)
+[12.526s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(robo_rover)
+[12.527s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover' for CMake module files
+[12.531s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover' for CMake config files
+[12.537s] Level 1:colcon.colcon_core.shell:create_environment_hook('robo_rover', 'cmake_prefix_path')
+[12.538s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/hook/cmake_prefix_path.ps1'
+[12.541s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/hook/cmake_prefix_path.dsv'
+[12.544s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/hook/cmake_prefix_path.sh'
+[12.556s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib'
+[12.557s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/bin'
+[12.557s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib/pkgconfig/robo_rover.pc'
+[12.559s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/lib/python3.10/site-packages'
+[12.561s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/bin'
+[12.563s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.ps1'
+[12.567s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.dsv'
+[12.571s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.sh'
+[12.574s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.bash'
+[12.577s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/robo_rover/package.zsh'
+[12.581s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/share/colcon-core/packages/robo_rover)
+[12.585s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros' with build type 'ament_cmake'
+[12.587s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros'
+[12.589s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[12.589s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[12.651s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros -- -j4 -l4
+[14.082s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros -- -j4 -l4
+[14.084s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros
+[14.554s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[14.559s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros' for CMake module files
+[14.558s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros
+[14.565s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros' for CMake config files
+[14.575s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[14.579s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[14.590s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[14.594s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[14.603s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib'
+[14.607s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/bin'
+[14.612s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[14.614s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/python3.10/site-packages'
+[14.617s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/bin'
+[14.629s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[14.634s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[14.647s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[14.659s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[14.663s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[14.667s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[14.681s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[14.682s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros' for CMake module files
+[14.686s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros' for CMake config files
+[14.695s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[14.710s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[14.714s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[14.719s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[14.739s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib'
+[14.740s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/bin'
+[14.741s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[14.742s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/python3.10/site-packages'
+[14.745s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/bin'
+[14.747s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[14.752s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[14.759s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[14.767s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[14.774s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[14.781s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[14.790s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance' with build type 'ament_python'
+[14.793s] Level 1:colcon.colcon_core.shell:create_environment_hook('obstacle_avoidance', 'ament_prefix_path')
+[14.795s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/hook/ament_prefix_path.ps1'
+[14.801s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/hook/ament_prefix_path.dsv'
+[14.805s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/hook/ament_prefix_path.sh'
+[14.813s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[14.816s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[17.840s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/obstacle_avoidance'
+[17.841s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[17.842s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[17.871s] Level 1:colcon.colcon_core.shell:create_environment_hook('realsense_publisher', 'pythonpath_develop')
+[17.872s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/share/realsense_publisher/hook/pythonpath_develop.ps1'
+[17.876s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/share/realsense_publisher/hook/pythonpath_develop.dsv'
+[17.878s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build --no-deps symlink_data
+[17.881s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/share/realsense_publisher/hook/pythonpath_develop.sh'
+[17.886s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher' for CMake module files
+[17.890s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher' for CMake config files
+[17.897s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib'
+[17.898s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/bin'
+[17.899s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/pkgconfig/realsense_publisher.pc'
+[17.901s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages'
+[17.902s] Level 1:colcon.colcon_core.shell:create_environment_hook('realsense_publisher', 'pythonpath')
+[17.904s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/hook/pythonpath.ps1'
+[17.908s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/hook/pythonpath.dsv'
+[17.910s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/hook/pythonpath.sh'
+[17.914s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/bin'
+[17.915s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(realsense_publisher)
+[17.916s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/package.ps1'
+[17.919s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/package.dsv'
+[17.923s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/package.sh'
+[17.926s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/package.bash'
+[17.929s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher/package.zsh'
+[17.933s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/colcon-core/packages/realsense_publisher)
+[17.937s] Level 1:colcon.colcon_core.shell:create_environment_hook('landmark_slam', 'pythonpath_develop')
+[17.940s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/share/landmark_slam/hook/pythonpath_develop.ps1'
+[17.947s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/build --no-deps symlink_data
+[17.953s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/share/landmark_slam/hook/pythonpath_develop.dsv'
+[17.961s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam/share/landmark_slam/hook/pythonpath_develop.sh'
+[17.966s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam' for CMake module files
+[17.970s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam' for CMake config files
+[17.973s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib'
+[17.974s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/bin'
+[17.974s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/pkgconfig/landmark_slam.pc'
+[17.975s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages'
+[17.975s] Level 1:colcon.colcon_core.shell:create_environment_hook('landmark_slam', 'pythonpath')
+[17.977s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/hook/pythonpath.ps1'
+[17.981s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/hook/pythonpath.dsv'
+[17.983s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/hook/pythonpath.sh'
+[17.988s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/bin'
+[17.989s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(landmark_slam)
+[17.991s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/package.ps1'
+[17.996s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/package.dsv'
+[17.999s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/package.sh'
+[18.002s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/package.bash'
+[18.004s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/landmark_slam/package.zsh'
+[18.006s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/share/colcon-core/packages/landmark_slam)
+[18.010s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test' with build type 'ament_cmake'
+[18.010s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test'
+[18.012s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[18.012s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[18.039s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_navigation', 'pythonpath_develop')
+[18.040s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/share/camera_navigation/hook/pythonpath_develop.ps1'
+[18.042s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build --no-deps symlink_data
+[18.045s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/share/camera_navigation/hook/pythonpath_develop.dsv'
+[18.047s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/share/camera_navigation/hook/pythonpath_develop.sh'
+[18.051s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation' for CMake module files
+[18.055s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation' for CMake config files
+[18.061s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib'
+[18.062s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/bin'
+[18.062s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/pkgconfig/camera_navigation.pc'
+[18.064s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages'
+[18.064s] Level 1:colcon.colcon_core.shell:create_environment_hook('camera_navigation', 'pythonpath')
+[18.065s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/hook/pythonpath.ps1'
+[18.068s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/hook/pythonpath.dsv'
+[18.072s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/hook/pythonpath.sh'
+[18.076s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/bin'
+[18.076s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(camera_navigation)
+[18.078s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/package.ps1'
+[18.081s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/package.dsv'
+[18.084s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/package.sh'
+[18.087s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/package.bash'
+[18.090s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation/package.zsh'
+[18.093s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/colcon-core/packages/camera_navigation)
+[18.123s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test -- -j4 -l4
+[21.464s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build --no-deps symlink_data
+[23.162s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test' returned '0': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test -- -j4 -l4
+[23.165s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test
+[23.641s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(amy_test)
+[23.642s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test' for CMake module files
+[23.648s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test' for CMake config files
+[23.651s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test' returned '0': AMENT_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test
+[23.660s] Level 1:colcon.colcon_core.shell:create_environment_hook('amy_test', 'cmake_prefix_path')
+[23.661s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/cmake_prefix_path.ps1'
+[23.664s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/cmake_prefix_path.dsv'
+[23.666s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/cmake_prefix_path.sh'
+[23.670s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib'
+[23.671s] Level 1:colcon.colcon_core.shell:create_environment_hook('amy_test', 'ld_library_path_lib')
+[23.673s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/ld_library_path_lib.ps1'
+[23.675s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/ld_library_path_lib.dsv'
+[23.678s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/ld_library_path_lib.sh'
+[23.680s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/bin'
+[23.680s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/pkgconfig/amy_test.pc'
+[23.682s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages'
+[23.682s] Level 1:colcon.colcon_core.shell:create_environment_hook('amy_test', 'pythonpath')
+[23.684s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/pythonpath.ps1'
+[23.686s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/pythonpath.dsv'
+[23.688s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/pythonpath.sh'
+[23.692s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/bin'
+[23.694s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.ps1'
+[23.697s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.dsv'
+[23.699s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.sh'
+[23.702s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.bash'
+[23.704s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.zsh'
+[23.707s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/colcon-core/packages/amy_test)
+[23.710s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(amy_test)
+[23.711s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test' for CMake module files
+[23.716s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test' for CMake config files
+[23.725s] Level 1:colcon.colcon_core.shell:create_environment_hook('amy_test', 'cmake_prefix_path')
+[23.726s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/cmake_prefix_path.ps1'
+[23.729s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/cmake_prefix_path.dsv'
+[23.731s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/cmake_prefix_path.sh'
+[23.734s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib'
+[23.734s] Level 1:colcon.colcon_core.shell:create_environment_hook('amy_test', 'ld_library_path_lib')
+[23.735s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/ld_library_path_lib.ps1'
+[23.738s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/ld_library_path_lib.dsv'
+[23.740s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/ld_library_path_lib.sh'
+[23.742s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/bin'
+[23.743s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/pkgconfig/amy_test.pc'
+[23.744s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages'
+[23.744s] Level 1:colcon.colcon_core.shell:create_environment_hook('amy_test', 'pythonpath')
+[23.745s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/pythonpath.ps1'
+[23.747s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/pythonpath.dsv'
+[23.749s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/hook/pythonpath.sh'
+[23.753s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/bin'
+[23.755s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.ps1'
+[23.758s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.dsv'
+[23.761s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.sh'
+[23.763s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.bash'
+[23.766s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/amy_test/package.zsh'
+[23.768s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/share/colcon-core/packages/amy_test)
+[24.527s] Level 1:colcon.colcon_core.shell:create_environment_hook('obstacle_avoidance', 'pythonpath_develop')
+[24.529s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/share/obstacle_avoidance/hook/pythonpath_develop.ps1'
+[24.530s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance' returned '0': CMAKE_PREFIX_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover LD_LIBRARY_PATH=/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/build --no-deps symlink_data
+[24.532s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/share/obstacle_avoidance/hook/pythonpath_develop.dsv'
+[24.535s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance/share/obstacle_avoidance/hook/pythonpath_develop.sh'
+[24.540s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance' for CMake module files
+[24.543s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance' for CMake config files
+[24.549s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib'
+[24.550s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/bin'
+[24.550s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/pkgconfig/obstacle_avoidance.pc'
+[24.551s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages'
+[24.552s] Level 1:colcon.colcon_core.shell:create_environment_hook('obstacle_avoidance', 'pythonpath')
+[24.553s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/hook/pythonpath.ps1'
+[24.557s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/hook/pythonpath.dsv'
+[24.560s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/hook/pythonpath.sh'
+[24.565s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/bin'
+[24.565s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(obstacle_avoidance)
+[24.567s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/package.ps1'
+[24.570s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/package.dsv'
+[24.574s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/package.sh'
+[24.577s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/package.bash'
+[24.579s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/obstacle_avoidance/package.zsh'
+[24.582s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/share/colcon-core/packages/obstacle_avoidance)
+[24.583s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[24.585s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[24.585s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[24.586s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[24.612s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[24.612s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[24.613s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[24.619s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[24.619s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[24.621s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/local_setup.ps1'
+[24.626s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/copperbottoms/code/Copperbottoms/ros_ws/install/_local_setup_util_ps1.py'
+[24.634s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/setup.ps1'
+[24.641s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/local_setup.sh'
+[24.644s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/copperbottoms/code/Copperbottoms/ros_ws/install/_local_setup_util_sh.py'
+[24.647s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/setup.sh'
+[24.655s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/local_setup.bash'
+[24.658s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/setup.bash'
+[24.665s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/local_setup.zsh'
+[24.667s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/install/setup.zsh'

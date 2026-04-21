@@ -16,7 +16,7 @@ setup(
     install_requires=['setuptools', 'numpy', 'scipy'],
     zip_safe=True,
     maintainer='copperbottoms',
-    maintainer_email='copperbottoms@gmail.com',
+    maintainer_email='amhe1346@colorado.edu',
     description='Launch file package for full rover system with LIO odometry',
     license='Apache-2.0',
     tests_require=['pytest'],
@@ -36,6 +36,8 @@ setup(
             'performance_logger = amy_test.performance_logger:main',
             'latency_dashboard = amy_test.latency_dashboard:main',
             'automated_latency_test = amy_test.automated_latency_test:main',
+            # Note: tape_vision_node, tape_control_node, tape_recovery_node 
+            # are installed as direct executables via CMakeLists.txt
         ],
     },
 )

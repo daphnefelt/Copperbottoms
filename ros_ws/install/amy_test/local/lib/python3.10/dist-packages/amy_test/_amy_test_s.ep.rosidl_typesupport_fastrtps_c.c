@@ -1,0 +1,1 @@
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/rosidl_generator_py/amy_test/_amy_test_s.ep.rosidl_typesupport_fastrtps_c.c

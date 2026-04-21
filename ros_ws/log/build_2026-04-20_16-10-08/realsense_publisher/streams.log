@@ -1,0 +1,18 @@
+[8.603s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build --no-deps symlink_data
+[11.182s] running develop
+[12.786s] running egg_info
+[12.787s] writing realsense_publisher.egg-info/PKG-INFO
+[12.788s] writing dependency_links to realsense_publisher.egg-info/dependency_links.txt
+[12.789s] writing entry points to realsense_publisher.egg-info/entry_points.txt
+[12.789s] writing requirements to realsense_publisher.egg-info/requires.txt
+[12.790s] writing top-level names to realsense_publisher.egg-info/top_level.txt
+[12.806s] reading manifest file 'realsense_publisher.egg-info/SOURCES.txt'
+[12.807s] writing manifest file 'realsense_publisher.egg-info/SOURCES.txt'
+[12.827s] running build_ext
+[12.829s] Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense-publisher.egg-link (link to .)
+[12.830s] Installing realsense_depth_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher
+[12.831s] Installing realsense_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher
+[12.833s] 
+[12.835s] Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher
+[12.837s] running symlink_data
+[13.922s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build --no-deps symlink_data

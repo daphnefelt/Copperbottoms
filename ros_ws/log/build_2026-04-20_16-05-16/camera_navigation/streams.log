@@ -1,0 +1,31 @@
+[7.967s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build --no-deps symlink_data
+[10.537s] running develop
+[12.163s] running egg_info
+[12.164s] creating camera_navigation.egg-info
+[12.173s] writing camera_navigation.egg-info/PKG-INFO
+[12.177s] writing dependency_links to camera_navigation.egg-info/dependency_links.txt
+[12.178s] writing entry points to camera_navigation.egg-info/entry_points.txt
+[12.180s] writing requirements to camera_navigation.egg-info/requires.txt
+[12.181s] writing top-level names to camera_navigation.egg-info/top_level.txt
+[12.182s] writing manifest file 'camera_navigation.egg-info/SOURCES.txt'
+[12.192s] reading manifest file 'camera_navigation.egg-info/SOURCES.txt'
+[12.203s] writing manifest file 'camera_navigation.egg-info/SOURCES.txt'
+[12.233s] running build_ext
+[12.249s] Creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/camera-navigation.egg-link (link to .)
+[12.250s] Installing blue_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.254s] Installing follow_the_gap script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.256s] Installing line_detection script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.275s] Installing line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.279s] Installing line_follow_V2 script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.280s] Installing line_follow_daph script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.281s] Installing mary_line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.283s] Installing turn_right_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[12.286s] 
+[12.288s] Installed /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation
+[12.290s] running symlink_data
+[12.292s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index
+[12.295s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index/resource_index
+[12.297s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index/resource_index/packages
+[12.299s] symbolically linking /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/resource/camera_navigation -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index/resource_index/packages
+[12.303s] symbolically linking /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation
+[12.702s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build --no-deps symlink_data

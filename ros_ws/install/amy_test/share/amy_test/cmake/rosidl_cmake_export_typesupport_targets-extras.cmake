@@ -1,0 +1,1 @@
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/rosidl_cmake/rosidl_cmake_export_typesupport_targets-extras.cmake

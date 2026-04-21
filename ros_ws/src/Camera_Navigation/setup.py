@@ -14,6 +14,7 @@ setup(
         'blue_follow',
         'line_detection',
         'follow_the_gap',
+        'turn_right_node',
     ],
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
@@ -34,6 +35,7 @@ setup(
             'blue_follow = blue_follow:main',
             'line_detection = line_detection:main',
             'follow_the_gap = follow_the_gap:main',
+            'turn_right_node = turn_right_node:main',
         ],
     },
 )

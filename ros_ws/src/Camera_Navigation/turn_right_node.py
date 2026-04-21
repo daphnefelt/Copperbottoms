@@ -25,7 +25,7 @@ class TurnRightNode(Node):
         # ── params ───────────────────────────────────────────────────────
         self.cone_center   = math.radians(-90.0)   # right side
         self.cone_half     = math.radians(10.0)    # ±10 deg
-        self.open_thresh      = 6.0    # m — avg above this → True
+        self.open_thresh      = 3.0    # m — avg above this → True (reduced from 6.0)
         self._prev_reading    = False   # previous scan's raw result
 
         # ── ROS ──────────────────────────────────────────────────────────
@@ -50,14 +50,11 @@ class TurnRightNode(Node):
 
         if valid.size == 0:
             avg = 0.0
-            raw = False  # no valid readings → assume wall (be conservative)
         else:
-            avg        = float(np.mean(valid))
-            raw        = avg > self.open_thresh
+            avg = float(np.mean(valid))
 
-        # only publish True if True twice in a row
-        turn_right         = raw and self._prev_reading
-        self._prev_reading = raw
+        # turn right if avg >= 11
+        turn_right = (avg >= 11.0)
 
         out = Bool()
         out.data = turn_right

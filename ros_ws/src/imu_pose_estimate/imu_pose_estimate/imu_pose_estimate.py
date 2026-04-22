@@ -11,6 +11,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
 from custom_messages.msg import Slow
+from custom_messages.msg import ImuBundled
 
 class ImuPoseEstimate(Node):
     def __init__(self):
@@ -21,8 +22,7 @@ class ImuPoseEstimate(Node):
         queue_size = 100
         self.cmd_sub = self.create_subscription(
             Vector3, 'imu/gyro', self.imu_gyro, queue_size)
-        self.cmd_sub = self.create_subscription(
-            Vector3, 'imu/accel', self.imu_accel, queue_size)
+        self.imu_sub = self.create_subscription(ImuBundled, 'imu/imu_bundled', queue_size)
     
 
     def imu_accel(self, vec: Vector3):

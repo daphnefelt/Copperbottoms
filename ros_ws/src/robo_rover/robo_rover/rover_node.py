@@ -23,7 +23,7 @@ class ArduPilotRoverNode(Node):
     def __init__(self):
         super().__init__('rover_node')
 
-        self.get_logger().set_level(rclpy.logging.LoggingSeverity.DEBUG)
+        #self.get_logger().set_level(rclpy.logging.LoggingSeverity.DEBUG)
         
         # Parameters
         self.declare_parameter('connection_string', '/dev/ttyACM1')
@@ -349,7 +349,6 @@ class ArduPilotRoverNode(Node):
     
     def publish_scaled_imu(self, scaled_imu_msg):
         self.get_logger().info("In publish scaled imu data")
-        print(scaled_imu_msg)
         # Gyro message
         gyro_msg = Vector3()
         gyro_msg.x = scaled_imu_msg.xgyro / 1000.0

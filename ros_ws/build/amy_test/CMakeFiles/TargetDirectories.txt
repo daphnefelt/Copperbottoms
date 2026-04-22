@@ -9,7 +9,7 @@
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/amy_test__rosidl_typesupport_c.dir
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/amy_test__rosidl_typesupport_introspection_cpp.dir
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/amy_test__rosidl_typesupport_cpp.dir
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/ament_cmake_python_symlink_amy_test.dir
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/ament_cmake_python_copy_amy_test.dir
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/ament_cmake_python_build_amy_test_egg.dir
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/amy_test__rosidl_generator_py.dir
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/CMakeFiles/amy_test__rosidl_typesupport_fastrtps_c__pyext.dir

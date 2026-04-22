@@ -350,10 +350,10 @@ class ArduPilotRoverNode(Node):
 
 
         # Periodic Logger
-        self.log_counter += 1
-        if self.log_counter >= 100:
-            self.get_logger().info(f"Battery: {self.avg_voltage:.2f}V | Scaling Factor: {self.last_sf:.2f}")
-            self.log_counter = 0
+        # self.log_counter += 10
+        # if self.log_counter >= 100:
+        #     self.get_logger().info(f"Battery: {self.avg_voltage:.2f}V | Scaling Factor: {self.last_sf:.2f}")
+        #     self.log_counter = 0
 
         # Send manual control command
         try:

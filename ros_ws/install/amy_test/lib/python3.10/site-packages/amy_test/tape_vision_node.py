@@ -20,13 +20,14 @@ class TapeVisionNode(Node):
         self.declare_parameter('min_contour_area', 100)
         # HSV color params (more robust to lighting than BGR)
         # For cyan/teal tape: H~85-100, S~50-255, V~50-255
-        self.declare_parameter('hsv_lower', [75, 40, 40])  # Lower HSV bound
+        self.declare_parameter('hsv_lower', [75, 60, 60])  # Lower HSV bound
         self.declare_parameter('hsv_upper', [105, 255, 255])  # Upper HSV bound
         # Adaptive tolerance parameters
-        self.declare_parameter('adaptive_tolerance', True)  # Enable adaptive adjustment
+        self.declare_parameter('adaptive_tolerance', False)  # Enable adaptive adjustment
         self.declare_parameter('h_tolerance_step', 3)  # Hue adjustment step
         self.declare_parameter('sv_tolerance_step', 10)  # Saturation/Value step
-        self.declare_parameter('hsv_lower_min', [70, 60, 50])  # Minimum (tightest) - require saturated colors
+        self.declare_parameter('hsv_lower_min', [70, 30, 30])  # Minimum (tightest) - require saturated colors
+        # testing theseparameter s[]
         self.declare_parameter('hsv_upper_max', [110, 255, 255])  # Maximum (loosest)
         self.declare_parameter('max_detection_percent', 10.0)  # Reset if detecting >10% of image
 
@@ -65,7 +66,7 @@ class TapeVisionNode(Node):
         self.last_tape_center = None
         
         # Sharp turn detection parameters
-        self.declare_parameter('sharp_turn_angle_threshold', 45.0)  # Degrees from vertical
+        self.declare_parameter('sharp_turn_angle_threshold', 85.0)  # Degrees from vertical  # changed to 85 
         self.declare_parameter('sharp_turn_min_area', 500)  # Minimum contour area for valid sharp turn
         self.declare_parameter('sharp_turn_position_threshold', 0.6)  # Fraction of width for position check
         
@@ -104,7 +105,7 @@ class TapeVisionNode(Node):
             tape_msg.area = float(area)
             
             # Check if this frame has sharp turn conditions
-            angle_from_vertical = abs(angle - 90.0)  # 90 = straight up, 0/180 = horizontal
+            angle_from_vertical = abs(angle - (-90.0))  # -90 = straight up, 0/180 = horizontal
             is_sharp_angle = angle_from_vertical > self.sharp_turn_angle_threshold
             has_enough_area = area >= self.sharp_turn_min_area
             
@@ -113,11 +114,11 @@ class TapeVisionNode(Node):
             cx = center[0]
             position_threshold = width * self.sharp_turn_position_threshold
             
-            # Right turn: angle > 45 (pointing right), tape on right side
-            # Left turn: angle < -45 (pointing left), tape on left side
-            if angle > 45:  # Right turn
+            # Right turn: angle near 0° (horizontal right), tape on right side
+            # Left turn: angle near ±180° (horizontal left), tape on left side
+            if -20 <= angle <= 20:  # Horizontal right turn
                 is_correct_position = cx > position_threshold
-            elif angle < -45:  # Left turn
+            elif angle >= 160 or angle <= -160:  # Horizontal left turn
                 is_correct_position = cx < (width - position_threshold)
             else:
                 is_correct_position = False
@@ -307,7 +308,7 @@ class TapeVisionNode(Node):
             vx[0] = -vx[0]
             vy[0] = -vy[0]
         
-        angle = np.degrees(np.arctan2(vy[0], vx[0]))
+        angle = np.degrees(np.arctan2(vy[0], vx[0])) 
         
         # Update last known position for continuity tracking
         self.last_tape_center = (cx, cy)

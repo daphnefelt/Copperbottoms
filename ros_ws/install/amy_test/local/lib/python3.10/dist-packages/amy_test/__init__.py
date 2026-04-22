@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/rosidl_generator_py/amy_test/__init__.py

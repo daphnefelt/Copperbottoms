@@ -1,1 +1,25 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/rosidl_adapter/amy_test/msg/TapeContour.idl
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from amy_test/msg/TapeContour.msg
+// generated code does not contain a copyright notice
+
+
+module amy_test {
+  module msg {
+    @verbatim (language="comment", text=
+      "TapeContour.msg" "\n"
+      "Custom message for tape contour detection")
+    struct TapeContour {
+      boolean found;
+
+      float center_x;
+
+      float center_y;
+
+      float angle;
+
+      float area;
+
+      boolean sharp_turn;
+    };
+  };
+};

@@ -11,14 +11,14 @@ import time
 import numpy as np
 
 class TapeControlNode(Node):
-    def __init__(self):s
+    def __init__(self):
         super().__init__('tape_control_node')
-        self.declare_parameter('forward_speed', 0.25  # been hanging this between .22 and .25 
-        self.declare_parameter('max_turn', 1.8)
-        self.declare_parameter('kp', 0.6)
-        self.declare_parameter('ki', 0.03)
-        self.declare_parameter('kd', 0.20)
-        self.declare_parameter('steering_deadband', 0.12)
+        self.declare_parameter('forward_speed', 0.22)  # been hanging this between .22 and .25 
+        self.declare_parameter('max_turn', .8)  #1 and 1.8 
+        self.declare_parameter('kp', 0.4)  # testing between .4 and .6 
+        self.declare_parameter('ki', 0.02)  #testing between .02 and .03
+        self.declare_parameter('kd', 0.15)  # between .15 a.d.2
+        self.declare_parameter('steering_deadband', 0.15)  .9 and .15 
         self.declare_parameter('enable_motor_control', False)
         self.declare_parameter('sharp_turn_boost', 1.8)  # Multiply turn by this during sharp turns
         self.declare_parameter('sharp_turn_speed_factor', 0.6)  # Reduce speed to this fraction during sharp turns
@@ -56,7 +56,7 @@ class TapeControlNode(Node):
         self.sharp_turn_direction = 0  # -1 for left, +1 for right
         self.total_frame_count = 0
         
-        self.get_logger().info('TapeControlNode started')
+        self.get_logger().info('TapeControlNode started_update')
 
     def tape_callback(self, msg):
         self.total_frame_count += 1
@@ -114,7 +114,7 @@ class TapeControlNode(Node):
             self.vel_pub.publish(twist)
             
             # Check exit condition: tape angle more reasonable and reasonably centered
-            angle_from_vertical = abs(msg.angle - 90.0)  # How far from vertical (0° = vertical)
+            angle_from_vertical = abs(msg.angle - (-90.0))  # How far from vertical (-90° = straight ahead)
             center_x = msg.center_x
             img_width = 320
             center_error = abs(center_x - img_width / 2)

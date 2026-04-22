@@ -1,1 +1,4 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/ament_cmake_environment_hooks/local_setup.dsv
+source;share/amy_test/environment/ament_prefix_path.sh
+source;share/amy_test/environment/library_path.sh
+source;share/amy_test/environment/path.sh
+source;share/amy_test/environment/pythonpath.sh

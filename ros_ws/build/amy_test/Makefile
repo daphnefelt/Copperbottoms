@@ -315,17 +315,17 @@ amy_test__rosidl_typesupport_cpp/fast:
 .PHONY : amy_test__rosidl_typesupport_cpp/fast
 
 #=============================================================================
-# Target rules for targets named ament_cmake_python_symlink_amy_test
+# Target rules for targets named ament_cmake_python_copy_amy_test
 
 # Build rule for target.
-ament_cmake_python_symlink_amy_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_symlink_amy_test
-.PHONY : ament_cmake_python_symlink_amy_test
+ament_cmake_python_copy_amy_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_copy_amy_test
+.PHONY : ament_cmake_python_copy_amy_test
 
 # fast build rule for target.
-ament_cmake_python_symlink_amy_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_amy_test.dir/build.make CMakeFiles/ament_cmake_python_symlink_amy_test.dir/build
-.PHONY : ament_cmake_python_symlink_amy_test/fast
+ament_cmake_python_copy_amy_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_amy_test.dir/build.make CMakeFiles/ament_cmake_python_copy_amy_test.dir/build
+.PHONY : ament_cmake_python_copy_amy_test/fast
 
 #=============================================================================
 # Target rules for targets named ament_cmake_python_build_amy_test_egg
@@ -683,7 +683,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... ament_cmake_python_build_amy_test_egg"
-	@echo "... ament_cmake_python_symlink_amy_test"
+	@echo "... ament_cmake_python_copy_amy_test"
 	@echo "... amy_test"
 	@echo "... amy_test__cpp"
 	@echo "... amy_test__py"

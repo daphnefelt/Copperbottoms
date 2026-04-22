@@ -172,6 +172,7 @@ cd robo_realsense/
 
 # to get raw camera data:
 python3 ros_stream.py
+python3 /home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_realsense/fastsam/ros_stream_with_depth.py
 # then in another terminal:
 ros2 topic echo /camera/color/image_raw # just shows data
 

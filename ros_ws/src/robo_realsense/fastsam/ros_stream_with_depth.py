@@ -8,7 +8,7 @@ import pyrealsense2 as rs
 import numpy as np
 
 class RealsenseColorDepthPublisher(Node):
-    def __init__(self, width=424, height=240, fps=6):
+    def __init__(self, width=640, height=480, fps=6):
         super().__init__('realsense_color_depth_publisher')
         self.color_pub = self.create_publisher(Image, '/camera/color/image_raw', 10)
         self.depth_pub = self.create_publisher(Image, '/camera/depth/image_raw', 10)
@@ -62,7 +62,7 @@ class RealsenseColorDepthPublisher(Node):
 
 def main():
     rclpy.init()
-    node = RealsenseColorDepthPublisher(width=424, height=240, fps=6)
+    node = RealsenseColorDepthPublisher(width=640, height=480, fps=6)
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

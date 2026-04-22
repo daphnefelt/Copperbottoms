@@ -21,6 +21,8 @@ from custom_messages.msg import Slow
 class ArduPilotRoverNode(Node):
     def __init__(self):
         super().__init__('rover_node')
+
+        self.get_logger().set_level(rclpy.logging.LoggingSeverity.DEBUG)
         
         # Parameters
         self.declare_parameter('connection_string', '/dev/ttyACM1')
@@ -335,6 +337,7 @@ class ArduPilotRoverNode(Node):
         if not self.connected:
             return
         
+        
         # Try to get SCALED_IMU first (preferred)
         scaled_imu = self.master.recv_match(type='SCALED_IMU', blocking=False)
         if scaled_imu is not None:
@@ -342,7 +345,8 @@ class ArduPilotRoverNode(Node):
             return
     
     def publish_scaled_imu(self, scaled_imu_msg):
-        print(scaled_imu_msg)
+        self.get_logger().debug("In publish scaled imu data")
+        self.get_logger().debug(scaled_imu_msg)
         # Gyro message
         gyro_msg = Vector3()
         gyro_msg.x = scaled_imu_msg.xgyro / 1000.0

@@ -17,6 +17,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
 from custom_messages.msg import Slow
+from custom_messages.msg import ImuBundled
 
 class ArduPilotRoverNode(Node):
     def __init__(self):
@@ -68,7 +69,9 @@ class ArduPilotRoverNode(Node):
         # Publishers
         self.gyro_pub = self.create_publisher(Vector3, 'imu/gyro', sensor_qos)
         self.accel_pub = self.create_publisher(Vector3, 'imu/accel', sensor_qos)
+        self.imu_pub = self.create_publisher(ImuBundled, 'imu/imu_bundled', sensor_qos)
         self.armed_pub = self.create_publisher(Bool, 'rover/armed', control_qos)
+
         
         # Subscribers
         self.cmd_sub = self.create_subscription(

@@ -14,6 +14,8 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 from std_msgs.msg import String
 import cv2
+import os
+os.environ.setdefault('QT_LOGGING_RULES', '*.warning=false') # stupid font warnings
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise on robot pose
@@ -38,7 +40,7 @@ class EKFSlamNode(Node):
         self.omega = 0.0
         self.last_time = self.get_clock().now()
 
-        self.create_subscription(Twist, '/cmd_vel',   self._cmd_vel_cb,   10)
+        self.create_subscription(Twist, '/cmd_vel_temp',   self._cmd_vel_cb,   10)
         self.create_subscription(String, '/landmarks', self._landmark_cb,  10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/slam/pose', 10)
         self.map_pub = self.create_publisher(String, '/slam/landmarks', 10)

@@ -61,6 +61,8 @@ class ArduPilotRoverNode(Node):
         self.master = None
         self.connected = False
         self.armed = False
+
+        self.current_battery_voltage = 7.4 # Default to nominal
         
         # QoS profiles
         sensor_qos = QoSProfile(
@@ -263,15 +265,23 @@ class ArduPilotRoverNode(Node):
         throttle_raw = linear * 400
         offset = 80
 
+        """
+        Scaling based on voltage
+        """
+        # nominal_v = 7.4
+        # current_v = max(self.current_battery_voltage, 6.0) # Prevent div by zero
+        # SF = nominal_v / current_v
+        SF = 1.0
+
         if throttle_raw >= 0:
             throttle_with_offset = throttle_raw + offset
         else:
             throttle_with_offset = throttle_raw - offset
 
         # Scale to MAVLink range (-1000 to 1000)
-        self.current_throttle = int(np.clip(throttle_with_offset, -300, 300))
+        self.current_throttle = int(np.clip(throttle_with_offset * SF, -300, 300))
 
-        self.current_steering = int(np.clip(steering * 500, -1000, 1000))
+        self.current_steering = int(np.clip(steering * 500 * SF, -1000, 1000))
             
     def cmd_vel_callback(self, msg):
         """Handle incoming velocity commands"""
@@ -328,11 +338,6 @@ class ArduPilotRoverNode(Node):
         #)
 
 
-
-            
-
-
-        
         # Send manual control command
         try:
             self.master.mav.manual_control_send(
@@ -351,13 +356,19 @@ class ArduPilotRoverNode(Node):
             if not self.connected:
                 return
 
-            # Read as many messages as are in the buffer
             while True:
                 msg = self.master.recv_match(blocking=False)
                 if not msg:
                     break
                     
                 msg_type = msg.get_type()
+                
+                # Add this new handler
+                if msg_type == 'STATUSTEXT':
+                    # Severity 0: Emergency, 1: Alert, 2: Critical, 3: Error, 4: Warning
+                    # You can filter for specific severities
+                    if msg.severity <= 4:
+                        self.get_logger().warn(f"Pixhawk System Msg: {msg.text}")
 
                 # Route messages to the existing publisher functions
                 if msg_type == 'SCALED_IMU':
@@ -367,9 +378,9 @@ class ArduPilotRoverNode(Node):
                 elif msg_type == 'HEARTBEAT':
                     self.armed = bool(msg.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
                     # (Optional: Publish armed status here too if you want)
+            
 
     def publish_scaled_imu(self, scaled_imu_msg):
-        self.get_logger().info("In publish scaled imu data")
         # Gyro message
         gyro_msg = Vector3()
         gyro_msg.x = scaled_imu_msg.xgyro / 1000.0
@@ -409,6 +420,7 @@ class ArduPilotRoverNode(Node):
         batt_msg.current = sys_status.current_battery / 100.0
         batt_msg.percentage = sys_status.battery_remaining / 100.0
         batt_msg.power_supply_status = BatteryState.POWER_SUPPLY_STATUS_DISCHARGING
+        self.current_battery_voltage = sys_status.voltage_battery / 1000.0        
         self.battery_pub.publish(batt_msg)
     
     

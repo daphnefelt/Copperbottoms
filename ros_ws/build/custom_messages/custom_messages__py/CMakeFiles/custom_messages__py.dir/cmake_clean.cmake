@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c"
   "../rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c"
   "../rosidl_generator_py/custom_messages/msg/__init__.py"
+  "../rosidl_generator_py/custom_messages/msg/_imu_bundled.py"
+  "../rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c"
   "../rosidl_generator_py/custom_messages/msg/_latency_stats.py"
   "../rosidl_generator_py/custom_messages/msg/_latency_stats_s.c"
   "../rosidl_generator_py/custom_messages/msg/_rate_stats.py"

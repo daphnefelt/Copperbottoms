@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/custom_messages__cpp"
+  "rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__builder.hpp"
+  "rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__struct.hpp"
+  "rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__traits.hpp"
+  "rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__type_support.hpp"
   "rosidl_generator_cpp/custom_messages/msg/detail/latency_stats__builder.hpp"
   "rosidl_generator_cpp/custom_messages/msg/detail/latency_stats__struct.hpp"
   "rosidl_generator_cpp/custom_messages/msg/detail/latency_stats__traits.hpp"
@@ -12,6 +16,7 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/custom_messages/msg/detail/slow__struct.hpp"
   "rosidl_generator_cpp/custom_messages/msg/detail/slow__traits.hpp"
   "rosidl_generator_cpp/custom_messages/msg/detail/slow__type_support.hpp"
+  "rosidl_generator_cpp/custom_messages/msg/imu_bundled.hpp"
   "rosidl_generator_cpp/custom_messages/msg/latency_stats.hpp"
   "rosidl_generator_cpp/custom_messages/msg/rate_stats.hpp"
   "rosidl_generator_cpp/custom_messages/msg/slow.hpp"

@@ -405,6 +405,30 @@ custom_messages__py/fast:
 	$(MAKE) $(MAKESILENT) -f custom_messages__py/CMakeFiles/custom_messages__py.dir/build.make custom_messages__py/CMakeFiles/custom_messages__py.dir/build
 .PHONY : custom_messages__py/fast
 
+rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.o: rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.o
+.PHONY : rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.o
+
+# target to build an object file
+rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_generator_c.dir/build.make CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.o
+.PHONY : rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.o
+
+rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.i: rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.i
+.PHONY : rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.i
+
+# target to preprocess a source file
+rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_generator_c.dir/build.make CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.i
+.PHONY : rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.i
+
+rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.s: rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.s
+.PHONY : rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.s
+
+# target to generate assembly for a file
+rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_generator_c.dir/build.make CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.s
+.PHONY : rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.s
+
 rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.o: rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.c.o
 .PHONY : rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.o
 
@@ -549,6 +573,30 @@ rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_int
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_c__pyext.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c.s
 .PHONY : rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c.s
 
+rosidl_generator_py/custom_messages/msg/_imu_bundled_s.o: rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.o
+.PHONY : rosidl_generator_py/custom_messages/msg/_imu_bundled_s.o
+
+# target to build an object file
+rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_generator_py.dir/build.make CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.o
+.PHONY : rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.o
+
+rosidl_generator_py/custom_messages/msg/_imu_bundled_s.i: rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.i
+.PHONY : rosidl_generator_py/custom_messages/msg/_imu_bundled_s.i
+
+# target to preprocess a source file
+rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_generator_py.dir/build.make CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.i
+.PHONY : rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.i
+
+rosidl_generator_py/custom_messages/msg/_imu_bundled_s.s: rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.s
+.PHONY : rosidl_generator_py/custom_messages/msg/_imu_bundled_s.s
+
+# target to generate assembly for a file
+rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_generator_py.dir/build.make CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.s
+.PHONY : rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.s
+
 rosidl_generator_py/custom_messages/msg/_latency_stats_s.o: rosidl_generator_py/custom_messages/msg/_latency_stats_s.c.o
 .PHONY : rosidl_generator_py/custom_messages/msg/_latency_stats_s.o
 
@@ -620,6 +668,30 @@ rosidl_generator_py/custom_messages/msg/_slow_s.s: rosidl_generator_py/custom_me
 rosidl_generator_py/custom_messages/msg/_slow_s.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_generator_py.dir/build.make CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_slow_s.c.s
 .PHONY : rosidl_generator_py/custom_messages/msg/_slow_s.c.s
+
+rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.o: rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.o
+
+# target to build an object file
+rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.o
+
+rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.i: rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.i
+
+# target to preprocess a source file
+rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.i
+
+rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.s: rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.s
+
+# target to generate assembly for a file
+rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.s
 
 rosidl_typesupport_c/custom_messages/msg/latency_stats__type_support.o: rosidl_typesupport_c/custom_messages/msg/latency_stats__type_support.cpp.o
 .PHONY : rosidl_typesupport_c/custom_messages/msg/latency_stats__type_support.o
@@ -693,6 +765,30 @@ rosidl_typesupport_c/custom_messages/msg/slow__type_support.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/slow__type_support.cpp.s
 .PHONY : rosidl_typesupport_c/custom_messages/msg/slow__type_support.cpp.s
 
+rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.o: rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.o
+
+# target to build an object file
+rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.o
+
+rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.i: rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.i
+
+# target to preprocess a source file
+rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.i
+
+rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.s: rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.s
+
+# target to generate assembly for a file
+rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.s
+
 rosidl_typesupport_cpp/custom_messages/msg/latency_stats__type_support.o: rosidl_typesupport_cpp/custom_messages/msg/latency_stats__type_support.cpp.o
 .PHONY : rosidl_typesupport_cpp/custom_messages/msg/latency_stats__type_support.o
 
@@ -764,6 +860,30 @@ rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.s: rosidl_typesupp
 rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.cpp.s
 .PHONY : rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.cpp.s
+
+rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.o: rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.o
+.PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.o
+
+# target to build an object file
+rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.o
+.PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.o
+
+rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.i: rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.i
+.PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.i
+
+# target to preprocess a source file
+rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.i
+.PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.i
+
+rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.s: rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.s
+.PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.s
+
+# target to generate assembly for a file
+rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.s
+.PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.s
 
 rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/latency_stats__type_support_c.o: rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/latency_stats__type_support_c.cpp.o
 .PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/latency_stats__type_support_c.o
@@ -837,6 +957,30 @@ rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.cp
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.cpp.s
 .PHONY : rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.cpp.s
 
+rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.o: rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.o
+
+# target to build an object file
+rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.o
+
+rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.i: rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.i
+
+# target to preprocess a source file
+rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.i
+
+rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.s: rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.s
+
+# target to generate assembly for a file
+rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.s
+
 rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/latency_stats__type_support.o: rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/latency_stats__type_support.cpp.o
 .PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/latency_stats__type_support.o
 
@@ -909,6 +1053,30 @@ rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__ty
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__type_support.cpp.s
 .PHONY : rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__type_support.cpp.s
 
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.o: rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o
+.PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.o
+
+# target to build an object file
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o
+.PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o
+
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.i: rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.i
+.PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.i
+
+# target to preprocess a source file
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.i
+.PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.i
+
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.s: rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.s
+.PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.s
+
+# target to generate assembly for a file
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.s
+.PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.s
+
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.o: rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.c.o
 .PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.o
 
@@ -980,6 +1148,30 @@ rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.s
 .PHONY : rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.s
+
+rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.o: rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.o
+
+# target to build an object file
+rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.o
+.PHONY : rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.o
+
+rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.i: rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.i
+
+# target to preprocess a source file
+rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.i
+.PHONY : rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.i
+
+rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.s: rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.s
+
+# target to generate assembly for a file
+rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/build.make CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.s
+.PHONY : rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.s
 
 rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/latency_stats__type_support.o: rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/latency_stats__type_support.cpp.o
 .PHONY : rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/latency_stats__type_support.o
@@ -1084,6 +1276,9 @@ help:
 	@echo "... custom_messages__rosidl_typesupport_introspection_c"
 	@echo "... custom_messages__rosidl_typesupport_introspection_c__pyext"
 	@echo "... custom_messages__rosidl_typesupport_introspection_cpp"
+	@echo "... rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.o"
+	@echo "... rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.i"
+	@echo "... rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.s"
 	@echo "... rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.o"
 	@echo "... rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.i"
 	@echo "... rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.s"
@@ -1102,6 +1297,9 @@ help:
 	@echo "... rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.o"
 	@echo "... rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.i"
 	@echo "... rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.s"
+	@echo "... rosidl_generator_py/custom_messages/msg/_imu_bundled_s.o"
+	@echo "... rosidl_generator_py/custom_messages/msg/_imu_bundled_s.i"
+	@echo "... rosidl_generator_py/custom_messages/msg/_imu_bundled_s.s"
 	@echo "... rosidl_generator_py/custom_messages/msg/_latency_stats_s.o"
 	@echo "... rosidl_generator_py/custom_messages/msg/_latency_stats_s.i"
 	@echo "... rosidl_generator_py/custom_messages/msg/_latency_stats_s.s"
@@ -1111,6 +1309,9 @@ help:
 	@echo "... rosidl_generator_py/custom_messages/msg/_slow_s.o"
 	@echo "... rosidl_generator_py/custom_messages/msg/_slow_s.i"
 	@echo "... rosidl_generator_py/custom_messages/msg/_slow_s.s"
+	@echo "... rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.o"
+	@echo "... rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.i"
+	@echo "... rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.s"
 	@echo "... rosidl_typesupport_c/custom_messages/msg/latency_stats__type_support.o"
 	@echo "... rosidl_typesupport_c/custom_messages/msg/latency_stats__type_support.i"
 	@echo "... rosidl_typesupport_c/custom_messages/msg/latency_stats__type_support.s"
@@ -1120,6 +1321,9 @@ help:
 	@echo "... rosidl_typesupport_c/custom_messages/msg/slow__type_support.o"
 	@echo "... rosidl_typesupport_c/custom_messages/msg/slow__type_support.i"
 	@echo "... rosidl_typesupport_c/custom_messages/msg/slow__type_support.s"
+	@echo "... rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.o"
+	@echo "... rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.i"
+	@echo "... rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.s"
 	@echo "... rosidl_typesupport_cpp/custom_messages/msg/latency_stats__type_support.o"
 	@echo "... rosidl_typesupport_cpp/custom_messages/msg/latency_stats__type_support.i"
 	@echo "... rosidl_typesupport_cpp/custom_messages/msg/latency_stats__type_support.s"
@@ -1129,6 +1333,9 @@ help:
 	@echo "... rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.o"
 	@echo "... rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.i"
 	@echo "... rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.s"
+	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.o"
+	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.i"
+	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.s"
 	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/latency_stats__type_support_c.o"
 	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/latency_stats__type_support_c.i"
 	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/latency_stats__type_support_c.s"
@@ -1138,6 +1345,9 @@ help:
 	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.o"
 	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.i"
 	@echo "... rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.s"
+	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.o"
+	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.i"
+	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.s"
 	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/latency_stats__type_support.o"
 	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/latency_stats__type_support.i"
 	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/latency_stats__type_support.s"
@@ -1147,6 +1357,9 @@ help:
 	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__type_support.o"
 	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__type_support.i"
 	@echo "... rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__type_support.s"
+	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.o"
+	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.i"
+	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.s"
 	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.o"
 	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.i"
 	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.s"
@@ -1156,6 +1369,9 @@ help:
 	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.o"
 	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.i"
 	@echo "... rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.s"
+	@echo "... rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.o"
+	@echo "... rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.i"
+	@echo "... rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.s"
 	@echo "... rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/latency_stats__type_support.o"
 	@echo "... rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/latency_stats__type_support.i"
 	@echo "... rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/latency_stats__type_support.s"

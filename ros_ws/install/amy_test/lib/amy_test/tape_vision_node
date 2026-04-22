@@ -122,18 +122,6 @@ class TapeVisionNode(Node):
             else:
                 is_correct_position = False
             
-            # Debug logging every 30 frames
-            if self.sharp_turn_frames == 0 and (is_sharp_angle or has_enough_area > 2000):
-                self.get_logger().info(
-                    f'Sharp turn check: angle={angle:.1f}° (from_vert={angle_from_vertical:.1f}°), '
-                    f'area={area:.0f}, cx={cx:.1f}, sharp_angle={is_sharp_angle}, '
-                    f'enough_area={has_enough_area}, pos_ok={is_correct_position}, frames={self.sharp_turn_frames}',
-                    throttle_duration_sec=1.0
-                )
-                is_correct_position = cx < (width - position_threshold)
-            else:
-                is_correct_position = False
-            
             # Validate sharp turn
             if is_sharp_angle and has_enough_area and is_correct_position:
                 self.sharp_turn_frames += 1

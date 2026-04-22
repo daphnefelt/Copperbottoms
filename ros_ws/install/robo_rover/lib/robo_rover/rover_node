@@ -13,14 +13,18 @@ from std_msgs.msg import Bool
 import time
 import threading
 from pymavlink import mavutil
+from sensor_msgs.msg import BatteryState
 import numpy as np
 from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
 from custom_messages.msg import Slow
+from custom_messages.msg import ImuBundled
 
 class ArduPilotRoverNode(Node):
     def __init__(self):
         super().__init__('rover_node')
+
+        #self.get_logger().set_level(rclpy.logging.LoggingSeverity.DEBUG)
         
         # Parameters
         self.declare_parameter('connection_string', '/dev/ttyACM1')
@@ -66,7 +70,11 @@ class ArduPilotRoverNode(Node):
         # Publishers
         self.gyro_pub = self.create_publisher(Vector3, 'imu/gyro', sensor_qos)
         self.accel_pub = self.create_publisher(Vector3, 'imu/accel', sensor_qos)
+        self.imu_pub = self.create_publisher(ImuBundled, 'imu/imu_bundled', sensor_qos)
         self.armed_pub = self.create_publisher(Bool, 'rover/armed', control_qos)
+        self.battery_pub = self.create_publisher(BatteryState, 'rover/battery', sensor_qos)
+
+
         
         # Subscribers
         self.cmd_sub = self.create_subscription(
@@ -335,6 +343,7 @@ class ArduPilotRoverNode(Node):
         if not self.connected:
             return
         
+        
         # Try to get SCALED_IMU first (preferred)
         scaled_imu = self.master.recv_match(type='SCALED_IMU', blocking=False)
         if scaled_imu is not None:
@@ -342,6 +351,7 @@ class ArduPilotRoverNode(Node):
             return
     
     def publish_scaled_imu(self, scaled_imu_msg):
+        self.get_logger().info("In publish scaled imu data")
         # Gyro message
         gyro_msg = Vector3()
         gyro_msg.x = scaled_imu_msg.xgyro / 1000.0
@@ -356,20 +366,47 @@ class ArduPilotRoverNode(Node):
         accel_msg.z = (scaled_imu_msg.zacc / 1000.0) * 9.80665
         self.accel_pub.publish(accel_msg)
         
+        imu_bundle = ImuBundled()
+        imu_bundle.accel = accel_msg 
+        imu_bundle.gyro = gyro_msg 
+        self.imu_pub.publish(imu_bundle)
     
     def status_loop(self):
-        """Publish status information"""
-        # Publish armed status
-        armed_msg = Bool()
-        armed_msg.data = self.armed
-        self.armed_pub.publish(armed_msg)
-        
-        # Check connection health
-        if self.connected:
+            """Publish status information"""
+            # 1. Publish armed status
+            armed_msg = Bool()
+            armed_msg.data = self.armed
+            self.armed_pub.publish(armed_msg)
+            
+            if not self.connected:
+                return
+
+            # 2. Check for Heartbeat
             heartbeat = self.master.recv_match(type='HEARTBEAT', blocking=False)
             if heartbeat is not None:
-                # Update armed status from heartbeat
                 self.armed = bool(heartbeat.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
+            
+            # 3. Check for Battery Data (SYS_STATUS)
+            sys_status = self.master.recv_match(type='SYS_STATUS', blocking=False)
+            if sys_status is not None:
+                batt_msg = BatteryState()
+                
+                # Use current ROS time
+                batt_msg.header.stamp = self.get_clock().now().to_msg()
+                
+                # SYS_STATUS reports in mV, so divide by 1000 for Volts
+                batt_msg.voltage = sys_status.voltage_battery / 1000.0 
+                
+                # current_battery is in 10mA, so divide by 100 for Amps
+                batt_msg.current = sys_status.current_battery / 100.0
+                
+                # battery_remaining is 0-100, convert to 0.0-1.0
+                batt_msg.percentage = sys_status.battery_remaining / 100.0 
+                
+                # Set required status field
+                batt_msg.power_supply_status = BatteryState.POWER_SUPPLY_STATUS_DISCHARGING
+                
+                self.battery_pub.publish(batt_msg)
     
     def destroy_node(self):
         """Clean up when node is destroyed"""

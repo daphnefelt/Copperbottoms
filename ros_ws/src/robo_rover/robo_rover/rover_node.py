@@ -13,6 +13,7 @@ from std_msgs.msg import Bool
 import time
 import threading
 from pymavlink import mavutil
+from sensor_msgs.msg import BatteryState
 import numpy as np
 from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
@@ -71,6 +72,8 @@ class ArduPilotRoverNode(Node):
         self.accel_pub = self.create_publisher(Vector3, 'imu/accel', sensor_qos)
         self.imu_pub = self.create_publisher(ImuBundled, 'imu/imu_bundled', sensor_qos)
         self.armed_pub = self.create_publisher(Bool, 'rover/armed', control_qos)
+        self.battery_pub = self.create_publisher(BatteryState, 'rover/battery', sensor_qos)
+
 
         
         # Subscribers
@@ -369,18 +372,60 @@ class ArduPilotRoverNode(Node):
         self.imu_pub.publish(imu_bundle)
     
     def status_loop(self):
-        """Publish status information"""
-        # Publish armed status
-        armed_msg = Bool()
-        armed_msg.data = self.armed
-        self.armed_pub.publish(armed_msg)
-        
-        # Check connection health
-        if self.connected:
+            """Publish status information"""
+            # 1. Publish armed status
+            armed_msg = Bool()
+            armed_msg.data = self.armed
+            self.armed_pub.publish(armed_msg)
+            
+            if not self.connected:
+                return
+
+            # 2. Check for Heartbeat
             heartbeat = self.master.recv_match(type='HEARTBEAT', blocking=False)
             if heartbeat is not None:
-                # Update armed status from heartbeat
                 self.armed = bool(heartbeat.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
+            
+            if sys_status is not None:
+                self.get_logger().info("Received SYS_STATUS message!")
+            else:
+                # self.get_logger().debug("No SYS_STATUS received") # Uncomment if you want to see this
+            pass
+
+            # 3. Check for Battery Data (SYS_STATUS)
+
+            # battery info commands for mavlink 
+            # activate mavproxy
+            """
+            In terminal: mavproxy.py --master=/dev/ttyACM0 --baudrate 115200
+            Then in the MAVProxy console, use:
+            'status' or 'status battery'
+            UPDATING VOTLAGE MULTIPLIER
+            param show BATT_VOLT_MULT
+            param set BATT_VOLT_MULT
+
+            """
+        
+            sys_status = self.master.recv_match(type='SYS_STATUS', blocking=False)
+            if sys_status is not None:
+                batt_msg = BatteryState()
+                
+                # Use current ROS time
+                batt_msg.header.stamp = self.get_clock().now().to_msg()
+                
+                # SYS_STATUS reports in mV, so divide by 1000 for Volts
+                batt_msg.voltage = sys_status.voltage_battery / 1000.0 
+                
+                # current_battery is in 10mA, so divide by 100 for Amps
+                batt_msg.current = sys_status.current_battery / 100.0
+                
+                # battery_remaining is 0-100, convert to 0.0-1.0
+                batt_msg.percentage = sys_status.battery_remaining / 100.0 
+                
+                # Set required status field
+                batt_msg.power_supply_status = BatteryState.POWER_SUPPLY_STATUS_DISCHARGING
+                
+                self.battery_pub.publish(batt_msg)
     
     def destroy_node(self):
         """Clean up when node is destroyed"""

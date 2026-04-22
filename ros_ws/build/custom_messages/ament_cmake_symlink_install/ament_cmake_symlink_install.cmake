@@ -367,6 +367,9 @@ ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws
 # install(FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages/msg/RateStats.idl" "DESTINATION" "share/custom_messages/msg")
 ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages" FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages/msg/RateStats.idl" "DESTINATION" "share/custom_messages/msg")
 
+# install(FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages/msg/ImuBundled.idl" "DESTINATION" "share/custom_messages/msg")
+ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages" FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages/msg/ImuBundled.idl" "DESTINATION" "share/custom_messages/msg")
+
 # install(FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/msg/Slow.msg" "DESTINATION" "share/custom_messages/msg")
 ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages" FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/msg/Slow.msg" "DESTINATION" "share/custom_messages/msg")
 
@@ -375,6 +378,9 @@ ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws
 
 # install(FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/msg/RateStats.msg" "DESTINATION" "share/custom_messages/msg")
 ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages" FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/msg/RateStats.msg" "DESTINATION" "share/custom_messages/msg")
+
+# install(FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/msg/ImuBundled.msg" "DESTINATION" "share/custom_messages/msg")
+ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages" FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages/msg/ImuBundled.msg" "DESTINATION" "share/custom_messages/msg")
 
 # install(FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/custom_messages" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/copperbottoms/code/Copperbottoms/ros_ws/src/custom_messages" FILES "/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/custom_messages" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

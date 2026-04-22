@@ -210,4 +210,8 @@ CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_gene
  /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.h \
  /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/rate_stats__type_support.h \
  /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/rate_stats__struct.h \
- /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/rate_stats__functions.h
+ /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/rate_stats__functions.h \
+ /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/imu_bundled__type_support.h \
+ /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/imu_bundled__struct.h \
+ /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/vector3__struct.h \
+ /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.h

@@ -22,6 +22,9 @@ class TapeControlNode(Node):
         self.declare_parameter('enable_motor_control', False)
         self.declare_parameter('sharp_turn_boost', 1.8)  # Multiply turn by this during sharp turns
         self.declare_parameter('sharp_turn_speed_factor', 0.6)  # Reduce speed to this fraction during sharp turns
+        self.declare_parameter('sharp_turn_stop_frames', 10)  # Frames to stop before turning
+        self.declare_parameter('sharp_turn_execute_speed', 0.15)  # Forward speed during turn execution
+        self.declare_parameter('sharp_turn_execute_rate', 0.8)  # Angular rate during turn execution
 
         self.forward_speed = self.get_parameter('forward_speed').value
         self.max_turn = self.get_parameter('max_turn').value
@@ -32,6 +35,9 @@ class TapeControlNode(Node):
         self.enable_motor_control = self.get_parameter('enable_motor_control').value
         self.sharp_turn_boost = self.get_parameter('sharp_turn_boost').value
         self.sharp_turn_speed_factor = self.get_parameter('sharp_turn_speed_factor').value
+        self.sharp_turn_stop_frames = self.get_parameter('sharp_turn_stop_frames').value
+        self.sharp_turn_execute_speed = self.get_parameter('sharp_turn_execute_speed').value
+        self.sharp_turn_execute_rate = self.get_parameter('sharp_turn_execute_rate').value
 
         self.error_integral = 0.0
         self.last_error = 0.0
@@ -43,9 +49,11 @@ class TapeControlNode(Node):
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.turn_right = False
         
-        # Sharp turn detection tracking for testing
+        # Sharp turn state machine
+        self.sharp_turn_state = 'NORMAL'  # States: NORMAL, STOPPING, TURNING
         self.sharp_turn_detected = False
         self.sharp_turn_frame_count = 0
+        self.sharp_turn_direction = 0  # -1 for left, +1 for right
         self.total_frame_count = 0
         
         self.get_logger().info('TapeControlNode started')
@@ -57,37 +65,78 @@ class TapeControlNode(Node):
             # Optionally: stop or coast
             return
         
-        # Debug: Log every 30 frames to see sharp_turn status
-        if self.total_frame_count % 30 == 0:
-            self.get_logger().info(
-                f'Frame {self.total_frame_count}: sharp_turn={msg.sharp_turn}, '
-                f'angle={msg.angle:.1f}°, area={msg.area:.0f}'
-            )
+        # Sharp turn state machine
+        if self.sharp_turn_state == 'NORMAL':
+            # Normal following mode
+            if msg.sharp_turn:
+                # Sharp turn detected, enter STOPPING state
+                self.sharp_turn_state = 'STOPPING'
+                self.sharp_turn_frame_count = 0
+                # Determine turn direction from angle
+                # Negative angle = left turn, Positive angle = right turn
+                self.sharp_turn_direction = 1 if msg.angle > 0 else -1
+                self.get_logger().warn(
+                    f'[SHARP TURN START] Frame {self.total_frame_count} - '
+                    f'Angle: {msg.angle:.1f}°, Direction: {"RIGHT" if self.sharp_turn_direction > 0 else "LEFT"}'
+                )
+            else:
+                # Normal line following
+                self._execute_normal_following(msg)
+                return
         
-        # Sharp turn detection tracking
-        if msg.sharp_turn and not self.sharp_turn_detected:
-            # First frame of sharp turn detection
-            self.sharp_turn_detected = True
-            self.sharp_turn_frame_count = 0
-            self.get_logger().warn(
-                f'[SHARP TURN DETECTED] Frame {self.total_frame_count} - '
-                f'Angle: {msg.angle:.1f}°, Area: {msg.area:.0f}, Center: ({msg.center_x:.1f}, {msg.center_y:.1f})'
-            )
-        
-        if self.sharp_turn_detected:
+        if self.sharp_turn_state == 'STOPPING':
             self.sharp_turn_frame_count += 1
-            # TEST MODE: Stop completely on sharp turn detection
+            # Stop for a few frames to settle
             twist = Twist()
             twist.linear.x = 0.0
             twist.angular.z = 0.0
             self.vel_pub.publish(twist)
-            self.get_logger().info(
-                f'[SHARP TURN STOP] Frame {self.sharp_turn_frame_count} since detection - STOPPED',
-                throttle_duration_sec=0.5
-            )
+            
+            if self.sharp_turn_frame_count >= self.sharp_turn_stop_frames:
+                # Done stopping, start turning
+                self.sharp_turn_state = 'TURNING'
+                self.sharp_turn_frame_count = 0
+                self.get_logger().warn('[SHARP TURN EXECUTE] Starting turn maneuver')
+            else:
+                self.get_logger().info(
+                    f'[STOPPING] Frame {self.sharp_turn_frame_count}/{self.sharp_turn_stop_frames}',
+                    throttle_duration_sec=0.5
+                )
             return
         
-        # Normal line following (when no sharp turn detected)
+        if self.sharp_turn_state == 'TURNING':
+            self.sharp_turn_frame_count += 1
+            
+            # Execute turn: slow forward + aggressive turn in detected direction
+            twist = Twist()
+            twist.linear.x = self.sharp_turn_execute_speed
+            twist.angular.z = self.sharp_turn_direction * self.sharp_turn_execute_rate
+            self.vel_pub.publish(twist)
+            
+            # Check exit condition: tape angle more reasonable and reasonably centered
+            angle_from_vertical = abs(msg.angle - 90.0)  # How far from vertical (0° = vertical)
+            center_x = msg.center_x
+            img_width = 320
+            center_error = abs(center_x - img_width / 2)
+            
+            # Exit when tape is < 30° from vertical AND within 80 pixels of center
+            if angle_from_vertical < 30 and center_error < 80:
+                self.sharp_turn_state = 'NORMAL'
+                self.get_logger().warn(
+                    f'[SHARP TURN COMPLETE] Frames: {self.sharp_turn_frame_count}, '
+                    f'Final angle: {msg.angle:.1f}°, Center: {msg.center_x:.1f}'
+                )
+                # Resume normal following on next frame
+            else:
+                self.get_logger().info(
+                    f'[TURNING] Frame {self.sharp_turn_frame_count}, '
+                    f'Angle: {msg.angle:.1f}°, Center: {msg.center_x:.1f}',
+                    throttle_duration_sec=0.5
+                )
+            return
+    
+    def _execute_normal_following(self, msg):
+        """Execute normal line following control"""
         # Lateral error: normalized [-1, 1] (center_x relative to image center)
         center_x = msg.center_x
         img_width = 320  # Should match vision node

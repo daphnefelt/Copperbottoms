@@ -67,6 +67,7 @@ class ArduPilotRoverNode(Node):
         self.voltage_buffer = []
         self.buffer_size = 50   # Stores last 50 readings (~1 second of data at 50Hz)
         self.log_counter = 0    # For periodic logging
+        self.last_sf = 1.0         # Store last scaling factor for logging
         
         # QoS profiles
         sensor_qos = QoSProfile(
@@ -353,7 +354,7 @@ class ArduPilotRoverNode(Node):
         if self.log_counter >= 100:
             self.get_logger().info(f"Battery: {self.avg_voltage:.2f}V | Scaling Factor: {self.last_sf:.2f}")
             self.log_counter = 0
-            
+
         # Send manual control command
         try:
             self.master.mav.manual_control_send(

@@ -413,7 +413,7 @@ class ArduPilotRoverNode(Node):
             if sys_status is not None:
                 self.get_logger().info("Received SYS_STATUS message!")
             else:
-                self.get_logger().debug("No SYS_STATUS received") # Uncomment if you want to see this
+                self.get_logger().debug("No SYS_STATUS received")
             pass
 
 

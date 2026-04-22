@@ -1,1 +1,7 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/robo_rover/ament_cmake_python/robo_rover/robo_rover.egg-info/SOURCES.txt
+setup.py
+robo_rover/__init__.py
+robo_rover/rover_node.py
+robo_rover.egg-info/PKG-INFO
+robo_rover.egg-info/SOURCES.txt
+robo_rover.egg-info/dependency_links.txt
+robo_rover.egg-info/top_level.txt

@@ -35,7 +35,7 @@ class ArduPilotRoverNode(Node):
         #self.get_logger().set_level(rclpy.logging.LoggingSeverity.DEBUG)
         
         # Parameters
-        self.declare_parameter('connection_string', '/dev/ttyACM1')
+        self.declare_parameter('connection_string', '/dev/ttyACM0') # try ACM0 or ACM1
         self.declare_parameter('baud_rate', 115200)
         self.declare_parameter('control_frequency', 20.0)
         self.declare_parameter('imu_frequency', 20.0)
@@ -116,6 +116,8 @@ class ArduPilotRoverNode(Node):
             self.get_logger().info('Waiting for heartbeat...')
             heartbeat = self.master.wait_heartbeat(timeout=10)
             
+            time.sleep(2)
+
             if heartbeat is None:
                 self.get_logger().error('No heartbeat received')
                 return False
@@ -413,7 +415,7 @@ class ArduPilotRoverNode(Node):
             if sys_status is not None:
                 self.get_logger().info("Received SYS_STATUS message!")
             else:
-                self.get_logger().debug("No SYS_STATUS received") # Uncomment if you want to see this
+                self.get_logger().debug("No SYS_STATUS received")
             pass
 
 

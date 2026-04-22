@@ -20,6 +20,14 @@ from geometry_msgs.msg import Vector3
 from custom_messages.msg import Slow
 from custom_messages.msg import ImuBundled
 
+
+"""
+How to rebuild:
+cd /home/copperbottoms/code/Copperbottoms/ros_ws
+colcon build --packages-select robo_rover
+source install/setup.bash
+
+"""
 class ArduPilotRoverNode(Node):
     def __init__(self):
         super().__init__('rover_node')
@@ -386,27 +394,29 @@ class ArduPilotRoverNode(Node):
             if heartbeat is not None:
                 self.armed = bool(heartbeat.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
             
-            if sys_status is not None:
-                self.get_logger().info("Received SYS_STATUS message!")
-            else:
-                # self.get_logger().debug("No SYS_STATUS received") # Uncomment if you want to see this
-            pass
-
             # 3. Check for Battery Data (SYS_STATUS)
 
             # battery info commands for mavlink 
             # activate mavproxy
             """
-            In terminal: mavproxy.py --master=/dev/ttyACM0 --baudrate 115200
+            In terminal: 
+            mavproxy.py --master=/dev/ttyACM0 --baudrate 115200
             Then in the MAVProxy console, use:
             'status' or 'status battery'
             UPDATING VOTLAGE MULTIPLIER
             param show BATT_VOLT_MULT
             param set BATT_VOLT_MULT
-
             """
         
             sys_status = self.master.recv_match(type='SYS_STATUS', blocking=False)
+
+            if sys_status is not None:
+                self.get_logger().info("Received SYS_STATUS message!")
+            else:
+                self.get_logger().debug("No SYS_STATUS received") # Uncomment if you want to see this
+            pass
+
+
             if sys_status is not None:
                 batt_msg = BatteryState()
                 

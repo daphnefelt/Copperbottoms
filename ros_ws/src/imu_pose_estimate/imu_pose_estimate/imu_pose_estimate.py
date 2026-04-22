@@ -29,10 +29,9 @@ class ImuPoseEstimate(Node):
         # Subscribers - MARY consider appending a timestamp for more accurate time estimates
         # versus late estimates
         queue_size = 100
-        self.cmd_sub = self.create_subscription(
-            Vector3, 'imu/gyro', self.imu_gyro, queue_size)
-        self.imu_sub = self.create_subscription(ImuBundled, 'imu/imu_bundled', self.change_in_state_callback, queue_size)
-        self.heading_estimate_pub = self.create_publisher(float32, 'imu/heading_estimate', queue_size)
+
+        self.imu_sub = self.create_subscription(ImuBundled, 'imu/imu_bundled', self.imu_callback, queue_size)
+        self.heading_estimate_pub = self.create_publisher(Float32, 'imu/heading_estimate', queue_size)
 
 
     def normalize_angle(self, angle_rad):

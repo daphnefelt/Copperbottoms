@@ -23,10 +23,15 @@ class PaperFollower(Node):
         self.previous_errors = deque(maxlen=10)
         self.update_rate = 10.0
 
-        # SEARCH STATE
+        # SEARCH / LOST TARGET
         self.search_mode = False
         self.search_direction = "LEFT"
         self.no_blue_count = 0
+
+        # REVERSE MODE
+        self.reverse_mode = False
+        self.reverse_count = 0
+        self.reverse_frames = 15
 
         # RealSense setup
         self.pipeline = rs.pipeline()
@@ -44,111 +49,110 @@ class PaperFollower(Node):
         try:
             frames = self.pipeline.wait_for_frames()
             frame = frames.get_color_frame()
+
             if not frame:
                 return
 
             image = np.asanyarray(frame.get_data())
             h, w, _ = image.shape
 
-            left_end = w // 3
-            mid_end = 2 * w // 3
-
+            # BGR threshold for blue
             blue_mask = (
                 (image[:, :, 0] > 120) &
                 (image[:, :, 1] < 100) &
                 (image[:, :, 2] < 100)
             )
 
-            # ---------------- NO BLUE DETECTED ----------------
+            # ---------------- NO BLUE FOUND ----------------
             if not np.any(blue_mask):
                 self.no_blue_count += 1
 
-                # only enter search after a few missed frames (prevents flicker)
                 if self.no_blue_count > 3:
-                    self.search_mode = True
+                    self.reverse_mode = True
 
-                self.search_for_blue()
+                if self.reverse_mode:
+                    self.reverse_until_found()
+                else:
+                    self.search_for_blue()
+
                 return
 
             # ---------------- BLUE FOUND ----------------
             self.no_blue_count = 0
+            self.reverse_mode = False
+            self.reverse_count = 0
             self.search_mode = False
 
-            cols = np.where(blue_mask.any(axis=0))[0]
+            # Get all blue pixel x locations
+            y_pixels, x_pixels = np.where(blue_mask)
 
-            left_count = np.sum(cols < left_end)
-            middle_count = np.sum((cols >= left_end) & (cols < mid_end))
-            right_count = np.sum(cols >= mid_end)
+            mean_x = np.mean(x_pixels)
+            median_x = np.median(x_pixels)
 
-            if right_count > max(left_count, middle_count):
-                self.turn_right()
+            # normalize center error from -1 to +1
+            error = (mean_x - (w / 2)) / (w / 2)
 
-            elif middle_count > max(left_count, right_count):
-                self.go_straight()
+            self.get_logger().info(
+                f"Blue Found | MeanX={mean_x:.1f}  MedianX={median_x:.1f}  Error={error:.3f}"
+            )
 
-            else:
-                self.go_left()
+            self.follow_blue(error)
 
         except Exception as e:
             self.get_logger().error(str(e))
 
-    # ---------------- SEARCH BEHAVIOR ----------------
+    # ---------------- FOLLOW USING MEAN X ----------------
+    def follow_blue(self, error):
+        twist = Twist()
+
+        # forward speed
+        twist.linear.x = 0.22
+
+        # steering
+        twist.angular.z = -1.8 * error
+
+        self.drive_pub.publish(twist)
+
+    # ---------------- REVERSE ----------------
+    def reverse_until_found(self):
+        self.go_backward()
+        self.reverse_count += 1
+
+        self.get_logger().info("REVERSING - BLUE NOT FOUND")
+
+        if self.reverse_count >= self.reverse_frames:
+            self.reverse_mode = False
+            self.reverse_count = 0
+            self.search_for_blue()
+
+    # ---------------- SEARCH ----------------
     def search_for_blue(self):
         twist = Twist()
-        twist.linear.x = 0.15
+        twist.linear.x = 0.0
 
         if self.search_direction == "LEFT":
             twist.angular.z = 0.6
             self.get_logger().info("SEARCHING LEFT")
-
         else:
             twist.angular.z = -0.6
             self.get_logger().info("SEARCHING RIGHT")
 
-        # flip direction every cycle
-        self.search_direction = "RIGHT" if self.search_direction == "LEFT" else "LEFT"
+        self.search_direction = (
+            "RIGHT" if self.search_direction == "LEFT" else "LEFT"
+        )
 
         self.drive_pub.publish(twist)
 
-    # ---------------- ANGLE CONTROL ----------------
+    # ---------------- OPTIONAL ANGLE TOPIC ----------------
     def angle_goal_callback(self, msg):
+        # disabled while using camera tracking
+        return
 
-        if self.search_mode:
-            return
-
-        error = -msg.data
-        self.previous_errors.append(error)
-
-        integral = sum(self.previous_errors)
-        derivative = 0.0
-
-        if len(self.previous_errors) > 1:
-            derivative = (self.previous_errors[-1] - self.previous_errors[-2]) * self.update_rate
-
-        turn = 0.2 * error + 0.0 * integral + 0.0 * derivative
-
+    # ---------------- BASIC MOTION ----------------
+    def go_backward(self):
         twist = Twist()
-        twist.linear.x = 0.25
-        twist.angular.z = turn
-        self.drive_pub.publish(twist)
-
-    # ---------------- MOTION ----------------
-    def turn_right(self):
-        twist = Twist()
-        twist.linear.x = 0.20
-        twist.angular.z = -2
-        self.drive_pub.publish(twist)
-
-    def go_straight(self):
-        twist = Twist()
-        twist.linear.x = 0.25
+        twist.linear.x = -0.15
         twist.angular.z = 0.0
-        self.drive_pub.publish(twist)
-
-    def go_left(self):
-        twist = Twist()
-        twist.linear.x = 0.20
-        twist.angular.z = 0.5
         self.drive_pub.publish(twist)
 
     def destroy_node(self):

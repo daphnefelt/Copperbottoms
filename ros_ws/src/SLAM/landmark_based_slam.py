@@ -244,7 +244,7 @@ class EKFSlamNode(Node):
         x, y, th = self.mu[0], self.mu[1], self.mu[2]
         px, py = self._world_to_px(x, y)
         cv2.circle(img, (px, py), 5, (255, 0, 0), -1)
-        arrow_length = 20
+        arrow_length = 0.1 # meters
         arrow_dx = int(arrow_length * math.cos(th))
         arrow_dy = int(arrow_length * math.sin(th))
         px2, py2 = self._world_to_px(x + arrow_dx, y + arrow_dy)

@@ -61,6 +61,7 @@ class ImuPoseEstimate(Node):
             angle += 2*math.pi
 
     def imu_callback(self, msg: ImuBundled):
+        print("In imu_callback")
         current_time = time.time()
         dt = current_time - self.previous_time
         self.previous_time = current_time
@@ -121,7 +122,7 @@ class ImuPoseEstimate(Node):
 
 
         self.update_euler_angles(angles[:,1])
-        self.heading_estimate_pub(self.convert_angle_to_lidar_heading (self.normalize_angle(self.yaw)))
+        self.heading_estimate_pub.publish(self.convert_angle_to_lidar_heading (self.normalize_angle(self.yaw)))
 
         return
         

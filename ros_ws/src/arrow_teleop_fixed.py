@@ -12,6 +12,7 @@ import tty
 import termios
 import select
 import time
+from datetime import datetime
 
 class ArrowTeleop(Node):
     def __init__(self):
@@ -38,6 +39,19 @@ class ArrowTeleop(Node):
         }
         
         self.settings = termios.tcgetattr(sys.stdin)
+
+        # Create log file
+        start_stamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        self.log_filename = f"teleop_log_{start_stamp}.txt"
+        self.log_file = open(self.log_filename, "w")
+
+        self.write_log("===== PROGRAM STARTED =====")
+    
+    def write_log(self, message):
+        """Write timestamped message to file"""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+        self.log_file.write(f"[{timestamp}] {message}\n")
+        self.log_file.flush()
 
     def get_key_nonblocking(self):
         """Get next key without blocking if none available"""
@@ -109,21 +123,27 @@ class ArrowTeleop(Node):
                     if key == '\x1b[A':    # UP - forward
                         self.keys_held['forward'] = True
                         self.keys_held['reverse'] = False
+                        self.write_log("KEY PRESS: UP (Forward)")
                     elif key == '\x1b[B':  # DOWN - reverse
                         self.keys_held['reverse'] = True
                         self.keys_held['forward'] = False
+                        self.write_log("KEY PRESS: DOWN (Reverse)")
                     elif key == '\x1b[D':  # LEFT
                         self.keys_held['left'] = True
                         self.keys_held['right'] = False
+                        self.write_log("KEY PRESS: LEFT")
                     elif key == '\x1b[C':  # RIGHT
                         self.keys_held['right'] = True
                         self.keys_held['left'] = False
+                        self.write_log("KEY PRESS: RIGHT")
                     elif key == ' ':  # SPACE - center
                         self.keys_held['forward'] = False
                         self.keys_held['reverse'] = False
                         self.keys_held['left'] = False
                         self.keys_held['right'] = False
+                        self.write_log("KEY PRESS: SPACE (STOP)")
                     elif key == 'q' or key == 'Q':
+                        self.write_log("KEY PRESS: Q (QUIT)")
                         print("\nQuitting...")
                         break
                 
@@ -132,6 +152,12 @@ class ArrowTeleop(Node):
                 twist = self.map_to_twist(steering, throttle)
                 print(f"Publishing: linear.x={twist.linear.x:.2f} m/s  angular.z={twist.angular.z:.2f} rad/s\n")
                 self.pub.publish(twist)
+
+                log_msg = (
+                    f"PUBLISH -> linear.x={twist.linear.x:.2f}, "
+                    f"angular.z={twist.angular.z:.2f}"
+                )
+                self.write_log(log_msg)
                 
                 # Small delay to prevent CPU spinning
                 time.sleep(0.02)
@@ -144,6 +170,12 @@ class ArrowTeleop(Node):
             # Send stop command
             stop = Twist()
             self.pub.publish(stop)
+
+            self.write_log("STOP command published")
+            self.write_log("===== PROGRAM ENDED =====")
+
+            self.log_file.close()
+            
             print("Stopped")
 
 def main():

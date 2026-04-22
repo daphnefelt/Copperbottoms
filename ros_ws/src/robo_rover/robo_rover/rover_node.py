@@ -398,7 +398,11 @@ class ArduPilotRoverNode(Node):
         UPDATING VOTLAGE MULTIPLIER
         param show BATT_VOLT_MULT
         param set BATT_VOLT_MULT
+
+        ECHOING:
+        ros2 topic echo /rover/battery
         """
+        
         batt_msg = BatteryState()
         batt_msg.header.stamp = self.get_clock().now().to_msg()
         batt_msg.voltage = sys_status.voltage_battery / 1000.0

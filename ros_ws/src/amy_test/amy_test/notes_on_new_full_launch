@@ -69,3 +69,21 @@ ape lost: entering recovery/search mode
 [tape_vision_node-3] [WARN] [1776731811.506934270] [tape_vision_node]: [VISION] Sharp turn confirmed! Angle: -85.2°, Area: 5744, Position: (127.0, 170.0)
 [tape_control_node-4] [WARN] [1776731811.515709222] [tape_control_node]: [SHARP TURN DETECTED] Frame 284 - Angle: -85.2°, Area: 5744, Center: (127.0, 170.0)
 [tape_control_node-4] [INFO] [1776731811.528671348] [tape_control_node]: [SHARP TURN STOP] Frame 1 since detection - STOPPED
+
+
+
+
+
+
+the walls are being detectednow and im not sure why 
+need to look at the adaptive values 
+disbale the adaptive testfor rn 
+
+bounds logic needs otbe fixed 
+the hsv lowe min shuld by 70 30 30 
+
+self.hsvlower max , 
+
+Hue (75-105): Color range. For cyan/teal tape, keep 75-105. Widen if missing tape, narrow if picking up wrong colors
+Saturation (40-255): Color intensity. Increase lower bound (e.g., 60) to ignore dull/washed out objects like walls
+Value (40-255): Brightness. Increase lower bound (e.g., 60) to ignore dark shadows

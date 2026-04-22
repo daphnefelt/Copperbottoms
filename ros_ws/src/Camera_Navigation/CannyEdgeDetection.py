@@ -1,5 +1,4 @@
 ## CANNY EDGE DETECTION IMPLEMENTATION
-import realsense2 as rs
 import numpy as np
 
 # Gray scale function

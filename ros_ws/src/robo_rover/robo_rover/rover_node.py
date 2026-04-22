@@ -345,7 +345,7 @@ class ArduPilotRoverNode(Node):
             return
     
     def publish_scaled_imu(self, scaled_imu_msg):
-        self.get_logger().debug("In publish scaled imu data")
+        self.get_logger().info("In publish scaled imu data")
         self.get_logger().debug(scaled_imu_msg)
         # Gyro message
         gyro_msg = Vector3()

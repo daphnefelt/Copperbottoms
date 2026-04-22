@@ -72,10 +72,12 @@ custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_m
 custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_slow.py
 custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_latency_stats.py
 custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_rate_stats.py
+custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_imu_bundled.py
 custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/__init__.py
 custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_slow_s.c
 custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_latency_stats_s.c
 custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_rate_stats_s.c
+custom_messages__py/CMakeFiles/custom_messages__py: rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c
 
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/lib/rosidl_generator_py/rosidl_generator_py
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_generator_py/__init__.py
@@ -93,6 +95,7 @@ rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fas
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_messages/msg/Slow.idl
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_messages/msg/LatencyStats.idl
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_messages/msg/RateStats.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_messages/msg/ImuBundled.idl
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/std_msgs/msg/Bool.idl
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/std_msgs/msg/Byte.idl
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/std_msgs/msg/ByteMultiArray.idl
@@ -125,6 +128,38 @@ rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fas
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/std_msgs/msg/UInt8MultiArray.idl
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/builtin_interfaces/msg/Duration.idl
 rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/builtin_interfaces/msg/Time.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Accel.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/AccelStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/AccelWithCovariance.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/AccelWithCovarianceStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Inertia.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/InertiaStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Point.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Point32.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PointStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Polygon.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PolygonInstance.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PolygonInstanceStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PolygonStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Pose.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Pose2D.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PoseArray.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PoseStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PoseWithCovariance.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/PoseWithCovarianceStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Quaternion.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/QuaternionStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Transform.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/TransformStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Twist.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/TwistStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/TwistWithCovariance.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/TwistWithCovarianceStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Vector3.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Vector3Stamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/VelocityStamped.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/Wrench.idl
+rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/share/geometry_msgs/msg/WrenchStamped.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code for ROS interfaces"
 	cd /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/custom_messages__py && /usr/bin/python3 /opt/ros/humble/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py --generator-arguments-file /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_py__arguments.json --typesupport-impls "rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c;rosidl_typesupport_c"
 
@@ -143,6 +178,9 @@ rosidl_generator_py/custom_messages/msg/_latency_stats.py: rosidl_generator_py/c
 rosidl_generator_py/custom_messages/msg/_rate_stats.py: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_messages/msg/_rate_stats.py
 
+rosidl_generator_py/custom_messages/msg/_imu_bundled.py: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_messages/msg/_imu_bundled.py
+
 rosidl_generator_py/custom_messages/msg/__init__.py: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_messages/msg/__init__.py
 
@@ -155,11 +193,16 @@ rosidl_generator_py/custom_messages/msg/_latency_stats_s.c: rosidl_generator_py/
 rosidl_generator_py/custom_messages/msg/_rate_stats_s.c: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_messages/msg/_rate_stats_s.c
 
+rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c
+
 custom_messages__py: custom_messages__py/CMakeFiles/custom_messages__py
 custom_messages__py: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_c.c
 custom_messages__py: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c
 custom_messages__py: rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c
 custom_messages__py: rosidl_generator_py/custom_messages/msg/__init__.py
+custom_messages__py: rosidl_generator_py/custom_messages/msg/_imu_bundled.py
+custom_messages__py: rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c
 custom_messages__py: rosidl_generator_py/custom_messages/msg/_latency_stats.py
 custom_messages__py: rosidl_generator_py/custom_messages/msg/_latency_stats_s.c
 custom_messages__py: rosidl_generator_py/custom_messages/msg/_rate_stats.py

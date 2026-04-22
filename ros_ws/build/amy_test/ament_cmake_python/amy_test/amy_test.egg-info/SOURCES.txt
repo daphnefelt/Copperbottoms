@@ -4,5 +4,3 @@ amy_test.egg-info/PKG-INFO
 amy_test.egg-info/SOURCES.txt
 amy_test.egg-info/dependency_links.txt
 amy_test.egg-info/top_level.txt
-amy_test/msg/__init__.py
-amy_test/msg/_tape_contour.py

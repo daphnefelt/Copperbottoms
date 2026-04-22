@@ -81,6 +81,11 @@ CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail
 CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/rate_stats__struct.hpp
 CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/rate_stats__traits.hpp
 CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/rate_stats__type_support.hpp
+CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/imu_bundled.hpp
+CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__builder.hpp
+CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__struct.hpp
+CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__traits.hpp
+CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__type_support.hpp
 CMakeFiles/custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/rosidl_generator_cpp__visibility_control.hpp
 
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/lib/rosidl_generator_cpp/rosidl_generator_cpp
@@ -101,6 +106,7 @@ rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/rosidl_
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: rosidl_adapter/custom_messages/msg/Slow.idl
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: rosidl_adapter/custom_messages/msg/LatencyStats.idl
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: rosidl_adapter/custom_messages/msg/RateStats.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: rosidl_adapter/custom_messages/msg/ImuBundled.idl
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/std_msgs/msg/Bool.idl
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/std_msgs/msg/Byte.idl
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/std_msgs/msg/ByteMultiArray.idl
@@ -133,6 +139,38 @@ rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/std_msg
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/std_msgs/msg/UInt8MultiArray.idl
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/builtin_interfaces/msg/Duration.idl
 rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/builtin_interfaces/msg/Time.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Accel.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/AccelStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/AccelWithCovariance.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/AccelWithCovarianceStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Inertia.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/InertiaStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Point.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Point32.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PointStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Polygon.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PolygonInstance.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PolygonInstanceStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PolygonStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Pose.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Pose2D.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PoseArray.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PoseStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PoseWithCovariance.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/PoseWithCovarianceStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Quaternion.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/QuaternionStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Transform.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/TransformStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Twist.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/TwistStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/TwistWithCovariance.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/TwistWithCovarianceStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Vector3.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Vector3Stamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/VelocityStamped.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/Wrench.idl
+rosidl_generator_cpp/custom_messages/msg/slow.hpp: /opt/ros/humble/share/geometry_msgs/msg/WrenchStamped.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
 	/usr/bin/python3 /opt/ros/humble/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_cpp__arguments.json
 
@@ -178,7 +216,26 @@ rosidl_generator_cpp/custom_messages/msg/detail/rate_stats__traits.hpp: rosidl_g
 rosidl_generator_cpp/custom_messages/msg/detail/rate_stats__type_support.hpp: rosidl_generator_cpp/custom_messages/msg/slow.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/custom_messages/msg/detail/rate_stats__type_support.hpp
 
+rosidl_generator_cpp/custom_messages/msg/imu_bundled.hpp: rosidl_generator_cpp/custom_messages/msg/slow.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/custom_messages/msg/imu_bundled.hpp
+
+rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__builder.hpp: rosidl_generator_cpp/custom_messages/msg/slow.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__builder.hpp
+
+rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__struct.hpp: rosidl_generator_cpp/custom_messages/msg/slow.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__struct.hpp
+
+rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__traits.hpp: rosidl_generator_cpp/custom_messages/msg/slow.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__traits.hpp
+
+rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__type_support.hpp: rosidl_generator_cpp/custom_messages/msg/slow.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__type_support.hpp
+
 custom_messages__cpp: CMakeFiles/custom_messages__cpp
+custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__builder.hpp
+custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__struct.hpp
+custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__traits.hpp
+custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/imu_bundled__type_support.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/latency_stats__builder.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/latency_stats__struct.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/latency_stats__traits.hpp
@@ -191,6 +248,7 @@ custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/slow__buil
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/slow__struct.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/slow__traits.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/detail/slow__type_support.hpp
+custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/imu_bundled.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/latency_stats.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/rate_stats.hpp
 custom_messages__cpp: rosidl_generator_cpp/custom_messages/msg/slow.hpp

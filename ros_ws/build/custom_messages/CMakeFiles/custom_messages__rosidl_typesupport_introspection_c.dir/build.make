@@ -80,6 +80,7 @@ rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_types
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: rosidl_adapter/custom_messages/msg/Slow.idl
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: rosidl_adapter/custom_messages/msg/LatencyStats.idl
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: rosidl_adapter/custom_messages/msg/RateStats.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: rosidl_adapter/custom_messages/msg/ImuBundled.idl
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/std_msgs/msg/Bool.idl
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/std_msgs/msg/Byte.idl
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/std_msgs/msg/ByteMultiArray.idl
@@ -112,6 +113,38 @@ rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_types
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/std_msgs/msg/UInt8MultiArray.idl
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/builtin_interfaces/msg/Duration.idl
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/builtin_interfaces/msg/Time.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Accel.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/AccelStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/AccelWithCovariance.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/AccelWithCovarianceStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Inertia.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/InertiaStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Point.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Point32.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PointStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Polygon.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PolygonInstance.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PolygonInstanceStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PolygonStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Pose.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Pose2D.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PoseArray.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PoseStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PoseWithCovariance.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/PoseWithCovarianceStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Quaternion.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/QuaternionStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Transform.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/TransformStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Twist.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/TwistStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/TwistWithCovariance.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/TwistWithCovarianceStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Vector3.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Vector3Stamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/VelocityStamped.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/Wrench.idl
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h: /opt/ros/humble/share/geometry_msgs/msg/WrenchStamped.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C introspection for ROS interfaces"
 	/usr/bin/python3 /opt/ros/humble/lib/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c --generator-arguments-file /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_typesupport_introspection_c__arguments.json
 
@@ -121,6 +154,9 @@ rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__ros
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__rosidl_typesupport_introspection_c.h
 
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_introspection_c.h
+
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c: rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c
 
@@ -129,6 +165,9 @@ rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__typ
 
 rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c: rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c
+
+rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c: rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c
 
 CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.o: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/flags.make
 CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.o: rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c
@@ -172,11 +211,26 @@ CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c -o CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c.s
 
+CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/flags.make
+CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o: rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c
+CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o -MF CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o.d -o CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o -c /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c
+
+CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c > CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.i
+
+CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c -o CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.s
+
 # Object files for target custom_messages__rosidl_typesupport_introspection_c
 custom_messages__rosidl_typesupport_introspection_c_OBJECTS = \
 "CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.o" \
 "CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.c.o" \
-"CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c.o"
+"CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c.o" \
+"CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o"
 
 # External object files for target custom_messages__rosidl_typesupport_introspection_c
 custom_messages__rosidl_typesupport_introspection_c_EXTERNAL_OBJECTS =
@@ -184,17 +238,20 @@ custom_messages__rosidl_typesupport_introspection_c_EXTERNAL_OBJECTS =
 libcustom_messages__rosidl_typesupport_introspection_c.so: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.o
 libcustom_messages__rosidl_typesupport_introspection_c.so: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.c.o
 libcustom_messages__rosidl_typesupport_introspection_c.so: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c.o
+libcustom_messages__rosidl_typesupport_introspection_c.so: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o
 libcustom_messages__rosidl_typesupport_introspection_c.so: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/build.make
 libcustom_messages__rosidl_typesupport_introspection_c.so: libcustom_messages__rosidl_generator_c.so
+libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/libgeometry_msgs__rosidl_typesupport_introspection_c.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/libstd_msgs__rosidl_typesupport_introspection_c.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/librosidl_typesupport_introspection_c.so
+libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/libgeometry_msgs__rosidl_generator_c.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/libstd_msgs__rosidl_generator_c.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/libbuiltin_interfaces__rosidl_generator_c.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/librosidl_runtime_c.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: /opt/ros/humble/lib/librcutils.so
 libcustom_messages__rosidl_typesupport_introspection_c.so: CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C shared library libcustom_messages__rosidl_typesupport_introspection_c.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C shared library libcustom_messages__rosidl_typesupport_introspection_c.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -205,6 +262,8 @@ CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/clean
 
+CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_introspection_c.h
+CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c
 CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__rosidl_typesupport_introspection_c.h
 CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.c
 CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__rosidl_typesupport_introspection_c.h

@@ -6,6 +6,7 @@ from numpy.lib.stride_tricks import as_strided
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
+from sensor_msgs.msg import BatteryState
 from std_msgs.msg import Bool
 
 try:
@@ -26,7 +27,8 @@ class LineFollowerV2(Node):
         self.armed_sub = self.create_subscription(Bool, '/rover/armed', self.armed_callback, 10)
         self.vel_pub   = self.create_publisher(Twist, '/cmd_vel', 10)
         self.debug_pub = self.create_publisher(Image, '/line_follower/debug_image', 10)
-
+        self.battery_pub = self.create_publisher(BatteryState, 'rover/battery', sensor_qos)
+        
         # --- Drive params ---
         self.forward_speed  = 0.3
         self.follow_min_speed = 0.14

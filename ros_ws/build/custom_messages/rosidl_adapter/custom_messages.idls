@@ -1,3 +1,4 @@
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages:msg/Slow.idl
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages:msg/LatencyStats.idl
 /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages:msg/RateStats.idl
+/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_adapter/custom_messages:msg/ImuBundled.idl

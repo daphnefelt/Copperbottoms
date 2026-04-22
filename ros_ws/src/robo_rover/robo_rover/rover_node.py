@@ -363,6 +363,10 @@ class ArduPilotRoverNode(Node):
         accel_msg.z = (scaled_imu_msg.zacc / 1000.0) * 9.80665
         self.accel_pub.publish(accel_msg)
         
+        imu_bundle = ImuBundled()
+        imu_bundle.accel = accel_msg 
+        imu_bundle.gyro = gyro_msg 
+        self.imu_pub.publish(imu_bundle)
     
     def status_loop(self):
         """Publish status information"""

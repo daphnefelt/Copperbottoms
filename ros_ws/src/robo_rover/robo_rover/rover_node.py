@@ -91,11 +91,9 @@ class ArduPilotRoverNode(Node):
         self.slow_move_sub = self.create_subscription(Slow, 'slow_move', self.slow_move_callback, control_qos)
         
         # Timers
-        self.control_timer = self.create_timer(
-            1.0 / self.control_freq, self.control_loop)
-        self.imu_timer = self.create_timer(
-            1.0 / self.imu_freq, self.imu_loop)
-        self.status_timer = self.create_timer(1.0, self.status_loop)
+        self.control_timer = self.create_timer(1.0 / self.control_freq, self.control_loop)
+        # Use one timer to handle ALL data reading
+        self.sensor_timer = self.create_timer(1.0 / 50.0, self.master_read_loop)
         
         # Initialize connection
         self.get_logger().info('Initializing ArduPilot Rover Node...')
@@ -348,18 +346,28 @@ class ArduPilotRoverNode(Node):
         except Exception as e:
             self.get_logger().error(f'Failed to send control command: {e} steering: {steering} throttle {throttle}')
     
-    def imu_loop(self):
-        """IMU data processing loop"""
-        if not self.connected:
-            return
-        
-        
-        # Try to get SCALED_IMU first (preferred)
-        scaled_imu = self.master.recv_match(type='SCALED_IMU', blocking=False)
-        if scaled_imu is not None:
-            self.publish_scaled_imu(scaled_imu)
-            return
-    
+    def master_read_loop(self):
+            """The single source of truth for reading messages."""
+            if not self.connected:
+                return
+
+            # Read as many messages as are in the buffer
+            while True:
+                msg = self.master.recv_match(blocking=False)
+                if not msg:
+                    break
+                    
+                msg_type = msg.get_type()
+
+                # Route messages to the existing publisher functions
+                if msg_type == 'SCALED_IMU':
+                    self.publish_scaled_imu(msg)
+                elif msg_type == 'SYS_STATUS':
+                    self.publish_battery(msg)
+                elif msg_type == 'HEARTBEAT':
+                    self.armed = bool(msg.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
+                    # (Optional: Publish armed status here too if you want)
+
     def publish_scaled_imu(self, scaled_imu_msg):
         self.get_logger().info("In publish scaled imu data")
         # Gyro message
@@ -380,64 +388,27 @@ class ArduPilotRoverNode(Node):
         imu_bundle.accel = accel_msg 
         imu_bundle.gyro = gyro_msg 
         self.imu_pub.publish(imu_bundle)
+
+    def publish_battery(self, sys_status):
+        """
+        In terminal: 
+        mavproxy.py --master=/dev/ttyACM0 --baudrate 115200
+        Then in the MAVProxy console, use:
+        'status' or 'status battery'
+        UPDATING VOTLAGE MULTIPLIER
+        param show BATT_VOLT_MULT
+        param set BATT_VOLT_MULT
+        """
+        batt_msg = BatteryState()
+        batt_msg.header.stamp = self.get_clock().now().to_msg()
+        batt_msg.voltage = sys_status.voltage_battery / 1000.0
+        batt_msg.current = sys_status.current_battery / 100.0
+        batt_msg.percentage = sys_status.battery_remaining / 100.0
+        batt_msg.power_supply_status = BatteryState.POWER_SUPPLY_STATUS_DISCHARGING
+        self.battery_pub.publish(batt_msg)
     
-    def status_loop(self):
-            """Publish status information"""
-            # 1. Publish armed status
-            armed_msg = Bool()
-            armed_msg.data = self.armed
-            self.armed_pub.publish(armed_msg)
-            
-            if not self.connected:
-                return
-
-            # 2. Check for Heartbeat
-            heartbeat = self.master.recv_match(type='HEARTBEAT', blocking=False)
-            if heartbeat is not None:
-                self.armed = bool(heartbeat.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
-            
-            # 3. Check for Battery Data (SYS_STATUS)
-
-            # battery info commands for mavlink 
-            # activate mavproxy
-            """
-            In terminal: 
-            mavproxy.py --master=/dev/ttyACM0 --baudrate 115200
-            Then in the MAVProxy console, use:
-            'status' or 'status battery'
-            UPDATING VOTLAGE MULTIPLIER
-            param show BATT_VOLT_MULT
-            param set BATT_VOLT_MULT
-            """
+    
         
-            sys_status = self.master.recv_match(type='SYS_STATUS', blocking=False)
-
-            if sys_status is not None:
-                self.get_logger().info("Received SYS_STATUS message!")
-            else:
-                self.get_logger().debug("No SYS_STATUS received")
-            pass
-
-
-            if sys_status is not None:
-                batt_msg = BatteryState()
-                
-                # Use current ROS time
-                batt_msg.header.stamp = self.get_clock().now().to_msg()
-                
-                # SYS_STATUS reports in mV, so divide by 1000 for Volts
-                batt_msg.voltage = sys_status.voltage_battery / 1000.0 
-                
-                # current_battery is in 10mA, so divide by 100 for Amps
-                batt_msg.current = sys_status.current_battery / 100.0
-                
-                # battery_remaining is 0-100, convert to 0.0-1.0
-                batt_msg.percentage = sys_status.battery_remaining / 100.0 
-                
-                # Set required status field
-                batt_msg.power_supply_status = BatteryState.POWER_SUPPLY_STATUS_DISCHARGING
-                
-                self.battery_pub.publish(batt_msg)
     
     def destroy_node(self):
         """Clean up when node is destroyed"""

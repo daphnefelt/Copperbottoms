@@ -69,3 +69,9 @@ ape lost: entering recovery/search mode
 [tape_vision_node-3] [WARN] [1776731811.506934270] [tape_vision_node]: [VISION] Sharp turn confirmed! Angle: -85.2°, Area: 5744, Position: (127.0, 170.0)
 [tape_control_node-4] [WARN] [1776731811.515709222] [tape_control_node]: [SHARP TURN DETECTED] Frame 284 - Angle: -85.2°, Area: 5744, Center: (127.0, 170.0)
 [tape_control_node-4] [INFO] [1776731811.528671348] [tape_control_node]: [SHARP TURN STOP] Frame 1 since detection - STOPPED
+
+
+
+
+
+

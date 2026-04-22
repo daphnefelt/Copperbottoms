@@ -27,6 +27,7 @@ class TapeVisionNode(Node):
         self.declare_parameter('h_tolerance_step', 3)  # Hue adjustment step
         self.declare_parameter('sv_tolerance_step', 10)  # Saturation/Value step
         self.declare_parameter('hsv_lower_min', [70, 60, 50])  # Minimum (tightest) - require saturated colors
+        # testing theseparameter s[]
         self.declare_parameter('hsv_upper_max', [110, 255, 255])  # Maximum (loosest)
         self.declare_parameter('max_detection_percent', 10.0)  # Reset if detecting >10% of image
 

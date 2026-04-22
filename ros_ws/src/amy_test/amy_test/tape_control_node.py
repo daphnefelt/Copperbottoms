@@ -11,9 +11,9 @@ import time
 import numpy as np
 
 class TapeControlNode(Node):
-    def __init__(self):
+    def __init__(self):s
         super().__init__('tape_control_node')
-        self.declare_parameter('forward_speed', 0.25)
+        self.declare_parameter('forward_speed', 0.22   # been hanging this between .22 and .25 
         self.declare_parameter('max_turn', 1.0)
         self.declare_parameter('kp', 0.6)
         self.declare_parameter('ki', 0.03)

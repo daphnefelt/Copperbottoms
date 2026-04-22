@@ -1,5 +1,3 @@
-image_path = r"C:\Users\daphn\OneDrive\Documents\Boulder Spring 2026\Thesis\Copperbottoms\ros_ws\src\img3.jpg"
-
 import cv2
 import numpy as np
 import math

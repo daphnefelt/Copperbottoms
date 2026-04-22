@@ -198,17 +198,17 @@ robo_rover_uninstall/fast:
 .PHONY : robo_rover_uninstall/fast
 
 #=============================================================================
-# Target rules for targets named ament_cmake_python_copy_robo_rover
+# Target rules for targets named ament_cmake_python_symlink_robo_rover
 
 # Build rule for target.
-ament_cmake_python_copy_robo_rover: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_copy_robo_rover
-.PHONY : ament_cmake_python_copy_robo_rover
+ament_cmake_python_symlink_robo_rover: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_symlink_robo_rover
+.PHONY : ament_cmake_python_symlink_robo_rover
 
 # fast build rule for target.
-ament_cmake_python_copy_robo_rover/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_robo_rover.dir/build.make CMakeFiles/ament_cmake_python_copy_robo_rover.dir/build
-.PHONY : ament_cmake_python_copy_robo_rover/fast
+ament_cmake_python_symlink_robo_rover/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_robo_rover.dir/build.make CMakeFiles/ament_cmake_python_symlink_robo_rover.dir/build
+.PHONY : ament_cmake_python_symlink_robo_rover/fast
 
 #=============================================================================
 # Target rules for targets named ament_cmake_python_build_robo_rover_egg
@@ -237,7 +237,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... ament_cmake_python_build_robo_rover_egg"
-	@echo "... ament_cmake_python_copy_robo_rover"
+	@echo "... ament_cmake_python_symlink_robo_rover"
 	@echo "... robo_rover_uninstall"
 	@echo "... uninstall"
 .PHONY : help

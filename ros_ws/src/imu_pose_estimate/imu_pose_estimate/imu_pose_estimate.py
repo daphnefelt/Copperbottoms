@@ -131,7 +131,6 @@ class ImuPoseEstimate(Node):
             Generates an estimate in change in state based on complementary filter 
             on both imu gyro data and imu acceleration data
         """
-    def change_in_state_callback(self):
 
 
 

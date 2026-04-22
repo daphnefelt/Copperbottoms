@@ -62,7 +62,11 @@ class ArduPilotRoverNode(Node):
         self.connected = False
         self.armed = False
 
-        self.current_battery_voltage = 7.4 # Default to nominal
+        # battery stuff
+        self.avg_voltage = 7.4  # Initialize at a safe nominal value
+        self.voltage_buffer = []
+        self.buffer_size = 50   # Stores last 50 readings (~1 second of data at 50Hz)
+        self.log_counter = 0    # For periodic logging
         
         # QoS profiles
         sensor_qos = QoSProfile(
@@ -268,10 +272,14 @@ class ArduPilotRoverNode(Node):
         """
         Scaling based on voltage
         """
+        # Calculate Scaling Factor (SF)
         # nominal_v = 7.4
-        # current_v = max(self.current_battery_voltage, 6.0) # Prevent div by zero
+        # current_v = max(self.avg_voltage, 6.0) 
         # SF = nominal_v / current_v
-        SF = 1.0
+        
+        # # (Optional) Add a 'clamp' to SF to prevent dangerous over-correction
+        # SF = np.clip(SF, 0.8, 1.2)
+        SF = 1.0 # for now keep as is
 
         if throttle_raw >= 0:
             throttle_with_offset = throttle_raw + offset
@@ -282,6 +290,8 @@ class ArduPilotRoverNode(Node):
         self.current_throttle = int(np.clip(throttle_with_offset * SF, -300, 300))
 
         self.current_steering = int(np.clip(steering * 500 * SF, -1000, 1000))
+
+        self.last_sf = SF
             
     def cmd_vel_callback(self, msg):
         """Handle incoming velocity commands"""
@@ -338,6 +348,12 @@ class ArduPilotRoverNode(Node):
         #)
 
 
+        # Periodic Logger
+        self.log_counter += 1
+        if self.log_counter >= 100:
+            self.get_logger().info(f"Battery: {self.avg_voltage:.2f}V | Scaling Factor: {self.last_sf:.2f}")
+            self.log_counter = 0
+            
         # Send manual control command
         try:
             self.master.mav.manual_control_send(
@@ -414,13 +430,25 @@ class ArduPilotRoverNode(Node):
         ros2 topic echo /rover/battery
         """
         
+        # Convert to Volts
+        raw_voltage = sys_status.voltage_battery / 1000.0
+        
+        # Add to buffer and manage size
+        self.voltage_buffer.append(raw_voltage)
+        if len(self.voltage_buffer) > self.buffer_size:
+            self.voltage_buffer.pop(0)
+            
+        # Calculate Average
+        self.avg_voltage = sum(self.voltage_buffer) / len(self.voltage_buffer)
+        
+        # Publish Battery State
         batt_msg = BatteryState()
         batt_msg.header.stamp = self.get_clock().now().to_msg()
-        batt_msg.voltage = sys_status.voltage_battery / 1000.0
+        batt_msg.present = True # Fixed this!
+        batt_msg.voltage = raw_voltage # Send raw for monitoring
         batt_msg.current = sys_status.current_battery / 100.0
         batt_msg.percentage = sys_status.battery_remaining / 100.0
         batt_msg.power_supply_status = BatteryState.POWER_SUPPLY_STATUS_DISCHARGING
-        self.current_battery_voltage = sys_status.voltage_battery / 1000.0        
         self.battery_pub.publish(batt_msg)
     
     

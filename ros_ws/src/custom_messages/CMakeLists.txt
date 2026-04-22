@@ -14,7 +14,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Slow.msg"
   "msg/LatencyStats.msg"
   "msg/RateStats.msg"
-  DEPENDENCIES std_msgs
+  "msg/ImuBundled.msg"
+  DEPENDENCIES std_msgs geometry_msgs
 )
 
 

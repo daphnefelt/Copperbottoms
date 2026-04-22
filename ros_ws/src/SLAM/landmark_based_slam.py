@@ -247,7 +247,8 @@ class EKFSlamNode(Node):
         arrow_length = 20
         arrow_dx = int(arrow_length * math.cos(th))
         arrow_dy = int(arrow_length * math.sin(th))
-        cv2.arrowedLine(img, (px, py), (px + arrow_dx, py + arrow_dy), (255, 0, 0), 2)
+        px2, py2 = self._world_to_px(x + arrow_dx, y + arrow_dy)
+        cv2.arrowedLine(img, (px, py), (px2, py2), (255, 0, 0), 2)
 
         cv2.imshow('SLAM Pose', img)
         cv2.waitKey(1)

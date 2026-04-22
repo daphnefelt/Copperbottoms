@@ -10,7 +10,7 @@ from pymavlink import mavutil
 import numpy as np
 from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
-from std_msgs import float32
+from std_msgs.msg import float32
 from custom_messages.msg import Slow
 from custom_messages.msg import ImuBundled
 import math, time

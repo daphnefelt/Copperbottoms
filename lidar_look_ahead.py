@@ -15,6 +15,17 @@ State machine:
   BACKING_UP  -> obstacle hit, reverse for backup_time seconds then return to STRAIGHT
 """
 
+""" ------------------- TO DO ------------------------------------
+-possibly switch turn direction but maybe not? depends on Leo's "backwards"
+-tune distance variables 
+-obstace detection wider to the left / exception handling (fuck those open doors)
+-use 3 linear regression lines for divot and inlet logic
+-possibly use angle linear regression for turn logic - (will go from parallel to perpendicular theoretically)
+-tune PD
+
+------------------------------------------------------------------
+"""
+
 import math
 import time
 import numpy as np
@@ -38,14 +49,15 @@ class HallwayCenterNode(Node):
         self.stop_dis          = 0.5    # (m) front obstacle triggers BACKING_UP
         self.clear_dis         = 0.5    # (m) front must exceed this to leave BACKING_UP
         self.turn_threshold    = 6.0    # (m) angle_dist above this -> TURN (wall gone)
-        self.wall_target       = 0.8    # (m) initial hold distance from right wall
+        self.wall_target       =     # (m) initial hold distance from right wall
 
         # -- Hold-distance stabilisation window -------------------------------
-        self.hold_window_sec   = 0.5    # collect right_dist readings for this long
+        self.hold_window_sec   = 0.25    # collect right_dist readings for this long
         self._hold_buf         = []     # (timestamp, right_dist) pairs
         self._collecting_hold  = False
         self._hold_start       = 0.0
         self.hold_distance     = self.wall_target
+        self.hold_timout       = 2
 
         # -- Motion parameters ------------------------------------------------
         self.forward_speed     = 0.2    # m/s
@@ -57,8 +69,8 @@ class HallwayCenterNode(Node):
         self.turn_speed        = 0.5    # rad/s during TURN mode
 
         # -- Parallel-detection tolerance (used to exit TURN) -----------------
-        self.parallel_angle_tol = math.radians(5)   # wall angle considered "parallel"
-        self.parallel_dist_tol  = 0.15              # right_dist stable within ±x m
+        self.angle_tol = math.radians(5)   # wall angle considered "parallel"
+        self.parallel_dist_tol  = 0.15              # right_dist stable within ± x m
 
         # -- State machine ----------------------------------------------------
         self.MODE_STRAIGHT   = 'STRAIGHT'
@@ -164,10 +176,10 @@ class HallwayCenterNode(Node):
     # ---  Individual cone wall angles --------------------------------------
 
     def _wall_angle_right(self, ranges_np, msg):
-    """Linear regression on the right cone only (-90°)."""
-    return self._wall_angle_from_cones(
-        ranges_np, msg,
-        [(-math.pi / 2, self.side_half_cone)])
+        """Linear regression on the right cone only (-90°)."""
+        return self._wall_angle_from_cones(
+            ranges_np, msg,
+            [(-math.pi / 2, self.side_half_cone)])
 
     def _wall_angle_angle(self, ranges_np, msg):
         """Linear regression on the angle/lookahead cone only (-45°)."""
@@ -198,6 +210,8 @@ class HallwayCenterNode(Node):
         Returns True (and updates self.hold_distance) when the window is complete.
         """
         if not self._collecting_hold:
+            return False
+        if math.isnan(self._wall_angle_right) or abs(self._wall_angle_right) > self.angle_tol:
             return False
         now = time.time()
         if not math.isnan(right_dist) and math.isfinite(right_dist):
@@ -257,6 +271,7 @@ class HallwayCenterNode(Node):
             return
 
         ranges    = np.array(msg.ranges)
+        ranges = np.where(np.isinf(ranges), 12.0, ranges)
         now       = time.time()
         front_min = self._valid_min(ranges,  msg, 0.0,           self.front_half_cone)
         right_dist = self._valid_median(ranges, msg, -math.pi / 2, self.side_half_cone)
@@ -270,7 +285,7 @@ class HallwayCenterNode(Node):
         if self.mode == self.MODE_BACKING_UP:
             if now - self.mode_start_time < self.backup_time:
                 twist = Twist()
-                twist.linear.x = -self.backup_speed
+                twist.linear.x = self.backup_speed
                 self.vel_pub.publish(twist)
                 self.get_logger().info(
                     f'[BACKING_UP] front: {front_min:.2f} m',
@@ -326,7 +341,7 @@ class HallwayCenterNode(Node):
             if not right_valid:
                 # No right wall reading — drive straight
                 twist = Twist()
-                twist.linear.x = self.forward_speed
+                twist.linear.x = -self.forward_speed
                 self.vel_pub.publish(twist)
                 return
 
@@ -337,7 +352,7 @@ class HallwayCenterNode(Node):
                 f'w: {angular_z:+.2f}',
                 throttle_duration_sec=0.5)
             twist = Twist()
-            twist.linear.x  = self.forward_speed
+            twist.linear.x  = -self.forward_speed
             twist.angular.z = angular_z
             self.vel_pub.publish(twist)
             return
@@ -347,6 +362,9 @@ class HallwayCenterNode(Node):
         # ------------------------------------------------------------------
         if self.mode == self.MODE_DIVOT:
             done = self._update_hold_collection(right_dist)
+            # if parallel check keeps failing for too long, force transition anyway
+            if time.time() - self.mode_start_time > self.hold_timout:
+                self._enter_mode(self.MODE_STRAIGHT)
             if done:
                 self._enter_mode(self.MODE_STRAIGHT)
 
@@ -356,7 +374,7 @@ class HallwayCenterNode(Node):
                 f'angle: {angle_dist:.2f} m',
                 throttle_duration_sec=0.5)
             twist = Twist()
-            twist.linear.x  = self.forward_speed
+            twist.linear.x  = -self.forward_speed
             twist.angular.z = angular_z
             self.vel_pub.publish(twist)
             return
@@ -366,6 +384,9 @@ class HallwayCenterNode(Node):
         # ------------------------------------------------------------------
         if self.mode == self.MODE_INLET:
             done = self._update_hold_collection(right_dist)
+            # if parallel check keeps failing for too long, force transition anyway
+            if time.time() - self.mode_start_time > self.hold_timout:
+                self._enter_mode(self.MODE_STRAIGHT)
             if done:
                 self._enter_mode(self.MODE_STRAIGHT)
 
@@ -375,7 +396,7 @@ class HallwayCenterNode(Node):
                 f'angle: {angle_dist:.2f} m',
                 throttle_duration_sec=0.5)
             twist = Twist()
-            twist.linear.x  = self.forward_speed
+            twist.linear.x  = -self.forward_speed
             twist.angular.z = angular_z
             self.vel_pub.publish(twist)
             return
@@ -388,7 +409,7 @@ class HallwayCenterNode(Node):
             right_angle = self._wall_angle(ranges, msg, -math.pi / 2, self.side_half_cone)
             parallel = (
                 not math.isnan(right_angle)
-                and abs(right_angle) < self.parallel_angle_tol
+                and abs(right_angle) < self.angle_tol
                 and right_valid
                 and right_dist < self.turn_threshold
             )
@@ -402,7 +423,7 @@ class HallwayCenterNode(Node):
                 return
 
             twist = Twist()
-            twist.linear.x  = self.forward_speed * 0.5   # creep forward while turning
+            twist.linear.x  = -self.forward_speed         # forward while turning
             twist.angular.z = -self.turn_speed            # negative = right turn
             self.vel_pub.publish(twist)
             self.get_logger().info(
@@ -412,6 +433,16 @@ class HallwayCenterNode(Node):
                 throttle_duration_sec=0.5)
             return
 
+        # --------------------------------------------------------------------
+        # -------- Test Angle Logic
+        #---------------------------------------------------------------------
+
+        # Perpendicular would be:
+        abs(abs(right_angle) - math.pi / 2) < self.angle_tol
+        # TEST IF THIS IS WORKING
+
+
+        # --------------------------------------------------------------------
 
 # -- Entry point --------------------------------------------------------------
 

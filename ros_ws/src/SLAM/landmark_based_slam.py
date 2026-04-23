@@ -37,7 +37,7 @@ class EKFSlamNode(Node):
 
         # last velocity cmds
         self.v = 0.0
-        self.omega = 0.0
+        self.delta = 0.0
         self.last_time = self.get_clock().now()
 
         self.create_subscription(Twist, '/cmd_vel_temp',   self._cmd_vel_cb,   10)
@@ -62,10 +62,21 @@ class EKFSlamNode(Node):
 
     # MOTION MODEL
 
+    # tuning for the meaning of linear.x and angular.z
+    V_NOMINAL = 0.2 # m/s for linear.x = 1.0
+    DELTA_NOMINAL = 0.35 # rad steering angle for angular.z = 1.0
     def _cmd_vel_cb(self, msg: Twist):
         self._predict_step() # predict up to now before changing velocity
-        self.v = msg.linear.x
-        self.omega = msg.angular.z
+        self.v = msg.linear.x * self.V_NOMINAL
+        self.delta = msg.angular.z * self.DELTA_NOMINAL
+        if abs(self.v) < 0.15: # doesn't turn or do anything below this speed
+            self.v = 0.0
+            self.delta = 0.0
+
+    # vehicle measurements in meters
+    FRONT_WIDTH = 0.165
+    REAR_WIDTH = 0.165
+    BACK_TO_FRONT = 0.165
 
     def _predict_step(self):
         now = self.get_clock().now()
@@ -76,7 +87,8 @@ class EKFSlamNode(Node):
             return
 
         x, y, th = self.mu[0], self.mu[1], self.mu[2]
-        v, w = self.v, self.omega
+        v = self.v
+        w = v * math.tan(self.delta) / self.BACK_TO_FRONT # Ackermann yaw rate
 
         # Differential drive motion model w const velocity over dt
         th_mid = th + 0.5 * w * dt # midpoint heading for x and y update

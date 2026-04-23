@@ -77,7 +77,6 @@ class EKFSlamNode(Node):
     FRONT_WIDTH = 0.165
     REAR_WIDTH = 0.165
     BACK_TO_FRONT = 0.165
-
     def _predict_step(self):
         now = self.get_clock().now()
         dt = (now - self.last_time).nanoseconds * 1e-9 # time that command has been running for

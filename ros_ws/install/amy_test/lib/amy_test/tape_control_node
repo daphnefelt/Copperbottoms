@@ -13,13 +13,13 @@ import numpy as np
 class TapeControlNode(Node):
     def __init__(self):
         super().__init__('tape_control_node')
-        self.declare_parameter('forward_speed', 0.25)
-        self.declare_parameter('max_turn', 1.0)
+        self.declare_parameter('forward_speed', 0.22)  # been hanging this between .22 and .25 
+        self.declare_parameter('max_turn', 1.8)
         self.declare_parameter('kp', 0.6)
         self.declare_parameter('ki', 0.03)
         self.declare_parameter('kd', 0.20)
         self.declare_parameter('steering_deadband', 0.12)
-        self.declare_parameter('enable_motor_control', False)
+        self.declare_parameter('enable_motor_control', True)
         self.declare_parameter('sharp_turn_boost', 1.8)  # Multiply turn by this during sharp turns
         self.declare_parameter('sharp_turn_speed_factor', 0.6)  # Reduce speed to this fraction during sharp turns
         self.declare_parameter('sharp_turn_stop_frames', 10)  # Frames to stop before turning
@@ -114,7 +114,7 @@ class TapeControlNode(Node):
             self.vel_pub.publish(twist)
             
             # Check exit condition: tape angle more reasonable and reasonably centered
-            angle_from_vertical = abs(msg.angle - 90.0)  # How far from vertical (0° = vertical)
+            angle_from_vertical = abs(msg.angle - (-90.0))  # How far from vertical (-90° = straight ahead)
             center_x = msg.center_x
             img_width = 320
             center_error = abs(center_x - img_width / 2)

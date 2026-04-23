@@ -114,11 +114,11 @@ class TapeVisionNode(Node):
             cx = center[0]
             position_threshold = width * self.sharp_turn_position_threshold
             
-            # Right turn: angle > 45 (pointing right), tape on right side
-            # Left turn: angle < -45 (pointing left), tape on left side
-            if angle > 85:  # Right turn
+            # Right turn: angle near 0° (horizontal right), tape on right side
+            # Left turn: angle near ±180° (horizontal left), tape on left side
+            if -20 <= angle <= 20:  # Horizontal right turn
                 is_correct_position = cx > position_threshold
-            elif angle < -85:  # Left turn
+            elif angle >= 160 or angle <= -160:  # Horizontal left turn
                 is_correct_position = cx < (width - position_threshold)
             else:
                 is_correct_position = False

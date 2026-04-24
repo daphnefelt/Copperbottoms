@@ -25,14 +25,23 @@ class ArrowTeleop(Node):
         self.current_linear = 0.0
         self.current_angular = 0.0
 
-        # Speeds
-        self.max_linear = 0.6
-        self.max_angular = 1.2
+        # Faster speeds
+        self.max_linear = 0.60
+        self.max_angular = 1.20
 
         # Smoothing
-        self.accel_step = 0.08
-        self.turn_step = 0.15
-        self.decel_step = 0.05
+        self.accel_step = 0.06
+        self.turn_step = 0.12
+        self.decel_step = 0.03
+
+        # Key hold timers
+        self.forward_until = 0
+        self.reverse_until = 0
+        self.left_until = 0
+        self.right_until = 0
+
+        # How long each key press remains active
+        self.hold_time = 0.18
 
         # Track currently pressed keys
         self.keys_held = {
@@ -78,26 +87,24 @@ class ArrowTeleop(Node):
     def update_motion(self):
         now = time.time()
 
-        # If no key seen recently, assume released
-        if now - self.last_key_time > self.key_timeout:
-            for k in self.keys_held:
-                self.keys_held[k] = False
+        forward = now < self.forward_until
+        reverse = now < self.reverse_until
+        left = now < self.left_until
+        right = now < self.right_until
 
-        # Target linear velocity
         target_linear = 0.0
-        if self.keys_held['forward']:
+        target_angular = 0.0
+
+        if forward:
             target_linear = self.max_linear
-        elif self.keys_held['reverse']:
+        elif reverse:
             target_linear = -self.max_linear
 
-        # Target angular velocity
-        target_angular = 0.0
-        if self.keys_held['left']:
+        if left:
             target_angular = self.max_angular
-        elif self.keys_held['right']:
+        elif right:
             target_angular = -self.max_angular
 
-        # Smooth acceleration/deceleration
         lin_step = self.accel_step if target_linear != 0 else self.decel_step
         ang_step = self.turn_step if target_angular != 0 else self.decel_step
 
@@ -123,26 +130,22 @@ class ArrowTeleop(Node):
         try:
             while True:
                 key = self.get_key_nonblocking()
+                now = time.time()
 
                 if key:
-                    self.last_key_time = time.time()
+                    if key == '\x1b[A':      # UP
+                        self.forward_until = now + self.hold_time
 
-                    # Reset movement keys each press
-                    self.keys_held['forward'] = False
-                    self.keys_held['reverse'] = False
-                    self.keys_held['left'] = False
-                    self.keys_held['right'] = False
+                    elif key == '\x1b[B':    # DOWN
+                        self.reverse_until = now + self.hold_time
 
-                    if key == '\x1b[A':
-                        self.keys_held['forward'] = True
-                    elif key == '\x1b[B':
-                        self.keys_held['reverse'] = True
-                    elif key == '\x1b[D':
-                        self.keys_held['left'] = True
-                    elif key == '\x1b[C':
-                        self.keys_held['right'] = True
+                    elif key == '\x1b[D':    # LEFT
+                        self.left_until = now + self.hold_time
+
+                    elif key == '\x1b[C':    # RIGHT
+                        self.right_until = now + self.hold_time
+
                     elif key in ['q', 'Q']:
-                        print("\nQuitting...")
                         break
 
                 self.update_motion()

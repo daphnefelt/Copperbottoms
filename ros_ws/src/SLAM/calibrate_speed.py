@@ -56,7 +56,7 @@ class CalibrationNode(Node):
                 'Mark robot start position, then press Enter.'
             )
             input()
-            self.send_command(linear_x=0.2, angular_z=0.0, duration=1.0)
+            self.send_command(linear_x=0.3, angular_z=0.0, duration=1.0)
             self.get_logger().info('Done. Measure')
 
         if self.test == 2:

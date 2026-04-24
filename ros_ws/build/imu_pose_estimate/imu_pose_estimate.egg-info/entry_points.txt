@@ -1,3 +1,0 @@
-[console_scripts]
-imu_pose_estimate = imu_pose_estimate.imu_pose_estimate:main
-

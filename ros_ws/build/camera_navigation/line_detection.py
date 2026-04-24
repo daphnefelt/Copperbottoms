@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/src/Camera_Navigation/line_detection.py

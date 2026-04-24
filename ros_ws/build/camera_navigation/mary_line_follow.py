@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/src/Camera_Navigation/mary_line_follow.py

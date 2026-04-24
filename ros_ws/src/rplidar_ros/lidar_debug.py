@@ -118,7 +118,7 @@ class LidarDebugNode(Node):
 
     def scan_callback(self, msg: LaserScan):
         ranges = np.array(msg.ranges)
-       # ranges = np.where(np.isinf(ranges), 12.0, ranges)
+        ranges = np.where(np.isinf(ranges), 99.0, ranges)
 
         front_min       = self._valid_min   (ranges, msg, math.pi,         self.front_half_cone)
         right_dist      = self._valid_median(ranges, msg, math.pi / 2,     self.side_half_cone)

@@ -26,7 +26,7 @@ class ArrowTeleop(Node):
         self.current_angular = 0.0
 
         # Speeds
-        self.max_linear = 0.251
+        self.max_linear = 0.5
         self.max_angular = 0.50
 
         # Smoothing

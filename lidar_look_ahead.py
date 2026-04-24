@@ -16,12 +16,14 @@ State machine:
 """
 
 """ ------------------- TO DO ------------------------------------
--possibly switch turn direction but maybe not? depends on Leo's "backwards"
+-check turn direction
 -tune distance variables 
 -obstace detection wider to the left / exception handling (fuck those open doors)
--use 3 linear regression lines for divot and inlet logic
--possibly use angle linear regression for turn logic - (will go from parallel to perpendicular theoretically)
+-use 3 linear regression lines for divot and inlet logic maybe??
+-possibly use angle linear regression for turn logic - (will go from perpendicular to parallel theoretically)
 -tune PD
+-test if perpendicular is worth it
+-test 
 
 ------------------------------------------------------------------
 """
@@ -42,14 +44,14 @@ class HallwayCenterNode(Node):
 
         # -- Cone half-widths -------------------------------------------------
         self.front_half_cone = math.radians(10)   # ±10° front
-        self.side_half_cone  = math.radians(5)    # ±5°  right side at -90°
-        self.angle_half_cone = math.radians(1)    # ±1°  angled lookahead at -45°
+        self.side_half_cone  = math.radians(5)    # ±5°  left side 90°
+        self.angle_half_cone = math.radians(1)    # ±1°  angled lookahead 135°
 
         # -- Distances --------------------------------------------------------
         self.stop_dis          = 0.5    # (m) front obstacle triggers BACKING_UP
         self.clear_dis         = 0.5    # (m) front must exceed this to leave BACKING_UP
         self.turn_threshold    = 6.0    # (m) angle_dist above this -> TURN (wall gone)
-        self.wall_target       =     # (m) initial hold distance from right wall
+        self.wall_target       = 1.4    # (m) initial hold distance from right wall
 
         # -- Hold-distance stabilisation window -------------------------------
         self.hold_window_sec   = 0.25    # collect right_dist readings for this long
@@ -66,11 +68,11 @@ class HallwayCenterNode(Node):
         self.kp                = 0.4    # position error gain
         self.kp_heading        = 0.4    # heading error gain
         self.max_angular_z     = 1.2    # rad/s clamp
-        self.turn_speed        = 0.5    # rad/s during TURN mode
+        self.turn_speed        = -0.5    # rad/s during TURN mode REVERSED FOR BACKWARDS
 
         # -- Parallel-detection tolerance (used to exit TURN) -----------------
         self.angle_tol = math.radians(5)   # wall angle considered "parallel"
-        self.parallel_dist_tol  = 0.15              # right_dist stable within ± x m
+        self.parallel_dist_tol  = 0.15     # right_dist stable within ± x m
 
         # -- State machine ----------------------------------------------------
         self.MODE_STRAIGHT   = 'STRAIGHT'
@@ -176,42 +178,42 @@ class HallwayCenterNode(Node):
     # ---  Individual cone wall angles --------------------------------------
 
     def _wall_angle_right(self, ranges_np, msg):
-        """Linear regression on the right cone only (-90°)."""
+        """Linear regression on the right cone only (90°)."""
         return self._wall_angle_from_cones(
             ranges_np, msg,
-            [(-math.pi / 2, self.side_half_cone)])
+            [(math.pi / 2, self.side_half_cone)])
 
     def _wall_angle_angle(self, ranges_np, msg):
-        """Linear regression on the angle/lookahead cone only (-45°)."""
+        """Linear regression on the angle/lookahead cone only (135°)."""
         return self._wall_angle_from_cones(
             ranges_np, msg,
-            [(-math.pi / 4, self.angle_half_cone)])
+            [(3 * math.pi / 4, self.angle_half_cone)])
 
     def _wall_angle_combined(self, ranges_np, msg):
         """Linear regression across both cones combined."""
         return self._wall_angle_from_cones(
             ranges_np, msg,
-            [(-math.pi / 2, self.side_half_cone),
-            (-math.pi / 4, self.angle_half_cone)])
+            [(math.pi / 2, self.side_half_cone),
+            (3 * math.pi / 4, self.angle_half_cone)])
 
     # -------------------------------------------------------------------------
     # Hold-distance helper
     # -------------------------------------------------------------------------
 
     def _start_hold_collection(self):
-        """Begin a fresh 0.5 s window to recalculate hold_distance."""
+        """Begin a fresh window to recalculate hold_distance."""
         self._collecting_hold = True
         self._hold_start      = time.time()
         self._hold_buf        = []
 
-    def _update_hold_collection(self, right_dist: float) -> bool:
+    def _update_hold_collection(self, right_dist: float, wall_angle: float) -> bool:
         """
         Feed the current right_dist reading into the buffer.
         Returns True (and updates self.hold_distance) when the window is complete.
         """
         if not self._collecting_hold:
             return False
-        if math.isnan(self._wall_angle_right) or abs(self._wall_angle_right) > self.angle_tol:
+        if math.isnan(wall_angle) or abs(wall_angle) > self.angle_tol:
             return False
         now = time.time()
         if not math.isnan(right_dist) and math.isfinite(right_dist):
@@ -253,7 +255,7 @@ class HallwayCenterNode(Node):
         """
         pos_error = right_dist - self.hold_distance   # + means too far, steer right
 
-        right_angle = self._wall_angle(ranges_np, msg, -math.pi / 2, self.side_half_cone)
+        right_angle = self._wall_angle_right(self.side_half_cone, ranges_np, msg)
         heading_error = -right_angle if not math.isnan(right_angle) else 0.0
 
         angular_z = float(np.clip(
@@ -274,9 +276,9 @@ class HallwayCenterNode(Node):
         ranges = np.where(np.isinf(ranges), 12.0, ranges)
         now       = time.time()
         front_min = self._valid_min(ranges,  msg, 0.0,           self.front_half_cone)
-        right_dist = self._valid_median(ranges, msg, -math.pi / 2, self.side_half_cone)
-        angle_dist = self._valid_median(ranges, msg, -math.pi / 4, self.angle_half_cone)
-
+        right_dist = self._valid_median(ranges, msg, math.pi / 2, self.side_half_cone)
+        angle_dist = self._valid_median(ranges, msg, 3 * math.pi / 4, self.angle_half_cone)
+        right_angle = self._wall_angle_right(ranges, msg)
         # ------------------------------------------------------------------
         # BACKING_UP: reverse for a fixed duration, then return to STRAIGHT.
         # The normal obstacle-avoidance steering will handle turning once
@@ -336,7 +338,7 @@ class HallwayCenterNode(Node):
         # STRAIGHT: PD control to hold_distance from right wall
         # ------------------------------------------------------------------
         if self.mode == self.MODE_STRAIGHT:
-            self._update_hold_collection(right_dist)
+            self._update_hold_collection(right_dist, right_angle)
 
             if not right_valid:
                 # No right wall reading — drive straight
@@ -361,7 +363,7 @@ class HallwayCenterNode(Node):
         # DIVOT: wall receded slightly. Maintain heading, recalc hold dist.
         # ------------------------------------------------------------------
         if self.mode == self.MODE_DIVOT:
-            done = self._update_hold_collection(right_dist)
+            done = self._update_hold_collection(right_dist, right_angle)
             # if parallel check keeps failing for too long, force transition anyway
             if time.time() - self.mode_start_time > self.hold_timout:
                 self._enter_mode(self.MODE_STRAIGHT)
@@ -383,7 +385,7 @@ class HallwayCenterNode(Node):
         # INLET: wall closing in. Maintain heading, recalc hold dist.
         # ------------------------------------------------------------------
         if self.mode == self.MODE_INLET:
-            done = self._update_hold_collection(right_dist)
+            done = self._update_hold_collection(right_dist, right_angle)
             # if parallel check keeps failing for too long, force transition anyway
             if time.time() - self.mode_start_time > self.hold_timout:
                 self._enter_mode(self.MODE_STRAIGHT)
@@ -406,7 +408,7 @@ class HallwayCenterNode(Node):
         # "Parallel" = wall angle near 0 AND right_dist is stable.
         # ------------------------------------------------------------------
         if self.mode == self.MODE_TURN:
-            right_angle = self._wall_angle(ranges, msg, -math.pi / 2, self.side_half_cone)
+            right_angle = self._wall_angle_right(self.side_half_cone, ranges, msg)
             parallel = (
                 not math.isnan(right_angle)
                 and abs(right_angle) < self.angle_tol

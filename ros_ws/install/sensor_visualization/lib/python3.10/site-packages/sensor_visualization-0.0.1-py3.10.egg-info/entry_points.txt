@@ -1,0 +1,3 @@
+[console_scripts]
+sensor_visualization_node = sensor_visualization.sensor_visualization_node:main
+

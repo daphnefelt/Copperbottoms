@@ -12,7 +12,7 @@ class TapeRecoveryNode(Node):
     def __init__(self):
         super().__init__('tape_recovery_node')
         self.declare_parameter('forward_speed', 0.25)
-        self.declare_parameter('max_turn', 1.0)
+        self.declare_parameter('max_turn', 1.8)
         self.declare_parameter('enable_motor_control', False)
         self.forward_speed = self.get_parameter('forward_speed').value
         self.max_turn = self.get_parameter('max_turn').value
@@ -41,7 +41,7 @@ class TapeRecoveryNode(Node):
             self.recovery_active = True
             self.recovery_phase = 'SEARCH'
             self.recovery_start_time = time.perf_counter()
-            self.get_logger().warn('Tape lost: entering recovery/search mode')
+            self.get_logger().warn('Tape lost: entering recovery/search mode_test 7')
             self.publish_recovery_cmd()
 
     # def cmd_callback(self, msg):

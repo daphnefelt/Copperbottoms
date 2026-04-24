@@ -87,3 +87,36 @@ self.hsvlower max ,
 Hue (75-105): Color range. For cyan/teal tape, keep 75-105. Widen if missing tape, narrow if picking up wrong colors
 Saturation (40-255): Color intensity. Increase lower bound (e.g., 60) to ignore dull/washed out objects like walls
 Value (40-255): Brightness. Increase lower bound (e.g., 60) to ignore dark shadows
+
+
+
+
+added debug info 
+cd ~/code/Copperbottoms/ros_ws
+colcon build --packages-select amy_test
+ros2 launch amy_test test_full_launch.py
+
+
+
+directly center info 
+[tape_control_node-4] [INFO] [1776892691.174483561]
+ [tape_control_node]: [DEBUG] Speed: 0.250 | Turn: -0.845 | Error: 0.450 | P: 0.270 | I: 0.575 | D: 0.000 |
+  Center: 232.0 | Angle: -114.5°
+
+notes 
+camera center is 232 
+the angle is 114 
+the rover is centered on tape on the straight tape line 
+]new variables 
+camera center off set and camera angle offset 
+camera position, angled all the way down for consitency 
+
+Updated error calculation:
+
+Lateral error now uses corrected center (232 instead of 160)
+Angle error normalized: 0 = straight, ±1 = 90° deviation
+Combined error: weighted blend of position and angle
+
+
+
+following tapebut cant really turn 

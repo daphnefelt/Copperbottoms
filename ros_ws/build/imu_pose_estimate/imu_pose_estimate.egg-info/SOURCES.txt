@@ -1,0 +1,13 @@
+package.xml
+setup.cfg
+setup.py
+imu_pose_estimate/__init__.py
+imu_pose_estimate/imu_pose_estimate.py
+imu_pose_estimate.egg-info/PKG-INFO
+imu_pose_estimate.egg-info/SOURCES.txt
+imu_pose_estimate.egg-info/dependency_links.txt
+imu_pose_estimate.egg-info/entry_points.txt
+imu_pose_estimate.egg-info/requires.txt
+imu_pose_estimate.egg-info/top_level.txt
+imu_pose_estimate.egg-info/zip-safe
+resource/imu_pose_estimate

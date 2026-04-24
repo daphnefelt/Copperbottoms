@@ -1,0 +1,116 @@
+[0.000000] (-) TimerEvent: {}
+[0.002042] (-) JobUnselected: {'identifier': 'amy_test'}
+[0.002612] (-) JobUnselected: {'identifier': 'camera_navigation'}
+[0.002839] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.003172] (-) JobUnselected: {'identifier': 'imu_pose_estimate'}
+[0.003367] (-) JobUnselected: {'identifier': 'landmark_slam'}
+[0.003493] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.003602] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.003691] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.003778] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.003930] (sensor_visualization) JobQueued: {'identifier': 'sensor_visualization', 'dependencies': OrderedDict()}
+[0.004054] (sensor_visualization) JobStarted: {'identifier': 'sensor_visualization'}
+[0.098848] (-) TimerEvent: {}
+[0.199624] (-) TimerEvent: {}
+[0.300393] (-) TimerEvent: {}
+[0.401542] (-) TimerEvent: {}
+[0.502660] (-) TimerEvent: {}
+[0.603399] (-) TimerEvent: {}
+[0.704091] (-) TimerEvent: {}
+[0.804846] (-) TimerEvent: {}
+[0.905724] (-) TimerEvent: {}
+[1.006593] (-) TimerEvent: {}
+[1.107278] (-) TimerEvent: {}
+[1.207986] (-) TimerEvent: {}
+[1.308666] (-) TimerEvent: {}
+[1.409369] (-) TimerEvent: {}
+[1.510124] (-) TimerEvent: {}
+[1.610934] (-) TimerEvent: {}
+[1.711913] (-) TimerEvent: {}
+[1.812600] (-) TimerEvent: {}
+[1.913402] (-) TimerEvent: {}
+[2.014323] (-) TimerEvent: {}
+[2.115050] (-) TimerEvent: {}
+[2.215917] (-) TimerEvent: {}
+[2.316691] (-) TimerEvent: {}
+[2.417425] (-) TimerEvent: {}
+[2.518204] (-) TimerEvent: {}
+[2.619012] (-) TimerEvent: {}
+[2.719703] (-) TimerEvent: {}
+[2.820427] (-) TimerEvent: {}
+[2.921277] (-) TimerEvent: {}
+[3.022094] (-) TimerEvent: {}
+[3.123027] (-) TimerEvent: {}
+[3.223742] (-) TimerEvent: {}
+[3.324403] (-) TimerEvent: {}
+[3.425103] (-) TimerEvent: {}
+[3.525832] (-) TimerEvent: {}
+[3.626514] (-) TimerEvent: {}
+[3.727263] (-) TimerEvent: {}
+[3.828003] (-) TimerEvent: {}
+[3.928663] (-) TimerEvent: {}
+[4.029385] (-) TimerEvent: {}
+[4.130215] (-) TimerEvent: {}
+[4.230966] (-) TimerEvent: {}
+[4.313737] (sensor_visualization) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../../build/sensor_visualization', 'build', '--build-base', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build', 'install', '--record', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/visualization/sensor_visualization', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.85.94.30 62329 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/src', 'TERM_PROGRAM_VERSION': '1.117.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-cbf22262-cb10-43ed-9a77-0f094b9b3900.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '5', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-7925a18a25.sock', 'TERM_PROGRAM': 'vscode', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization', 'SSH_CONNECTION': '100.85.94.30 62329 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[4.331113] (-) TimerEvent: {}
+[4.431916] (-) TimerEvent: {}
+[4.532567] (-) TimerEvent: {}
+[4.633256] (-) TimerEvent: {}
+[4.734091] (-) TimerEvent: {}
+[4.835026] (-) TimerEvent: {}
+[4.935845] (-) TimerEvent: {}
+[5.036589] (-) TimerEvent: {}
+[5.137256] (-) TimerEvent: {}
+[5.238038] (-) TimerEvent: {}
+[5.338913] (-) TimerEvent: {}
+[5.439607] (-) TimerEvent: {}
+[5.540248] (-) TimerEvent: {}
+[5.640861] (-) TimerEvent: {}
+[5.741544] (-) TimerEvent: {}
+[5.842183] (-) TimerEvent: {}
+[5.942913] (-) TimerEvent: {}
+[6.030875] (sensor_visualization) StdoutLine: {'line': b'running egg_info\n'}
+[6.033904] (sensor_visualization) StdoutLine: {'line': b'creating ../../../build/sensor_visualization/sensor_visualization.egg-info\n'}
+[6.035100] (sensor_visualization) StdoutLine: {'line': b'writing ../../../build/sensor_visualization/sensor_visualization.egg-info/PKG-INFO\n'}
+[6.036533] (sensor_visualization) StdoutLine: {'line': b'writing dependency_links to ../../../build/sensor_visualization/sensor_visualization.egg-info/dependency_links.txt\n'}
+[6.037591] (sensor_visualization) StdoutLine: {'line': b'writing entry points to ../../../build/sensor_visualization/sensor_visualization.egg-info/entry_points.txt\n'}
+[6.038612] (sensor_visualization) StdoutLine: {'line': b'writing requirements to ../../../build/sensor_visualization/sensor_visualization.egg-info/requires.txt\n'}
+[6.039392] (sensor_visualization) StdoutLine: {'line': b'writing top-level names to ../../../build/sensor_visualization/sensor_visualization.egg-info/top_level.txt\n'}
+[6.040501] (sensor_visualization) StdoutLine: {'line': b"writing manifest file '../../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'\n"}
+[6.043057] (-) TimerEvent: {}
+[6.047897] (sensor_visualization) StdoutLine: {'line': b"reading manifest file '../../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'\n"}
+[6.052125] (sensor_visualization) StdoutLine: {'line': b"writing manifest file '../../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'\n"}
+[6.052916] (sensor_visualization) StdoutLine: {'line': b'running build\n'}
+[6.053406] (sensor_visualization) StdoutLine: {'line': b'running build_py\n'}
+[6.053998] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build\n'}
+[6.054621] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib\n'}
+[6.055126] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization\n'}
+[6.055497] (sensor_visualization) StdoutLine: {'line': b'copying sensor_visualization/sensor_visualization_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization\n'}
+[6.055936] (sensor_visualization) StdoutLine: {'line': b'copying sensor_visualization/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization\n'}
+[6.056732] (sensor_visualization) StdoutLine: {'line': b'running install\n'}
+[6.058171] (sensor_visualization) StdoutLine: {'line': b'running install_lib\n'}
+[6.061337] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization\n'}
+[6.061990] (sensor_visualization) StdoutLine: {'line': b'copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization/sensor_visualization_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization\n'}
+[6.062753] (sensor_visualization) StdoutLine: {'line': b'copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization\n'}
+[6.066177] (sensor_visualization) StdoutLine: {'line': b'byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization/sensor_visualization_node.py to sensor_visualization_node.cpython-310.pyc\n'}
+[6.070679] (sensor_visualization) StdoutLine: {'line': b'byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization/__init__.py to __init__.cpython-310.pyc\n'}
+[6.071756] (sensor_visualization) StdoutLine: {'line': b'running install_data\n'}
+[6.072284] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share\n'}
+[6.072900] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index\n'}
+[6.073484] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index\n'}
+[6.073896] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index/packages\n'}
+[6.074271] (sensor_visualization) StdoutLine: {'line': b'copying resource/sensor_visualization -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index/packages\n'}
+[6.074774] (sensor_visualization) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/sensor_visualization\n'}
+[6.075187] (sensor_visualization) StdoutLine: {'line': b'copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/sensor_visualization\n'}
+[6.075700] (sensor_visualization) StdoutLine: {'line': b'running install_egg_info\n'}
+[6.084841] (sensor_visualization) StdoutLine: {'line': b'Copying ../../../build/sensor_visualization/sensor_visualization.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization-0.0.1-py3.10.egg-info\n'}
+[6.092543] (sensor_visualization) StdoutLine: {'line': b'running install_scripts\n'}
+[6.143235] (-) TimerEvent: {}
+[6.186610] (sensor_visualization) StdoutLine: {'line': b'Installing sensor_visualization_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/bin\n'}
+[6.188475] (sensor_visualization) StdoutLine: {'line': b"writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/install.log'\n"}
+[6.243562] (-) TimerEvent: {}
+[6.353658] (sensor_visualization) CommandEnded: {'returncode': 0}
+[6.355126] (-) TimerEvent: {}
+[6.419982] (sensor_visualization) JobEnded: {'identifier': 'sensor_visualization', 'rc': 0}
+[6.423329] (-) EventReactorShutdown: {}

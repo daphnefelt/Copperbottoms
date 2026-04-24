@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>sensor_visualization</name>
+  <version>0.0.1</version>
+  <description>Sensor visualization node for vehicle speed and heading.</description>
+  <maintainer email="user@todo.todo">TODO: Maintainer</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <build_type>ament_python</build_type>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>matplotlib</exec_depend>
+</package>

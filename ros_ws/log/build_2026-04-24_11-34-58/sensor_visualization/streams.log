@@ -1,0 +1,39 @@
+[4.313s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/visualization/sensor_visualization': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/sensor_visualization build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/install.log --single-version-externally-managed install_data
+[6.027s] running egg_info
+[6.030s] creating ../../../build/sensor_visualization/sensor_visualization.egg-info
+[6.031s] writing ../../../build/sensor_visualization/sensor_visualization.egg-info/PKG-INFO
+[6.033s] writing dependency_links to ../../../build/sensor_visualization/sensor_visualization.egg-info/dependency_links.txt
+[6.034s] writing entry points to ../../../build/sensor_visualization/sensor_visualization.egg-info/entry_points.txt
+[6.035s] writing requirements to ../../../build/sensor_visualization/sensor_visualization.egg-info/requires.txt
+[6.036s] writing top-level names to ../../../build/sensor_visualization/sensor_visualization.egg-info/top_level.txt
+[6.037s] writing manifest file '../../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'
+[6.044s] reading manifest file '../../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'
+[6.048s] writing manifest file '../../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'
+[6.049s] running build
+[6.050s] running build_py
+[6.050s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build
+[6.051s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib
+[6.051s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization
+[6.052s] copying sensor_visualization/sensor_visualization_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization
+[6.052s] copying sensor_visualization/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization
+[6.053s] running install
+[6.054s] running install_lib
+[6.058s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization
+[6.058s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization/sensor_visualization_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization
+[6.059s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization
+[6.063s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization/sensor_visualization_node.py to sensor_visualization_node.cpython-310.pyc
+[6.067s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization/__init__.py to __init__.cpython-310.pyc
+[6.068s] running install_data
+[6.069s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share
+[6.069s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index
+[6.070s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index
+[6.070s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index/packages
+[6.070s] copying resource/sensor_visualization -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index/packages
+[6.071s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/sensor_visualization
+[6.071s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/sensor_visualization
+[6.072s] running install_egg_info
+[6.081s] Copying ../../../build/sensor_visualization/sensor_visualization.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization-0.0.1-py3.10.egg-info
+[6.089s] running install_scripts
+[6.183s] Installing sensor_visualization_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/bin
+[6.185s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/install.log'
+[6.350s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/visualization/sensor_visualization' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/sensor_visualization build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/install.log --single-version-externally-managed install_data

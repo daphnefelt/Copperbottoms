@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_fastrtps_c.h

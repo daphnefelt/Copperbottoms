@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/src/robo_rover/robo_rover/__init__.py

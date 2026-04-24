@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/rosidl_generator_cpp/custom_messages/msg/detail/rate_stats__struct.hpp

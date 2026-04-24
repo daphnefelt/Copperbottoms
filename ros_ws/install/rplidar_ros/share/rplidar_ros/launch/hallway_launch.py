@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/launch/hallway_launch.py

@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages/ament_cmake_core/custom_messagesConfig-version.cmake

@@ -1,1 +1,0 @@
-/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher/setup.py

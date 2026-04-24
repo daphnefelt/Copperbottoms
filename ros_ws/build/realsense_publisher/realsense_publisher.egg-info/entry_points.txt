@@ -1,4 +1,0 @@
-[console_scripts]
-realsense_depth_node = realsense_publisher.realsense_depth_node:main
-realsense_node = realsense_publisher.realsense_node:main
-

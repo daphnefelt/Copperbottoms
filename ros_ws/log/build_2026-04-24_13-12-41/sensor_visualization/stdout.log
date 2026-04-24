@@ -1,0 +1,37 @@
+running egg_info
+creating ../../build/sensor_visualization/sensor_visualization.egg-info
+writing ../../build/sensor_visualization/sensor_visualization.egg-info/PKG-INFO
+writing dependency_links to ../../build/sensor_visualization/sensor_visualization.egg-info/dependency_links.txt
+writing entry points to ../../build/sensor_visualization/sensor_visualization.egg-info/entry_points.txt
+writing requirements to ../../build/sensor_visualization/sensor_visualization.egg-info/requires.txt
+writing top-level names to ../../build/sensor_visualization/sensor_visualization.egg-info/top_level.txt
+writing manifest file '../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'
+reading manifest file '../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'
+writing manifest file '../../build/sensor_visualization/sensor_visualization.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization
+copying sensor_visualization/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization
+copying sensor_visualization/sensor_visualization.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization
+running install
+running install_lib
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/build/lib/sensor_visualization/sensor_visualization.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization/sensor_visualization.py to sensor_visualization.cpython-310.pyc
+running install_data
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index/packages
+copying resource/sensor_visualization -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/ament_index/resource_index/packages
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/sensor_visualization
+copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/share/sensor_visualization
+running install_egg_info
+Copying ../../build/sensor_visualization/sensor_visualization.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/lib/python3.10/site-packages/sensor_visualization-0.0.1-py3.10.egg-info
+running install_scripts
+Installing sensor_visualization_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/sensor_visualization/bin
+writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/sensor_visualization/install.log'

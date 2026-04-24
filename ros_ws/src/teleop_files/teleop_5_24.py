@@ -26,13 +26,13 @@ class ArrowTeleop(Node):
         self.current_angular = 0.0
 
         # Speeds
-        self.max_linear = 0.5
-        self.max_angular = 0.50
+        self.max_linear = 0.6
+        self.max_angular = 1.2
 
         # Smoothing
-        self.accel_step = 0.03
-        self.turn_step = 0.08
-        self.decel_step = 0.02
+        self.accel_step = 0.08
+        self.turn_step = 0.15
+        self.decel_step = 0.05
 
         # Track currently pressed keys
         self.keys_held = {

@@ -20,11 +20,11 @@ class LidarDebugNode(Node):
         # -- Cone half-widths (exact from hallway_center_node) ----------------
         self.front_half_cone = math.radians(10)   # ±10° front
         self.side_half_cone  = math.radians(5)    # ±5°  right side 90°
-        self.angle_half_cone = math.radians(1)    # ±1°  angled lookahead 135°
+        self.angle_half_cone = math.radians(2)    # ±1°  angled lookahead 135°
 
         # -- Parallel / perpendicular tolerance (exact from hallway_center_node)
-        self.angle_tol = math.radians(5)
-        self.perp_tol  = math.radians(5)
+        self.angle_tol = math.radians(10)
+        self.perp_tol  = math.radians(10)
 
         self.subscription = self.create_subscription(
             LaserScan, '/scan', self.scan_callback, 10)
@@ -118,7 +118,7 @@ class LidarDebugNode(Node):
 
     def scan_callback(self, msg: LaserScan):
         ranges = np.array(msg.ranges)
-        ranges = np.where(np.isinf(ranges), 12.0, ranges)
+        ranges = np.where(np.isinf(ranges), 99.0, ranges)
 
         front_min       = self._valid_min   (ranges, msg, math.pi,         self.front_half_cone)
         right_dist      = self._valid_median(ranges, msg, math.pi / 2,     self.side_half_cone)
@@ -129,7 +129,7 @@ class LidarDebugNode(Node):
         def classify(a):
             if math.isnan(a):
                 return 'NO READING'
-            elif abs(a) < self.angle_tol:
+            elif abs(abs(a) - math.pi) < self.angle_tol:
                 return 'PARALLEL'
             elif abs(abs(a) - math.pi / 2) < self.perp_tol:
                 return 'PERPENDICULAR'

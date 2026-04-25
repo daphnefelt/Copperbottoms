@@ -35,12 +35,14 @@ class LandmarkSensorNode(Node):
         self.get_logger().info('Landmark Sensor Node started')
 
     def image_callback(self, color_msg: Image, depth_msg: Image):
+        print('running img callback')
         color_img = self.bridge.imgmsg_to_cv2(color_msg, desired_encoding='bgr8')
         depth_img = self.bridge.imgmsg_to_cv2(depth_msg, desired_encoding='passthrough')
 
         landmarks = detect_landmark(color_img, depth_img)
 
         if landmarks:
+            print(f"Detected {len(landmarks)} landmarks")
             payload = json.dumps(landmarks)
             self.landmark_pub.publish(String(data=payload))
             for lm in landmarks:

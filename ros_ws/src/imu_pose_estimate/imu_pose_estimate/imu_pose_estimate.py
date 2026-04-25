@@ -92,6 +92,8 @@ class ImuPoseEstimate(Node):
         gyro = msg.gyro
         pqr = np.array([gyro.x, gyro.y, gyro.z])
         a = np.array([accel.x, accel.y, accel.z])
+        self.get_logger().info(f"pqr: " + str(pqr) + " accel: " + str(a))
+        
 
         # euler rates - conversion from pqr
         angles_dot = np.zeros((3, 1))

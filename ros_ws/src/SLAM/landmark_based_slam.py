@@ -128,7 +128,7 @@ class EKFSlamNode(Node):
 
         self._publish_pose() # Best estimate of robot pose
         self.get_logger().info(f'ROBOT POSE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
-        self._plot_pose() # Plot pose and landmarks
+        # self._plot_pose() # Plot pose and landmarks
 
     # MEASUREMENT MODEL
 
@@ -377,28 +377,28 @@ class EKFSlamNode(Node):
         py = int(self.PLOT_ORIGIN[1] - y * scale)
         return px, py
     
-    def _plot_pose(self):
-        img = np.ones((self.PLOT_PIXELS, self.PLOT_PIXELS, 3), dtype=np.uint8) * 255
-        # landmarks
-        for tag_id, j in self.lm_index.items():
-            sl = slice(3 + 2 * j, 3 + 2 * j + 2)
-            lx, ly = self.mu[sl]
-            px, py = self._world_to_px(lx, ly)
-            cv2.circle(img, (px, py), 5, (0, 0, 255), -1)
-            cv2.putText(img, str(tag_id), (px + 5, py - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
-        # robot pose
-        x, y, th = self.mu[0], self.mu[1], self.mu[2]
-        px, py = self._world_to_px(x, y)
-        cv2.circle(img, (px, py), 5, (255, 0, 0), -1)
-        arrow_length = 20 # pixels
-        arrow_length_m = arrow_length * self.PLOT_METERS / self.PLOT_PIXELS
-        arrow_dx = arrow_length_m * math.cos(th)
-        arrow_dy = arrow_length_m * math.sin(th)
-        px2, py2 = self._world_to_px(x + arrow_dx, y + arrow_dy)
-        cv2.arrowedLine(img, (px, py), (px2, py2), (255, 0, 0), 2)
+    # def _plot_pose(self):
+    #     img = np.ones((self.PLOT_PIXELS, self.PLOT_PIXELS, 3), dtype=np.uint8) * 255
+    #     # landmarks
+    #     for tag_id, j in self.lm_index.items():
+    #         sl = slice(3 + 2 * j, 3 + 2 * j + 2)
+    #         lx, ly = self.mu[sl]
+    #         px, py = self._world_to_px(lx, ly)
+    #         cv2.circle(img, (px, py), 5, (0, 0, 255), -1)
+    #         cv2.putText(img, str(tag_id), (px + 5, py - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
+    #     # robot pose
+    #     x, y, th = self.mu[0], self.mu[1], self.mu[2]
+    #     px, py = self._world_to_px(x, y)
+    #     cv2.circle(img, (px, py), 5, (255, 0, 0), -1)
+    #     arrow_length = 20 # pixels
+    #     arrow_length_m = arrow_length * self.PLOT_METERS / self.PLOT_PIXELS
+    #     arrow_dx = arrow_length_m * math.cos(th)
+    #     arrow_dy = arrow_length_m * math.sin(th)
+    #     px2, py2 = self._world_to_px(x + arrow_dx, y + arrow_dy)
+    #     cv2.arrowedLine(img, (px, py), (px2, py2), (255, 0, 0), 2)
 
-        cv2.imshow('SLAM Pose', img)
-        cv2.waitKey(1)
+    #     cv2.imshow('SLAM Pose', img)
+    #     cv2.waitKey(1)
 
 def main(args=None):
     rclpy.init(args=args)

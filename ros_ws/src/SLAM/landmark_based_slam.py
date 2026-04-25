@@ -53,7 +53,7 @@ class EKFSlamNode(Node):
         # lidar occupancy map
         self.lidar_grid = np.zeros((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE), dtype=np.int32)
 
-        self.create_subscription(Twist, '/cmd_vel_temp',   self._cmd_vel_cb,   10)
+        self.create_subscription(Twist, '/cmd_vel',   self._cmd_vel_cb,   10)
         self.create_subscription(String, '/landmarks', self._landmark_cb,  10)
         self.create_subscription(LaserScan, '/scan', self._lidar_cb, 10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/slam/pose', 10)
@@ -78,13 +78,17 @@ class EKFSlamNode(Node):
     # MOTION MODEL
 
     # tuning for the meaning of linear.x and angular.z
-    def V_NOMINAL(linear_x):
+    def V_NOMINAL(self, linear_x):
         return 2.0555*linear_x - 0.1072 # m/s for a given linear.x cmd
-    DELTA_NOMINAL = 0.35 # rad steering angle for angular.z = 1.0
+    def DELTA_NOMINAL(self, angular_z):
+        abs_angle = abs(angular_z)
+        pos_angle = math.radians(5.3505*abs_angle**2 + 7.2598*abs_angle - 0.2384)
+        return pos_angle if angular_z >= 0 else -pos_angle
+    
     def _cmd_vel_cb(self, msg: Twist):
         self._predict_step() # predict up to now before changing velocity
         self.v = self.V_NOMINAL(msg.linear.x)
-        self.delta = msg.angular.z * self.DELTA_NOMINAL
+        self.delta = self.DELTA_NOMINAL(msg.angular.z)
         if abs(self.v) < 0.15: # doesn't turn or do anything below this speed
             self.v = 0.0
             self.delta = 0.0
@@ -126,7 +130,7 @@ class EKFSlamNode(Node):
 
         self._publish_pose() # Best estimate of robot pose
         self.get_logger().info(f'ROBOT POSE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
-        self._plot_pose() # Plot pose and landmarks
+        # self._plot_pose() # Plot pose and landmarks
 
     # MEASUREMENT MODEL
 
@@ -209,6 +213,8 @@ class EKFSlamNode(Node):
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
 
+        self.get_logger().info(f'LANDMARK UPDATE: tag={tag_id}  x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
+
     def _world_to_cell(self, wx, wy):
         ox, oy = LIDAR_GRID_ORIGIN
         ci = int((wx - ox) / LIDAR_GRID_RES)
@@ -218,10 +224,10 @@ class EKFSlamNode(Node):
     def _scan_match_update(self, new_pts: np.ndarray, x0: float, y0: float, th0: float):
         # map point cloud from occupied cells
         rows, cols = np.where(self.lidar_grid > 0)
-        ox, oy = self.LIDAR_GRID_ORIGIN
+        ox, oy = LIDAR_GRID_ORIGIN
         map_pts = np.column_stack([
-            cols * self.LIDAR_GRID_RES + ox,
-            rows * self.LIDAR_GRID_RES + oy,
+            cols * LIDAR_GRID_RES + ox,
+            rows * LIDAR_GRID_RES + oy,
         ]) # shape (M, 2)
 
         if len(map_pts) < 10:
@@ -232,14 +238,14 @@ class EKFSlamNode(Node):
         R_total = np.eye(2)
         t_total = np.zeros(2)
 
-        for _ in range(self.LIDAR_ICP_ITERS):
+        for _ in range(LIDAR_ICP_ITERS):
             # nn
             diffs = map_pts[:, None, :] - pts[None, :, :]
             dists = np.linalg.norm(diffs, axis=2)           
             nn_idx = np.argmin(dists, axis=0)
             nn_dist = dists[nn_idx, np.arange(len(pts))]
 
-            inliers = nn_dist < self.LIDAR_INLIER_DIST
+            inliers = nn_dist < LIDAR_INLIER_DIST
             if inliers.sum() < 5:
                 return  # not enough overlap
 
@@ -279,12 +285,14 @@ class EKFSlamNode(Node):
         z_diff = z_obs - z_pred
         z_diff[2] = wrap(z_diff[2])
 
-        S = H @ self.Sigma @ H.T + self.LIDAR_MATCH_NOISE
+        S = H @ self.Sigma @ H.T + LIDAR_MATCH_NOISE
         K = self.Sigma @ H.T @ np.linalg.inv(S)
 
         self.mu += K @ z_diff
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
+
+        self.get_logger().info(f'LIDAR SCAN MATCH UPDATE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
     
     def _lidar_cb(self, msg: LaserScan):
         x, y, th = self.mu[0], self.mu[1], self.mu[2]
@@ -297,7 +305,7 @@ class EKFSlamNode(Node):
             wx = x + r * math.cos(th + angle)
             wy = y + r * math.sin(th + angle)
             ci, cj = self._world_to_cell(wx, wy)
-            if 0 <= ci < self.LIDAR_GRID_SIZE and 0 <= cj < self.LIDAR_GRID_SIZE:
+            if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
                 self.lidar_grid[cj, ci] += 1
             new_pts.append((wx, wy))
 
@@ -351,11 +359,11 @@ class EKFSlamNode(Node):
         msg = OccupancyGrid()
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = 'map'
-        msg.info.resolution = self.LIDAR_GRID_RES
-        msg.info.width = self.LIDAR_GRID_SIZE
-        msg.info.height = self.LIDAR_GRID_SIZE
-        msg.info.origin.position.x = self.LIDAR_GRID_ORIGIN[0]
-        msg.info.origin.position.y = self.LIDAR_GRID_ORIGIN[1]
+        msg.info.resolution = LIDAR_GRID_RES
+        msg.info.width = LIDAR_GRID_SIZE
+        msg.info.height = LIDAR_GRID_SIZE
+        msg.info.origin.position.x = LIDAR_GRID_ORIGIN[0]
+        msg.info.origin.position.y = LIDAR_GRID_ORIGIN[1]
         msg.info.origin.orientation.w = 1.0
 
         max_hits = max(int(self.lidar_grid.max()), 1)
@@ -375,28 +383,28 @@ class EKFSlamNode(Node):
         py = int(self.PLOT_ORIGIN[1] - y * scale)
         return px, py
     
-    def _plot_pose(self):
-        img = np.ones((self.PLOT_PIXELS, self.PLOT_PIXELS, 3), dtype=np.uint8) * 255
-        # landmarks
-        for tag_id, j in self.lm_index.items():
-            sl = slice(3 + 2 * j, 3 + 2 * j + 2)
-            lx, ly = self.mu[sl]
-            px, py = self._world_to_px(lx, ly)
-            cv2.circle(img, (px, py), 5, (0, 0, 255), -1)
-            cv2.putText(img, str(tag_id), (px + 5, py - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
-        # robot pose
-        x, y, th = self.mu[0], self.mu[1], self.mu[2]
-        px, py = self._world_to_px(x, y)
-        cv2.circle(img, (px, py), 5, (255, 0, 0), -1)
-        arrow_length = 20 # pixels
-        arrow_length_m = arrow_length * self.PLOT_METERS / self.PLOT_PIXELS
-        arrow_dx = arrow_length_m * math.cos(th)
-        arrow_dy = arrow_length_m * math.sin(th)
-        px2, py2 = self._world_to_px(x + arrow_dx, y + arrow_dy)
-        cv2.arrowedLine(img, (px, py), (px2, py2), (255, 0, 0), 2)
+    # def _plot_pose(self):
+    #     img = np.ones((self.PLOT_PIXELS, self.PLOT_PIXELS, 3), dtype=np.uint8) * 255
+    #     # landmarks
+    #     for tag_id, j in self.lm_index.items():
+    #         sl = slice(3 + 2 * j, 3 + 2 * j + 2)
+    #         lx, ly = self.mu[sl]
+    #         px, py = self._world_to_px(lx, ly)
+    #         cv2.circle(img, (px, py), 5, (0, 0, 255), -1)
+    #         cv2.putText(img, str(tag_id), (px + 5, py - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
+    #     # robot pose
+    #     x, y, th = self.mu[0], self.mu[1], self.mu[2]
+    #     px, py = self._world_to_px(x, y)
+    #     cv2.circle(img, (px, py), 5, (255, 0, 0), -1)
+    #     arrow_length = 20 # pixels
+    #     arrow_length_m = arrow_length * self.PLOT_METERS / self.PLOT_PIXELS
+    #     arrow_dx = arrow_length_m * math.cos(th)
+    #     arrow_dy = arrow_length_m * math.sin(th)
+    #     px2, py2 = self._world_to_px(x + arrow_dx, y + arrow_dy)
+    #     cv2.arrowedLine(img, (px, py), (px2, py2), (255, 0, 0), 2)
 
-        cv2.imshow('SLAM Pose', img)
-        cv2.waitKey(1)
+    #     cv2.imshow('SLAM Pose', img)
+    #     cv2.waitKey(1)
 
 def main(args=None):
     rclpy.init(args=args)

@@ -62,7 +62,7 @@ def save_from_robo_realsense_topic(output_path: Path, timeout_sec: float = 8.0) 
 
 
 def main() -> int:
-	output_path = Path("img3.jpg")
+	output_path = Path("img_apriltag.jpg")
 	width, height, fps = 640, 480, 30
 
 	ok, message = save_from_robo_realsense_topic(output_path)

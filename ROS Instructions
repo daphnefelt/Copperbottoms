@@ -223,3 +223,7 @@ From Copperbottoms directory:
 
 find .git/objects -type f -empty -delete
 git fsck --full
+
+IN LOCAL MACHINE RVIS
+--------------------
+ros2 run rviz2 rviz2

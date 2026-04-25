@@ -218,7 +218,7 @@ class EKFSlamNode(Node):
     def _scan_match_update(self, new_pts: np.ndarray, x0: float, y0: float, th0: float):
         # map point cloud from occupied cells
         rows, cols = np.where(self.lidar_grid > 0)
-        ox, oy = self.LIDAR_GRID_ORIGIN
+        ox, oy = LIDAR_GRID_ORIGIN
         map_pts = np.column_stack([
             cols * LIDAR_GRID_RES + ox,
             rows * LIDAR_GRID_RES + oy,
@@ -232,14 +232,14 @@ class EKFSlamNode(Node):
         R_total = np.eye(2)
         t_total = np.zeros(2)
 
-        for _ in range(self.LIDAR_ICP_ITERS):
+        for _ in range(LIDAR_ICP_ITERS):
             # nn
             diffs = map_pts[:, None, :] - pts[None, :, :]
             dists = np.linalg.norm(diffs, axis=2)           
             nn_idx = np.argmin(dists, axis=0)
             nn_dist = dists[nn_idx, np.arange(len(pts))]
 
-            inliers = nn_dist < self.LIDAR_INLIER_DIST
+            inliers = nn_dist < LIDAR_INLIER_DIST
             if inliers.sum() < 5:
                 return  # not enough overlap
 
@@ -279,7 +279,7 @@ class EKFSlamNode(Node):
         z_diff = z_obs - z_pred
         z_diff[2] = wrap(z_diff[2])
 
-        S = H @ self.Sigma @ H.T + self.LIDAR_MATCH_NOISE
+        S = H @ self.Sigma @ H.T + LIDAR_MATCH_NOISE
         K = self.Sigma @ H.T @ np.linalg.inv(S)
 
         self.mu += K @ z_diff
@@ -354,8 +354,8 @@ class EKFSlamNode(Node):
         msg.info.resolution = LIDAR_GRID_RES
         msg.info.width = LIDAR_GRID_SIZE
         msg.info.height = LIDAR_GRID_SIZE
-        msg.info.origin.position.x = self.LIDAR_GRID_ORIGIN[0]
-        msg.info.origin.position.y = self.LIDAR_GRID_ORIGIN[1]
+        msg.info.origin.position.x = LIDAR_GRID_ORIGIN[0]
+        msg.info.origin.position.y = LIDAR_GRID_ORIGIN[1]
         msg.info.origin.orientation.w = 1.0
 
         max_hits = max(int(self.lidar_grid.max()), 1)

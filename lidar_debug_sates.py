@@ -17,6 +17,9 @@ class LidarDebugNode(Node):
     def __init__(self):
         super().__init__('lidar_debug_node')
 
+        # -- distances --------------------------------------------------------
+        self.stop_dist = 0.5
+
         # -- Cone half-widths (exact from hallway_center_node) ----------------
         self.front_half_cone = math.radians(10)   # ±10° front
         self.side_half_cone  = math.radians(5)    # ±5°  right side 90°
@@ -31,6 +34,7 @@ class LidarDebugNode(Node):
         self.MODE_DIVOT      = 'DIVOT'
         self.MODE_INLET      = 'INLET'
         self.MODE_TURN       = 'TURN'
+        self.MODE_OBSTACLE   = 'OBSTACLE'
         self.mode            = self.MODE_STRAIGHT
         self.mode_start_time = 0.0
 
@@ -50,13 +54,6 @@ class LidarDebugNode(Node):
         start_idx = max(0, min(start_idx, n - 1))
         end_idx   = max(0, min(end_idx,   n - 1))
         return start_idx, end_idx
-
-    def _valid_min(self, ranges_np: np.ndarray, msg: LaserScan,
-                   center_rad: float, half_cone_rad: float) -> float:
-        s, e  = self._cone_indices(msg, center_rad, half_cone_rad)
-        cone  = ranges_np[s:e + 1]
-        valid = cone[(cone > msg.range_min) & np.isfinite(cone)]
-        return float(np.min(valid)) if valid.size > 0 else float('inf')
 
     def _valid_median(self, ranges_np: np.ndarray, msg: LaserScan,
                       center_rad: float, half_cone_rad: float) -> float:
@@ -140,8 +137,8 @@ class LidarDebugNode(Node):
         ranges = np.array(msg.ranges)
         ranges = np.where(np.isinf(ranges), 99.0, ranges)
 
-        front_min       = self._valid_min   (ranges, msg, math.pi,         self.front_half_cone)
-        right_dist      = self._valid_median(ranges, msg, math.pi / 2,     self.side_half_cone)
+        front_dist       = self._valid_median(ranges, msg, 180, self.front_half_cone)
+        right_dist      = self._valid_median(ranges, msg, math.pi / 2, self.side_half_cone)
         angle_dist      = self._valid_median(ranges, msg, 3 * math.pi / 4, self.angle_half_cone)
         right_angle     = self._wall_angle_right(ranges, msg)
         lookahead_angle = self._wall_angle_angle(ranges, msg)
@@ -171,6 +168,7 @@ class LidarDebugNode(Node):
             cond_turn   = (right_cls == 'PARALLEL' and lookahead_cls == 'PERPENDICULAR' and 5 <= angle_dist < 99)
             cond_inlet  = (right_dist > angle_dist)
             cond_divot  = (right_cls == 'PARALLEL' and angle_dist >= 99 and (lookahead_cls == 'NOT PARALLEL' or lookahead_cls == 'NO READING'))
+            cond_obstacle = (front_dist < self.stop_dist)
 
             if cond_turn:
                 self._enter_mode(self.MODE_TURN)
@@ -180,6 +178,9 @@ class LidarDebugNode(Node):
 
             elif cond_divot:
                 self._enter_mode(self.MODE_DIVOT)
+            
+            elif cond_obstacle:
+                self._enter_mode(self.MODE_OBSTACLE)
 
             else:
                 self._enter_mode(self.MODE_STRAIGHT)
@@ -202,6 +203,9 @@ class LidarDebugNode(Node):
             turn_complete = (lookahead_cls == 'PARALLEL' and elapsed > 0.1)  # minimum dwell to avoid instant re-exit
             if turn_complete:
                 self._enter_mode(self.MODE_STRAIGHT)
+        
+        if self.mode == self.MODE_OBSTACLE:
+            self.get_logger().info('OBSTACLE')
 
 
 
@@ -209,6 +213,7 @@ class LidarDebugNode(Node):
     # Sensor summary
     # ------------------------------------------------------------------
         self.get_logger().info(
+            f'front: {front_min:6.2f} m  |  '
             f'right: {right_dist:6.2f} m  angle: {right_deg:+7.2f}°  ({right_cls})  |  '
             f'lookahead: {angle_dist:6.2f} m  angle: {lookahead_deg:+7.2f}°  ({lookahead_cls})  |  '
             f'mode: {self.mode}',

@@ -63,11 +63,12 @@ class EKFSlamNode(Node):
     # MOTION MODEL
 
     # tuning for the meaning of linear.x and angular.z
-    V_NOMINAL = 0.2 # m/s for linear.x = 1.0
+    def V_NOMINAL(linear_x):
+        return 2.0555*linear_x - 0.1072 # m/s for a given linear.x cmd
     DELTA_NOMINAL = 0.35 # rad steering angle for angular.z = 1.0
     def _cmd_vel_cb(self, msg: Twist):
         self._predict_step() # predict up to now before changing velocity
-        self.v = msg.linear.x * self.V_NOMINAL
+        self.v = self.V_NOMINAL(msg.linear.x)
         self.delta = msg.angular.z * self.DELTA_NOMINAL
         if abs(self.v) < 0.15: # doesn't turn or do anything below this speed
             self.v = 0.0

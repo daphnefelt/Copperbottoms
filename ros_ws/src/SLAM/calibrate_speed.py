@@ -64,7 +64,7 @@ class CalibrationNode(Node):
                 f'TEST 2: Arc turn\n'
             )
             input()
-            self.send_command(linear_x=0.0, angular_z=0.5, duration=10.0)
+            self.send_command(linear_x=0.0, angular_z=1.0, duration=10.0)
             self.get_logger().info('Done. Measure')
 
         self.get_logger().info('Calibration complete.')

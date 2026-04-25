@@ -14,7 +14,7 @@ import argparse
 import sys
 
 PUBLISH_HZ = 20 # how often to re-publish during test
-TEST = 1 # which test to run (1 or 2)
+TEST = 2 # which test to run (1 or 2)
 
 class CalibrationNode(Node):
     def __init__(self, test: int):
@@ -64,7 +64,7 @@ class CalibrationNode(Node):
                 f'TEST 2: Arc turn\n'
             )
             input()
-            self.send_command(linear_x=0.5, angular_z=0.5, duration=1.0)
+            self.send_command(linear_x=0.0, angular_z=0.75, duration=10.0)
             self.get_logger().info('Done. Measure')
 
         self.get_logger().info('Calibration complete.')

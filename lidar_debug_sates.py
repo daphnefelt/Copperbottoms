@@ -206,16 +206,16 @@ class LidarDebugNode(Node):
         else:
             self.get_logger().info(f'[STATE CHECK] mode={self.mode} (no transition logic active)')
 
-    # ------------------------------------------------------------------
-    # Sensor summary line (throttled)
-    # ------------------------------------------------------------------
-    self.get_logger().info(
-        f'[SENSOR] front: {front_min:6.2f} m  |  '
-        f'right: {right_dist:6.2f} m  angle: {right_deg:+7.2f}°  ({right_cls})  |  '
-        f'lookahead: {angle_dist:6.2f} m  angle: {lookahead_deg:+7.2f}°  ({lookahead_cls})  |  '
-        f'mode: {self.mode}',
-        throttle_duration_sec=0.2
-    )
+        # ------------------------------------------------------------------
+        # Sensor summary line (throttled)
+        # ------------------------------------------------------------------
+        self.get_logger().info(
+            f'[SENSOR] front: {front_min:6.2f} m  |  '
+            f'right: {right_dist:6.2f} m  angle: {right_deg:+7.2f}°  ({right_cls})  |  '
+            f'lookahead: {angle_dist:6.2f} m  angle: {lookahead_deg:+7.2f}°  ({lookahead_cls})  |  '
+            f'mode: {self.mode}',
+            throttle_duration_sec=0.2
+        )
 
 
 # -- Entry point --------------------------------------------------------------

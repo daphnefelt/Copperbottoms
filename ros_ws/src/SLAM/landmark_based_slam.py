@@ -220,8 +220,8 @@ class EKFSlamNode(Node):
         rows, cols = np.where(self.lidar_grid > 0)
         ox, oy = self.LIDAR_GRID_ORIGIN
         map_pts = np.column_stack([
-            cols * self.LIDAR_GRID_RES + ox,
-            rows * self.LIDAR_GRID_RES + oy,
+            cols * LIDAR_GRID_RES + ox,
+            rows * LIDAR_GRID_RES + oy,
         ]) # shape (M, 2)
 
         if len(map_pts) < 10:
@@ -351,7 +351,7 @@ class EKFSlamNode(Node):
         msg = OccupancyGrid()
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = 'map'
-        msg.info.resolution = self.LIDAR_GRID_RES
+        msg.info.resolution = LIDAR_GRID_RES
         msg.info.width = LIDAR_GRID_SIZE
         msg.info.height = LIDAR_GRID_SIZE
         msg.info.origin.position.x = self.LIDAR_GRID_ORIGIN[0]

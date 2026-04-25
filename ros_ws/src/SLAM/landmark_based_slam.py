@@ -297,7 +297,7 @@ class EKFSlamNode(Node):
             wx = x + r * math.cos(th + angle)
             wy = y + r * math.sin(th + angle)
             ci, cj = self._world_to_cell(wx, wy)
-            if 0 <= ci < self.LIDAR_GRID_SIZE and 0 <= cj < self.LIDAR_GRID_SIZE:
+            if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
                 self.lidar_grid[cj, ci] += 1
             new_pts.append((wx, wy))
 
@@ -352,8 +352,8 @@ class EKFSlamNode(Node):
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = 'map'
         msg.info.resolution = self.LIDAR_GRID_RES
-        msg.info.width = self.LIDAR_GRID_SIZE
-        msg.info.height = self.LIDAR_GRID_SIZE
+        msg.info.width = LIDAR_GRID_SIZE
+        msg.info.height = LIDAR_GRID_SIZE
         msg.info.origin.position.x = self.LIDAR_GRID_ORIGIN[0]
         msg.info.origin.position.y = self.LIDAR_GRID_ORIGIN[1]
         msg.info.origin.orientation.w = 1.0

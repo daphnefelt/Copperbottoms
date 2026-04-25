@@ -53,7 +53,7 @@ class EKFSlamNode(Node):
         # lidar occupancy map
         self.lidar_grid = np.zeros((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE), dtype=np.int32)
 
-        self.create_subscription(Twist, '/cmd_vel_temp',   self._cmd_vel_cb,   10)
+        self.create_subscription(Twist, '/cmd_vel',   self._cmd_vel_cb,   10)
         self.create_subscription(String, '/landmarks', self._landmark_cb,  10)
         self.create_subscription(LaserScan, '/scan', self._lidar_cb, 10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/slam/pose', 10)
@@ -80,11 +80,13 @@ class EKFSlamNode(Node):
     # tuning for the meaning of linear.x and angular.z
     def V_NOMINAL(linear_x):
         return 2.0555*linear_x - 0.1072 # m/s for a given linear.x cmd
-    DELTA_NOMINAL = 0.35 # rad steering angle for angular.z = 1.0
+    def DELTA_NOMINAL(angular_z):
+        return math.radians(14.786 * angular_z - 2.5508)
+    
     def _cmd_vel_cb(self, msg: Twist):
         self._predict_step() # predict up to now before changing velocity
         self.v = self.V_NOMINAL(msg.linear.x)
-        self.delta = msg.angular.z * self.DELTA_NOMINAL
+        self.delta = self.DELTA_NOMINAL(msg.angular.z)
         if abs(self.v) < 0.15: # doesn't turn or do anything below this speed
             self.v = 0.0
             self.delta = 0.0

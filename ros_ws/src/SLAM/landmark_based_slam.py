@@ -81,7 +81,9 @@ class EKFSlamNode(Node):
     def V_NOMINAL(self, linear_x):
         return 2.0555*linear_x - 0.1072 # m/s for a given linear.x cmd
     def DELTA_NOMINAL(self, angular_z):
-        return math.radians(14.786 * angular_z - 2.5508)
+        abs_angle = abs(angular_z)
+        pos_angle = math.radians(5.3505*abs_angle**2 + 7.2598*abs_angle - 0.2384)
+        return pos_angle if angular_z >= 0 else -pos_angle
     
     def _cmd_vel_cb(self, msg: Twist):
         self._predict_step() # predict up to now before changing velocity

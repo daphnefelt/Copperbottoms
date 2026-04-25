@@ -168,49 +168,47 @@ class LidarDebugNode(Node):
         if self.mode in (self.MODE_STRAIGHT, self.MODE_DIVOT, self.MODE_INLET):
 
             # Evaluate each condition and log it explicitly
-            cond_turn   = (right_cls == 'PARALLEL' and
-                        lookahead_cls == 'PERPENDICULAR' and
-                        5 <= angle_dist < 99)
-
+            cond_turn   = (right_cls == 'PARALLEL' and lookahead_cls == 'PERPENDICULAR' and 5 <= angle_dist < 99)
             cond_inlet  = (right_dist > angle_dist)
-
-            cond_divot  = (right_cls == 'PARALLEL' and
-                        angle_dist >= 99 and
-                        (lookahead_cls == 'NOT PARALLEL' or lookahead_cls == 'NO READING'))
-
-            self.get_logger().info(
-                f'[STATE CHECK] mode={self.mode}\n'
-                f'  cond_TURN  : right={right_cls}, lookahead={lookahead_cls}, '
-                f'angle_dist={angle_dist:.2f} -> {cond_turn}\n'
-                f'  cond_INLET : right_dist={right_dist:.2f} > angle_dist={angle_dist:.2f} -> {cond_inlet}\n'
-                f'  cond_DIVOT : right={right_cls}, angle_dist={angle_dist:.2f}>=99, '
-                f'lookahead={lookahead_cls} -> {cond_divot}'
-            )
+            cond_divot  = (right_cls == 'PARALLEL' and angle_dist >= 99 and (lookahead_cls == 'NOT PARALLEL' or lookahead_cls == 'NO READING'))
 
             if cond_turn:
-                self.get_logger().info('[TRANSITION] -> TURN  (corner detected: lookahead perpendicular)')
                 self._enter_mode(self.MODE_TURN)
 
             elif cond_inlet:
-                self.get_logger().info('[TRANSITION] -> INLET  (angle cone closer than side cone)')
                 self._enter_mode(self.MODE_INLET)
 
             elif cond_divot:
-                self.get_logger().info('[TRANSITION] -> DIVOT  (lookahead open/no-reading, right still parallel)')
                 self._enter_mode(self.MODE_DIVOT)
 
             else:
-                self.get_logger().info('[TRANSITION] -> STRAIGHT  (default: walls parallel)')
                 self._enter_mode(self.MODE_STRAIGHT)
 
-        else:
-            self.get_logger().info(f'[STATE CHECK] mode={self.mode} (no transition logic active)')
+        # --------------------------------------------------
+        # ---- STATES --------------------------------------
+        # -------------------------------------------------
+        if self.mode == self.MODE_STRAIGHT:
+            self.get_logger().info('STRAIGHT')
 
-        # ------------------------------------------------------------------
-        # Sensor summary line (throttled)
-        # ------------------------------------------------------------------
+        if self.mode == self.MODE_DIVOT:
+            self.get_logger().info('DIVOT')
+
+        if self.mode == self.MODE_INLET:
+            self.get_logger().info('INLET')
+
+        if self.mode == self.MODE_TURN:
+            self.get_logger().info('TURN')
+            elapsed = time.time() - self.mode_start_time
+            turn_complete = (lookahead_cls == 'PARALLEL' and elapsed > 0.1)  # minimum dwell to avoid instant re-exit
+            if turn_complete:
+                self._enter_mode(self.MODE_STRAIGHT)
+
+
+
+    # ------------------------------------------------------------------
+    # Sensor summary
+    # ------------------------------------------------------------------
         self.get_logger().info(
-            f'[SENSOR] front: {front_min:6.2f} m  |  '
             f'right: {right_dist:6.2f} m  angle: {right_deg:+7.2f}°  ({right_cls})  |  '
             f'lookahead: {angle_dist:6.2f} m  angle: {lookahead_deg:+7.2f}°  ({lookahead_cls})  |  '
             f'mode: {self.mode}',

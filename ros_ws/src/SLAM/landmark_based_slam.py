@@ -78,9 +78,9 @@ class EKFSlamNode(Node):
     # MOTION MODEL
 
     # tuning for the meaning of linear.x and angular.z
-    def V_NOMINAL(linear_x):
+    def V_NOMINAL(self, linear_x):
         return 2.0555*linear_x - 0.1072 # m/s for a given linear.x cmd
-    def DELTA_NOMINAL(angular_z):
+    def DELTA_NOMINAL(self, angular_z):
         return math.radians(14.786 * angular_z - 2.5508)
     
     def _cmd_vel_cb(self, msg: Twist):

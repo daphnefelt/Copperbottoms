@@ -1,9 +1,0 @@
-source;share/sensor_visualization/hook/path.ps1
-source;share/sensor_visualization/hook/path.dsv
-source;share/sensor_visualization/hook/path.sh
-source;share/sensor_visualization/hook/pythonpath.ps1
-source;share/sensor_visualization/hook/pythonpath.dsv
-source;share/sensor_visualization/hook/pythonpath.sh
-source;share/sensor_visualization/hook/pythonscriptspath.ps1
-source;share/sensor_visualization/hook/pythonscriptspath.dsv
-source;share/sensor_visualization/hook/pythonscriptspath.sh

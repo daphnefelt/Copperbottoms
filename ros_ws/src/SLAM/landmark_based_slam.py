@@ -211,6 +211,8 @@ class EKFSlamNode(Node):
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
 
+        self.get_logger().info(f'LANDMARK UPDATE: tag={tag_id}  x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
+
     def _world_to_cell(self, wx, wy):
         ox, oy = LIDAR_GRID_ORIGIN
         ci = int((wx - ox) / LIDAR_GRID_RES)
@@ -287,6 +289,8 @@ class EKFSlamNode(Node):
         self.mu += K @ z_diff
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
+
+        self.get_logger().info(f'LIDAR SCAN MATCH UPDATE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
     
     def _lidar_cb(self, msg: LaserScan):
         x, y, th = self.mu[0], self.mu[1], self.mu[2]

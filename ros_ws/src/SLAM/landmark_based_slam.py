@@ -16,11 +16,21 @@ from std_msgs.msg import String
 import cv2
 import os
 os.environ.setdefault('QT_LOGGING_RULES', '*.warning=false') # stupid font warnings
+from sensor_msgs.msg import LaserScan
+from nav_msgs.msg import OccupancyGrid
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise on robot pose
 OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range (m) and bearing (rad)
 INIT_LM_COV = 1000.0 # init covariance for a new landmark
+
+# LIDAR PARAMS
+LIDAR_GRID_RES = 0.05 # meters per cell
+LIDAR_GRID_SIZE = 800 # cells per side (so 40m x 40m)
+LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
+LIDAR_INLIER_DIST = 0.30 # ICP nearest-neighbour threshold (m)
+LIDAR_ICP_ITERS = 20
+LIDAR_MATCH_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # scan-match uncertainty
 
 def wrap(a: float) -> float: # wraps to -pi, +pi
     return (a + math.pi) % (2.0 * math.pi) - math.pi
@@ -30,7 +40,7 @@ class EKFSlamNode(Node):
         super().__init__('ekf_slam')
 
         # state
-        self.mu: np.ndarray = np.zeros(3) # No landmarks yet, so just robot pose
+        self.mu: np.ndarray = np.array([16.0, 1.5, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
         self.Sigma: np.ndarray = np.zeros((3, 3)) # Pose known at start, so zero covariance
         # maps tag_id (int) to index j so landmark is at mu[3+2j : 3+2j+2]
         self.lm_index: dict[int, int] = {}
@@ -40,10 +50,15 @@ class EKFSlamNode(Node):
         self.delta = 0.0
         self.last_time = self.get_clock().now()
 
+        # lidar occupancy map
+        self.lidar_grid = np.zeros((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE), dtype=np.int32)
+
         self.create_subscription(Twist, '/cmd_vel_temp',   self._cmd_vel_cb,   10)
         self.create_subscription(String, '/landmarks', self._landmark_cb,  10)
+        self.create_subscription(LaserScan, '/scan', self._lidar_cb, 10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/slam/pose', 10)
         self.map_pub = self.create_publisher(String, '/slam/landmarks', 10)
+        self.lidar_map_pub = self.create_publisher(OccupancyGrid, '/slam/lidar_map', 10)
         self.create_timer(0.05, self._predict_step) # predict at 20hz
 
         self.get_logger().info('SLAM node is up')
@@ -110,6 +125,7 @@ class EKFSlamNode(Node):
         self.Sigma = G @ self.Sigma @ G.T + Q
 
         self._publish_pose() # Best estimate of robot pose
+        self.get_logger().info(f'ROBOT POSE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
         self._plot_pose() # Plot pose and landmarks
 
     # MEASUREMENT MODEL
@@ -193,6 +209,105 @@ class EKFSlamNode(Node):
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
 
+    def _world_to_cell(self, wx, wy):
+        ox, oy = LIDAR_GRID_ORIGIN
+        ci = int((wx - ox) / LIDAR_GRID_RES)
+        cj = int((wy - oy) / LIDAR_GRID_RES)
+        return ci, cj # (col, row)
+    
+    def _scan_match_update(self, new_pts: np.ndarray, x0: float, y0: float, th0: float):
+        # map point cloud from occupied cells
+        rows, cols = np.where(self.lidar_grid > 0)
+        ox, oy = self.LIDAR_GRID_ORIGIN
+        map_pts = np.column_stack([
+            cols * self.LIDAR_GRID_RES + ox,
+            rows * self.LIDAR_GRID_RES + oy,
+        ]) # shape (M, 2)
+
+        if len(map_pts) < 10:
+            return
+
+        # ICP iterations
+        pts = new_pts.copy()
+        R_total = np.eye(2)
+        t_total = np.zeros(2)
+
+        for _ in range(self.LIDAR_ICP_ITERS):
+            # nn
+            diffs = map_pts[:, None, :] - pts[None, :, :]
+            dists = np.linalg.norm(diffs, axis=2)           
+            nn_idx = np.argmin(dists, axis=0)
+            nn_dist = dists[nn_idx, np.arange(len(pts))]
+
+            inliers = nn_dist < self.LIDAR_INLIER_DIST
+            if inliers.sum() < 5:
+                return  # not enough overlap
+
+            src = pts[inliers]
+            dst = map_pts[nn_idx[inliers]]
+
+            # optimal rigid transform
+            src_c = src.mean(axis=0)
+            dst_c = dst.mean(axis=0)
+            H_mat = (src - src_c).T @ (dst - dst_c)
+            U, _, Vt = np.linalg.svd(H_mat)
+            R_step = Vt.T @ U.T
+            if np.linalg.det(R_step) < 0: # fix reflection
+                Vt[-1, :] *= -1
+                R_step = Vt.T @ U.T
+            t_step = dst_c - R_step @ src_c
+
+            pts = (R_step @ pts.T).T + t_step
+            R_total = R_step @ R_total
+            t_total = R_step @ t_total + t_step
+
+            if np.linalg.norm(t_step) < 1e-4 and abs(math.atan2(R_step[1, 0], R_step[0, 0])) < 1e-5:
+                break  # converged
+
+        dth = math.atan2(R_total[1, 0], R_total[0, 0])
+        x_sm = x0 + t_total[0]
+        y_sm = y0 + t_total[1]
+        th_sm = wrap(th0 + dth)
+
+        # EKF update (assuming we did direct pose observation)
+        n = self.state_size
+        H = np.zeros((3, n))
+        H[0, 0] = H[1, 1] = H[2, 2] = 1.0
+
+        z_obs  = np.array([x_sm, y_sm, th_sm])
+        z_pred = np.array([self.mu[0], self.mu[1], self.mu[2]])
+        z_diff = z_obs - z_pred
+        z_diff[2] = wrap(z_diff[2])
+
+        S = H @ self.Sigma @ H.T + self.LIDAR_MATCH_NOISE
+        K = self.Sigma @ H.T @ np.linalg.inv(S)
+
+        self.mu += K @ z_diff
+        self.mu[2] = wrap(self.mu[2])
+        self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
+    
+    def _lidar_cb(self, msg: LaserScan):
+        x, y, th = self.mu[0], self.mu[1], self.mu[2]
+
+        new_pts = []
+        for i, r in enumerate(msg.ranges):
+            if not (msg.range_min < r < msg.range_max):
+                continue
+            angle = msg.angle_min + i * msg.angle_increment
+            wx = x + r * math.cos(th + angle)
+            wy = y + r * math.sin(th + angle)
+            ci, cj = self._world_to_cell(wx, wy)
+            if 0 <= ci < self.LIDAR_GRID_SIZE and 0 <= cj < self.LIDAR_GRID_SIZE:
+                self.lidar_grid[cj, ci] += 1
+            new_pts.append((wx, wy))
+
+        # Try to match to existing map once populated enough
+        occupied_cells = int(np.count_nonzero(self.lidar_grid))
+        if occupied_cells > 300 and len(new_pts) >= 10:
+            self._scan_match_update(np.array(new_pts), x, y, th)
+
+        self._publish_lidar_map()
+
     # PUBLISHING
 
     def _publish_pose(self):
@@ -232,10 +347,27 @@ class EKFSlamNode(Node):
             })
         self.map_pub.publish(String(data=json.dumps(landmarks)))
 
+    def _publish_lidar_map(self):
+        msg = OccupancyGrid()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = 'map'
+        msg.info.resolution = self.LIDAR_GRID_RES
+        msg.info.width = self.LIDAR_GRID_SIZE
+        msg.info.height = self.LIDAR_GRID_SIZE
+        msg.info.origin.position.x = self.LIDAR_GRID_ORIGIN[0]
+        msg.info.origin.position.y = self.LIDAR_GRID_ORIGIN[1]
+        msg.info.origin.orientation.w = 1.0
+
+        max_hits = max(int(self.lidar_grid.max()), 1)
+        normalized = (self.lidar_grid * 100 // max_hits).astype(np.int8)
+        msg.data = normalized.flatten().tolist()
+
+        self.lidar_map_pub.publish(msg)
+
     # PLOTTING
     PLOT_PIXELS = 800
-    PLOT_METERS = 10.0
-    PLOT_ORIGIN = (400, 400) # pixels for 0,0 in world frame
+    PLOT_METERS = 40.0
+    PLOT_ORIGIN = (0, 0) # pixels for 0,0 in world frame
 
     def _world_to_px(self, x, y):
         scale = self.PLOT_PIXELS / self.PLOT_METERS

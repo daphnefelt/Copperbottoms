@@ -40,7 +40,8 @@ class EKFSlamNode(Node):
         super().__init__('ekf_slam')
 
         # state
-        self.mu: np.ndarray = np.array([16.0, 1.5, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
+        self.mu: np.ndarray = np.array([0.0, 0.0, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
+        #self.mu: np.ndarray = np.array([16.0, 1.5, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
         self.Sigma: np.ndarray = np.zeros((3, 3)) # Pose known at start, so zero covariance
         # maps tag_id (int) to index j so landmark is at mu[3+2j : 3+2j+2]
         self.lm_index: dict[int, int] = {}

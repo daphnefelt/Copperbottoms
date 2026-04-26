@@ -37,8 +37,10 @@ class LineFollower(Node):
         # RealSense
         self.pipeline = rs.pipeline()
         config = rs.config()
+        self.get_logger().info("Starting RealSense pipeline...")
         config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
         self.pipeline.start(config)
+        self.get_logger().info("RealSense pipeline started.")
 
         # Main timer loop
         self.timer = self.create_timer(0.1, self.loop)

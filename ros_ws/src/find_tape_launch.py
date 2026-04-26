@@ -15,8 +15,8 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
-    pid_paper_following = ExecuteProcess(
-        cmd=['python3', os.path.join(workspace_src_dir, 'pid_paper_following.py')],
+    pid_tape_following = ExecuteProcess(
+        cmd=['python3', os.path.join(workspace_src_dir, 'pid_tape_following.py')],
         output='screen',
         emulate_tty=True,
     )
@@ -37,7 +37,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         find_tape,
-        pid_paper_following,
+        pid_tape_following,
         rover_node,
         ros_stream_with_depth,
     ])

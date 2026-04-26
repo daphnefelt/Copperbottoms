@@ -2,6 +2,7 @@ import pyrealsense2 as rs
 import numpy as np
 import rclpy
 from rclpy.node import Node
+from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
 from CannyEdgeDetection import CannyEdgeDetection
 
@@ -9,18 +10,28 @@ from CannyEdgeDetection import CannyEdgeDetection
 class LineFollower(Node):
 
     def __init__(self):
-        super().__init__('line_follower')
+        super().__init__('paper_follower')
 
+        # Publishers / Subscribers
         self.pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.angle_pub = self.create_publisher(Float64, '/line_angle', 10)
+
+        # If you still want to listen to /angle_goal
+        self.angle_goal_sub = self.create_subscription(
+            Float64,
+            '/angle_goal',
+            self.angle_goal_callback,
+            10
+        )
+
+        # PID gains
+        self.kp = 0.20
+        self.ki = 0.01
+        self.kd = 0.05
 
         # PID state
         self.prev_error = 0.0
         self.integral = 0.0
-
-        self.kp = 0.25
-        self.ki = 0.01
-        self.kd = 0.05
-
         self.dt = 0.1
 
         # RealSense
@@ -29,18 +40,26 @@ class LineFollower(Node):
         config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
         self.pipeline.start(config)
 
+        # Main timer loop
         self.timer = self.create_timer(0.1, self.loop)
 
-    # ---------------- Canny + Hough ----------------
+    # -------------------------------------------------
+    # Optional external angle topic
+    # -------------------------------------------------
+    def angle_goal_callback(self, msg):
+        self.get_logger().info(f"Received /angle_goal: {msg.data:.2f}")
+
+    # -------------------------------------------------
+    # Manual Hough Transform
+    # -------------------------------------------------
     def hough(self, edges):
 
         rows, cols = edges.shape
 
         thetas = np.deg2rad(np.arange(-90, 90))
         diag = int(np.sqrt(rows**2 + cols**2))
-        rhos = np.arange(-diag, diag)
 
-        acc = np.zeros((len(rhos), len(thetas)))
+        acc = np.zeros((2 * diag, len(thetas)))
 
         y_idxs, x_idxs = np.nonzero(edges)
 
@@ -49,11 +68,16 @@ class LineFollower(Node):
             y = y_idxs[i]
 
             for t in range(len(thetas)):
-                rho = int(x*np.cos(thetas[t]) + y*np.sin(thetas[t])) + diag
-                acc[rho, t] += 1
+                rho = int(x * np.cos(thetas[t]) + y * np.sin(thetas[t])) + diag
+
+                if 0 <= rho < 2 * diag:
+                    acc[rho, t] += 1
 
         return acc, thetas
 
+    # -------------------------------------------------
+    # Vision angle extraction
+    # -------------------------------------------------
     def get_angle(self, image):
 
         edges = CannyEdgeDetection.process(image)
@@ -65,16 +89,25 @@ class LineFollower(Node):
 
         theta = thetas[theta_idx]
 
-        # convert to robot error
         angle = np.degrees(theta) - 90
+
+        # Print / log angle
+        self.get_logger().info(f"Detected Angle: {angle:.2f}")
+
+        # Publish angle topic
+        msg = Float64()
+        msg.data = float(angle)
+        self.angle_pub.publish(msg)
 
         return angle
 
-    # ---------------- PID ----------------
+    # -------------------------------------------------
+    # PID Controller
+    # -------------------------------------------------
     def pid(self, error):
 
         self.integral += error * self.dt
-        self.integral = np.clip(self.integral, -50, 50)
+        self.integral = np.clip(self.integral, -50.0, 50.0)
 
         derivative = (error - self.prev_error) / self.dt
 
@@ -88,26 +121,32 @@ class LineFollower(Node):
 
         return np.clip(output, -1.0, 1.0)
 
-    # ---------------- Main loop ----------------
+    # -------------------------------------------------
+    # Main Loop
+    # -------------------------------------------------
     def loop(self):
 
-        frames = self.pipeline.wait_for_frames()
-        frame = frames.get_color_frame()
+        try:
+            frames = self.pipeline.wait_for_frames()
+            frame = frames.get_color_frame()
 
-        if not frame:
-            return
+            if not frame:
+                return
 
-        image = np.asanyarray(frame.get_data())
+            image = np.asanyarray(frame.get_data())
 
-        angle_error = self.get_angle(image)
+            angle_error = self.get_angle(image)
 
-        turn = self.pid(angle_error)
+            turn = self.pid(angle_error)
 
-        twist = Twist()
-        twist.linear.x = 0.3
-        twist.angular.z = turn
+            twist = Twist()
+            twist.linear.x = 0.30
+            twist.angular.z = float(turn)
 
-        self.pub.publish(twist)
+            self.pub.publish(twist)
+
+        except Exception as e:
+            self.get_logger().error(f"Loop error: {e}")
 
 
 def main():
@@ -116,7 +155,12 @@ def main():
 
     try:
         rclpy.spin(node)
+
     finally:
         node.pipeline.stop()
         node.destroy_node()
         rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()

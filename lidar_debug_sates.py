@@ -19,15 +19,19 @@ class LidarDebugNode(Node):
 
         # -- distances --------------------------------------------------------
         self.stop_dist = 0.5
+        self.wall_target_inital = 1.3
         self.wall_target = 1.3
         self.dist_tol = 0.1
 
-        # -- Cone half-widths (exact from hallway_center_node) ----------------
+        # -- misc variables --------------------------------------------------
+        self.prev_cls = ''
+
+        # -- Cone half-widths  ------------------------------------------------
         self.front_half_cone = math.radians(10)   # ±10° front
         self.side_half_cone  = math.radians(5)    # ±5°  right side 90°
         self.angle_half_cone = math.radians(2)    # ±1°  angled lookahead 135°
 
-        # -- Parallel / perpendicular tolerance (exact from hallway_center_node)
+        # -- Parallel / perpendicular tolerance --------------------------------
         self.angle_tol = math.radians(10)
         self.perp_tol  = math.radians(10)
 
@@ -122,38 +126,18 @@ class LidarDebugNode(Node):
     # --------------------------------------------------------------------------
     # -- PD Steering Control -------
     # -------------------------------------------------------------------------
-    def PD_steering():
-        # takes target from HandD
-        # PD control to meet target
+    def PD_steering(angle_error, dist_error):
+        # takes error from mode
+        # PD control to bring error to 0
+        # self.get_logger().info()
         return
     
-    # -------------------------------------------------------------------------
-    # -- Heading and Distance Control Helper
-    # -------------------------------------------------------------------------
-    def HandD():
-        # ------ DETERMINES TARGET FOR PD CONTROL TO MAINTAIN --------
-        # takes current mode, right_dist, right_angle, angle_dist, lookahead_angle
-
-        # Mode Straight
-            # prioritize staying parallel on right_angle and staying within tolerance of right dist
-
-        # Mode Divot
-            # Maintain right_dist until right_angle not parallel or no reading
-            # coast when not parallel or no reading
-            # when parallel again, re-assess right_dist and maintain
-
-        # Mode Inlet
-            # maintain right_dist until mode is straight?
-            # robust to rapid decrease in right_dist
-
-        # Mode Turn
-            # calculated turn logic?
-
-        # Mode Obstacle
-            # avoid obstacle?
-        
-
-        return
+    # ------------------------------------------------------------------------
+    # -- Update Wall Target
+    # ------------------------------------------------------------------------
+    #def update_wall_target(right_dist):
+        #right_dist = self._valid_median(ranges, msg, math.pi / 2, self.side_half_cone)
+        #self.wall_target = right_dist
     # -------------------------------------------------------------------------
     # State Machine Mode transition
     # -------------------------------------------------------------------------
@@ -226,31 +210,87 @@ class LidarDebugNode(Node):
         # ----------------------------------------------------------------------------------------------------
         if self.mode == self.MODE_STRAIGHT:
             self.get_logger().info('STRAIGHT')
+            twist = Twist()
+            # error values
+            dist_error = right_dist - self.wall_target   # + too far, - too close
+            angle_error = abs(abs(right_angle) - math.pi)
             # PD control staying a distance from the wall and parallel
+            # forward speed
+            twist.linear.x  = -self.forward_speed
+            # PD Steering correction
+            twist.angular.z = self.PD_steering(angle_error, dist_error)
+
+            # If the separate cases need to be broken up -----------------------------------------
+            # prioritize staying parallel on right_angle and staying within tolerance of right dist
+            #if right_cls == 'PARALLEL':
+                #if abs(dist_error) <= self.dist_tol:
+                    # forward speed
+                    #twist.linear.x  = -self.forward_speed
+                    # PD Steering straight
+                    #twist.angular.z = self.PD_steering(angle_error,dist_error)
+                #else:
+                    # forward speed
+                    #twist.linear.x  = -self.forward_speed
+                    # PD Steering correction
+                    #twist.angular.z = self.PD_steering(angle_error, dist_error)
+            #else:
+                # correct to parallel
+                # forward speed
+                #twist.linear.x  = -self.forward_speed
+                # PD Steering correction
+                #twist.angular.z = self.PD_steering(angle_error, dist_error)
+
+            
 
         if self.mode == self.MODE_DIVOT:
             self.get_logger().info('DIVOT')
-            # PD control to maintain straight regardless of divot
+            twist = Twist()
+            # Maintain right_dist until right_angle not parallel or no reading
+            # coast when not parallel or no reading
+            # when parallel again, re-assess right_dist and maintain
+            if right_cls == 'PARALLEL':
+                if self.prev_cls != 'PARALLEL':
+                    self.wall_target = right_dist
+                dist_error = right_dist - self.wall_target
+                angle_error = abs(abs(right_angle) - math.pi)
+                twist.linear.x = -self.forward_speed
+                twist.angular.z = self.PD_steering(angle_error, dist_error)
+            else:
+                twist.linear.x = -self.forward_speed
+                twist.angular.z = 0
+            
+            self.prev_cls = right_cls
 
         if self.mode == self.MODE_INLET:
             self.get_logger().info('INLET')
-            # analyze if the inlet will result in a collision / adjust if needed
-            # PD control to maintain straight regardless of inlet
+            twist = Twist()
+            # analyze if the inlet will result in a collision / adjust if needed??
+            # maintain right_dist until mode is straight?
+                #flip to new self.wall_target triggered by flip to straight??
+            
+            
 
         if self.mode == self.MODE_TURN:
             self.get_logger().info('TURN')
+            twist = Twist()
             elapsed = time.time() - self.mode_start_time
             turn_complete = (lookahead_cls == 'PARALLEL' and elapsed > 0.1)  # minimum dwell to avoid instant re-exit
             if turn_complete:
                 self._enter_mode(self.MODE_STRAIGHT)
             # turn motor commands
+            twist.linear.x = -self.forward_speed
+            #twist.angular.z = 
+            
         
         if self.mode == self.MODE_OBSTACLE:
             self.get_logger().info('OBSTACLE')
+            twist = Twist()
             # backup
+            twist.linear.x = self.forward_speed
+            twist.angular.z = 0
             # analyze and go around, preferably to the right
             # re-align parallel in the hallway
-            obstacle_cleared = (front_dist > self.stop_dist)
+            obstacle_cleared = (front_dist > self.stop_dist and right_cls == 'PARALLEL')
             if obstacle_cleared:
                 self._enter_mode(self.MODE_STRAIGHT)
 

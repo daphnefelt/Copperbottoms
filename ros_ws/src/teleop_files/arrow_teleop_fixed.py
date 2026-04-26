@@ -91,7 +91,7 @@ class ArrowTeleop(Node):
         # Keep sign positive so UP maps to forward and DOWN maps to reverse.
         throttle_normalized = (throttle - self.throttle_neutral) / 250.0
         # twist.linear.x = throttle_normalized * 0.251
-        twist.linear.x = throttle_normalized * 0.35
+        twist.linear.x = throttle_normalized * 0.2
         
         # Turning from steering
         # rover_node uses angular.z for steering/turning

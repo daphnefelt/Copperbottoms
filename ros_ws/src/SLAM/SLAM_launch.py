@@ -28,7 +28,7 @@ def _get_running_node_names() -> set[str]:
             names.add(line[1:])
     return names
 
-
+# CAMERA DOESN'T SHOW UP AS A NODE!
 def _is_any_running(running_names: set[str], aliases: tuple[str, ...]) -> bool:
 	for alias in aliases:
 		if alias in running_names:

@@ -75,7 +75,23 @@ def generate_launch_description():
 	node_names.append(('rover_node', '/rover_node'))
 	processes.append(rover_node)
 
-
+	rf2o_node = Node(
+		package='rf2o_laser_odometry',
+		executable='rf2o_laser_odometry_node',
+		name='rf2o_laser_odometry',
+		output='screen',
+		emulate_tty=True,
+		parameters=[{
+			'laser_scan_topic': '/scan',
+			'odom_topic': '/odom_rf2o',
+			'publish_tf': False,
+			'base_frame_id': 'base_link',
+			'odom_frame_id': 'odom',
+			'freq': 20.0,
+		}],
+	)
+	node_names.append(('rf2o_laser_odometry', '/rf2o_laser_odometry'))
+	processes.append(rf2o_node)
 
 	lidar_node = Node(
         package='rplidar_ros',

@@ -39,23 +39,14 @@ def _is_any_running(running_names: set[str], aliases: tuple[str, ...]) -> bool:
 			return True
 	return False
 
-
 def generate_launch_description():
-	# need robo_rover, camera,  rplidar, landmark sensor node, ekf
+	# need robo_rover, camera,  rplidar, landmark sensor node
 	workspace_src_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 	SLAM_dir = os.path.join(workspace_src_dir, 'SLAM')
 	fastsam_dir = os.path.expanduser('~/robo_realsense/fastsam')
 
 	node_names = []
 	processes = []
-
-	landmark_based_slam = ExecuteProcess(
-		cmd=['python3', os.path.join(SLAM_dir, 'landmark_based_slam.py')],
-		output='screen',
-		emulate_tty=True,
-	)
-	node_names.append(('ekf_slam', '/ekf_slam'))
-	processes.append(landmark_based_slam)
 
 	sensor_slam = ExecuteProcess(
 		cmd=['python3', os.path.join(SLAM_dir, 'sensor.py')],
@@ -76,20 +67,19 @@ def generate_launch_description():
 	processes.append(rover_node)
 
 	rf2o_node = Node(
-		package='rf2o_laser_odometry',
-		executable='rf2o_laser_odometry_node',
-		name='rf2o_laser_odometry',
-		output='screen',
-		emulate_tty=True,
-		parameters=[{
-			'laser_scan_topic': '/scan',
-			'odom_topic': '/odom_rf2o',
-			'publish_tf': False,
-			'base_frame_id': 'base_link',
-			'odom_frame_id': 'odom',
-			'freq': 20.0,
-		}],
-	)
+        package='rf2o_laser_odometry',
+        executable='rf2o_laser_odometry_node',
+        name='rf2o_laser_odometry',
+        output='screen',
+        parameters=[{
+            'laser_scan_topic' : '/scan',
+            'odom_topic' : '/odom_rf2o',
+            'publish_tf' : True,
+            'base_frame_id' : 'base_link',
+            'odom_frame_id' : 'odom',
+            'init_pose_from_topic' : '',
+            'freq' : 7.0}],
+    )
 	node_names.append(('rf2o_laser_odometry', '/rf2o_laser_odometry'))
 	processes.append(rf2o_node)
 
@@ -111,7 +101,6 @@ def generate_launch_description():
 	node_names.append(('rplidar_node', '/rplidar_node'))
 	processes.append(lidar_node)
 	
-
 	ros_stream_with_depth = ExecuteProcess(
 		#cmd=['python3', os.path.join(fastsam_dir, 'desktop_stream.py')],
 		cmd=['python3', os.path.join(fastsam_dir, 'ros_stream_with_depth.py')],
@@ -121,7 +110,6 @@ def generate_launch_description():
 	node_names.append(('realsense_color_depth_publisher', '/realsense_color_depth_publisher'))
 	processes.append(ros_stream_with_depth)
 
-
 	running_nodes = _get_running_node_names()
 	launch_actions = []
 
@@ -129,7 +117,5 @@ def generate_launch_description():
 	for i in range(len(node_names)):
 		if not _is_any_running(running_nodes, node_names[i]):
 			launch_actions.append(processes[i])
-		
-
 
 	return LaunchDescription(launch_actions)

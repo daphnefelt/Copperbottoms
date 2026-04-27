@@ -16,25 +16,16 @@ from std_msgs.msg import String
 import cv2
 import os
 os.environ.setdefault('QT_LOGGING_RULES', '*.warning=false') # stupid font warnings
-from sensor_msgs.msg import LaserScan
-from nav_msgs.msg import OccupancyGrid
+from nav_msgs.msg import Odometry
 from visualization_msgs.msg import MarkerArray
 from visualization_msgs.msg import Marker
-
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise on robot pose
 OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range (m) and bearing (rad)
 INIT_LM_COV = 1000.0 # init covariance for a new landmark
 
-# LIDAR PARAMS
-LIDAR_GRID_RES = 0.05 # meters per cell
-LIDAR_GRID_SIZE = 800 # cells per side (so 40m x 40m)
-# 20x20 cells per meter x meter thus at .05 meter resolution
-LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
-LIDAR_INLIER_DIST = 0.30 # ICP nearest-neighbour threshold (m)
-LIDAR_ICP_ITERS = 20
-LIDAR_MATCH_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # scan-match uncertainty
+RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # rf2o scan-match uncertainty
 
 def wrap(a: float) -> float: # wraps to -pi, +pi
     return (a + math.pi) % (2.0 * math.pi) - math.pi
@@ -57,15 +48,14 @@ class EKFSlamNode(Node):
         self.delta = 0.0
         self.last_time = self.get_clock().now()
 
-        # lidar occupancy map
-        self.lidar_grid = np.zeros((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE), dtype=np.int32)
+        # track last rf2o pose so we can get relative change
+        self._rf2o_prev = None
 
         self.create_subscription(Twist, '/cmd_vel',   self._cmd_vel_cb,   10)
         self.create_subscription(String, '/landmarks', self._landmark_cb,  10)
-        self.create_subscription(LaserScan, '/scan', self._lidar_cb, 10)
+        self.create_subscription(Odometry, '/odom_rf2o', self._rf2o_cb, 10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/slam/pose', 10)
         self.map_pub = self.create_publisher(MarkerArray, '/slam/landmarks', 10)
-        self.lidar_map_pub = self.create_publisher(OccupancyGrid, '/slam/lidar_map', 10)
         self.create_timer(0.05, self._predict_step) # predict at 20hz
 
         self.get_logger().info('SLAM node is up')
@@ -222,113 +212,54 @@ class EKFSlamNode(Node):
 
         self.get_logger().info(f'LANDMARK UPDATE: tag={tag_id}  x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
 
-    def _world_to_cell(self, wx, wy):
-        ox, oy = LIDAR_GRID_ORIGIN
-        ci = int((wx - ox) / LIDAR_GRID_RES)
-        cj = int((wy - oy) / LIDAR_GRID_RES)
-        return ci, cj # (col, row)
-    
-    def _scan_match_update(self, new_pts: np.ndarray, x0: float, y0: float, th0: float):
-        # map point cloud from occupied cells
-        rows, cols = np.where(self.lidar_grid > 0)
-        ox, oy = LIDAR_GRID_ORIGIN
+    def _rf2o_cb(self, msg: Odometry):
+        # get pose from rf2o odometry message (it's in mf quaternions)
+        x_rf2o = msg.pose.pose.position.x
+        y_rf2o = msg.pose.pose.position.y
+        qz = msg.pose.pose.orientation.z
+        qw = msg.pose.pose.orientation.w
+        th_rf2o = 2.0 * math.atan2(qz, qw)
 
-        # MARY - ignore these notes - this is if we want the robot to start at (0, 0)
-        # MARY - doesn't need to change - (0, 0) doesn't represent the corner of the map
-        # gave ourselves 40 x 40 meters
-        # it represents the middle of the bottom of the map - could try (-30, -2.5) to 
-        
-        # represents bottom point of each grid box
-        map_pts = np.column_stack([
-            cols * LIDAR_GRID_RES + ox,
-            rows * LIDAR_GRID_RES + oy,
-        ]) # shape (M, 2)
-
-        if len(map_pts) < 10:
+        if self._rf2o_prev is None: # first time running this
+            self._rf2o_prev = (x_rf2o, y_rf2o, th_rf2o)
             return
 
-        # ICP iterations
-        pts = new_pts.copy()
-        R_total = np.eye(2)
-        t_total = np.zeros(2)
+        px, py, pth = self._rf2o_prev
+        self._rf2o_prev = (x_rf2o, y_rf2o, th_rf2o)
 
-        for _ in range(LIDAR_ICP_ITERS):
-            # nn
-            diffs = map_pts[:, None, :] - pts[None, :, :]
-            dists = np.linalg.norm(diffs, axis=2)           
-            nn_idx = np.argmin(dists, axis=0)
-            nn_dist = dists[nn_idx, np.arange(len(pts))]
+        # get local change from rf2o since last update
+        dx_odom = x_rf2o - px
+        dy_odom = y_rf2o - py
+        dth = wrap(th_rf2o - pth)
+        c, s = math.cos(pth), math.sin(pth)
+        dx_local =  c * dx_odom + s * dy_odom
+        dy_local = -s * dx_odom + c * dy_odom
 
-            inliers = nn_dist < LIDAR_INLIER_DIST
-            if inliers.sum() < 5:
-                return  # not enough overlap
+        # Project local change into world frame using EKF heading estimate
+        th_ekf = self.mu[2]
+        c2, s2 = math.cos(th_ekf), math.sin(th_ekf)
+        x_sm  = self.mu[0] + c2 * dx_local - s2 * dy_local
+        y_sm  = self.mu[1] + s2 * dx_local + c2 * dy_local
+        th_sm = wrap(th_ekf + dth)
 
-            src = pts[inliers]
-            dst = map_pts[nn_idx[inliers]]
-
-            # optimal rigid transform
-            src_c = src.mean(axis=0)
-            dst_c = dst.mean(axis=0)
-            H_mat = (src - src_c).T @ (dst - dst_c)
-            U, _, Vt = np.linalg.svd(H_mat)
-            R_step = Vt.T @ U.T
-            if np.linalg.det(R_step) < 0: # fix reflection
-                Vt[-1, :] *= -1
-                R_step = Vt.T @ U.T
-            t_step = dst_c - R_step @ src_c
-
-            pts = (R_step @ pts.T).T + t_step
-            R_total = R_step @ R_total
-            t_total = R_step @ t_total + t_step
-
-            if np.linalg.norm(t_step) < 1e-4 and abs(math.atan2(R_step[1, 0], R_step[0, 0])) < 1e-5:
-                break  # converged
-
-        dth = math.atan2(R_total[1, 0], R_total[0, 0])
-        x_sm = x0 + t_total[0]
-        y_sm = y0 + t_total[1]
-        th_sm = wrap(th0 + dth)
-
-        # EKF update (assuming we did direct pose observation)
+        # EKF update on direct pose observation
         n = self.state_size
         H = np.zeros((3, n))
         H[0, 0] = H[1, 1] = H[2, 2] = 1.0
 
-        z_obs  = np.array([x_sm, y_sm, th_sm])
+        z_obs = np.array([x_sm, y_sm, th_sm])
         z_pred = np.array([self.mu[0], self.mu[1], self.mu[2]])
         z_diff = z_obs - z_pred
         z_diff[2] = wrap(z_diff[2])
 
-        S = H @ self.Sigma @ H.T + LIDAR_MATCH_NOISE
+        S = H @ self.Sigma @ H.T + RF2O_NOISE
         K = self.Sigma @ H.T @ np.linalg.inv(S)
 
         self.mu += K @ z_diff
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
 
-        self.get_logger().info(f'LIDAR SCAN MATCH UPDATE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
-    
-    def _lidar_cb(self, msg: LaserScan):
-        x, y, th = self.mu[0], self.mu[1], self.mu[2]
-
-        new_pts = []
-        for i, r in enumerate(msg.ranges):
-            if not (msg.range_min < r < msg.range_max):
-                continue
-            angle = msg.angle_min + i * msg.angle_increment
-            wx = x + r * math.cos(th + angle)
-            wy = y + r * math.sin(th + angle)
-            ci, cj = self._world_to_cell(wx, wy)
-            if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
-                self.lidar_grid[cj, ci] += 1
-            new_pts.append((wx, wy))
-
-        # Try to match to existing map once populated enough
-        occupied_cells = int(np.count_nonzero(self.lidar_grid))
-        if occupied_cells > 300 and len(new_pts) >= 10:
-            self._scan_match_update(np.array(new_pts), x, y, th)
-
-        self._publish_lidar_map()
+        self.get_logger().info(f'RF2O UPDATE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
 
     # PUBLISHING
 
@@ -393,23 +324,6 @@ class EKFSlamNode(Node):
             markerArr.append(self.get_marker(tag_id, float(self.mu[sl[0]], self.mu[sl][1])))
         self.map_pub.publish(markerArr)
         #self.map_pub.publish(String(data=json.dumps(landmarks)))
-
-    def _publish_lidar_map(self):
-        msg = OccupancyGrid()
-        msg.header.stamp = self.get_clock().now().to_msg()
-        msg.header.frame_id = 'map'
-        msg.info.resolution = LIDAR_GRID_RES
-        msg.info.width = LIDAR_GRID_SIZE
-        msg.info.height = LIDAR_GRID_SIZE
-        msg.info.origin.position.x = LIDAR_GRID_ORIGIN[0]
-        msg.info.origin.position.y = LIDAR_GRID_ORIGIN[1]
-        msg.info.origin.orientation.w = 1.0
-
-        max_hits = max(int(self.lidar_grid.max()), 1)
-        normalized = (self.lidar_grid * 100 // max_hits).astype(np.int8)
-        msg.data = normalized.flatten().tolist()
-
-        self.lidar_map_pub.publish(msg)
 
     # PLOTTING
     PLOT_PIXELS = 800

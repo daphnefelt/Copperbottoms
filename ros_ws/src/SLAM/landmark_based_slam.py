@@ -18,6 +18,9 @@ import os
 os.environ.setdefault('QT_LOGGING_RULES', '*.warning=false') # stupid font warnings
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import OccupancyGrid
+from visualization_msgs.msg import MarkerArray
+from visualization_msgs.msg import Marker
+
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise on robot pose
@@ -40,8 +43,9 @@ class EKFSlamNode(Node):
         super().__init__('ekf_slam')
 
         # state
-        self.mu: np.ndarray = np.array([0.0, 0.0, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
         #self.mu: np.ndarray = np.array([16.0, 1.5, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
+        self.mu: np.ndarray = np.array([0.0, 0.0, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
+
         self.Sigma: np.ndarray = np.zeros((3, 3)) # Pose known at start, so zero covariance
         # maps tag_id (int) to index j so landmark is at mu[3+2j : 3+2j+2]
         self.lm_index: dict[int, int] = {}
@@ -58,7 +62,7 @@ class EKFSlamNode(Node):
         self.create_subscription(String, '/landmarks', self._landmark_cb,  10)
         self.create_subscription(LaserScan, '/scan', self._lidar_cb, 10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/slam/pose', 10)
-        self.map_pub = self.create_publisher(String, '/slam/landmarks', 10)
+        self.map_pub = self.create_publisher(MarkerArray, '/slam/landmarks', 10)
         self.lidar_map_pub = self.create_publisher(OccupancyGrid, '/slam/lidar_map', 10)
         self.create_timer(0.05, self._predict_step) # predict at 20hz
 
@@ -345,16 +349,41 @@ class EKFSlamNode(Node):
 
         self.pose_pub.publish(msg)
 
+    def get_marker(self, id, x, y):
+        marker = Marker()
+        marker.header.frame_id = "map"
+        marker.header.stamp = self.get_clock().now().to_msg()
+        marker.id = id
+        radius = 0.1
+        marker.ns = "landmarks"
+        marker.type = Marker.SPHERE
+        marker.action = Marker.ADD
+        marker.scale.x = radius
+        marker.scale.y = radius
+        marker.scale.z = radius
+        marker.color.r = 0.0
+        marker.color.g = 1.0
+        marker.color.b = 0.0
+        marker.color.a = 1.0
+        marker.pose.position.x = x;
+        marker.pose.position.y = y;
+        marker.pose.position.z = 0;
+        return marker
+
+
     def _publish_map(self):
         landmarks = []
+        markerArr = MarkerArray()
         for tag_id, j in self.lm_index.items():
             sl = slice(3 + 2 * j, 3 + 2 * j + 2)
-            landmarks.append({
-                'id': tag_id,
-                'x': float(self.mu[sl][0]),
-                'y': float(self.mu[sl][1]),
-            })
-        self.map_pub.publish(String(data=json.dumps(landmarks)))
+            # landmarks.append({
+            #     'id': tag_id,
+            #     'x': float(self.mu[sl][0]),
+            #     'y': float(self.mu[sl][1]),
+            # })
+            markerArr.append(self.get_marker(tag_id, float(self.mu[sl[0]], self.mu[sl][1])))
+        self.map_pub.publish(markerArr)
+        #self.map_pub.publish(String(data=json.dumps(landmarks)))
 
     def _publish_lidar_map(self):
         msg = OccupancyGrid()

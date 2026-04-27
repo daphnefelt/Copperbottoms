@@ -340,7 +340,7 @@ class LidarDebugNode(Node):
             self.vel_pub.publish(twist)
 
 
-        elif self.mode == self.MODE_TURN:
+        elif self.mode == self.MODE_TURN:  # NEED TO STAY IN TURN UNTIL CONDITIONS MET
             twist = Twist()
             self.prev_state = self.MODE_TURN
             elapsed = time.time() - self.mode_start_time

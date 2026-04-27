@@ -30,6 +30,7 @@ INIT_LM_COV = 1000.0 # init covariance for a new landmark
 # LIDAR PARAMS
 LIDAR_GRID_RES = 0.05 # meters per cell
 LIDAR_GRID_SIZE = 800 # cells per side (so 40m x 40m)
+# 20x20 cells per meter x meter thus at .05 meter resolution
 LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
 LIDAR_INLIER_DIST = 0.30 # ICP nearest-neighbour threshold (m)
 LIDAR_ICP_ITERS = 20
@@ -43,8 +44,9 @@ class EKFSlamNode(Node):
         super().__init__('ekf_slam')
 
         # state
-        #self.mu: np.ndarray = np.array([16.0, 1.5, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
-        self.mu: np.ndarray = np.array([0.0, 0.0, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
+        self.mu: np.ndarray = np.array([16.0, 1.5, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
+        self.mu_prev: np.ndarray = self.mu.copy()
+        #self.mu: np.ndarray = np.array([0.0, 0.0, math.pi]) # No landmarks yet, so just robot pose (approximating the start here)
 
         self.Sigma: np.ndarray = np.zeros((3, 3)) # Pose known at start, so zero covariance
         # maps tag_id (int) to index j so landmark is at mu[3+2j : 3+2j+2]
@@ -230,6 +232,13 @@ class EKFSlamNode(Node):
         # map point cloud from occupied cells
         rows, cols = np.where(self.lidar_grid > 0)
         ox, oy = LIDAR_GRID_ORIGIN
+
+        # MARY - ignore these notes - this is if we want the robot to start at (0, 0)
+        # MARY - doesn't need to change - (0, 0) doesn't represent the corner of the map
+        # gave ourselves 40 x 40 meters
+        # it represents the middle of the bottom of the map - could try (-30, -2.5) to 
+        
+        # represents bottom point of each grid box
         map_pts = np.column_stack([
             cols * LIDAR_GRID_RES + ox,
             rows * LIDAR_GRID_RES + oy,

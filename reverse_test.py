@@ -20,23 +20,24 @@ class LidarDebugNode(Node):
 
         # -- distances --------------------------------------------------------
         self.stop_dist = 0.5
-        self.wall_target_inital = 1.3
-        self.wall_target = 1.3
+        self.wall_target_inital = 1.47
+        self.wall_target = 1.47
         self.dist_tol = 0.1
 
         # -- misc variables --------------------------------------------------
-        self.prev_cls = ''
+        self.prev_cls = 'PARALLEL'
         self.prev_state = ''
         self.turn_rate = 1.0
-        self.forward_speed = 0.18
+        self.forward_speed = 0.12
         self.OB_forward_speed = 0.2
         self.phase_start_time = 0.0
+        self.last_correction = 0.0
     
 
         # PD gains — tune these
-        self.Kp_dist  =  0.8   # proportional to lateral distance error
-        self.Kd_dist  =  0.1   # damping on distance error
-        self.Kp_angle =  0.5   # proportional to angle error
+        self.Kp_dist  =  1.2   # proportional to lateral distance error
+        self.Kd_dist  =  0.5   # damping on distance error
+        self.Kp_angle =  1.2   # proportional to angle error
         self.Kd_angle =  0.05  # damping on angle error
 
         # PD state
@@ -176,8 +177,10 @@ class LidarDebugNode(Node):
             self.Kp_dist  * dist_error  + self.Kd_dist  * d_dist
             + self.Kp_angle * angle_error + self.Kd_angle * d_angle
         )
-
-        return correction
+        if math.isnan(correction):
+            correction = 0.0
+        self.last_correction = correction
+        return -correction
     
     # -----------------------------------------------------------------------
     # -- parallel helper ----------------------------------------------------
@@ -264,10 +267,10 @@ class LidarDebugNode(Node):
         # ---- STATES ----------------------------------------------------------------------------------------
         # ----------------------------------------------------------------------------------------------------
         if self.mode == self.MODE_STRAIGHT:
-            self.get_logger().info('STRAIGHT')
             twist = Twist()
             if self.prev_state == self.MODE_INLET:
                 self.wall_target = right_dist
+                self.get_logger().info('UPDATE WALL TARGET')
 
             self.prev_state = self.MODE_STRAIGHT
             # error values
@@ -302,7 +305,6 @@ class LidarDebugNode(Node):
             
 
         elif self.mode == self.MODE_DIVOT:
-            self.get_logger().info('DIVOT')
             twist = Twist()
             self.prev_state = self.MODE_DIVOT
             # Maintain right_dist until right_angle not parallel or no reading
@@ -311,6 +313,7 @@ class LidarDebugNode(Node):
             if right_cls == 'PARALLEL':
                 if self.prev_cls != 'PARALLEL':
                     self.wall_target = right_dist
+                    self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target
                 angle_error = self._wrap(right_angle - math.pi)
                 twist.linear.x = -self.forward_speed
@@ -320,11 +323,11 @@ class LidarDebugNode(Node):
                 twist.linear.x = -self.forward_speed
                 twist.angular.z = 0.0
                 self.vel_pub.publish(twist)
+                self.get_logger().info('COAST')
             
             self.prev_cls = right_cls
 
         elif self.mode == self.MODE_INLET:
-            self.get_logger().info('INLET')
             twist = Twist()
             self.prev_state = self.MODE_INLET
             dist_error = right_dist - self.wall_target
@@ -338,7 +341,6 @@ class LidarDebugNode(Node):
 
 
         elif self.mode == self.MODE_TURN:
-            self.get_logger().info('TURN')
             twist = Twist()
             self.prev_state = self.MODE_TURN
             elapsed = time.time() - self.mode_start_time
@@ -389,8 +391,9 @@ class LidarDebugNode(Node):
     # ------------------------------------------------------------------
         self.get_logger().info(
             f'front: {front_dist:6.2f} m  |  '
-            f'right: {right_dist:6.2f} m  angle: {right_deg:+7.2f}°  ({right_cls})  |  '
-            f'lookahead: {angle_dist:6.2f} m  angle: {lookahead_deg:+7.2f}°  ({lookahead_cls})  |  '
+            f'right: {right_dist:6.2f} m   ({right_cls})  |  '
+            f'lookahead: {angle_dist:6.2f} m  ({lookahead_cls})  |  '
+            f'correction: {self.last_correction:+.3f}  |  '
             f'mode: {self.mode}',
             throttle_duration_sec=0.2
         )
@@ -409,7 +412,8 @@ def main(args=None):
     finally:
         if node is not None:
             node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':

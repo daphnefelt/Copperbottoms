@@ -28,7 +28,7 @@ class LidarDebugNode(Node):
         self.prev_cls = ''
         self.prev_state = ''
         self.turn_rate = 1
-        self.forward_speed = 0.25
+        self.forward_speed = 0.18
         self.OB_forward_speed = 0.2
         self.phase_start_time = 0.0
     
@@ -312,7 +312,7 @@ class LidarDebugNode(Node):
                 self.vel_pub.publish(twist)
             else:
                 twist.linear.x = -self.forward_speed
-                twist.angular.z = 0
+                twist.angular.z = 0.0
                 self.vel_pub.publish(twist)
             
             self.prev_cls = right_cls
@@ -353,7 +353,7 @@ class LidarDebugNode(Node):
             if self.obstacle_phase == 'BACKUP':
                 # Drive backward, straight
                 twist.linear.x  = self.OB_forward_speed   # positive = backward in your convention
-                twist.angular.z = 0
+                twist.angular.z = 0.0
                 self.vel_pub.publish(twist)
                 # Once we have enough clearance, start turning right
                 if front_dist > self.stop_dist * 1.5:   # gives a comfortable buffer

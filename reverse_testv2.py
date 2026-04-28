@@ -39,6 +39,8 @@ class LidarDebugNode(Node):
         self.Kd_dist  =  0.5   # damping on distance error
         self.Kp_angle =  1.2   # proportional to angle error
         self.Kd_angle =  0.05  # damping on angle error
+        self.K_dist_to_heading = 0.3   # rad of heading bias per meter of distance error
+
 
         # PD state
         self.prev_angle_error = 0.0
@@ -151,36 +153,63 @@ class LidarDebugNode(Node):
     # -------------------------------------------------------------------------
     def PD_steering(self, angle_error, dist_error):
         """
-        PD controller for wall-following steering.
-        
-        angle_error: abs(right_angle) - pi  → 0 when parallel to wall
-        dist_error:  right_dist - wall_target     → + too far, - too close
-        
-        Returns angular.z correction.
+        Switching PD steering.
+
+        PRIMARY (angle reading available):
+        Hold heading parallel to the wall. Distance error nudges the heading
+        target slightly inward/outward — distance never commands angular.z directly.
+
+        FALLBACK (no angle reading, angle_error is NaN):
+        Pure PD on distance error. Best we can do without orientation info.
+
+        Args:
+            angle_error: abs(right_angle) - pi  (NaN if no wall-angle reading)
+            dist_error:  right_dist - wall_target  (+ too far, - too close)
         """
         now = time.time()
-        dt = now - self.prev_time if hasattr(self, 'prev_time') and (now - self.prev_time) > 0 else 0.05
+        dt = now - self.prev_time if (now - self.prev_time) > 0 else 0.05
         self.prev_time = now
 
-        # --- Derivative terms ---
-        d_angle = (angle_error - self.prev_angle_error) / dt
-        d_dist  = (dist_error  - self.prev_dist_error)  / dt
+        # ------------------------------------------------------------------
+        # FALLBACK: no angle reading → pure distance PD
+        # ------------------------------------------------------------------
+        if math.isnan(angle_error):
+            d_dist = (dist_error - self.prev_dist_error) / dt
+            self.prev_dist_error  = dist_error
+            self.prev_angle_error = 0.0   # reset so we don't get a derivative spike on re-entry
 
-        # --- Store for next cycle ---
-        self.prev_angle_error = angle_error
-        self.prev_dist_error  = dist_error
+            correction = self.Kp_dist * dist_error + self.Kd_dist * d_dist
+            if math.isnan(correction):
+                correction = 0.0
+            self.last_correction = correction
+            return correction
 
-        # --- PD output ---
-        # dist_error:  steer left (positive z) when too far, right (negative z) when too close
-        # angle_error: steer to restore parallel alignment
-        correction = (
-            self.Kp_dist  * dist_error  + self.Kd_dist  * d_dist
-            + self.Kp_angle * angle_error + self.Kd_angle * d_angle
-        )
+        # ------------------------------------------------------------------
+        # PRIMARY: cascaded heading control with distance bias
+        # ------------------------------------------------------------------
+        # Outer loop: distance error → small heading offset.
+        # Sign convention check: if dist_error > 0 (too far from wall), we want
+        # the robot to angle TOWARD the wall. Whether that's + or - in your
+        # heading-error frame depends on your sign conventions — flip K_dist_to_heading
+        # if it goes the wrong way.
+        desired_heading_offset = self.K_dist_to_heading * dist_error
+
+        # Saturate so the outer loop can never demand more than ~20° off parallel.
+        max_offset = math.radians(20)
+        desired_heading_offset = max(-max_offset, min(max_offset, desired_heading_offset))
+
+        # Inner loop: PD on heading error (relative to the biased target).
+        heading_error = angle_error - desired_heading_offset
+        d_heading = (heading_error - self.prev_angle_error) / dt
+
+        self.prev_angle_error = heading_error
+        self.prev_dist_error  = dist_error  # keep updated for clean fallback re-entry
+
+        correction = self.Kp_angle * heading_error + self.Kd_angle * d_heading
         if math.isnan(correction):
             correction = 0.0
         self.last_correction = correction
-        return -correction
+        return correction
     
     # -----------------------------------------------------------------------
     # -- parallel helper ----------------------------------------------------
@@ -275,7 +304,7 @@ class LidarDebugNode(Node):
             self.prev_state = self.MODE_STRAIGHT
             # error values
             dist_error = right_dist - self.wall_target   # + too far, - too close
-            angle_error = abs(right_angle - math.pi)
+            angle_error = abs(right_angle) - math.pi
             
             # PD control staying a distance from the wall and parallel
             twist.linear.x  = -self.forward_speed
@@ -315,7 +344,7 @@ class LidarDebugNode(Node):
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target
-                angle_error = abs(right_angle - math.pi)
+                angle_error = abs(right_angle) - math.pi
                 twist.linear.x = -self.forward_speed
                 twist.angular.z = self.PD_steering(angle_error, dist_error)
                 self.vel_pub.publish(twist)
@@ -331,7 +360,7 @@ class LidarDebugNode(Node):
             twist = Twist()
             self.prev_state = self.MODE_INLET
             dist_error = right_dist - self.wall_target
-            angle_error = abs(right_angle - math.pi)
+            angle_error = abs(right_angle) - math.pi
             # analyze if the inlet will result in a collision / adjust if needed??
             # forward speed
             twist.linear.x  = -self.forward_speed

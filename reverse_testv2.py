@@ -38,7 +38,7 @@ class LidarDebugNode(Node):
         self.Kp_dist  =  1.2   # proportional to lateral distance error
         self.Kd_dist  =  0.5   # damping on distance error
         self.Kp_angle =  1.2   # proportional to angle error
-        self.Kd_angle =  0.05  # damping on angle error
+        self.Kd_angle =  0.1  # damping on angle error
         self.K_dist_to_heading = 0.3   # rad of heading bias per meter of distance error
 
 
@@ -304,8 +304,7 @@ class LidarDebugNode(Node):
             self.prev_state = self.MODE_STRAIGHT
             # error values
             dist_error = right_dist - self.wall_target   # + too far, - too close
-            angle_error = abs(right_angle) - math.pi
-            
+            angle_error = self._wrap(right_angle - math.pi)            
             # PD control staying a distance from the wall and parallel
             twist.linear.x  = -self.forward_speed
             twist.angular.z = self.PD_steering(angle_error, dist_error)
@@ -344,7 +343,7 @@ class LidarDebugNode(Node):
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target
-                angle_error = abs(right_angle) - math.pi
+                angle_error = self._wrap(right_angle - math.pi)
                 twist.linear.x = -self.forward_speed
                 twist.angular.z = self.PD_steering(angle_error, dist_error)
                 self.vel_pub.publish(twist)

@@ -27,7 +27,7 @@ class LidarDebugNode(Node):
         # -- misc variables --------------------------------------------------
         self.prev_cls = 'PARALLEL'
         self.prev_state = ''
-        self.turn_rate = 1.0
+        self.turn_rate = -0.8
         self.forward_speed = 0.12
         self.OB_forward_speed = 0.2
         self.phase_start_time = 0.0
@@ -269,7 +269,7 @@ class LidarDebugNode(Node):
         # State switching logic
         # ------------------------------------------------------------------
 
-        if self.mode in (self.MODE_STRAIGHT, self.MODE_DIVOT, self.MODE_INLET, self.MODE_TURN, self.MODE_OBSTACLE):
+        if self.mode in (self.MODE_STRAIGHT, self.MODE_DIVOT, self.MODE_INLET, self.MODE_OBSTACLE):
 
             # Evaluate each condition and log it explicitly
             cond_turn   = (right_cls == 'PARALLEL' and lookahead_cls == 'PERPENDICULAR' and 5 <= angle_dist < 99)
@@ -359,7 +359,7 @@ class LidarDebugNode(Node):
             twist = Twist()
             self.prev_state = self.MODE_INLET
             dist_error = right_dist - self.wall_target
-            angle_error = abs(right_angle) - math.pi
+            angle_error = self._wrap(right_angle - math.pi)
             # analyze if the inlet will result in a collision / adjust if needed??
             # forward speed
             twist.linear.x  = -self.forward_speed
@@ -372,8 +372,9 @@ class LidarDebugNode(Node):
             twist = Twist()
             self.prev_state = self.MODE_TURN
             elapsed = time.time() - self.mode_start_time
-            turn_complete = (lookahead_cls == 'PARALLEL' and elapsed > 0.1)  # minimum dwell to avoid instant re-exit
+            turn_complete = (angle_dist <= 2.0 and elapsed > 0.5)  # minimum dwell to avoid instant re-exit
             if turn_complete:
+                twist.angular.z = 0.0
                 self._enter_mode(self.MODE_STRAIGHT)
             # turn motor commands
             twist.linear.x = -self.forward_speed

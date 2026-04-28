@@ -180,7 +180,7 @@ class LidarDebugNode(Node):
         if math.isnan(correction):
             correction = 0.0
         self.last_correction = correction
-        return -correction
+        return correction
     
     # -----------------------------------------------------------------------
     # -- parallel helper ----------------------------------------------------
@@ -275,7 +275,7 @@ class LidarDebugNode(Node):
             self.prev_state = self.MODE_STRAIGHT
             # error values
             dist_error = right_dist - self.wall_target   # + too far, - too close
-            angle_error = self._wrap(right_angle - math.pi)
+            angle_error = abs(right_angle) - math.pi
             
             # PD control staying a distance from the wall and parallel
             twist.linear.x  = -self.forward_speed
@@ -315,7 +315,7 @@ class LidarDebugNode(Node):
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target
-                angle_error = self._wrap(right_angle - math.pi)
+                angle_error = abs(right_angle) - math.pi
                 twist.linear.x = -self.forward_speed
                 twist.angular.z = self.PD_steering(angle_error, dist_error)
                 self.vel_pub.publish(twist)
@@ -331,7 +331,7 @@ class LidarDebugNode(Node):
             twist = Twist()
             self.prev_state = self.MODE_INLET
             dist_error = right_dist - self.wall_target
-            angle_error = self._wrap(right_angle - math.pi)
+            angle_error = abs(right_angle) - math.pi
             # analyze if the inlet will result in a collision / adjust if needed??
             # forward speed
             twist.linear.x  = -self.forward_speed

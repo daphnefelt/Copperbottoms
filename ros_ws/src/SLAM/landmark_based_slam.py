@@ -19,13 +19,7 @@ import cv2
 import os
 os.environ.setdefault('QT_LOGGING_RULES', '*.warning=false') # stupid font warnings
 from sensor_msgs.msg import LaserScan
-from nav_msgs.msg import Odometry, Odometry, OccupancyGrid
-from visualization_msgs.msg import MarkerArray
-from visualization_msgs.msg import Marker
-
-# for mapping
-from tf2_ros import TransformBroadcaster
-from geometry_msgs.msg import TransformStamped
+from nav_msgs.msg import Odometry, OccupancyGrid
 from visualization_msgs.msg import MarkerArray
 from visualization_msgs.msg import Marker
 
@@ -76,8 +70,6 @@ class EKFSlamNode(Node):
         self.map_pub = self.create_publisher(MarkerArray, '/slam/landmarks', 10)
         self.lidar_map_pub = self.create_publisher(OccupancyGrid, '/slam/lidar_map', 10)
         self.create_timer(0.05, self._predict_step) # predict at 20hz
-        # map
-        self.tf_broadcaster = TransformBroadcaster(self)
 
         self.get_logger().info('SLAM node is up')
 
@@ -149,20 +141,6 @@ class EKFSlamNode(Node):
         self._publish_pose() # Best estimate of robot pose
         self.get_logger().info(f'ROBOT POSE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
 
-
-        # map stuff
-        t = TransformStamped()
-        t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = 'map'
-        t.child_frame_id = 'odom'
-
-        # map->odom is the correction between EKF pose and odometry
-        t.transform.translation.x = self.mu[0] - self._rf2o_prev[0] if self._rf2o_prev else self.mu[0]
-        t.transform.translation.y = self.mu[1] - self._rf2o_prev[1] if self._rf2o_prev else self.mu[1]
-        t.transform.translation.z = 0.0
-        t.transform.rotation.z = math.sin(self.mu[2] / 2.0)
-        t.transform.rotation.w = math.cos(self.mu[2] / 2.0)
-        self.tf_broadcaster.sendTransform(t)
     # MEASUREMENT MODEL
 
     def _landmark_cb(self, msg: String):

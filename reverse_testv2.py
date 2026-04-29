@@ -303,6 +303,7 @@ class LidarDebugNode(Node):
                     self.get_logger().info('UPDATE WALL TARGET')
                 else:
                     self.wall_target = self.wall_target_inital
+                    self.get_logger().info('UPDATE WALL TARGET INITIAL')
 
             self.prev_state = self.MODE_STRAIGHT
             # error values

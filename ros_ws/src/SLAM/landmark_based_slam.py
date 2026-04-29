@@ -75,7 +75,7 @@ class EKFSlamNode(Node):
         self.map_pub = self.create_publisher(MarkerArray, '/slam/landmarks', 10)
         self.lidar_map_pub = self.create_publisher(OccupancyGrid, '/slam/lidar_map', 10)
         self.pose_history_pub = self.create_publisher(MarkerArray, '/slam/pose_history', 10)
-        # self.create_timer(0.05, self._predict_step) # predict at 20hz
+        self.create_timer(0.05, self._predict_step) # predict at 20hz
 
         self.get_logger().info('SLAM node is up')
 
@@ -102,7 +102,7 @@ class EKFSlamNode(Node):
         return pos_angle if angular_z >= 0 else -pos_angle
 
     def _cmd_vel_cb(self, msg: Twist):
-        # self._predict_step() # predict up to now before changing velocity
+        self._predict_step() # predict up to now before changing velocity
         self.v = self.V_NOMINAL(msg.linear.x)
         self.delta = self.DELTA_NOMINAL(msg.angular.z)
         print(f"self. delta is {self.delta}")

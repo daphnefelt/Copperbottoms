@@ -1,0 +1,2110 @@
+[2026-04-26 13:51:55.392] ===== PROGRAM STARTED =====
+[2026-04-26 13:51:55.408] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.429] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.453] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.475] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.496] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.518] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.539] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.561] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.588] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.609] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.631] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.657] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.679] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.701] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.722] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.744] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.766] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.787] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.808] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.830] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.852] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.873] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.897] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.919] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.942] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.966] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:55.989] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:56.011] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:56.034] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:56.056] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:56.079] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:56.100] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:51:56.121] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.123] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.144] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.165] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.186] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.207] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.229] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.251] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.272] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.293] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.315] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.336] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.361] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.393] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.415] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.437] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.458] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.479] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.503] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.524] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.546] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.568] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.590] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.611] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.612] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.633] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.655] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.657] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.679] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.700] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.701] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.723] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.743] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.764] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.765] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.786] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.787] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.807] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.808] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.829] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.830] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.851] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.853] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.874] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.895] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.897] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.918] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.920] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.940] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.942] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.963] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.964] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:56.986] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:56.987] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.009] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.030] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.031] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.052] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.052] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.073] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.074] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.095] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.096] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.119] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.140] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.141] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.163] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.164] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.185] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.206] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.207] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.228] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.229] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.250] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.252] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.274] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.275] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.296] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.297] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.318] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.320] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.341] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.362] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.363] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.384] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.386] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.407] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.409] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.429] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.431] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.453] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.474] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.495] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.496] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.518] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.539] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.541] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.563] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.584] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.605] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.607] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.628] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.630] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.651] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.654] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.675] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.678] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.699] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.701] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.722] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.724] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.746] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.747] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.769] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.791] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.812] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.814] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.836] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.837] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.860] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.881] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.883] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.904] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.906] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.927] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.928] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.949] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.951] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.972] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:57.993] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:57.995] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.016] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.018] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.039] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.041] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.062] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.064] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.085] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.088] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.110] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.131] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.133] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.154] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.157] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.177] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.178] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.199] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.200] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.220] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.221] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.242] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.263] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.264] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.285] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.289] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.310] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.311] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.331] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.332] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.353] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.354] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.376] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.398] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.420] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.441] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.442] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.462] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.463] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.489] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.491] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.511] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.512] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.534] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.555] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.556] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.576] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.577] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.598] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.600] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.620] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.622] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.643] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.645] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.666] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.667] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.688] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.690] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.712] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.734] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.755] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.756] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.777] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.778] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.799] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.800] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.821] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.823] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.845] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.866] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.868] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.889] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.891] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.912] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.913] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.934] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.935] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.956] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.977] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:58.978] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:58.999] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.000] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.021] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.023] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.044] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.045] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.067] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.087] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.088] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.109] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.112] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.135] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.156] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.157] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.179] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.200] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.202] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.224] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.228] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.249] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.253] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.275] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.277] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.299] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.300] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.321] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.323] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.344] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.346] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.366] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.367] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.388] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.389] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.410] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.411] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.433] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.455] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.457] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.480] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.502] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.524] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.527] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.548] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.569] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.570] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.591] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.597] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.618] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.619] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.640] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.642] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.662] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.664] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.685] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.686] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.707] KEY PRESS: UP (Forward)
+[2026-04-26 13:51:59.708] PUBLISH -> linear.x=0.20, angular.z=-0.00
+[2026-04-26 13:51:59.729] KEY PRESS: RIGHT
+[2026-04-26 13:51:59.731] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.753] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.775] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.803] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.824] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.845] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.866] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.888] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.909] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.930] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.951] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.972] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:51:59.993] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.014] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.036] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.057] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.078] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.100] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.122] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.144] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.165] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.187] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.209] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.230] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.251] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.272] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.294] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:00.315] KEY PRESS: LEFT
+[2026-04-26 13:52:00.316] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.337] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.359] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.380] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.401] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.422] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.444] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.465] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.486] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.508] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.529] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.550] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.572] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.594] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.615] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.637] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.659] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.680] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.702] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.723] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.745] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.767] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.789] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.811] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.833] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.854] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.875] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.897] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.919] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.941] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.963] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:00.985] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:01.006] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:01.027] KEY PRESS: RIGHT
+[2026-04-26 13:52:01.028] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.050] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.071] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.093] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.114] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.135] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.157] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.179] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.200] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.221] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.242] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.264] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.285] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.306] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.327] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.348] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.369] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.391] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.412] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.433] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.455] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.477] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.498] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.521] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.542] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.564] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.586] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.609] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.630] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.652] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.674] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.696] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.718] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.739] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.761] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.786] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.808] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.830] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.853] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.875] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.897] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.919] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.940] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:01.969] KEY PRESS: LEFT
+[2026-04-26 13:52:01.971] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:01.992] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.014] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.036] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.058] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.080] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.101] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.123] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.144] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.166] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.190] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.211] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.232] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.253] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.275] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.297] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.319] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.340] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.361] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.383] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.404] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.426] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.447] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.469] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.490] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.512] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.534] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.555] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.577] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.598] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.620] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.641] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:02.662] KEY PRESS: RIGHT
+[2026-04-26 13:52:02.662] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.683] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.704] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.726] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.748] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.770] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.791] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.813] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.834] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.856] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.878] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.899] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.921] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.943] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.965] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:02.986] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.008] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.030] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.053] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.074] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.096] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.117] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.138] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.160] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.188] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.210] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.232] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.256] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.277] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.298] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.320] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.341] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.363] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.383] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.405] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.426] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.447] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.468] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:03.488] KEY PRESS: LEFT
+[2026-04-26 13:52:03.490] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.511] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.532] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.554] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.575] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.596] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.618] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.639] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.661] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.683] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.704] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.725] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.747] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.769] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.792] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.813] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.834] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.856] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.878] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.900] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.922] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.944] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.965] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:03.987] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.009] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.032] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.054] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.077] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.099] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.121] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.144] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.166] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.188] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.211] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.235] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.257] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.279] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.300] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.321] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.342] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.363] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.385] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.406] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.428] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.449] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.470] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.492] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.513] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.535] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.556] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.578] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.599] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.621] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.642] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.663] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.684] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.705] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.727] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.748] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.769] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.791] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.813] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.835] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.857] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.879] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.901] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.923] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.944] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.966] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:04.988] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.009] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.029] KEY PRESS: RIGHT
+[2026-04-26 13:52:05.030] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.052] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.074] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.096] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.118] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.139] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.161] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.186] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.207] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.233] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.255] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.276] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.298] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.320] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.341] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.362] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.384] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.405] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.427] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.448] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.469] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.491] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.513] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.534] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.556] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:05.577] KEY PRESS: LEFT
+[2026-04-26 13:52:05.578] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.600] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.622] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.643] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.665] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.686] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.707] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.730] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.751] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.772] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.794] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.817] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.839] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.862] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.884] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.907] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.929] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.951] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.974] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:05.996] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.018] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.040] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.062] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.083] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.105] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.128] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.150] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.172] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.194] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.216] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.238] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.261] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.283] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.304] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.326] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.348] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.370] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.392] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.413] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.435] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.457] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.479] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.500] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.522] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.543] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.565] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:06.585] KEY PRESS: RIGHT
+[2026-04-26 13:52:06.586] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.607] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.630] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.651] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.672] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.694] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.715] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.737] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.758] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.780] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.800] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.823] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.844] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.865] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.886] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.908] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.929] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.951] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.972] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:06.994] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.016] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.038] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.059] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.082] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.103] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.126] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.147] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.169] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.190] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.211] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.233] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.254] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.276] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.297] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.319] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.340] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.362] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.384] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.406] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.428] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.450] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.473] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.495] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.517] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.539] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.561] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.584] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.606] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.628] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.649] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.671] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.693] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.715] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.737] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.759] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.781] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.805] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.827] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.849] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.871] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.894] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.917] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.938] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.959] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:07.984] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.006] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.027] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.048] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.070] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.092] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.114] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.136] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.158] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.180] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.201] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.223] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.246] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.267] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.289] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.310] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.332] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.354] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.376] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.398] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.419] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.441] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:08.469] KEY PRESS: LEFT
+[2026-04-26 13:52:08.470] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.492] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.515] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.536] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.558] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.579] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.600] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.621] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.642] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.663] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.684] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.706] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.727] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.748] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.771] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.792] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.813] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.834] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.855] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.877] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.899] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.920] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.941] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.962] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:08.984] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:09.010] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:09.032] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:09.054] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:09.075] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:09.097] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:09.119] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:09.140] KEY PRESS: RIGHT
+[2026-04-26 13:52:09.143] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.166] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.187] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.209] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.231] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.253] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.274] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.295] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.318] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.342] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.364] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.386] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.408] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.429] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.450] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.471] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.493] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.514] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.535] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.557] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.579] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.601] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.626] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.649] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.671] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.694] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.716] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.738] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.761] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.783] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.805] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.827] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.850] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.872] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.895] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.918] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.940] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.961] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:09.983] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:10.005] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:10.027] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:10.048] KEY PRESS: LEFT
+[2026-04-26 13:52:10.049] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.070] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.092] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.114] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.135] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.156] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.177] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.199] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.220] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.241] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.263] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.284] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.306] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.328] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.349] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.371] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.393] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.414] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.435] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.456] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.478] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.499] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.520] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.541] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.562] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.583] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.604] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.625] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.646] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.668] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.689] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.710] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.732] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.754] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.775] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.797] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.818] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.841] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.864] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.886] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.907] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.929] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.951] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.972] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:10.994] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.015] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.036] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.057] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.079] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.100] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.121] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.142] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.164] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.185] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.206] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.227] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.248] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:11.269] KEY PRESS: RIGHT
+[2026-04-26 13:52:11.270] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.291] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.312] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.334] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.355] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.376] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.397] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.418] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.439] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.461] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.483] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.504] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.525] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.546] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.567] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.589] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.611] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.633] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.654] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.677] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.700] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.723] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.745] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.768] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.790] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.812] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.835] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.856] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.877] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.898] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.921] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.942] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.965] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:11.986] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.008] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.030] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.052] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.072] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.094] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.115] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.136] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.157] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.178] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.199] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.220] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.242] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.263] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.284] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.305] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.327] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.348] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.369] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.391] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.412] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.433] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.454] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.475] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.496] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.518] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.539] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.561] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.582] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.603] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.624] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.645] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.667] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.688] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.709] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.731] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.753] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.776] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.798] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.822] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.844] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.867] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.890] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:12.911] KEY PRESS: LEFT
+[2026-04-26 13:52:12.912] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:12.934] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:12.955] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:12.976] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:12.998] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.021] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.044] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.066] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.088] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.111] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.133] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.154] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.175] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.197] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.218] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.239] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.260] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.281] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.302] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.323] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.344] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.365] KEY PRESS: LEFT
+[2026-04-26 13:52:13.366] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.387] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.408] KEY PRESS: LEFT
+[2026-04-26 13:52:13.408] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.430] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.451] KEY PRESS: LEFT
+[2026-04-26 13:52:13.451] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.473] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.494] KEY PRESS: LEFT
+[2026-04-26 13:52:13.495] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.516] KEY PRESS: LEFT
+[2026-04-26 13:52:13.517] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.538] KEY PRESS: LEFT
+[2026-04-26 13:52:13.538] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.560] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.580] KEY PRESS: LEFT
+[2026-04-26 13:52:13.581] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.602] KEY PRESS: LEFT
+[2026-04-26 13:52:13.603] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.624] KEY PRESS: LEFT
+[2026-04-26 13:52:13.626] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.647] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.668] KEY PRESS: LEFT
+[2026-04-26 13:52:13.669] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.689] KEY PRESS: LEFT
+[2026-04-26 13:52:13.690] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.711] KEY PRESS: LEFT
+[2026-04-26 13:52:13.712] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.734] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.754] KEY PRESS: LEFT
+[2026-04-26 13:52:13.755] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.776] KEY PRESS: LEFT
+[2026-04-26 13:52:13.777] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.798] KEY PRESS: LEFT
+[2026-04-26 13:52:13.799] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.821] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.842] KEY PRESS: LEFT
+[2026-04-26 13:52:13.844] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.866] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.889] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.909] KEY PRESS: LEFT
+[2026-04-26 13:52:13.911] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.934] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.955] KEY PRESS: LEFT
+[2026-04-26 13:52:13.956] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:13.978] KEY PRESS: LEFT
+[2026-04-26 13:52:13.980] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.002] KEY PRESS: LEFT
+[2026-04-26 13:52:14.004] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.026] KEY PRESS: LEFT
+[2026-04-26 13:52:14.026] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.047] KEY PRESS: LEFT
+[2026-04-26 13:52:14.048] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.069] KEY PRESS: LEFT
+[2026-04-26 13:52:14.070] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.091] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.114] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.135] KEY PRESS: LEFT
+[2026-04-26 13:52:14.137] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.158] KEY PRESS: LEFT
+[2026-04-26 13:52:14.159] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.180] KEY PRESS: LEFT
+[2026-04-26 13:52:14.182] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.205] KEY PRESS: LEFT
+[2026-04-26 13:52:14.207] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.228] KEY PRESS: LEFT
+[2026-04-26 13:52:14.229] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.249] KEY PRESS: LEFT
+[2026-04-26 13:52:14.250] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.270] KEY PRESS: LEFT
+[2026-04-26 13:52:14.271] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.293] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.314] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.334] KEY PRESS: LEFT
+[2026-04-26 13:52:14.335] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.355] KEY PRESS: LEFT
+[2026-04-26 13:52:14.357] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.377] KEY PRESS: LEFT
+[2026-04-26 13:52:14.378] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.398] KEY PRESS: LEFT
+[2026-04-26 13:52:14.399] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.420] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.440] KEY PRESS: LEFT
+[2026-04-26 13:52:14.441] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.462] KEY PRESS: LEFT
+[2026-04-26 13:52:14.463] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.484] KEY PRESS: LEFT
+[2026-04-26 13:52:14.485] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.506] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.528] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.549] KEY PRESS: LEFT
+[2026-04-26 13:52:14.550] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.570] KEY PRESS: LEFT
+[2026-04-26 13:52:14.571] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.592] KEY PRESS: LEFT
+[2026-04-26 13:52:14.593] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.614] KEY PRESS: LEFT
+[2026-04-26 13:52:14.615] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.635] KEY PRESS: LEFT
+[2026-04-26 13:52:14.636] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.657] KEY PRESS: LEFT
+[2026-04-26 13:52:14.658] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.678] KEY PRESS: LEFT
+[2026-04-26 13:52:14.679] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.700] KEY PRESS: LEFT
+[2026-04-26 13:52:14.701] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.723] KEY PRESS: LEFT
+[2026-04-26 13:52:14.723] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.745] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.766] KEY PRESS: LEFT
+[2026-04-26 13:52:14.767] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.788] KEY PRESS: LEFT
+[2026-04-26 13:52:14.789] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.810] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.830] KEY PRESS: LEFT
+[2026-04-26 13:52:14.831] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.853] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.874] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.895] KEY PRESS: LEFT
+[2026-04-26 13:52:14.895] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.916] KEY PRESS: LEFT
+[2026-04-26 13:52:14.918] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.939] KEY PRESS: LEFT
+[2026-04-26 13:52:14.940] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.962] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:14.983] KEY PRESS: LEFT
+[2026-04-26 13:52:14.985] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.007] KEY PRESS: LEFT
+[2026-04-26 13:52:15.009] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.032] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.056] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.078] KEY PRESS: LEFT
+[2026-04-26 13:52:15.081] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.103] KEY PRESS: LEFT
+[2026-04-26 13:52:15.107] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.129] KEY PRESS: LEFT
+[2026-04-26 13:52:15.131] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.154] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.175] KEY PRESS: LEFT
+[2026-04-26 13:52:15.176] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.197] KEY PRESS: LEFT
+[2026-04-26 13:52:15.199] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.220] KEY PRESS: LEFT
+[2026-04-26 13:52:15.222] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.244] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.265] KEY PRESS: LEFT
+[2026-04-26 13:52:15.267] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.287] KEY PRESS: LEFT
+[2026-04-26 13:52:15.289] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.310] KEY PRESS: LEFT
+[2026-04-26 13:52:15.312] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.334] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.354] KEY PRESS: LEFT
+[2026-04-26 13:52:15.356] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.376] KEY PRESS: LEFT
+[2026-04-26 13:52:15.377] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.398] KEY PRESS: LEFT
+[2026-04-26 13:52:15.399] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.420] KEY PRESS: LEFT
+[2026-04-26 13:52:15.420] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.443] KEY PRESS: LEFT
+[2026-04-26 13:52:15.443] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.464] KEY PRESS: LEFT
+[2026-04-26 13:52:15.466] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.486] KEY PRESS: LEFT
+[2026-04-26 13:52:15.487] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.508] KEY PRESS: LEFT
+[2026-04-26 13:52:15.508] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.530] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.551] KEY PRESS: LEFT
+[2026-04-26 13:52:15.551] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.572] KEY PRESS: LEFT
+[2026-04-26 13:52:15.573] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.593] KEY PRESS: LEFT
+[2026-04-26 13:52:15.594] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.615] KEY PRESS: LEFT
+[2026-04-26 13:52:15.616] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.636] KEY PRESS: LEFT
+[2026-04-26 13:52:15.637] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.658] KEY PRESS: LEFT
+[2026-04-26 13:52:15.658] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.679] KEY PRESS: LEFT
+[2026-04-26 13:52:15.680] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.701] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.721] KEY PRESS: LEFT
+[2026-04-26 13:52:15.722] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.744] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.765] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.786] KEY PRESS: LEFT
+[2026-04-26 13:52:15.787] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.808] KEY PRESS: LEFT
+[2026-04-26 13:52:15.809] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.829] KEY PRESS: LEFT
+[2026-04-26 13:52:15.830] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.852] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.873] KEY PRESS: LEFT
+[2026-04-26 13:52:15.874] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.894] KEY PRESS: LEFT
+[2026-04-26 13:52:15.896] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.916] KEY PRESS: LEFT
+[2026-04-26 13:52:15.918] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.939] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.959] KEY PRESS: LEFT
+[2026-04-26 13:52:15.960] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:15.982] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.003] KEY PRESS: LEFT
+[2026-04-26 13:52:16.006] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.027] KEY PRESS: LEFT
+[2026-04-26 13:52:16.028] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.051] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.072] KEY PRESS: LEFT
+[2026-04-26 13:52:16.073] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.097] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.120] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.141] KEY PRESS: LEFT
+[2026-04-26 13:52:16.143] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.164] KEY PRESS: LEFT
+[2026-04-26 13:52:16.165] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.188] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.210] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.231] KEY PRESS: LEFT
+[2026-04-26 13:52:16.232] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.253] KEY PRESS: LEFT
+[2026-04-26 13:52:16.254] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.275] KEY PRESS: LEFT
+[2026-04-26 13:52:16.276] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.297] KEY PRESS: LEFT
+[2026-04-26 13:52:16.299] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.321] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.343] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.365] KEY PRESS: LEFT
+[2026-04-26 13:52:16.366] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.388] KEY PRESS: LEFT
+[2026-04-26 13:52:16.390] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.411] KEY PRESS: LEFT
+[2026-04-26 13:52:16.413] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.433] KEY PRESS: LEFT
+[2026-04-26 13:52:16.434] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.455] KEY PRESS: LEFT
+[2026-04-26 13:52:16.456] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.476] KEY PRESS: LEFT
+[2026-04-26 13:52:16.477] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.498] KEY PRESS: LEFT
+[2026-04-26 13:52:16.499] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.520] KEY PRESS: LEFT
+[2026-04-26 13:52:16.521] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.541] KEY PRESS: LEFT
+[2026-04-26 13:52:16.542] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.564] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.585] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.605] KEY PRESS: LEFT
+[2026-04-26 13:52:16.606] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.626] KEY PRESS: LEFT
+[2026-04-26 13:52:16.627] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.648] KEY PRESS: LEFT
+[2026-04-26 13:52:16.649] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.669] KEY PRESS: LEFT
+[2026-04-26 13:52:16.670] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.691] KEY PRESS: LEFT
+[2026-04-26 13:52:16.692] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.712] KEY PRESS: LEFT
+[2026-04-26 13:52:16.713] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.735] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.755] KEY PRESS: LEFT
+[2026-04-26 13:52:16.756] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.776] KEY PRESS: LEFT
+[2026-04-26 13:52:16.778] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.798] KEY PRESS: LEFT
+[2026-04-26 13:52:16.799] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.820] KEY PRESS: LEFT
+[2026-04-26 13:52:16.821] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.841] KEY PRESS: LEFT
+[2026-04-26 13:52:16.843] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.864] KEY PRESS: LEFT
+[2026-04-26 13:52:16.865] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.886] KEY PRESS: LEFT
+[2026-04-26 13:52:16.887] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.908] KEY PRESS: LEFT
+[2026-04-26 13:52:16.909] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.930] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.951] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.973] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:16.995] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.015] KEY PRESS: LEFT
+[2026-04-26 13:52:17.016] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.037] KEY PRESS: LEFT
+[2026-04-26 13:52:17.039] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.060] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.082] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.102] KEY PRESS: LEFT
+[2026-04-26 13:52:17.104] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.124] KEY PRESS: LEFT
+[2026-04-26 13:52:17.126] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.147] KEY PRESS: LEFT
+[2026-04-26 13:52:17.149] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.170] KEY PRESS: LEFT
+[2026-04-26 13:52:17.171] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.192] KEY PRESS: LEFT
+[2026-04-26 13:52:17.193] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.214] KEY PRESS: LEFT
+[2026-04-26 13:52:17.216] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.238] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.259] KEY PRESS: LEFT
+[2026-04-26 13:52:17.261] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.282] KEY PRESS: LEFT
+[2026-04-26 13:52:17.284] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.306] KEY PRESS: LEFT
+[2026-04-26 13:52:17.308] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.330] KEY PRESS: LEFT
+[2026-04-26 13:52:17.331] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.352] KEY PRESS: LEFT
+[2026-04-26 13:52:17.353] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.374] KEY PRESS: LEFT
+[2026-04-26 13:52:17.375] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.396] KEY PRESS: LEFT
+[2026-04-26 13:52:17.397] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.419] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.440] KEY PRESS: LEFT
+[2026-04-26 13:52:17.441] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.462] KEY PRESS: LEFT
+[2026-04-26 13:52:17.464] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.485] KEY PRESS: LEFT
+[2026-04-26 13:52:17.487] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.509] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.530] KEY PRESS: LEFT
+[2026-04-26 13:52:17.531] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.552] KEY PRESS: LEFT
+[2026-04-26 13:52:17.553] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.574] KEY PRESS: LEFT
+[2026-04-26 13:52:17.575] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.596] KEY PRESS: LEFT
+[2026-04-26 13:52:17.596] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.617] KEY PRESS: LEFT
+[2026-04-26 13:52:17.618] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.638] KEY PRESS: LEFT
+[2026-04-26 13:52:17.639] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.660] KEY PRESS: LEFT
+[2026-04-26 13:52:17.660] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.681] KEY PRESS: LEFT
+[2026-04-26 13:52:17.682] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.702] KEY PRESS: LEFT
+[2026-04-26 13:52:17.703] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.724] KEY PRESS: LEFT
+[2026-04-26 13:52:17.726] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.747] KEY PRESS: LEFT
+[2026-04-26 13:52:17.747] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.768] KEY PRESS: LEFT
+[2026-04-26 13:52:17.769] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.790] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.811] KEY PRESS: LEFT
+[2026-04-26 13:52:17.811] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.833] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.855] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.876] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.898] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.919] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.940] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.962] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:17.983] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.005] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.026] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.048] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.070] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.091] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.112] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.133] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.154] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.175] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.197] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.219] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.241] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.264] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.286] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.308] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:18.329] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.330] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.352] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.353] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.378] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.403] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.403] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.424] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.426] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.447] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.448] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.470] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.471] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.492] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.494] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.515] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.536] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.538] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.559] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.561] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.582] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.584] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.605] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.607] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.628] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.630] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.652] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.672] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.673] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.694] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.694] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.715] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.716] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.737] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.758] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.779] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.780] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.801] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.801] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.822] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.823] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.843] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.844] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.865] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.866] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.887] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.888] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.908] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.909] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.930] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.931] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.953] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.974] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.975] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:18.996] KEY PRESS: RIGHT
+[2026-04-26 13:52:18.997] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.019] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.041] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.061] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.063] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.084] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.105] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.126] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.127] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.149] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.170] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.172] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.193] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.195] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.216] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.219] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.240] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.241] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.264] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.287] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.309] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.310] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.337] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.339] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.360] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.361] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.383] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.384] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.405] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.407] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.428] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.429] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.450] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.451] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.472] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.494] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.515] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.516] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.537] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.540] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.562] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.563] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.585] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.588] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.609] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.611] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.633] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.634] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.659] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.661] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.682] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.684] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.706] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.708] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.729] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.731] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.752] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.755] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.776] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.776] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.798] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.819] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.820] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.841] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.841] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.862] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.864] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.885] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.887] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.913] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.934] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.936] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.958] KEY PRESS: RIGHT
+[2026-04-26 13:52:19.960] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:19.981] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.003] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.025] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.047] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.070] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.091] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.092] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.114] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.115] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.137] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.159] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.180] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.181] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.202] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.203] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.224] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.225] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.246] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.248] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.269] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.291] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.311] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.313] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.333] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.334] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.355] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.376] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.377] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.397] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.398] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.418] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.419] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.439] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.440] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.460] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.461] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.481] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.482] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.503] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.530] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.550] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.551] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.572] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.572] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.593] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.594] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.614] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.616] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.636] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.638] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.658] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.660] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.682] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.703] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.725] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.726] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.747] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.748] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.769] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.772] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.792] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.793] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.815] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.816] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.837] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.838] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.859] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.862] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.883] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.885] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.907] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.909] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.931] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.933] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.955] KEY PRESS: RIGHT
+[2026-04-26 13:52:20.958] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:20.982] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.003] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.011] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.034] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.037] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.060] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.061] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.082] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.084] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.105] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.107] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.129] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.150] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.152] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.173] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.175] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.197] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.199] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.225] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.248] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.269] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.270] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.291] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.292] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.313] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.314] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.335] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.335] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.356] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.357] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.377] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.378] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.398] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.399] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.420] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.420] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.441] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.442] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.463] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.463] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.484] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.485] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.506] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.507] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.527] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.528] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.549] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.550] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.570] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.571] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.592] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.613] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.614] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.635] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.636] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.657] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.678] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.699] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.700] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.720] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.721] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.743] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.764] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.764] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.785] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.786] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.807] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.808] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.830] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.852] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.872] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.874] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.894] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.895] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.916] KEY PRESS: RIGHT
+[2026-04-26 13:52:21.917] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.939] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.961] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:21.983] PUBLISH -> linear.x=0.20, angular.z=-0.50
+[2026-04-26 13:52:22.003] KEY PRESS: LEFT
+[2026-04-26 13:52:22.004] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.025] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.047] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.068] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.090] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.112] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.134] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.157] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.179] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.201] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.224] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.249] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.277] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.299] PUBLISH -> linear.x=0.20, angular.z=0.50
+[2026-04-26 13:52:22.320] KEY PRESS: DOWN (Reverse)
+[2026-04-26 13:52:22.321] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.342] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.363] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.384] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.410] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.432] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.455] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.477] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.500] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.522] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.543] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.565] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.586] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.607] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.629] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.650] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.671] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.693] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.714] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.736] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.757] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.778] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.800] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.821] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.843] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.864] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.886] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.907] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.928] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.950] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.971] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:22.992] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.014] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.035] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.056] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.077] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.098] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.120] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.142] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.164] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.185] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.207] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.228] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.249] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.272] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.293] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.314] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.336] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.359] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.382] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.405] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.427] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.449] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.471] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.495] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.518] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.542] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.567] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.590] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.611] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.633] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.655] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.677] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.699] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.723] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.749] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.774] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.797] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.819] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.842] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.864] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.885] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.910] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.931] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.953] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.976] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:23.998] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.021] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.043] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.068] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.089] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.111] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.133] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.155] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.180] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.202] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.223] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.245] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.269] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.292] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.313] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.347] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.368] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.389] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.411] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.432] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.453] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.478] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.499] PUBLISH -> linear.x=-0.20, angular.z=0.50
+[2026-04-26 13:52:24.520] KEY PRESS: SPACE (STOP)
+[2026-04-26 13:52:24.521] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.542] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.564] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.586] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.607] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.628] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.650] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.671] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.692] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.714] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.736] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.758] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.779] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.801] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.826] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.848] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.870] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.891] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.914] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.936] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.958] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:24.981] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.003] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.024] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.046] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.068] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.091] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.114] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.138] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.164] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.187] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.210] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.233] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.255] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.277] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.299] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.321] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.344] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.366] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.387] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.410] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.431] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.452] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.475] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.496] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.517] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.538] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.560] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.581] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.602] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.624] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.647] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.668] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.691] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.712] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.734] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:25.755] KEY PRESS: DOWN (Reverse)
+[2026-04-26 13:52:25.756] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.778] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.799] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.821] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.844] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.866] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.888] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.909] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.931] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.952] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.974] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:25.998] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.019] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.041] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.063] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.086] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.109] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.130] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.152] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.175] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.198] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.220] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.242] KEY PRESS: DOWN (Reverse)
+[2026-04-26 13:52:26.248] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.270] KEY PRESS: DOWN (Reverse)
+[2026-04-26 13:52:26.271] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.293] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.314] KEY PRESS: DOWN (Reverse)
+[2026-04-26 13:52:26.316] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.338] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.360] PUBLISH -> linear.x=-0.20, angular.z=-0.00
+[2026-04-26 13:52:26.382] KEY PRESS: RIGHT
+[2026-04-26 13:52:26.383] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.406] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.429] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.451] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.473] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.495] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.517] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.538] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.560] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.581] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.602] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.623] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.644] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.666] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.688] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.710] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.731] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.752] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.774] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.795] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.816] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.838] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.859] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.880] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.902] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.923] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.944] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.966] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:26.988] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.010] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.031] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.052] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.073] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.095] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.117] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.138] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.160] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.181] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.203] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.224] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.245] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.266] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.288] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.309] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.330] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.352] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.374] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.396] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.418] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.440] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.462] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.484] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.506] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.529] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.550] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.572] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.593] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.615] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.637] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.659] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.681] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.703] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.726] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.747] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.768] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.789] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.810] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.831] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.852] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.874] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.895] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.916] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.937] PUBLISH -> linear.x=-0.20, angular.z=-0.50
+[2026-04-26 13:52:27.958] KEY PRESS: SPACE (STOP)
+[2026-04-26 13:52:27.959] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:27.980] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.001] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.022] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.044] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.065] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.086] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.107] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.128] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.150] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.171] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.192] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.214] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.236] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.258] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.279] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.301] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.322] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.343] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.365] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.386] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.407] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.429] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.451] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.474] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.497] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.521] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.545] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.567] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.590] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.612] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.634] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.657] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.679] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.701] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.722] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.745] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.767] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.789] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.812] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.834] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.857] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.880] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.903] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.924] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.945] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.966] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:28.988] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.009] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.030] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.051] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.073] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.094] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.116] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.137] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.158] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.179] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.201] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.223] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.246] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.268] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.289] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.310] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.331] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.358] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.380] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.401] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.422] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.444] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.465] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.487] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.510] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.531] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.553] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.574] PUBLISH -> linear.x=0.00, angular.z=-0.00
+[2026-04-26 13:52:29.595] KEY PRESS: LEFT
+[2026-04-26 13:52:29.595] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.616] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.637] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.658] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.679] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.700] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.721] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.743] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.764] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.784] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.805] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.826] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.847] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.868] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.889] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.910] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.931] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.955] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.977] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:29.998] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.019] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.041] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.062] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.084] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.105] KEY PRESS: LEFT
+[2026-04-26 13:52:30.105] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.126] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.147] KEY PRESS: LEFT
+[2026-04-26 13:52:30.148] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.169] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.197] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.218] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.239] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.260] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.283] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.304] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.326] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.348] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.370] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.392] PUBLISH -> linear.x=0.00, angular.z=0.50
+[2026-04-26 13:52:30.414] KEY PRESS: RIGHT
+[2026-04-26 13:52:30.415] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.437] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.459] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.481] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.503] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.524] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.546] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.567] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.589] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.612] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.633] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.654] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.677] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.698] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.719] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.742] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.764] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.785] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.806] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.827] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.849] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.870] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.891] KEY PRESS: RIGHT
+[2026-04-26 13:52:30.892] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.914] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.935] KEY PRESS: RIGHT
+[2026-04-26 13:52:30.936] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.957] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.978] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:30.999] KEY PRESS: RIGHT
+[2026-04-26 13:52:31.000] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.026] KEY PRESS: RIGHT
+[2026-04-26 13:52:31.027] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.049] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.070] KEY PRESS: RIGHT
+[2026-04-26 13:52:31.071] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.093] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.114] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.136] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.160] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.181] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.204] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.226] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.248] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.270] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.291] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.312] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.333] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.354] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.376] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.397] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.419] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.442] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.465] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.486] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.508] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.533] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.555] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.577] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.600] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.622] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.644] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.668] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.690] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.712] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.734] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.755] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.778] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.800] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.822] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.844] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.867] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.889] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.911] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.934] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.956] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:31.979] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.001] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.026] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.049] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.072] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.094] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.116] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.139] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.161] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.183] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.205] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.228] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.250] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.272] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.294] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.315] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.336] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.357] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.379] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.401] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.422] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.443] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.464] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.485] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.507] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.528] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.549] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.571] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.593] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.614] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.635] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.656] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.678] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.700] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.721] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.743] PUBLISH -> linear.x=0.00, angular.z=-0.50
+[2026-04-26 13:52:32.764] KEY PRESS: Q (QUIT)
+[2026-04-26 13:52:32.765] STOP command published
+[2026-04-26 13:52:32.766] ===== PROGRAM ENDED =====

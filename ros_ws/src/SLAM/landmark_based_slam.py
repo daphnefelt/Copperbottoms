@@ -33,7 +33,7 @@ RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # rf2o scan-match 
 
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell
-LIDAR_GRID_SIZE = 800 # cells per side (so 40m x 40m)
+LIDAR_GRID_SIZE = 1600 # cells per side (so 80m x 80m)
 LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
 
 def wrap(a: float) -> float: # wraps to -pi, +pi

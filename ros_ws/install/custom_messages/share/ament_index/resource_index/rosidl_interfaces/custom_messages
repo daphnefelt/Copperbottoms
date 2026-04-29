@@ -1,0 +1,8 @@
+msg/ImuBundled.idl
+msg/ImuBundled.msg
+msg/LatencyStats.idl
+msg/LatencyStats.msg
+msg/RateStats.idl
+msg/RateStats.msg
+msg/Slow.idl
+msg/Slow.msg

@@ -1,0 +1,6 @@
+{
+  "package_name": "amy_test",
+  "non_idl_tuples": [
+    "/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test:msg/TapeContour.msg"
+  ]
+}

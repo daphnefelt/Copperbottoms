@@ -1,0 +1,10 @@
+Record specific topics:
+ros2 bag record /topic1 /topic2
+Record all topics:
+ros2 bag record -a
+Specify a custom name:
+ros2 bag record -o my_bag_name /topic1
+Record services or actions:
+ros2 bag record --service /my_service or ros2 bag record --action /my_action
+
+Ctrl + c to exit

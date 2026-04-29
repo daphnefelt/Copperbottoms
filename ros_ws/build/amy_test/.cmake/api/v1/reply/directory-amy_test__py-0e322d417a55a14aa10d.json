@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "amy_test__py",
+		"source" : "/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/amy_test__py"
+	}
+}

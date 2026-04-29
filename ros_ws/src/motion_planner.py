@@ -91,6 +91,43 @@ class MotionPlanner(Node):
     def _determine_mode(self):
         pass
 
+    def get_valid_laser_scan(self, msg: LaserScan):
+        # corresponds to ~20ft
+        MAX_DIST_m = 6
+        ranges = np.array(msg.ranges)
+        ranges = np.where(np.isinf(ranges), 99.0, ranges)
+        angles = msg.angle_min  + msg.angle_increment* np.arange(0, len(ranges))
+        angles = angles[ranges < MAX_DIST_m and ranges > msg.range_min]
+        ranges = ranges[ranges < MAX_DIST_m and ranges > msg.range_min]
+        return (angles, ranges)
+    
+        # 2. SVD fit + RANSAC-lite refit
+        def _svd_angle(pts):
+            _, _, vt = np.linalg.svd(pts - pts.mean(axis=0))
+            return vt[0]
+
+        dx, dy = _svd_angle(xy)
+        cx, cy = xy.mean(axis=0)
+        residuals = np.abs(dx * (xy[:, 1] - cy) - dy * (xy[:, 0] - cx))
+        xy = xy[residuals < residual_thresh]
+        if len(xy) < min_points:
+            return float('nan')
+
+        dx, dy = _svd_angle(xy)
+        return float(np.arctan2(dy, dx))
+
+
+
+
+    def generate_line_segments(self, msg: LaserScan):
+        # RPLIDAR resolution 1% of range, so up to 6m = .06
+        # RPLIDAR accuracy 1% of the range（≤3 m） 2% of the range（3-5 m）2.5% of the range（5-25m)
+        # so max error at 6meters is .15
+        MIN_POINTS_TO_LINE = 5
+        MAX_RESIDUAL = .5
+        # concerned with the max residual
+        pass
+
 
     def scan_callback(self, msg: LaserScan):
         # detect corners and detect hallway narrowing

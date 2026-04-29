@@ -29,13 +29,13 @@ MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise o
 OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range (m) and bearing (rad)
 INIT_LM_COV = 1000.0 # init covariance for a new landmark
 
-RF2O_NOISE = np.diag([0.05**2, 0.05**2, 1e-8])  # rf2o scan-match uncertainty
+RF2O_NOISE = np.diag([1e-8, 1e-8, 1e-8])  # rf2o scan-match uncertainty
 # RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # rf2o scan-match uncertainty
 
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell
-LIDAR_GRID_SIZE = 1600 # cells per side (so 80m x 80m)
-LIDAR_GRID_ORIGIN = (-40.0, -40.0) # world coords of cell (0, 0)
+LIDAR_GRID_SIZE = 800 # cells per side (so 40m x 40m)
+LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
 
 def wrap(a: float) -> float: # wraps to -pi, +pi
     return (a + math.pi) % (2.0 * math.pi) - math.pi
@@ -398,12 +398,46 @@ def main(args=None):
     node = EKFSlamNode()
 
     def save_and_exit(signum, frame):
-        binary_grid = np.where(node.lidar_grid > 0, 100, 0).astype(np.int8)
-        np.save("last_lidar_grid.npy", binary_grid)
-        print("Lidar grid saved to last_lidar_grid.npy")
-
-        # Save pose history as a debug image
+        # Save lidar occupancy grid as map.jpg, only marking cells with enough hits
         img = np.ones((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE, 3), dtype=np.uint8) * 255
+        hits = node.lidar_grid >= 3
+        idxs = np.argwhere(hits)
+        for (cj, ci) in idxs:
+            img[cj, ci] = (0, 0, 0)  # black point
+        img = np.flipud(img).copy() # origin bottom left
+
+        # Draw grid lines every 5m
+        grid_spacing_m = 5.0
+        grid_spacing_px = int(grid_spacing_m / LIDAR_GRID_RES)
+        color_grid = (200, 200, 200)
+        for i in range(0, LIDAR_GRID_SIZE, grid_spacing_px):
+            cv2.line(img, (0, i), (LIDAR_GRID_SIZE-1, i), color_grid, 1)
+            cv2.line(img, (i, 0), (i, LIDAR_GRID_SIZE-1), color_grid, 1)
+
+        # Draw axes at origin
+        ox, oy = LIDAR_GRID_ORIGIN
+        x0 = int((0.0 - ox) / LIDAR_GRID_RES)
+        y0 = int((0.0 - oy) / LIDAR_GRID_RES)
+        y0_flipped = LIDAR_GRID_SIZE - 1 - y0
+        color_axis = (0, 0, 255)
+        if 0 <= x0 < LIDAR_GRID_SIZE:
+            cv2.line(img, (x0, 0), (x0, LIDAR_GRID_SIZE-1), color_axis, 2)
+        if 0 <= y0_flipped < LIDAR_GRID_SIZE:
+            cv2.line(img, (0, y0_flipped), (LIDAR_GRID_SIZE-1, y0_flipped), color_axis, 2)
+
+        # Add axis labels
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = 0.5
+        font_color = (0, 0, 0)
+        thickness = 1
+        label_offset = 18  # pixels from the bottom
+        for i in range(0, LIDAR_GRID_SIZE, int(10.0 / LIDAR_GRID_RES)):
+            x_m = ox + i * LIDAR_GRID_RES
+            cv2.putText(img, f"{x_m:.0f}", (i+2, LIDAR_GRID_SIZE-2), font, font_scale, font_color, thickness)
+            y_m = oy + i * LIDAR_GRID_RES
+            cv2.putText(img, f"{y_m:.0f}", (2, LIDAR_GRID_SIZE-1-i-2), font, font_scale, font_color, thickness)
+
+        # add pose history
         N = len(node.pose_history)
         for idx, (x, y, th) in enumerate(node.pose_history):
             ci = int((x - LIDAR_GRID_ORIGIN[0]) / LIDAR_GRID_RES)
@@ -414,8 +448,8 @@ def main(args=None):
                 g = 0
                 b = int(255 * (1 - idx / max(N-1, 1)))
                 cv2.circle(img, (ci, LIDAR_GRID_SIZE - 1 - cj), 2, (b, g, r), -1)
-        cv2.imwrite("pose_history.jpg", img)
-        print("Pose history image saved to pose_history.jpg")
+        cv2.imwrite("map_pose_history.jpg", img)
+        print("Map and pose history image saved to map_pose_history.jpg")
 
         with open("pose_history.txt", "w") as f:
             for i in range(len(node.pose_history)):

@@ -227,3 +227,11 @@ git fsck --full
 IN LOCAL MACHINE RVIS
 --------------------
 ros2 run rviz2 rviz2
+
+SO YOU THINK YOU CAN DRIVE?
+RUN THESE IN SEPERATE TERMINALS
+ros2 run joy joy_node --ros-args --params-file joystick.yaml
+ros2 run teleop_twist_joy teleop_node --ros-args --params-file joystick.yaml
+
+Driving: Deadman stick is R2 on PS5 Controller, has to be held down at all times
+Bottom left joystick

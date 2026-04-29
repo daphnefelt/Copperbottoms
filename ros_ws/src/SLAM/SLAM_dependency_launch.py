@@ -110,23 +110,23 @@ def generate_launch_description():
 	node_names.append(('realsense_color_depth_publisher', '/realsense_color_depth_publisher'))
 	processes.append(ros_stream_with_depth)
 
-	joystick_node = Node(
-		package='joy',
-		executable='joy_node',
-		name='joy_node',
-		parameters=['joystick.yaml']
-	)
-	node_names.append(('joy_node', '/joy_node'))
-	processes.append(joystick_node)
+	# joystick_node = Node(
+	# 	package='joy',
+	# 	executable='joy_node',
+	# 	name='joy_node',
+	# 	parameters=['joystick.yaml']
+	# )
+	# node_names.append(('joy_node', '/joy_node'))
+	# processes.append(joystick_node)
 
-	teleop_node = Node(
-		package='teleop_twist_joy',
-		executable='teleop_node',
-		name='teleop_node',
-		parameters=['joystick.yaml']
-	)
-	node_names.append(('teleop_node', '/teleop_node'))
-	processes.append(teleop_node)
+	# teleop_node = Node(
+	# 	package='teleop_twist_joy',
+	# 	executable='teleop_node',
+	# 	name='teleop_node',
+	# 	parameters=['joystick.yaml']
+	# )
+	# node_names.append(('teleop_node', '/teleop_node'))
+	# processes.append(teleop_node)
 
 	running_nodes = _get_running_node_names()
 	launch_actions = []

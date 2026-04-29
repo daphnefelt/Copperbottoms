@@ -75,7 +75,7 @@ class EKFSlamNode(Node):
         self.map_pub = self.create_publisher(MarkerArray, '/slam/landmarks', 10)
         self.lidar_map_pub = self.create_publisher(OccupancyGrid, '/slam/lidar_map', 10)
         self.pose_history_pub = self.create_publisher(MarkerArray, '/slam/pose_history', 10)
-        self.create_timer(0.05, self._predict_step) # predict at 20hz
+        # self.create_timer(0.05, self._predict_step) # predict at 20hz
 
         self.get_logger().info('SLAM node is up')
 
@@ -102,9 +102,10 @@ class EKFSlamNode(Node):
         return pos_angle if angular_z >= 0 else -pos_angle
 
     def _cmd_vel_cb(self, msg: Twist):
-        self._predict_step() # predict up to now before changing velocity
+        # self._predict_step() # predict up to now before changing velocity
         self.v = self.V_NOMINAL(msg.linear.x)
         self.delta = self.DELTA_NOMINAL(msg.angular.z)
+        print(f"self. delta is {self.delta}")
         if abs(self.v) < 0.15: # doesn't turn or do anything below this speed
             self.v = 0.0
             self.delta = 0.0
@@ -382,8 +383,8 @@ class EKFSlamNode(Node):
         msg.info.origin.position.y = LIDAR_GRID_ORIGIN[1]
         msg.info.origin.orientation.w = 1.0
 
-        multiplier = 50 # need 2 hits to be sure there's something there
-        lidar_grid_mult = self.lidar_grid * multiplier
+        filter_val = 2 # needs two hits to count as occupied
+        lidar_grid_mult = np.where(self.lidar_grid >= filter_val, 100, 0) # binary map of occupied vs free
         clipped = np.clip(lidar_grid_mult, 0, 100).astype(np.int8)
         msg.data = clipped.flatten().tolist()
 

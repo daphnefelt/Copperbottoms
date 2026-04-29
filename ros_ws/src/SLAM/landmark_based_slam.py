@@ -383,8 +383,8 @@ class EKFSlamNode(Node):
         msg.info.origin.position.y = LIDAR_GRID_ORIGIN[1]
         msg.info.origin.orientation.w = 1.0
 
-        filter_val = 2 # needs two hits to count as occupied
-        lidar_grid_mult = np.where(self.lidar_grid >= filter_val, 100, 0) # binary map of occupied vs free
+        multiplier = 50 # need 2 hits to be sure there's something there
+        lidar_grid_mult = self.lidar_grid * multiplier
         clipped = np.clip(lidar_grid_mult, 0, 100).astype(np.int8)
         msg.data = clipped.flatten().tolist()
 
@@ -398,6 +398,22 @@ def main(args=None):
         binary_grid = np.where(node.lidar_grid > 0, 100, 0).astype(np.int8)
         np.save("last_lidar_grid.npy", binary_grid)
         print("Lidar grid saved to last_lidar_grid.npy")
+
+        # Save pose history as a debug image
+        img = np.ones((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE, 3), dtype=np.uint8) * 255
+        N = len(node.pose_history)
+        for idx, (x, y) in enumerate(node.pose_history):
+            ci = int((x - LIDAR_GRID_ORIGIN[0]) / LIDAR_GRID_RES)
+            cj = int((y - LIDAR_GRID_ORIGIN[1]) / LIDAR_GRID_RES)
+            if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
+                # fade blue to red over the history
+                r = int(255 * idx / max(N-1, 1))
+                g = 0
+                b = int(255 * (1 - idx / max(N-1, 1)))
+                cv2.circle(img, (ci, LIDAR_GRID_SIZE - 1 - cj), 2, (b, g, r), -1)
+        cv2.imwrite("pose_history.jpg", img)
+        print("Pose history image saved to pose_history.jpg")
+
         node.destroy_node()
         rclpy.shutdown()
         exit(0)

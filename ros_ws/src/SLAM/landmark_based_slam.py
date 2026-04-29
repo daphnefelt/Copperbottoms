@@ -229,6 +229,7 @@ class EKFSlamNode(Node):
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
 
+        self._publish_pose() # Best estimate of robot pose
         self.get_logger().info(f'LANDMARK UPDATE: tag={tag_id}  x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
 
     def _rf2o_cb(self, msg: Odometry):
@@ -278,6 +279,7 @@ class EKFSlamNode(Node):
         self.mu[2] = wrap(self.mu[2])
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
 
+        self._publish_pose() # Best estimate of robot pose
         self.get_logger().info(f'RF2O UPDATE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
 
     def _world_to_cell(self, wx, wy):

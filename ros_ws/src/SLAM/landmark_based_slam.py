@@ -98,7 +98,7 @@ class EKFSlamNode(Node):
         return 2.0555*linear_x - 0.1072 # m/s for a given linear.x cmd
     def DELTA_NOMINAL(self, angular_z):
         abs_angle = abs(angular_z)
-        pos_angle = math.radians(5.3505*abs_angle**2 + 7.2598*abs_angle - 0.2384)
+        pos_angle = math.radians(5.3505*abs_angle**2 + 7.2598*abs_angle - 0.2384) * 2 # DOUBLE THAT SHIT
         return pos_angle if angular_z >= 0 else -pos_angle
 
     def _cmd_vel_cb(self, msg: Twist):

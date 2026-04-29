@@ -22,6 +22,7 @@ from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry, OccupancyGrid
 from visualization_msgs.msg import MarkerArray
 from visualization_msgs.msg import Marker
+import signal
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise on robot pose
@@ -62,6 +63,10 @@ class EKFSlamNode(Node):
         # lidar occupancy grid
         self.lidar_grid = np.zeros((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE), dtype=np.int32)
 
+        # pose history for trace visualization
+        self.pose_history = []
+        self.pose_marker_id = 100  # avoid collision with landmark marker IDs (they should only go up to 20)
+
         self.create_subscription(Twist, '/cmd_vel', self._cmd_vel_cb,  10)
         self.create_subscription(String, '/landmarks', self._landmark_cb, 10)
         self.create_subscription(Odometry, '/odom_rf2o', self._rf2o_cb, 10)
@@ -69,6 +74,7 @@ class EKFSlamNode(Node):
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/slam/pose', 10)
         self.map_pub = self.create_publisher(MarkerArray, '/slam/landmarks', 10)
         self.lidar_map_pub = self.create_publisher(OccupancyGrid, '/slam/lidar_map', 10)
+        self.pose_history_pub = self.create_publisher(MarkerArray, '/slam/pose_history', 10)
         self.create_timer(0.05, self._predict_step) # predict at 20hz
 
         self.get_logger().info('SLAM node is up')
@@ -295,6 +301,7 @@ class EKFSlamNode(Node):
 
     # PUBLISHING
 
+
     def _publish_pose(self):
         msg = PoseWithCovarianceStamped()
         msg.header.stamp = self.get_clock().now().to_msg()
@@ -320,14 +327,15 @@ class EKFSlamNode(Node):
         msg.pose.covariance = cov
 
         self.pose_pub.publish(msg)
+        self._publish_pose_history()
 
-    def get_marker(self, id, x, y):
+    def get_marker(self, id, x, y, namespace="landmarks"):
         marker = Marker()
         marker.header.frame_id = "map"
         marker.header.stamp = self.get_clock().now().to_msg()
         marker.id = id
         radius = 0.1
-        marker.ns = "landmarks"
+        marker.ns = namespace
         marker.type = Marker.SPHERE
         marker.action = Marker.ADD
         marker.scale.x = radius
@@ -347,8 +355,21 @@ class EKFSlamNode(Node):
         markerArr = MarkerArray()
         for tag_id, j in self.lm_index.items():
             sl = slice(3 + 2 * j, 3 + 2 * j + 2)
-            markerArr.append(self.get_marker(tag_id, float(self.mu[sl][0]), float(self.mu[sl][1])))
+            markerArr.append(self.get_marker(tag_id, float(self.mu[sl][0]), float(self.mu[sl][1]), namespace="landmarks"))
         self.map_pub.publish(markerArr)
+
+    def _publish_pose_history(self):
+        self.pose_history.append((float(self.mu[0]), float(self.mu[1])))
+
+        # Only publish every 10 poses
+        if len(self.pose_history) % 10 != 0:
+            return
+
+        markerArr = MarkerArray()
+        for idx, (x, y) in enumerate(self.pose_history[::10]):
+            marker = self.get_marker(self.pose_marker_id + idx, x, y, namespace="pose_history")
+            markerArr.markers.append(marker)
+        self.pose_history_pub.publish(markerArr)
 
     def _publish_lidar_map(self):
         msg = OccupancyGrid()
@@ -361,16 +382,17 @@ class EKFSlamNode(Node):
         msg.info.origin.position.y = LIDAR_GRID_ORIGIN[1]
         msg.info.origin.orientation.w = 1.0
 
-        max_hits = max(int(self.lidar_grid.max()), 1)
-        normalized = (self.lidar_grid * 100 // max_hits).astype(np.int8)
-        msg.data = normalized.flatten().tolist()
+        multiplier = 50 # need 2 hits to be sure there's something there
+        lidar_grid_mult = self.lidar_grid * multiplier
+        clipped = np.clip(lidar_grid_mult, 0, 100).astype(np.int8)
+        msg.data = clipped.flatten().tolist()
 
         self.lidar_map_pub.publish(msg)
 
     # PLOTTING
     PLOT_PIXELS = 800
     PLOT_METERS = 40.0
-    PLOT_ORIGIN = (0, 0) # pixels for 0,0 in world frame
+    PLOT_ORIGIN = (20, 20) # pixels for 0,0 in world frame
 
     def _world_to_px(self, x, y):
         scale = self.PLOT_PIXELS / self.PLOT_METERS
@@ -381,6 +403,16 @@ class EKFSlamNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = EKFSlamNode()
+
+    def save_and_exit(signum, frame):
+        binary_grid = np.where(node.lidar_grid > 0, 100, 0).astype(np.int8)
+        np.save("last_lidar_grid.npy", binary_grid)
+        print("Lidar grid saved to last_lidar_grid.npy")
+        node.destroy_node()
+        rclpy.shutdown()
+        exit(0)
+
+    signal.signal(signal.SIGINT, save_and_exit)
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()

@@ -48,15 +48,6 @@ def generate_launch_description():
 	node_names = []
 	processes = []
 
-<<<<<<< HEAD
-	#sensor_slam = ExecuteProcess(
-	#	cmd=['python3', os.path.join(SLAM_dir, 'sensor.py')],
-	#	output='screen',
-	#	emulate_tty=True,
-	#)
-	#node_names.append(('landmark_sensor', '/landmark_sensor'))
-	#processes.append(sensor_slam)
-=======
 	sensor_slam = ExecuteProcess(
 		cmd=['python3', os.path.join(SLAM_dir, 'sensor.py')],
 		output='screen',
@@ -64,7 +55,6 @@ def generate_launch_description():
 	)
 	node_names.append(('landmark_sensor', '/landmark_sensor'))
 	processes.append(sensor_slam)
->>>>>>> de4a600cbdefe5c118cb08c83e583519d356a170
 
 	rover_node = Node(
 		package='robo_rover',

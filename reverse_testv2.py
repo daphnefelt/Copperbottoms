@@ -279,15 +279,15 @@ class LidarDebugNode(Node):
 
             if cond_obstacle:
                 self._enter_mode(self.MODE_OBSTACLE)
+
+            elif cond_turn:
+                self._enter_mode(self.MODE_TURN)
             
             elif cond_divot:
                 self._enter_mode(self.MODE_DIVOT)
 
             elif cond_inlet:
                 self._enter_mode(self.MODE_INLET)
-
-            elif cond_turn:
-                self._enter_mode(self.MODE_TURN)
 
             else:
                 self._enter_mode(self.MODE_STRAIGHT)
@@ -298,8 +298,11 @@ class LidarDebugNode(Node):
         if self.mode == self.MODE_STRAIGHT:
             twist = Twist()
             if self.prev_state == self.MODE_INLET:
-                self.wall_target = right_dist
-                self.get_logger().info('UPDATE WALL TARGET')
+                if (right_dist > 1.2)
+                    self.wall_target = right_dist
+                    self.get_logger().info('UPDATE WALL TARGET')
+                else:
+                    self.wall_target = self.wall_target_inital
 
             self.prev_state = self.MODE_STRAIGHT
             # error values
@@ -309,27 +312,6 @@ class LidarDebugNode(Node):
             twist.linear.x  = -self.forward_speed
             twist.angular.z = self.PD_steering(angle_error, dist_error)
             self.vel_pub.publish(twist)
-
-            # If the separate cases need to be broken up -----------------------------------------
-            # prioritize staying parallel on right_angle and staying within tolerance of right dist
-            #if right_cls == 'PARALLEL':
-                #if abs(dist_error) <= self.dist_tol:
-                    # forward speed
-                    #twist.linear.x  = -self.forward_speed
-                    # PD Steering straight
-                    #twist.angular.z = self.PD_steering(angle_error,dist_error)
-                #else:
-                    # forward speed
-                    #twist.linear.x  = -self.forward_speed
-                    # PD Steering correction
-                    #twist.angular.z = self.PD_steering(angle_error, dist_error)
-            #else:
-                # correct to parallel
-                # forward speed
-                #twist.linear.x  = -self.forward_speed
-                # PD Steering correction
-                #twist.angular.z = self.PD_steering(angle_error, dist_error)
-
             
 
         elif self.mode == self.MODE_DIVOT:
@@ -368,7 +350,7 @@ class LidarDebugNode(Node):
             self.vel_pub.publish(twist)
 
 
-        elif self.mode == self.MODE_TURN:  # NEED TO STAY IN TURN UNTIL CONDITIONS MET
+        elif self.mode == self.MODE_TURN: 
             twist = Twist()
             self.prev_state = self.MODE_TURN
             elapsed = time.time() - self.mode_start_time

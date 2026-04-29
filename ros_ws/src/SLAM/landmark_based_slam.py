@@ -19,13 +19,15 @@ import cv2
 import os
 os.environ.setdefault('QT_LOGGING_RULES', '*.warning=false') # stupid font warnings
 from sensor_msgs.msg import LaserScan
-from nav_msgs.msg import Odometry, OccupancyGrid
+from nav_msgs.msg import Odometry, Odometry, OccupancyGrid
 from visualization_msgs.msg import MarkerArray
 from visualization_msgs.msg import Marker
 
 # for mapping
 from tf2_ros import TransformBroadcaster
 from geometry_msgs.msg import TransformStamped
+from visualization_msgs.msg import MarkerArray
+from visualization_msgs.msg import Marker
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise on robot pose

@@ -34,7 +34,7 @@ RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # rf2o scan-match 
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell
 LIDAR_GRID_SIZE = 1600 # cells per side (so 80m x 80m)
-LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
+LIDAR_GRID_ORIGIN = (40.0, 40.0) # world coords of cell (0, 0)
 
 def wrap(a: float) -> float: # wraps to -pi, +pi
     return (a + math.pi) % (2.0 * math.pi) - math.pi
@@ -388,17 +388,6 @@ class EKFSlamNode(Node):
         msg.data = clipped.flatten().tolist()
 
         self.lidar_map_pub.publish(msg)
-
-    # PLOTTING
-    PLOT_PIXELS = 800
-    PLOT_METERS = 40.0
-    PLOT_ORIGIN = (20, 20) # pixels for 0,0 in world frame
-
-    def _world_to_px(self, x, y):
-        scale = self.PLOT_PIXELS / self.PLOT_METERS
-        px = int(self.PLOT_ORIGIN[0] + x * scale)
-        py = int(self.PLOT_ORIGIN[1] - y * scale)
-        return px, py
 
 def main(args=None):
     rclpy.init(args=args)

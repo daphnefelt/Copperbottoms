@@ -20,7 +20,7 @@ im.save("map.pgm")
 map_metadata = {
     'image': 'map.pgm',
     'resolution': 0.05,  # meters per pixel (match your LIDAR_GRID_RES)
-    'origin': [20.0, 20.0, 0.0],  # [x, y, yaw]
+    'origin': [40.0, 40.0, 0.0],  # [x, y, yaw]
     'negate': 0,
     'occupied_thresh': 0.65,
     'free_thresh': 0.196,

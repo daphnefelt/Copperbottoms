@@ -13,7 +13,7 @@ class WaypointFollower(Node):
         self.goal_tolerance = 0.5
         self.linear_speed = 0.3
         self.angular_speed = 0.3
-        self.detection_radius = 1.0
+        self.detection_radius = 1
 
     def load_waypoints(self, filename, every_n):
         data = np.loadtxt(filename)
@@ -41,6 +41,7 @@ class WaypointFollower(Node):
         y = msg.pose.pose.position.y
         th = 2 * np.arctan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w)
         idx, goal = self.get_goal_waypoint((x, y))
+        print(f"Current pose: ({x:.2f}, {y:.2f}, {np.degrees(th):.1f} deg), Goal idx: {idx}, Goal: {goal}")
         if goal is None:
             self.cmd_pub.publish(Twist())  # Stop
             self.get_logger().info("No waypoints close enough :(")
@@ -55,9 +56,6 @@ class WaypointFollower(Node):
         if dist > self.goal_tolerance:
             cmd.linear.x = self.linear_speed * (dist > self.goal_tolerance)
             cmd.angular.z = self.angular_speed * angle_diff
-        else:
-            self.current_idx += 1
-            self.get_logger().info(f"New waypoint: {self.waypoints[self.current_idx] if self.current_idx < len(self.waypoints) else 'DONE'}")
         self.cmd_pub.publish(cmd)
 
     @staticmethod

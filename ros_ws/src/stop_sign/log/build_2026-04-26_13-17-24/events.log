@@ -1,0 +1,86 @@
+[0.000000] (-) TimerEvent: {}
+[0.001572] (stop_sign) JobQueued: {'identifier': 'stop_sign', 'dependencies': OrderedDict()}
+[0.002197] (stop_sign) JobStarted: {'identifier': 'stop_sign'}
+[0.099051] (-) TimerEvent: {}
+[0.199702] (-) TimerEvent: {}
+[0.300423] (-) TimerEvent: {}
+[0.401161] (-) TimerEvent: {}
+[0.501826] (-) TimerEvent: {}
+[0.602502] (-) TimerEvent: {}
+[0.703161] (-) TimerEvent: {}
+[0.803868] (-) TimerEvent: {}
+[0.904605] (-) TimerEvent: {}
+[1.005244] (-) TimerEvent: {}
+[1.105939] (-) TimerEvent: {}
+[1.206689] (-) TimerEvent: {}
+[1.307426] (-) TimerEvent: {}
+[1.408148] (-) TimerEvent: {}
+[1.509311] (-) TimerEvent: {}
+[1.611467] (-) TimerEvent: {}
+[1.712988] (-) TimerEvent: {}
+[1.813729] (-) TimerEvent: {}
+[1.914843] (-) TimerEvent: {}
+[2.017777] (-) TimerEvent: {}
+[2.118991] (-) TimerEvent: {}
+[2.219692] (-) TimerEvent: {}
+[2.320508] (-) TimerEvent: {}
+[2.421303] (-) TimerEvent: {}
+[2.522172] (-) TimerEvent: {}
+[2.623149] (-) TimerEvent: {}
+[2.723947] (-) TimerEvent: {}
+[2.824597] (-) TimerEvent: {}
+[2.925279] (-) TimerEvent: {}
+[3.025981] (-) TimerEvent: {}
+[3.126828] (-) TimerEvent: {}
+[3.227621] (-) TimerEvent: {}
+[3.328385] (-) TimerEvent: {}
+[3.429187] (-) TimerEvent: {}
+[3.529950] (-) TimerEvent: {}
+[3.630971] (-) TimerEvent: {}
+[3.732446] (-) TimerEvent: {}
+[3.833176] (-) TimerEvent: {}
+[3.934598] (-) TimerEvent: {}
+[4.035723] (-) TimerEvent: {}
+[4.136976] (-) TimerEvent: {}
+[4.193135] (stop_sign) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', 'build/stop_sign', 'build', '--build-base', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/build', 'install', '--record', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.85.94.30 64481 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms/code/Copperbottoms/ros_ws', 'TERM_PROGRAM_VERSION': '1.117.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-1ef191d3-634d-4f5a-b4ab-2cc5b34cbccf.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install:/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '8', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/cli/servers/Stable-10c8e557c8b9f9ed0a87f61f1c9a44bde731c409/server/bin/remote-cli:/home/copperbottoms/.local/bin:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-7925a18a25.sock', 'TERM_PROGRAM': 'vscode', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign', 'SSH_CONNECTION': '100.85.94.30 64481 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[4.237178] (-) TimerEvent: {}
+[4.337890] (-) TimerEvent: {}
+[4.438717] (-) TimerEvent: {}
+[4.539502] (-) TimerEvent: {}
+[4.640233] (-) TimerEvent: {}
+[4.740968] (-) TimerEvent: {}
+[4.841613] (-) TimerEvent: {}
+[4.942316] (-) TimerEvent: {}
+[5.042988] (-) TimerEvent: {}
+[5.143635] (-) TimerEvent: {}
+[5.244275] (-) TimerEvent: {}
+[5.344937] (-) TimerEvent: {}
+[5.445749] (-) TimerEvent: {}
+[5.546549] (-) TimerEvent: {}
+[5.647285] (-) TimerEvent: {}
+[5.649924] (stop_sign) StdoutLine: {'line': b'running egg_info\n'}
+[5.652857] (stop_sign) StdoutLine: {'line': b'writing build/stop_sign/stop_sign.egg-info/PKG-INFO\n'}
+[5.654241] (stop_sign) StdoutLine: {'line': b'writing dependency_links to build/stop_sign/stop_sign.egg-info/dependency_links.txt\n'}
+[5.655266] (stop_sign) StdoutLine: {'line': b'writing entry points to build/stop_sign/stop_sign.egg-info/entry_points.txt\n'}
+[5.656427] (stop_sign) StdoutLine: {'line': b'writing requirements to build/stop_sign/stop_sign.egg-info/requires.txt\n'}
+[5.657186] (stop_sign) StdoutLine: {'line': b'writing top-level names to build/stop_sign/stop_sign.egg-info/top_level.txt\n'}
+[5.672017] (stop_sign) StdoutLine: {'line': b"reading manifest file 'build/stop_sign/stop_sign.egg-info/SOURCES.txt'\n"}
+[5.672717] (stop_sign) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[5.673308] (stop_sign) StdoutLine: {'line': b"writing manifest file 'build/stop_sign/stop_sign.egg-info/SOURCES.txt'\n"}
+[5.673869] (stop_sign) StdoutLine: {'line': b'running build\n'}
+[5.676384] (stop_sign) StdoutLine: {'line': b'running build_py\n'}
+[5.677185] (stop_sign) StdoutLine: {'line': b'running install\n'}
+[5.677754] (stop_sign) StdoutLine: {'line': b'running install_lib\n'}
+[5.683816] (stop_sign) StdoutLine: {'line': b'running install_data\n'}
+[5.684854] (stop_sign) StdoutLine: {'line': b'running install_egg_info\n'}
+[5.693920] (stop_sign) StdoutLine: {'line': b"removing '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/python3.10/site-packages/stop_sign-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[5.695819] (stop_sign) StdoutLine: {'line': b'Copying build/stop_sign/stop_sign.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/python3.10/site-packages/stop_sign-0.0.0-py3.10.egg-info\n'}
+[5.701371] (stop_sign) StdoutLine: {'line': b'running install_scripts\n'}
+[5.747474] (-) TimerEvent: {}
+[5.793093] (stop_sign) StdoutLine: {'line': b'Installing stop_sign_detect script to /home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/stop_sign\n'}
+[5.795214] (stop_sign) StdoutLine: {'line': b"writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/install.log'\n"}
+[5.847717] (-) TimerEvent: {}
+[5.919083] (stop_sign) CommandEnded: {'returncode': 0}
+[5.948137] (-) TimerEvent: {}
+[5.977918] (stop_sign) JobEnded: {'identifier': 'stop_sign', 'rc': 0}
+[5.982190] (-) EventReactorShutdown: {}

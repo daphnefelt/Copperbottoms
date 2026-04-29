@@ -1,0 +1,37 @@
+[10.962s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/imu_pose_estimate': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/imu_pose_estimate build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/install.log --single-version-externally-managed install_data
+[13.305s] running egg_info
+[13.308s] creating ../../build/imu_pose_estimate/imu_pose_estimate.egg-info
+[13.310s] writing ../../build/imu_pose_estimate/imu_pose_estimate.egg-info/PKG-INFO
+[13.313s] writing dependency_links to ../../build/imu_pose_estimate/imu_pose_estimate.egg-info/dependency_links.txt
+[13.315s] writing entry points to ../../build/imu_pose_estimate/imu_pose_estimate.egg-info/entry_points.txt
+[13.317s] writing requirements to ../../build/imu_pose_estimate/imu_pose_estimate.egg-info/requires.txt
+[13.319s] writing top-level names to ../../build/imu_pose_estimate/imu_pose_estimate.egg-info/top_level.txt
+[13.323s] writing manifest file '../../build/imu_pose_estimate/imu_pose_estimate.egg-info/SOURCES.txt'
+[13.361s] reading manifest file '../../build/imu_pose_estimate/imu_pose_estimate.egg-info/SOURCES.txt'
+[13.374s] writing manifest file '../../build/imu_pose_estimate/imu_pose_estimate.egg-info/SOURCES.txt'
+[13.386s] running build
+[13.387s] running build_py
+[13.388s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build
+[13.388s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build/lib
+[13.389s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build/lib/imu_pose_estimate
+[13.389s] copying imu_pose_estimate/imu_pose_estimate.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build/lib/imu_pose_estimate
+[13.391s] copying imu_pose_estimate/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build/lib/imu_pose_estimate
+[13.393s] running install
+[13.403s] running install_lib
+[13.404s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages/imu_pose_estimate
+[13.404s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build/lib/imu_pose_estimate/imu_pose_estimate.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages/imu_pose_estimate
+[13.405s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build/lib/imu_pose_estimate/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages/imu_pose_estimate
+[13.407s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages/imu_pose_estimate/imu_pose_estimate.py to imu_pose_estimate.cpython-310.pyc
+[13.417s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages/imu_pose_estimate/__init__.py to __init__.cpython-310.pyc
+[13.422s] running install_data
+[13.423s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/share/ament_index
+[13.423s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/share/ament_index/resource_index
+[13.424s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/share/ament_index/resource_index/packages
+[13.425s] copying resource/imu_pose_estimate -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/share/ament_index/resource_index/packages
+[13.426s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/share/imu_pose_estimate
+[13.427s] running install_egg_info
+[13.445s] Copying ../../build/imu_pose_estimate/imu_pose_estimate.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages/imu_pose_estimate-0.0.0-py3.10.egg-info
+[13.455s] running install_scripts
+[13.641s] Installing imu_pose_estimate script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/imu_pose_estimate
+[13.646s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/install.log'
+[13.949s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/imu_pose_estimate' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/imu_pose_estimate build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/imu_pose_estimate/install.log --single-version-externally-managed install_data

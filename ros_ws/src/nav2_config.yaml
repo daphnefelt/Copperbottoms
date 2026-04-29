@@ -1,0 +1,53 @@
+bt_navigator:
+  ros__parameters:
+    global_frame: odom
+    robot_base_frame: base_link
+    odom_topic: /odom_rf2o
+
+controller_server:
+  ros__parameters:
+    controller_frequency: 20.0
+    FollowPath:
+      plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+      desired_linear_vel: 0.3
+      lookahead_dist: 0.4
+      min_lookahead_dist: 0.2
+      max_lookahead_dist: 0.6
+
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      global_frame: odom
+      robot_base_frame: base_link
+      width: 3
+      height: 3
+      resolution: 0.05
+      robot_radius: 0.1
+
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      global_frame: odom
+      robot_base_frame: base_link
+      robot_radius: 0.1
+
+planner_server:
+  ros__parameters:
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner/NavfnPlanner"
+      use_astar: true
+
+waypoint_follower:
+  ros__parameters:
+    loop_rate: 20
+    stop_on_failure: false
+
+lifecycle_manager:
+  ros__parameters:
+    autostart: true
+    node_names:
+      - controller_server
+      - planner_server
+      - bt_navigator
+      - waypoint_follower

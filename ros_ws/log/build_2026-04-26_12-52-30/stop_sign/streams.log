@@ -1,0 +1,40 @@
+[4.979s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/stop_sign build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/install.log --single-version-externally-managed install_data
+[6.578s] running egg_info
+[6.581s] creating ../../build/stop_sign/stop_sign.egg-info
+[6.582s] writing ../../build/stop_sign/stop_sign.egg-info/PKG-INFO
+[6.583s] writing dependency_links to ../../build/stop_sign/stop_sign.egg-info/dependency_links.txt
+[6.584s] writing entry points to ../../build/stop_sign/stop_sign.egg-info/entry_points.txt
+[6.585s] writing requirements to ../../build/stop_sign/stop_sign.egg-info/requires.txt
+[6.586s] writing top-level names to ../../build/stop_sign/stop_sign.egg-info/top_level.txt
+[6.587s] writing manifest file '../../build/stop_sign/stop_sign.egg-info/SOURCES.txt'
+[6.599s] reading manifest file '../../build/stop_sign/stop_sign.egg-info/SOURCES.txt'
+[6.601s] adding license file 'LICENSE'
+[6.604s] writing manifest file '../../build/stop_sign/stop_sign.egg-info/SOURCES.txt'
+[6.605s] running build
+[6.607s] running build_py
+[6.613s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build
+[6.615s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build/lib
+[6.616s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build/lib/stop_sign_detect
+[6.619s] copying stop_sign_detect/stop_sign_detect.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build/lib/stop_sign_detect
+[6.620s] copying stop_sign_detect/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build/lib/stop_sign_detect
+[6.622s] running install
+[6.623s] running install_lib
+[6.626s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages/stop_sign_detect
+[6.628s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build/lib/stop_sign_detect/stop_sign_detect.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages/stop_sign_detect
+[6.632s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build/lib/stop_sign_detect/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages/stop_sign_detect
+[6.634s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages/stop_sign_detect/stop_sign_detect.py to stop_sign_detect.cpython-310.pyc
+[6.636s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages/stop_sign_detect/__init__.py to __init__.cpython-310.pyc
+[6.637s] running install_data
+[6.639s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/share
+[6.641s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/share/ament_index
+[6.643s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/share/ament_index/resource_index
+[6.645s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/share/ament_index/resource_index/packages
+[6.646s] copying resource/stop_sign -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/share/ament_index/resource_index/packages
+[6.646s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/share/stop_sign
+[6.647s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/share/stop_sign
+[6.647s] running install_egg_info
+[6.648s] Copying ../../build/stop_sign/stop_sign.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages/stop_sign-0.0.0-py3.10.egg-info
+[6.654s] running install_scripts
+[6.755s] Installing stop_sign_detect script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/stop_sign
+[6.758s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/install.log'
+[6.904s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/stop_sign build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/stop_sign/install.log --single-version-externally-managed install_data

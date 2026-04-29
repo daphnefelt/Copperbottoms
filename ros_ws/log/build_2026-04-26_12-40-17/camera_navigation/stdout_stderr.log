@@ -1,0 +1,58 @@
+running egg_info
+creating ../../build/camera_navigation/camera_navigation.egg-info
+writing ../../build/camera_navigation/camera_navigation.egg-info/PKG-INFO
+writing dependency_links to ../../build/camera_navigation/camera_navigation.egg-info/dependency_links.txt
+writing entry points to ../../build/camera_navigation/camera_navigation.egg-info/entry_points.txt
+writing requirements to ../../build/camera_navigation/camera_navigation.egg-info/requires.txt
+writing top-level names to ../../build/camera_navigation/camera_navigation.egg-info/top_level.txt
+writing manifest file '../../build/camera_navigation/camera_navigation.egg-info/SOURCES.txt'
+reading manifest file '../../build/camera_navigation/camera_navigation.egg-info/SOURCES.txt'
+writing manifest file '../../build/camera_navigation/camera_navigation.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying line_follow_V2.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying line_follow_daph.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying mary_line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying blue_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying line_detection.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying follow_the_gap.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+copying turn_right_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+running install
+running install_lib
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/follow_the_gap.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_detection.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/turn_right_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/blue_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/mary_line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_follow_daph.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_follow_V2.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/follow_the_gap.py to follow_the_gap.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_detection.py to line_detection.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/turn_right_node.py to turn_right_node.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/blue_follow.py to blue_follow.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/mary_line_follow.py to mary_line_follow.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_follow_daph.py to line_follow_daph.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_follow.py to line_follow.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_follow_V2.py to line_follow_V2.cpython-310.pyc
+running install_data
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index/resource_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index/resource_index/packages
+copying resource/camera_navigation -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index/resource_index/packages
+copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation
+running install_egg_info
+Copying ../../build/camera_navigation/camera_navigation.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/camera_navigation-0.0.0-py3.10.egg-info
+running install_scripts
+Installing blue_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+Installing follow_the_gap script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+Installing line_detection script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+Installing line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+Installing line_follow_V2 script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+Installing line_follow_daph script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+Installing mary_line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+Installing turn_right_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/install.log'

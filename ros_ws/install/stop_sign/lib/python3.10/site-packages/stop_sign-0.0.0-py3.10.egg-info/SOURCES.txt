@@ -1,0 +1,14 @@
+LICENSE
+package.xml
+setup.cfg
+setup.py
+../../build/stop_sign/stop_sign.egg-info/PKG-INFO
+../../build/stop_sign/stop_sign.egg-info/SOURCES.txt
+../../build/stop_sign/stop_sign.egg-info/dependency_links.txt
+../../build/stop_sign/stop_sign.egg-info/entry_points.txt
+../../build/stop_sign/stop_sign.egg-info/requires.txt
+../../build/stop_sign/stop_sign.egg-info/top_level.txt
+../../build/stop_sign/stop_sign.egg-info/zip-safe
+resource/stop_sign
+stop_sign_detect/__init__.py
+stop_sign_detect/stop_sign_detect.py

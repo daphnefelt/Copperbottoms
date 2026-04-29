@@ -1,0 +1,4 @@
+source;share/amy_test/environment/ament_prefix_path.sh
+source;share/amy_test/environment/library_path.sh
+source;share/amy_test/environment/path.sh
+source;share/amy_test/environment/pythonpath.sh

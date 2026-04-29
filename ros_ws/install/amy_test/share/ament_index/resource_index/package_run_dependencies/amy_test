@@ -1,0 +1,1 @@
+robo_rover;realsense_publisher;rclpy;std_msgs;sensor_msgs;geometry_msgs;rosidl_default_runtime;ament_copyright;ament_flake8;ament_pep257;python3-pytest

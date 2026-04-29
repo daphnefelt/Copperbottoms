@@ -347,7 +347,7 @@ class EKFSlamNode(Node):
         marker.color.a = 1.0
         marker.pose.position.x = x
         marker.pose.position.y = y
-        marker.pose.position.z = 0
+        marker.pose.position.z = 0.0
         return marker
 
     def _publish_map(self):

@@ -16,7 +16,7 @@ from geometry_msgs.msg import Twist
 class LidarDebugNode(Node):
 
     def __init__(self):
-        super().__init__('Reverse_test')
+        super().__init__('lidar_debug_node')
 
         # -- distances --------------------------------------------------------
         self.stop_dist = 0.5
@@ -303,15 +303,16 @@ class LidarDebugNode(Node):
         # ----------------------------------------------------------------------------------------------------
         if self.mode == self.MODE_STRAIGHT:
             twist = Twist()
-            if left_dist < 0.5
-                self.wall_target = 1.4
+            #if left_dist < 0.6
+                #self.wall_target = 1.4
 
             if self.prev_state == self.MODE_INLET:
-                if (right_dist > 1.4)
+                if (right_dist > 1.2 and right_dist != 99)
                     self.wall_target = right_dist
-                    self.get_logger().info('UPDATE WALL TARGET INITIAL')
+                    self.get_logger().info('UPDATE WALL TARGET')
                 else:
                     self.wall_target = self.wall_target_inital
+                    self.get_logger().info('UPDATE WALL TARGET INITIAL')
 
             self.prev_state = self.MODE_STRAIGHT
             # error values
@@ -414,7 +415,7 @@ class LidarDebugNode(Node):
                     twist.angular.z = -self.turn_rate
                     self.vel_pub.publish(twist)
 
-                    if time.time() - self.phase_start_time > 2.0:                                        # then turn left until parallel
+                    if time.time() - self.phase_start_time > 2.0:      # then turn left until parallel
                         twist.linear.x  = -self.OB_forward_speed
                         twist.angular.z = self.turn_rate
                         self.vel_pub.publish(twist)

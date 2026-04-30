@@ -493,6 +493,13 @@ def main(args=None):
                 f.write(f"{x:.4f} {y:.4f} {th:.4f} {time_stamp}\n")
         print("Pose history saved to pose_history.txt")
 
+
+        with open("landmark_positions.txt", "w") as f:
+            json.dump(node.lm_index, f, indent=4)
+            
+
+
+
         node.destroy_node()
         rclpy.shutdown()
         exit(0)

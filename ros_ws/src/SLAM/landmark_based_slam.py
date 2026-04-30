@@ -87,6 +87,7 @@ class EKFSlamNode(Node):
 
         self.get_logger().info('SLAM node is up')
 
+        cv2.namedWindow('Lines', cv2.WINDOW_AUTOSIZE)
         self.debug_img_counter = 0
 
     @property

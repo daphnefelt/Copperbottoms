@@ -87,6 +87,8 @@ class EKFSlamNode(Node):
 
         self.get_logger().info('SLAM node is up')
 
+        self.debug_img_counter = 0
+
     @property
     def n_lm(self) -> int:
         return len(self.lm_index)
@@ -304,6 +306,7 @@ class EKFSlamNode(Node):
         # put scan into world frame using the EKF pose
         x, y, th = self.mu[0], self.mu[1], self.mu[2]
 
+
         for i, r in enumerate(msg.ranges):
             if not (msg.range_min < r < msg.range_max):
                 continue
@@ -313,6 +316,8 @@ class EKFSlamNode(Node):
             ci, cj = self._world_to_cell(wx, wy)
             if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
                 self.lidar_grid[cj, ci] += 1
+
+        
         self._publish_lidar_map()
 
         # generate numpy array on lidar data
@@ -368,7 +373,19 @@ class EKFSlamNode(Node):
         orientation_strength = np.array(orientation_strength).reshape((-1, 2))
         idx = np.argmax(orientation_strength[:, 1])
 
+
+        if self.debug_img_counter % 5 == 0:
+            # 2. Show the image. Using the name 'Mapping' consistently 
+            # ensures it updates the same window rather than opening a new one.
+            cv2.imshow('Lines', detected_pts_img)
+        
+            # 3. CRITICAL: You must include cv2.waitKey()
+            # This allows OpenCV to process window events. 
+            # 1ms delay is enough to refresh the image.
+            cv2.waitKey(1)
+
         self.get_logger().info(f"Orientation of longests length lines: {orientation_strength[idx,0]}")
+        self.debug_img_counter += 1
         
         
 

@@ -487,14 +487,15 @@ def main(args=None):
         cv2.imwrite("map_pose_history.jpg", img)
         print("Map and pose history image saved to map_pose_history.jpg")
 
-        with open("pose_history.txt", "w") as f:
+        current_time = int(time.time())
+        with open(f"pose_history_{current_time}.txt", "w") as f:
             for i in range(len(node.pose_history)):
                 x, y, th, time_stamp = node.pose_history[i]
                 f.write(f"{x:.4f} {y:.4f} {th:.4f} {time_stamp}\n")
         print("Pose history saved to pose_history.txt")
 
 
-        with open("landmark_positions.txt", "w") as f:
+        with open(f"landmark_positions_{current_time}.txt", "w") as f:
             json.dump(node.lm_index, f, indent=4)
             
 

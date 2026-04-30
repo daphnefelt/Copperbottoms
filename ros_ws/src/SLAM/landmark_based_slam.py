@@ -32,7 +32,7 @@ OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range 
 INIT_LM_COV = 1000.0 # init covariance for a new landmark
 
 # RF2O_NOISE = np.diag([1e-8, 1e-8, 1e-8])  # rf2o scan-match uncertainty
-RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # rf2o scan-match uncertainty
+RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(0.1)**2])  # rf2o scan-match uncertainty
 
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell

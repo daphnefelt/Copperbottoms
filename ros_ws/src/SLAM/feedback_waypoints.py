@@ -15,12 +15,13 @@ class MODE(Enum):
 SMALLEST_TURN_RADIUS = 1.05/2
 
 class WaypointFollower(Node):
-    def __init__(self, waypoint_file, landmark_file='', every_n=10):
+    def __init__(self, waypoint_file, landmark_file='', time_start=0, every_n=10):
         super().__init__('waypoint_follower')
         self.cmd_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.pose_sub = self.create_subscription(PoseWithCovarianceStamped, '/slam/pose', self.pose_cb, 10)
         self.scan_sub = self.create_subscription(LaserScan, '/scan', self.lidar_update, 10)
         self.waypoints = self.load_waypoints(waypoint_file, every_n)
+        self.waypoints = self.waypoints[self.waypoints[:,:,:,3] >=time_start]
         # accept the last values for the landmarks as the true values
         self.landmarks = self.load_landmarks(landmark_file)
         self.current_idx = 0
@@ -32,6 +33,7 @@ class WaypointFollower(Node):
         self.detection_radius = 1.2
         self.collision_imminent_dist = 0.5
         self.front_dist = np.inf
+        
 
 
         # once in recovery need enough distance to turn and clear
@@ -65,8 +67,7 @@ class WaypointFollower(Node):
 
     def load_waypoints(self, filename, every_n):
         data = np.loadtxt(filename)
-        return data[::every_n, :2]  # Only x, y
-
+        return data[::every_n, :4]  
     def get_goal_waypoint(self, pose):
         last_in_radius_idx = None
         last_in_radius_goal = None

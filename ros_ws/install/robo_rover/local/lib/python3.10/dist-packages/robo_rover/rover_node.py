@@ -20,6 +20,8 @@ from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
 from custom_messages.msg import Slow
 from custom_messages.msg import ImuBundled
+from std_srvs.srv import Trigger
+
 
 
 """
@@ -58,10 +60,15 @@ class ArduPilotRoverNode(Node):
         self.last_cmd_time = time.time()
         self.cmd_timeout = 1.0  # 1 second timeout for commands
         
+        self.reset_heading_srv = self.create_service(
+            Trigger, 'reset_heading', self.reset_heading_callback)
+
         # Connection variables
         self.master = None
         self.connected = False
         self.armed = False
+        self.initial_heading = None
+        self.heading_initialized = False
 
         # battery stuff
         self.avg_voltage = 7.4  # Initialize at a safe nominal value
@@ -89,7 +96,8 @@ class ArduPilotRoverNode(Node):
         self.imu_pub = self.create_publisher(ImuBundled, 'imu/imu_bundled', sensor_qos)
         self.armed_pub = self.create_publisher(Bool, 'rover/armed', control_qos)
         self.battery_pub = self.create_publisher(BatteryState, 'rover/battery', sensor_qos)
-        self.heading_pub = self.create_publisher(Float32, 'rover/heading', sensor_qos)
+        self.heading_abs_pub = self.create_publisher(Float32, 'rover/heading_absolute', sensor_qos)
+        self.heading_rel_pub = self.create_publisher(Float32, 'rover/heading_relative', sensor_qos)
 
 
         
@@ -423,7 +431,13 @@ class ArduPilotRoverNode(Node):
         imu_bundle.accel = accel_msg 
         imu_bundle.gyro = gyro_msg 
         self.imu_pub.publish(imu_bundle)
-
+    def reset_heading_callback(self, request, response):
+        """Service to reset the heading reference"""
+        self.heading_initialized = False
+        response.success = True
+        response.message = "Heading will be reset on next reading"
+        return response
+        
     def publish_battery(self, sys_status):
         """
         In terminal: 
@@ -460,17 +474,32 @@ class ArduPilotRoverNode(Node):
         self.battery_pub.publish(batt_msg)
 
     def publish_heading(self, attitude_msg):
-        """Publish heading from ATTITUDE message"""
-        # attitude_msg.yaw is in radians, -pi to pi
-        heading_deg = np.degrees(attitude_msg.yaw)
+        """Publish both absolute and relative heading"""
+        # Get absolute heading
+        absolute_heading_deg = np.degrees(attitude_msg.yaw)
+        if absolute_heading_deg < 0:
+            absolute_heading_deg += 360
         
-        # Convert to 0-360 degrees
-        if heading_deg < 0:
-            heading_deg += 360
+        # Publish absolute
+        abs_msg = Float32()
+        abs_msg.data = absolute_heading_deg
+        self.heading_abs_pub.publish(abs_msg)
         
-        heading_msg = Float32()
-        heading_msg.data = heading_deg
-        self.heading_pub.publish(heading_msg)
+        # Calculate and publish relative
+        if not self.heading_initialized:
+            self.initial_heading = absolute_heading_deg
+            self.heading_initialized = True
+            self.get_logger().info(f'Initial heading set to: {self.initial_heading:.2f}°')
+        
+        relative_heading = absolute_heading_deg - self.initial_heading
+        if relative_heading < 0:
+            relative_heading += 360
+        elif relative_heading >= 360:
+            relative_heading -= 360
+        
+        rel_msg = Float32()
+        rel_msg.data = relative_heading
+        self.heading_rel_pub.publish(rel_msg)
     
     
         

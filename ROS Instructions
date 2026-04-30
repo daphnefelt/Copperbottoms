@@ -272,3 +272,22 @@ go ahead and save your pose_history.txt as pose_history_save.txt
 and then run
 cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
 feedback_waypoints.py
+
+
+MAGNETOMETER CALIBRATION
+
+Heading Calibration
+
+launch mavproxy by running this in terminal
+
+mavproxy.py --master=/dev/ttyACM0 --baudrate 115200
+
+magcal start | accept | cancel
+
+
+start ->
+magcal start
+
+accept ->
+magcal accept
+

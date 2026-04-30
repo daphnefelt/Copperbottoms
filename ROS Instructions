@@ -291,3 +291,10 @@ magcal start
 accept ->
 magcal accept
 
+needs to run for ~ 60 seconds
+goal is to capture a bunch of orientations 
+slowly move between all orientations such as
+pitch robot downward, then pitch it upward
+level out, roll it 90 degrees left, roll 90 degrees right
+level out, rotate yaw 360 degrees around.
+

@@ -34,7 +34,7 @@ OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range 
 INIT_LM_COV = 1000.0 # init covariance for a new landmark
 
 # RF2O_NOISE = np.diag([1e-8, 1e-8, 1e-8])  # rf2o scan-match uncertainty
-RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(0.1)**2])  # rf2o scan-match uncertainty
+RF2O_NOISE = np.diag([0.05**2, 0.05**2, 1e-8])  # rf2o scan-match uncertainty
 
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell
@@ -96,8 +96,8 @@ class EKFSlamNode(Node):
 
         self.hallway = HALL.ONE
 
-        cv2.namedWindow('Lines', cv2.WINDOW_AUTOSIZE)
-        self.debug_img_counter = 0
+        # cv2.namedWindow('Lines', cv2.WINDOW_AUTOSIZE)
+        # self.debug_img_counter = 0
 
     @property
     def n_lm(self) -> int:
@@ -188,6 +188,7 @@ class EKFSlamNode(Node):
         n_old = self.state_size
 
         # calc where landmark is in world frame
+        print(f"Initialising landmark {tag_id} at range {r:.2f} and bearing {math.degrees(phi):.1f} deg")
         x, y, th = self.mu[0], self.mu[1], self.mu[2]
         lx = x + r * math.cos(th + phi)
         ly = y + r * math.sin(th + phi)
@@ -219,7 +220,7 @@ class EKFSlamNode(Node):
         dy = ly - y
         q  = dx**2 + dy**2
         r_pred = math.sqrt(q)
-        phi_pred = wrap(math.arctan2(dy, dx) - th)
+        phi_pred = wrap(math.atan2(dy, dx) - th)
 
         # diff in predicted vs observed
         z_diff = np.array([r_obs - r_pred, wrap(phi_obs - phi_pred)])
@@ -384,18 +385,17 @@ class EKFSlamNode(Node):
             idx = np.argmax(orientation_strength[:, 1])
             self.get_logger().info(f"Orientation of longests length lines: {orientation_strength[idx,0]}")
 
-
-        if self.debug_img_counter % 5 == 0:
-            # 2. Show the image. Using the name 'Mapping' consistently 
-            # ensures it updates the same window rather than opening a new one.
-            cv2.imshow('Lines', detected_pts_img)
+        # if self.debug_img_counter % 5 == 0:
+        #     # 2. Show the image. Using the name 'Mapping' consistently 
+        #     # ensures it updates the same window rather than opening a new one.
+        #     cv2.imshow('Lines', detected_pts_img)
         
-            # 3. CRITICAL: You must include cv2.waitKey()
-            # This allows OpenCV to process window events. 
-            # 1ms delay is enough to refresh the image.
-            cv2.waitKey(1)
+        #     # 3. CRITICAL: You must include cv2.waitKey()
+        #     # This allows OpenCV to process window events. 
+        #     # 1ms delay is enough to refresh the image.
+        #     cv2.waitKey(1)
 
-        self.debug_img_counter += 1
+        # self.debug_img_counter += 1
         
         
 

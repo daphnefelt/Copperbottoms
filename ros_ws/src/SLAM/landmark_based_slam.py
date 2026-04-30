@@ -25,6 +25,7 @@ from visualization_msgs.msg import Marker
 import time
 import signal
 import time
+from enum import Enum
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([100000**2, 100000**2, np.deg2rad(100000.0)**2]) # process noise on robot pose
@@ -42,6 +43,12 @@ LIDAR_GRID_ORIGIN = (-40.0, -40.0) # world coords of cell (0, 0)
 
 def wrap(a: float) -> float: # wraps to -pi, +pi
     return (a + math.pi) % (2.0 * math.pi) - math.pi
+
+class HALL(Enum):
+    ONE = 1
+    TWO = 2 
+    THREE = 3
+    FOUR = 4
 
 class EKFSlamNode(Node):
     def __init__(self):
@@ -86,6 +93,8 @@ class EKFSlamNode(Node):
         self.create_timer(0.05, self._predict_step) # predict at 20hz
 
         self.get_logger().info('SLAM node is up')
+
+        self.hallway = HALL.ONE
 
         cv2.namedWindow('Lines', cv2.WINDOW_AUTOSIZE)
         self.debug_img_counter = 0
@@ -586,6 +595,7 @@ def main(args=None):
             for tag_id, j in node.lm_index.items():
                 sl = slice(3 + 2 * j, 3 + 2 * j + 2)
                 lx, ly = node.mu[sl]
+                landmark_positions[tag_id] = {}
                 landmark_positions[tag_id]["x"] = lx 
                 landmark_positions[tag_id]["y"] = ly 
             json.dump(node.lm_index, f, indent=4)

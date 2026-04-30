@@ -207,7 +207,7 @@ class EKFSlamNode(Node):
         dy = ly - y
         q  = dx**2 + dy**2
         r_pred = math.sqrt(q)
-        phi_pred = wrap(math.atan2(dy, dx) - th)
+        phi_pred = wrap(math.arctan2(dy, dx) - th)
 
         # diff in predicted vs observed
         z_diff = np.array([r_obs - r_pred, wrap(phi_obs - phi_pred)])
@@ -349,7 +349,7 @@ class EKFSlamNode(Node):
         if lines is not None:
             for line in lines:
                 x1, y1, x2, y2 = line[0] 
-                cur_orientation = np.atan2(y2-y1, x2-x1)
+                cur_orientation = np.arctan2(y2-y1, x2-x1)
                 cur_dist = np.hypot(x2-x1, y2-y1)
                 found_orientation = False
                 for i in range(len(orientation_strength)):

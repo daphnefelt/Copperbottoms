@@ -22,6 +22,7 @@ from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry, OccupancyGrid
 from visualization_msgs.msg import MarkerArray
 from visualization_msgs.msg import Marker
+import time
 import signal
 
 # NOISE PARAMS
@@ -368,14 +369,14 @@ class EKFSlamNode(Node):
         self.map_pub.publish(markerArr)
 
     def _publish_pose_history(self):
-        self.pose_history.append((float(self.mu[0]), float(self.mu[1]), float(self.mu[2])))
+        self.pose_history.append((float(self.mu[0]), float(self.mu[1]), float(self.mu[2], time.time())))
 
         # Only publish every 10 poses
         if len(self.pose_history) % 10 != 0:
             return
 
         markerArr = MarkerArray()
-        for idx, (x, y, th) in enumerate(self.pose_history[::10]):
+        for idx, (x, y, th, _) in enumerate(self.pose_history[::10]):
             marker = self.get_marker(self.pose_marker_id + idx, x, y, namespace="pose_history")
             markerArr.markers.append(marker)
         self.pose_history_pub.publish(markerArr)
@@ -448,7 +449,7 @@ def main(args=None):
 
         # add pose history
         N = len(node.pose_history)
-        for idx, (x, y, th) in enumerate(node.pose_history):
+        for idx, (x, y, th, _) in enumerate(node.pose_history):
             ci = int((x - LIDAR_GRID_ORIGIN[0]) / LIDAR_GRID_RES)
             cj = int((y - LIDAR_GRID_ORIGIN[1]) / LIDAR_GRID_RES)
             if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
@@ -474,8 +475,8 @@ def main(args=None):
 
         with open("pose_history.txt", "w") as f:
             for i in range(len(node.pose_history)):
-                x, y, th = node.pose_history[i]
-                f.write(f"{x:.4f} {y:.4f} {th:.4f}\n")
+                x, y, th, time_stamp = node.pose_history[i]
+                f.write(f"{x:.4f} {y:.4f} {th:.4f} {time_stamp}\n")
         print("Pose history saved to pose_history.txt")
 
         node.destroy_node()

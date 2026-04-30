@@ -24,6 +24,7 @@ from visualization_msgs.msg import MarkerArray
 from visualization_msgs.msg import Marker
 import time
 import signal
+import time
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([100000**2, 100000**2, np.deg2rad(100000.0)**2]) # process noise on robot pose
@@ -32,7 +33,7 @@ OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range 
 INIT_LM_COV = 1000.0 # init covariance for a new landmark
 
 # RF2O_NOISE = np.diag([1e-8, 1e-8, 1e-8])  # rf2o scan-match uncertainty
-RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(3.0)**2])  # rf2o scan-match uncertainty
+RF2O_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(0.1)**2])  # rf2o scan-match uncertainty
 
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell
@@ -63,6 +64,9 @@ class EKFSlamNode(Node):
         # track last rf2o pose so we can get relative change
         self._rf2o_prev = None
         self.last_rf2o_time = self.get_clock().now()
+        
+        # track times between rf2o updates to see if it's running at a reasonable rate and not stalling
+        self.rf20_update_times = []
 
         # lidar occupancy grid
         self.lidar_grid = np.zeros((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE), dtype=np.int32)
@@ -238,6 +242,7 @@ class EKFSlamNode(Node):
 
     def _rf2o_cb(self, msg: Odometry):
         print(f"time since last rf2o update: {(self.get_clock().now() - self.last_rf2o_time).nanoseconds * 1e-9:.2f} seconds")
+        self.rf20_update_times.append((self.get_clock().now() - self.last_rf2o_time).nanoseconds * 1e-9)
 
         # get pose from rf2o odometry message (it's in mf quaternions)
         x_rf2o = msg.pose.pose.position.x
@@ -403,6 +408,9 @@ def main(args=None):
     rclpy.init(args=args)
     node = EKFSlamNode()
 
+    # start time
+    start_time = node.get_clock().now()
+
     def save_and_exit(signum, frame):
         binary_grid = np.where(node.lidar_grid > 0, 100, 0).astype(np.int8)
         np.save("last_lidar_grid.npy", binary_grid)
@@ -469,6 +477,12 @@ def main(args=None):
             if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
                 cv2.circle(img, (ci, LIDAR_GRID_SIZE - 1 - cj), 5, (0, 255, 0), -1)
                 cv2.putText(img, f"Tag {tag_id}", (ci+5, LIDAR_GRID_SIZE - 1 - cj - 5), font, font_scale, (0, 128, 0), thickness)
+
+        # Get max value and average value of rf2o update times
+        if node.rf20_update_times:
+            max_rf2o_time = max(node.rf20_update_times)
+            avg_rf2o_time = sum(node.rf20_update_times) / len(node.rf20_update_times)
+            print(f"RF2O update times: max={max_rf2o_time:.4f} s, avg={avg_rf2o_time:.4f} s")
 
         cv2.imwrite("map_pose_history.jpg", img)
         print("Map and pose history image saved to map_pose_history.jpg")

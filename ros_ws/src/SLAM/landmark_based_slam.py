@@ -362,7 +362,12 @@ class EKFSlamNode(Node):
                         break
                          
                 if not found_orientation:
-                    orientation_strength.append((cur_orientation, cur_dist))
+                    orientation_strength.append([cur_orientation, cur_dist])
+
+        orientation_strength = np.array(orientation_strength)
+        idx = np.argmax(orientation_strength[:, 1])
+
+        self.get_logger().info(f"Orientation of longests length lines: {orientation_strength[idx,0]}")
         
         
 

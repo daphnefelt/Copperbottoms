@@ -374,7 +374,7 @@ class EKFSlamNode(Node):
         self.map_pub.publish(markerArr)
 
     def _publish_pose_history(self):
-        self.pose_history.append((float(self.mu[0]), float(self.mu[1]), float(self.mu[2], time.time())))
+        self.pose_history.append((float(self.mu[0]), float(self.mu[1]), float(self.mu[2]), time.time()))
 
         # Only publish every 10 poses
         if len(self.pose_history) % 10 != 0:

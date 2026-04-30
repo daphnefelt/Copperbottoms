@@ -26,7 +26,8 @@ import signal
 
 # NOISE PARAMS
 MOTION_NOISE = np.diag([0.05**2, 0.05**2, np.deg2rad(2.0)**2]) # process noise on robot pose
-OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range (m) and bearing (rad)
+# OBS_NOISE = np.diag([0.1**2, np.deg2rad(5.0)**2]) # measurement noise for range (m) and bearing (rad)
+OBS_NOISE = np.diag([100000**2, np.deg2rad(100000.0)**2])
 INIT_LM_COV = 1000.0 # init covariance for a new landmark
 
 RF2O_NOISE = np.diag([1e-8, 1e-8, 1e-8])  # rf2o scan-match uncertainty
@@ -35,7 +36,7 @@ RF2O_NOISE = np.diag([1e-8, 1e-8, 1e-8])  # rf2o scan-match uncertainty
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell
 LIDAR_GRID_SIZE = 1600 # cells per side (so 40m x 40m)
-LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
+LIDAR_GRID_ORIGIN = (-40.0, -40.0) # world coords of cell (0, 0)
 
 def wrap(a: float) -> float: # wraps to -pi, +pi
     return (a + math.pi) % (2.0 * math.pi) - math.pi
@@ -60,6 +61,7 @@ class EKFSlamNode(Node):
 
         # track last rf2o pose so we can get relative change
         self._rf2o_prev = None
+        self.last_rf2o_time = self.get_clock().now()
 
         # lidar occupancy grid
         self.lidar_grid = np.zeros((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE), dtype=np.int32)
@@ -234,6 +236,8 @@ class EKFSlamNode(Node):
         self.get_logger().info(f'LANDMARK UPDATE: tag={tag_id}  x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
 
     def _rf2o_cb(self, msg: Odometry):
+        print(f"time since last rf2o update: {(self.get_clock().now() - self.last_rf2o_time).nanoseconds * 1e-9:.2f} seconds")
+
         # get pose from rf2o odometry message (it's in mf quaternions)
         x_rf2o = msg.pose.pose.position.x
         y_rf2o = msg.pose.pose.position.y
@@ -281,6 +285,7 @@ class EKFSlamNode(Node):
         self.Sigma = (np.eye(n) - K @ H) @ self.Sigma
 
         self._publish_pose() # Best estimate of robot pose
+        self.last_rf2o_time = self.get_clock().now()
         self.get_logger().info(f'RF2O UPDATE: x={self.mu[0]:.2f} y={self.mu[1]:.2f} th={math.degrees(self.mu[2]):.1f} deg')
 
     def _world_to_cell(self, wx, wy):
@@ -359,7 +364,7 @@ class EKFSlamNode(Node):
         markerArr = MarkerArray()
         for tag_id, j in self.lm_index.items():
             sl = slice(3 + 2 * j, 3 + 2 * j + 2)
-            markerArr.append(self.get_marker(tag_id, float(self.mu[sl][0]), float(self.mu[sl][1]), namespace="landmarks"))
+            markerArr.markers.append(self.get_marker(tag_id, float(self.mu[sl][0]), float(self.mu[sl][1]), namespace="landmarks"))
         self.map_pub.publish(markerArr)
 
     def _publish_pose_history(self):
@@ -452,6 +457,18 @@ def main(args=None):
                 g = 0
                 b = int(255 * (1 - idx / max(N-1, 1)))
                 cv2.circle(img, (ci, LIDAR_GRID_SIZE - 1 - cj), 2, (b, g, r), -1)
+
+        # ADD LANDMARKS
+        N_landmarks = len(node.lm_index)
+        for tag_id, j in node.lm_index.items():
+            sl = slice(3 + 2 * j, 3 + 2 * j + 2)
+            lx, ly = node.mu[sl]
+            ci = int((lx - LIDAR_GRID_ORIGIN[0]) / LIDAR_GRID_RES)
+            cj = int((ly - LIDAR_GRID_ORIGIN[1]) / LIDAR_GRID_RES)
+            if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
+                cv2.circle(img, (ci, LIDAR_GRID_SIZE - 1 - cj), 5, (0, 255, 0), -1)
+                cv2.putText(img, f"Tag {tag_id}", (ci+5, LIDAR_GRID_SIZE - 1 - cj - 5), font, font_scale, (0, 128, 0), thickness)
+
         cv2.imwrite("map_pose_history.jpg", img)
         print("Map and pose history image saved to map_pose_history.jpg")
 

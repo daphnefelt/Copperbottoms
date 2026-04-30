@@ -34,7 +34,7 @@ RF2O_NOISE = np.diag([1e-8, 1e-8, 1e-8])  # rf2o scan-match uncertainty
 
 # Params for global lidar occupancy grid mapping
 LIDAR_GRID_RES = 0.05 # m per cell
-LIDAR_GRID_SIZE = 800 # cells per side (so 40m x 40m)
+LIDAR_GRID_SIZE = 1600 # cells per side (so 40m x 40m)
 LIDAR_GRID_ORIGIN = (0.0, 0.0) # world coords of cell (0, 0)
 
 def wrap(a: float) -> float: # wraps to -pi, +pi
@@ -96,7 +96,7 @@ class EKFSlamNode(Node):
 
     # tuning for the meaning of linear.x and angular.z
     def V_NOMINAL(self, linear_x):
-        return (2.0555*linear_x - 0.1072) * 2 # m/s for a given linear.x cmd
+        return 2.0555*linear_x - 0.1072 # m/s for a given linear.x cmd
     def DELTA_NOMINAL(self, angular_z):
         abs_angle = abs(angular_z)
         pos_angle = math.radians(5.3505*abs_angle**2 + 7.2598*abs_angle - 0.2384) * 2 # DOUBLE THAT SHIT
@@ -398,6 +398,10 @@ def main(args=None):
     node = EKFSlamNode()
 
     def save_and_exit(signum, frame):
+        binary_grid = np.where(node.lidar_grid > 0, 100, 0).astype(np.int8)
+        np.save("last_lidar_grid.npy", binary_grid)
+        print("Lidar grid saved to last_lidar_grid.npy")
+
         # Save lidar occupancy grid as map.jpg, only marking cells with enough hits
         img = np.ones((LIDAR_GRID_SIZE, LIDAR_GRID_SIZE, 3), dtype=np.uint8) * 255
         hits = node.lidar_grid >= 3

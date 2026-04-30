@@ -303,6 +303,7 @@ class EKFSlamNode(Node):
     def _lidar_cb(self, msg: LaserScan):
         # put scan into world frame using the EKF pose
         x, y, th = self.mu[0], self.mu[1], self.mu[2]
+
         for i, r in enumerate(msg.ranges):
             if not (msg.range_min < r < msg.range_max):
                 continue
@@ -313,6 +314,66 @@ class EKFSlamNode(Node):
             if 0 <= ci < LIDAR_GRID_SIZE and 0 <= cj < LIDAR_GRID_SIZE:
                 self.lidar_grid[cj, ci] += 1
         self._publish_lidar_map()
+
+        # generate numpy array on lidar data
+        max_range = 6.0
+        grid_res = .05
+        num_x_grid = int((max_range*2)/grid_res)
+        num_y_grid = num_x_grid
+
+        angles = msg.angle_min + np.arange(len(msg.ranges))*msg.angle_increment
+        angles = angles[msg.ranges < 6.0]
+        ranges = msg.ranges[msg.ranges < 6.0]
+
+        detected_pts_img = np.zeros((num_y_grid, num_x_grid), dtype=np.uint8)
+
+
+        bottom_left_corner = np.array([-max_range, -max_range])
+        
+        # convert to pixel position
+        x_idx = (np.cos(angles)*ranges - bottom_left_corner[0])/grid_res
+        y_idx = (np.sin(angles)* ranges - bottom_left_corner[1]) / grid_res
+
+        detected_pts_img[y_idx, x_idx] = 255
+
+        lines = cv2.HoughLinesP(
+            detected_pts_img, 
+            rho=1, 
+            theta=np.pi / 180, 
+            threshold=50,    # Adjust based on how 'solid' your 255 lines are
+            minLineLength=20, 
+            maxLineGap=5
+        )
+        orientation_strength = []
+        if lines is not None:
+            for line in lines:
+                x1, y1, x2, y2 = line[0] 
+                cur_orientation = np.atan2(y2-y1, x2-x1)
+                cur_dist = np.hypot(x2-x1, y2-y1)
+                found_orientation = False
+                for i in range(len(orientation_strength)):
+                    orientation, votes = orientation_strength[i]
+                    diff = ((cur_orientation - orientation) % (2 * np.pi)) - np.pi
+                    if diff > np.pi:
+                        diff = diff - 2*np.pi
+                    if np.abs(diff) < np.radians(1):
+                        orientation_strength[i][1] += cur_dist
+                        found_orientation = True
+                        break
+                         
+                if not found_orientation:
+                    orientation_strength.append((cur_orientation, cur_dist))
+        
+        
+
+
+
+
+
+
+        
+
+        
 
     # PUBLISHING
 
@@ -496,6 +557,13 @@ def main(args=None):
 
 
         with open(f"landmark_positions_{current_time}.txt", "w") as f:
+
+            landmark_positions = {}
+            for tag_id, j in node.lm_index.items():
+                sl = slice(3 + 2 * j, 3 + 2 * j + 2)
+                lx, ly = node.mu[sl]
+                landmark_positions[tag_id]["x"] = lx 
+                landmark_positions[tag_id]["y"] = ly 
             json.dump(node.lm_index, f, indent=4)
             
 

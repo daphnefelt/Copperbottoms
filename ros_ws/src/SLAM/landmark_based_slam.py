@@ -332,8 +332,8 @@ class EKFSlamNode(Node):
         bottom_left_corner = np.array([-max_range, -max_range])
         
         # convert to pixel position
-        x_idx = (np.cos(angles)*ranges - bottom_left_corner[0])/grid_res
-        y_idx = (np.sin(angles)* ranges - bottom_left_corner[1]) / grid_res
+        x_idx = int((np.cos(angles)*ranges - bottom_left_corner[0])/grid_res)
+        y_idx = int((np.sin(angles)* ranges - bottom_left_corner[1]) / grid_res)
 
         detected_pts_img[y_idx, x_idx] = 255
 

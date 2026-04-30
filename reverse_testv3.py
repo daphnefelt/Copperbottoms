@@ -16,7 +16,7 @@ from geometry_msgs.msg import Twist
 class LidarDebugNode(Node):
 
     def __init__(self):
-        super().__init__('lidar_debug_node')
+        super().__init__('Reverse_test')
 
         # -- distances --------------------------------------------------------
         self.stop_dist = 0.5

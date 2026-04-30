@@ -10,6 +10,7 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Imu
 from std_msgs.msg import Bool
+from std_msgs.msg import Float32
 import time
 import threading
 from pymavlink import mavutil
@@ -19,6 +20,8 @@ from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import Vector3
 from custom_messages.msg import Slow
 from custom_messages.msg import ImuBundled
+from std_srvs.srv import Trigger
+
 
 
 """
@@ -57,10 +60,15 @@ class ArduPilotRoverNode(Node):
         self.last_cmd_time = time.time()
         self.cmd_timeout = 1.0  # 1 second timeout for commands
         
+        self.reset_heading_srv = self.create_service(
+            Trigger, 'reset_heading', self.reset_heading_callback)
+
         # Connection variables
         self.master = None
         self.connected = False
         self.armed = False
+        self.initial_heading = None
+        self.heading_initialized = False
 
         # battery stuff
         self.avg_voltage = 7.4  # Initialize at a safe nominal value
@@ -88,6 +96,8 @@ class ArduPilotRoverNode(Node):
         self.imu_pub = self.create_publisher(ImuBundled, 'imu/imu_bundled', sensor_qos)
         self.armed_pub = self.create_publisher(Bool, 'rover/armed', control_qos)
         self.battery_pub = self.create_publisher(BatteryState, 'rover/battery', sensor_qos)
+        self.heading_abs_pub = self.create_publisher(Float32, 'rover/heading_absolute', sensor_qos)
+        self.heading_rel_pub = self.create_publisher(Float32, 'rover/heading_relative', sensor_qos)
 
 
         
@@ -142,6 +152,8 @@ class ArduPilotRoverNode(Node):
                 # Request IMU data
                 self.request_imu_data()
             
+            # request attitude for heading
+            self.request_attitude_data()
             return True
             
         except Exception as e:
@@ -395,6 +407,9 @@ class ArduPilotRoverNode(Node):
                 elif msg_type == 'HEARTBEAT':
                     self.armed = bool(msg.base_mode & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
                     # (Optional: Publish armed status here too if you want)
+                elif msg_type == 'ATTITUDE':
+                    self.publish_heading(msg)
+
             
 
     def publish_scaled_imu(self, scaled_imu_msg):
@@ -416,7 +431,13 @@ class ArduPilotRoverNode(Node):
         imu_bundle.accel = accel_msg 
         imu_bundle.gyro = gyro_msg 
         self.imu_pub.publish(imu_bundle)
-
+    def reset_heading_callback(self, request, response):
+        """Service to reset the heading reference"""
+        self.heading_initialized = False
+        response.success = True
+        response.message = "Heading will be reset on next reading"
+        return response
+        
     def publish_battery(self, sys_status):
         """
         In terminal: 
@@ -451,6 +472,34 @@ class ArduPilotRoverNode(Node):
         batt_msg.percentage = sys_status.battery_remaining / 100.0
         batt_msg.power_supply_status = BatteryState.POWER_SUPPLY_STATUS_DISCHARGING
         self.battery_pub.publish(batt_msg)
+
+    def publish_heading(self, attitude_msg):
+        """Publish both absolute and relative heading"""
+        # Get absolute heading
+        absolute_heading_deg = np.degrees(attitude_msg.yaw)
+        if absolute_heading_deg < 0:
+            absolute_heading_deg += 360
+        
+        # Publish absolute
+        abs_msg = Float32()
+        abs_msg.data = absolute_heading_deg
+        self.heading_abs_pub.publish(abs_msg)
+        
+        # Calculate and publish relative
+        if not self.heading_initialized:
+            self.initial_heading = absolute_heading_deg
+            self.heading_initialized = True
+            self.get_logger().info(f'Initial heading set to: {self.initial_heading:.2f}°')
+        
+        relative_heading = absolute_heading_deg - self.initial_heading
+        if relative_heading < 0:
+            relative_heading += 360
+        elif relative_heading >= 360:
+            relative_heading -= 360
+        
+        rel_msg = Float32()
+        rel_msg.data = relative_heading
+        self.heading_rel_pub.publish(rel_msg)
     
     
         
@@ -475,6 +524,29 @@ class ArduPilotRoverNode(Node):
             self.master.close()
         
         super().destroy_node()
+
+    # for heading
+    def request_attitude_data(self):
+        """Request attitude (roll, pitch, yaw) from autopilot"""
+        if not self.connected:
+            return
+        
+        try:
+            interval_us = int(100000)  # 10 Hz
+            
+            self.master.mav.command_long_send(
+                self.master.target_system,
+                self.master.target_component,
+                mavutil.mavlink.MAV_CMD_SET_MESSAGE_INTERVAL,
+                0,
+                30,  # ATTITUDE message ID
+                interval_us,
+                0, 0, 0, 0, 0
+            )
+            
+            self.get_logger().info('Requested ATTITUDE data at 10 Hz')
+        except Exception as e:
+            self.get_logger().error(f'Failed to request attitude: {e}')
 
 
 def main(args=None):

@@ -272,3 +272,29 @@ go ahead and save your pose_history.txt as pose_history_save.txt
 and then run
 cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
 feedback_waypoints.py
+
+
+MAGNETOMETER CALIBRATION
+
+Heading Calibration
+
+launch mavproxy by running this in terminal
+
+mavproxy.py --master=/dev/ttyACM0 --baudrate 115200
+
+magcal start | accept | cancel
+
+
+start ->
+magcal start
+
+accept ->
+magcal accept
+
+needs to run for ~ 60 seconds
+goal is to capture a bunch of orientations 
+slowly move between all orientations such as
+pitch robot downward, then pitch it upward
+level out, roll it 90 degrees left, roll 90 degrees right
+level out, rotate yaw 360 degrees around.
+

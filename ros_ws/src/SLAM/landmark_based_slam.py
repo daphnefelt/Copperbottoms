@@ -371,8 +371,9 @@ class EKFSlamNode(Node):
                 if not found_orientation:
                     orientation_strength.append([cur_orientation, cur_dist])
 
-        orientation_strength = np.array(orientation_strength).reshape((-1, 2))
-        idx = np.argmax(orientation_strength[:, 1])
+            orientation_strength = np.array(orientation_strength).reshape((-1, 2))
+            idx = np.argmax(orientation_strength[:, 1])
+            self.get_logger().info(f"Orientation of longests length lines: {orientation_strength[idx,0]}")
 
 
         if self.debug_img_counter % 5 == 0:
@@ -385,7 +386,6 @@ class EKFSlamNode(Node):
             # 1ms delay is enough to refresh the image.
             cv2.waitKey(1)
 
-        self.get_logger().info(f"Orientation of longests length lines: {orientation_strength[idx,0]}")
         self.debug_img_counter += 1
         
         

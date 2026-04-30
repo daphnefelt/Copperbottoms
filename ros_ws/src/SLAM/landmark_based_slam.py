@@ -321,9 +321,10 @@ class EKFSlamNode(Node):
         num_x_grid = int((max_range*2)/grid_res)
         num_y_grid = num_x_grid
 
+        ranges = np.array(msg.ranges)
         angles = msg.angle_min + np.arange(len(msg.ranges))*msg.angle_increment
-        angles = angles[msg.ranges < 6.0]
-        ranges = msg.ranges[msg.ranges < 6.0]
+        angles = angles[ranges < 6.0]
+        ranges = ranges[ranges < 6.0]
 
         detected_pts_img = np.zeros((num_y_grid, num_x_grid), dtype=np.uint8)
 

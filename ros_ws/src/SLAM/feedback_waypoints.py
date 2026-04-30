@@ -13,7 +13,8 @@ class WaypointFollower(Node):
         self.goal_tolerance = 0.5
         self.linear_speed = 0.3
         self.angular_speed = 0.3
-        self.detection_radius = 1
+        self.max_angular_speed = 1.5
+        self.detection_radius = 1.2
 
     def load_waypoints(self, filename, every_n):
         data = np.loadtxt(filename)
@@ -50,15 +51,29 @@ class WaypointFollower(Node):
         dx, dy = goal[0] - x, goal[1] - y
         dist = np.hypot(dx, dy)
         angle_to_goal = np.arctan2(dy, dx)
-        angle_diff = self.normalize_angle(angle_to_goal - th)
+        #angle_diff = self.normalize_angle(angle_to_goal - th)
 
         cmd = Twist()
         if dist > self.goal_tolerance:
             cmd.linear.x = self.linear_speed * (dist > self.goal_tolerance)
-            cmd.angular.z = self.angular_speed * angle_diff
+            cmd.angular.z = self.max_angular_speed * (self.normalize_angle_diff(angle_to_goal-th) / 2.0)
         self.cmd_pub.publish(cmd)
 
     @staticmethod
+    def normalize_angle_diff(a, b):
+        # assuming angles were in -pi to pi format - if the difference is >=0 then it is from 0 to 2 pi
+        # if the difference is negative its from 0 to -2 pi
+
+        # make it relative to a from 0 to 2pi if difference is greater than pi then right turn otherwise left turn
+        diff = (b - a) % 2*np.pi 
+        # right turn
+        if(diff > np.pi):
+            return diff - 2*np.pi
+        # left turn
+        return diff
+
+    @staticmethod
+    # for angle difference if angle b = pi and angle a = 0 b-a = pi this gives -pi
     def normalize_angle(a):
         return (a + np.pi) % (2 * np.pi) - np.pi
 

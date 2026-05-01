@@ -21,6 +21,7 @@ class WaypointFollower(Node):
         self.pose_sub = self.create_subscription(PoseWithCovarianceStamped, '/slam/pose', self.pose_cb, 10)
         self.scan_sub = self.create_subscription(LaserScan, '/scan', self.lidar_update, 10)
         self.waypoints = self.load_waypoints(waypoint_file, every_n)
+        print(self.waypoints.shape)
         self.waypoints = self.waypoints[self.waypoints[:,:,:,3] >=time_start]
         # accept the last values for the landmarks as the true values
         self.landmarks = self.load_landmarks(landmark_file)
@@ -69,6 +70,7 @@ class WaypointFollower(Node):
 
     def load_waypoints(self, filename, every_n):
         data = np.loadtxt(filename)
+        print(data.shape)
         return data[::every_n]
     def get_goal_waypoint(self, pose):
         last_in_radius_idx = None

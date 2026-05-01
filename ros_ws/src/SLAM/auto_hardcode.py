@@ -7,7 +7,7 @@ from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 
 x_walls = [5, 35]
-y_walls = [3, 22.5]
+y_walls = [3, 21.5]
 
 def get_hallway(pose):
     x, y = pose
@@ -55,6 +55,7 @@ class Hardcoded(Node):
     def __init__(self):
         super().__init__('hardcoded')
         self.create_subscription(PoseWithCovarianceStamped, '/slam/pose', self._pose_cb, 10)
+        self.create_subscription(LaserScan, '/scan', self._scan_cb, 10)
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.forward_speed = 0.25
         self.turn_speed = 0.3
@@ -66,31 +67,79 @@ class Hardcoded(Node):
         self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf
 
+        # auto-backup recovery
+        self.front_threshold = 0.3
+        self.stop_time = 0.2
+        self.recovery_turn_time = 0.7
+        self.front_dist = float('inf')
+        self.current_yaw = 0.0
+        self.mode = 'NORMAL'  # 'NORMAL' | 'STOPPING' | 'BACKING_UP' | 'TURNING'
+        self._mode_start = 0.0
+        self._backup_turn_dir = -1.0
+
     def _publish(self, lin: float, ang: float):
         t = Twist()
         t.linear.x  = float(lin)
         t.angular.z = float(ang)
         self.vel_pub.publish(t)
 
-    def right_turn(self):
-        now = time.time()
-        elapsed = now - self._right_turn_start
-        if elapsed < self.right_turn_duration:
-            # still inside the active turn window
-            self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
-        elif elapsed < self.right_turn_duration + self.right_turn_cooldown:
-            # cooldown — ignore the call, go straight
-            self._publish(self.forward_speed, 0.0)
-        else:
-            # cooldown expired — start a fresh turn
-            self._right_turn_start = now
-            self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
+    def _scan_cb(self, msg: LaserScan):
+        # min distance in a small cone straight ahead
+        half = math.radians(5.0)
+        lo = int((-half - msg.angle_min) / msg.angle_increment)
+        hi = int(( half - msg.angle_min) / msg.angle_increment)
+        n = len(msg.ranges)
+        lo = max(0, lo)
+        hi = min(n - 1, hi)
+        cone = np.array(msg.ranges[lo:hi + 1], dtype=float)
+        valid = cone[(cone > msg.range_min) & np.isfinite(cone)]
+        self.front_dist = float(np.min(valid)) if valid.size > 0 else float('inf')
 
     def _pose_cb(self, msg):
         pose = msg.pose.pose.position.x, msg.pose.pose.position.y, math.degrees(2 * math.atan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))
         x, y, self.current_yaw = pose
         hallway = get_hallway((x, y))
-        print(f"pose {pose} hallway {hallway_to_print(hallway)}")
+        now = time.time()
+        print(f"pose {pose} hallway {hallway_to_print(hallway)} mode={self.mode} front={self.front_dist:.2f}m")
+
+        # ── recovery state machine ──────────────────────────────────────
+        if self.mode == 'STOPPING':
+            if now - self._mode_start < self.stop_time:
+                self._publish(0.0, 0.0)
+                return
+            self.mode = 'BACKING_UP'
+            self._mode_start = now
+
+        if self.mode == 'BACKING_UP':
+            if now - self._mode_start < self.backup_time:
+                self._publish(-self.backup_speed, 0.0)
+                return
+            self.mode = 'TURNING'
+            self._mode_start = now
+
+        if self.mode == 'TURNING':
+            if now - self._mode_start < self.recovery_turn_time:
+                self._publish(0.0, self._backup_turn_dir * self.sharp_turn_speed * 2)
+                return
+            self.mode = 'NORMAL'
+
+        # ── trigger recovery when a wall is right in front ─────────────
+        if self.front_dist < self.front_threshold:
+            # pick turn direction the way normal driving would have:
+            # toward goal_yaw if in a hallway, else right (the right_turn fallback)
+            if hallway is not None:
+                goal_yaw = pose_goal_from_hallway(hallway)
+                delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
+                self._backup_turn_dir = 1.0 if delta_yaw > 0 else -1.0
+            else:
+                self._backup_turn_dir = -1.0
+            print(f"AUTO BACKUP: front={self.front_dist:.2f}m  turn_dir={self._backup_turn_dir:+.0f}")
+            self.mode = 'STOPPING'
+            self._mode_start = now
+            self._publish(0.0, 0.0)
+            return
+
+        # ── normal driving ──────────────────────────────────────────────
         if hallway is not None:
             goal_yaw = pose_goal_from_hallway(hallway)
             delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
@@ -101,8 +150,9 @@ class Hardcoded(Node):
                 fwd = 0.2
             self._publish(fwd, self.turn_speed * (delta_yaw) * self.turn_p)
         else:
-            print("right turnnnn")
-            self.right_turn()
+            # stop
+            print("Not in a hallway, stopping")
+            self._publish(0.0, 0.0)
 
 def main(args=None):
     rclpy.init(args=args)

@@ -47,12 +47,19 @@ class Hardcoded(Node):
     def __init__(self):
         super().__init__('hardcoded')
         self.create_subscription(PoseWithCovarianceStamped, '/slam/pose', self._pose_cb, 10)
+        self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.forward_speed = 0.25
         self.turn_speed = 0.3
         self.sharp_turn_speed = 0.75
         self.backup_speed = 0.25
         self.backup_time = 1.0
         self.turn_p = 1/20 # turn full at 20 degrees off
+
+    def _publish(self, lin: float, ang: float):
+        t = Twist()
+        t.linear.x  = float(lin)
+        t.angular.z = float(ang)
+        self.vel_pub.publish(t)
 
     def right_turn(self):
         self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)

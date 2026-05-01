@@ -18,7 +18,8 @@ def yaw_to_quaternion(yaw):
 def main():
     rclpy.init()
     navigator = BasicNavigator()
-    navigator.waitUntilNav2Active()
+    # waitUntilNav2Active() waits for AMCL which we don't use — wait for bt_navigator directly
+    navigator._waitForNodeToActivate('bt_navigator')
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     waypoints_raw = load_waypoints(os.path.join(script_dir, 'pose_history_save.txt'))

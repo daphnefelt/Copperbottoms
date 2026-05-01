@@ -17,17 +17,18 @@ def generate_launch_description():
 
     # Converts /slam/pose → TF map→base_link for Nav2
     tf_bridge = ExecuteProcess(
-        cmd=['python3', os.path.join(slam_dir, 'slam_tf_bridge.py')],
+        cmd=['python3', os.path.join(slam_dir, 'SLAM', 'slam_tf_bridge.py')],
         output='screen',
         emulate_tty=True,
     )
 
-    # Mirrors /slam/lidar_map → /map without touching the original topic
+    # Mirrors /slam/lidar_map → /map without touching the original topic.
+    # transient_local durability matches what Nav2 costmap expects.
     map_relay = Node(
         package='topic_tools',
         executable='relay',
         name='lidar_map_relay',
-        arguments=['/slam/lidar_map', '/map'],
+        arguments=['/slam/lidar_map', '/map', '--qos-durability', 'transient_local'],
         output='screen',
     )
 
@@ -45,7 +46,7 @@ def generate_launch_description():
         }.items(),
     )
 
-    # Waits for Nav2 to be active before sending waypoints
+    # Waits for bt_navigator to be active before sending waypoints
     waypoint_runner = ExecuteProcess(
         cmd=['python3', os.path.join(this_dir, 'run_waypoints.py')],
         output='screen',

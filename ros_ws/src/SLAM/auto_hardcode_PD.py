@@ -10,7 +10,6 @@ x_walls = [7, 31]
 y_walls = [3, 20.5]
 
 
-
 def pose_goal_from_hallway(hallway):
     pose_map = {
         0: 180, # bottom hallway, face left
@@ -241,6 +240,7 @@ class Hardcoded(Node):
             goal_yaw = pose_goal_from_hallway(hallway)
             delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
             print(f"delta_yaw {delta_yaw}")
+            p = self.sharp_turn_p if abs(delta_yaw) > 30 else self.turn_p
             fwd = self.forward_speed
             p = self.sharp_turn_p if abs(delta_yaw) > 30 else self.turn_p
             if abs(delta_yaw) > 30:

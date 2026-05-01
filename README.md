@@ -1,6 +1,29 @@
 # Copperbottoms
 advanced robo repo
 
+## Run Landmark Slam
+**Launch the following in separate terminals**
+open two terminals 
+ros2 run joy joy_node --ros-args --params-file joystick.yaml
+ros2 run teleop_twist_joy teleop_node --ros-args --params-file joystick.yaml
+
+run SUPPORTING NODES
+open a terminal
+cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
+ros2 launch SLAM_dependency_launch.py
+
+open a terminal
+cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
+python3 landmark_based_slam.py
+
+Ctl-c 
+writes robot poses to pose_history.txt
+draws landmarks and poses to map_pose_history.jpg
+saves lidar-based occupancy grid to last_lidar_grid.npy
+
+For live updates, in your local terminal with ROS ID 42:
+ros2 run rviz2 rviz2 -d ./rviz_config_slam.rviz
+
 
 ## Stopsign Detection
 A brief overview on the stopsign detetion node.
@@ -31,3 +54,9 @@ Subscribes to a series of nodes that provide
 -  **Run sensor visualization with** "ros2 run visualize_sensors visualize_sensors"
 *Note: need graphics enabled, in SSH connection*
 
+## Reverse Driving
+**Launch the following accross separate terminals ***
+ros2 run robo_rover rover_node to get rover node running
+ros2 launch rplidar_ros rplidar_a1_launch.py to get the lidar running
+python3 reverse_driving.py to run the script
+*STAND CLEAR OF THE SIDES AND FRONT*

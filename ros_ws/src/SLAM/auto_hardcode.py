@@ -6,7 +6,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 
-x_walls = [6, 35]
+x_walls = [5, 35]
 y_walls = [3, 22.5]
 
 def get_hallway(pose):
@@ -54,12 +54,9 @@ class Hardcoded(Node):
         self.backup_speed = 0.25
         self.backup_time = 1.0
         self.turn_p = 1/20 # turn full at 20 degrees off
-        self.right_turn_target_delta = -90.0  # degrees of yaw change before the turn ends
+        self.right_turn_duration = 1.0
         self.right_turn_cooldown = 2.0
-        self._right_turn_phase = 'IDLE' # 'IDLE' | 'TURNING' | 'COOLDOWN'
-        self._right_turn_start_yaw = 0.0
-        self._right_turn_cooldown_start = 0.0
-        self.current_yaw = 0.0
+        self._right_turn_start = -math.inf
 
     def _publish(self, lin: float, ang: float):
         t = Twist()
@@ -69,29 +66,17 @@ class Hardcoded(Node):
 
     def right_turn(self):
         now = time.time()
-
-        # COOLDOWN: ignore the call, go straight, until cooldown elapses
-        if self._right_turn_phase == 'COOLDOWN':
-            if now - self._right_turn_cooldown_start < self.right_turn_cooldown:
-                self._publish(self.forward_speed, 0.0)
-                return
-            self._right_turn_phase = 'IDLE'  # fall through to start a new turn
-
-        # TURNING: keep turning until yaw delta reaches the target (-90°)
-        if self._right_turn_phase == 'TURNING':
-            delta = (self.current_yaw - self._right_turn_start_yaw + 180) % 360 - 180
-            if delta <= self.right_turn_target_delta:
-                self._right_turn_phase = 'COOLDOWN'
-                self._right_turn_cooldown_start = now
-                self._publish(self.forward_speed, 0.0)
-            else:
-                self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
-            return
-
-        # IDLE: capture starting yaw and begin the turn
-        self._right_turn_phase = 'TURNING'
-        self._right_turn_start_yaw = self.current_yaw
-        self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
+        elapsed = now - self._right_turn_start
+        if elapsed < self.right_turn_duration:
+            # still inside the active turn window
+            self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
+        elif elapsed < self.right_turn_duration + self.right_turn_cooldown:
+            # cooldown — ignore the call, go straight
+            self._publish(self.forward_speed, 0.0)
+        else:
+            # cooldown expired — start a fresh turn
+            self._right_turn_start = now
+            self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
 
     def _pose_cb(self, msg):
         pose = msg.pose.pose.position.x, msg.pose.pose.position.y, math.degrees(2 * math.atan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))

@@ -9,10 +9,10 @@ setup(
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/waypoint_nav_launch.py']),
+        ('share/' + package_name + '/launch', ['launch/waypoint_nav_launch.py',
+                                               'launch/simple_waypoint_launch.py']),
         ('share/' + package_name, ['nav2_params.yaml', 'run_waypoints.py', 'map_relay.py',
-                                   'simple_waypoint_driver.py', 'simple_waypoint_launch.py',
-                                   'pose_history_save.txt']),
+                                   'simple_waypoint_driver.py', 'pose_history_save.txt']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

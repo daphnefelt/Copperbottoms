@@ -7,14 +7,13 @@ import os
 from launch import LaunchDescription, LaunchService
 from launch.actions import ExecuteProcess, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     package_share = get_package_share_directory('waypoint_nav')
     params_file = os.path.join(package_share, 'nav2_params.yaml')
     run_waypoints_script = os.path.join(package_share, 'run_waypoints.py')
-    # With this workspace layout, src/SLAM sits at ros_ws/src/SLAM.
+    map_relay_script = os.path.join(package_share, 'map_relay.py')
     workspace_root = os.path.abspath(os.path.join(package_share, '..', '..', '..', '..'))
     slam_tf_bridge_script = os.path.join(workspace_root, 'src', 'SLAM', 'slam_tf_bridge.py')
 
@@ -25,13 +24,11 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
-    # Mirrors /slam/lidar_map → /map without touching the original topic
-    map_relay = Node(
-        package='topic_tools',
-        executable='relay',
-        name='lidar_map_relay',
-        arguments=['/slam/lidar_map', '/map'],
+    # Republishes /slam/lidar_map → /map with TRANSIENT_LOCAL durability for Nav2 costmap
+    map_relay = ExecuteProcess(
+        cmd=['python3', map_relay_script],
         output='screen',
+        emulate_tty=True,
     )
 
     nav2 = IncludeLaunchDescription(
@@ -48,7 +45,7 @@ def generate_launch_description():
         }.items(),
     )
 
-    # Waits for Nav2 to be active before sending waypoints
+    # Waits for bt_navigator to be active before sending waypoints
     waypoint_runner = ExecuteProcess(
         cmd=['python3', run_waypoints_script],
         output='screen',

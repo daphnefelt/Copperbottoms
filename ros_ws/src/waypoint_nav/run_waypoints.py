@@ -11,7 +11,8 @@ def load_waypoints(filepath, every_n=4):
     poses = []
     with open(filepath) as f:
         for line in f:
-            x, y, yaw = map(float, line.strip().split())
+            parts = list(map(float, line.strip().split()))
+            x, y, yaw = parts[0], parts[1], parts[2]  # ignore timestamp if present
             poses.append((x + SLAM_OFFSET_X, y + SLAM_OFFSET_Y, yaw))
     return poses[::every_n]
 

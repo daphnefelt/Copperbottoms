@@ -77,25 +77,33 @@ class Hardcoded(Node):
         self._mode_start = 0.0
         self._backup_turn_dir = -1.0
 
+        # side-wall avoidance
+        self.side_threshold = 0.5  # m — start skewing away when either side is closer than this
+        self.kp_side = 1 / 20
+        self.right_dist = float('inf')
+        self.left_dist = float('inf')
+
     def _publish(self, lin: float, ang: float):
         t = Twist()
         t.linear.x  = float(lin)
         t.angular.z = float(ang)
         self.vel_pub.publish(t)
 
-    def _scan_cb(self, msg: LaserScan):
-        # min distance in a small cone straight ahead
-        half = math.radians(5.0)
-        lo = int((-half - msg.angle_min) / msg.angle_increment)
-        hi = int(( half - msg.angle_min) / msg.angle_increment)
+    def _cone_min(self, msg: LaserScan, center_rad: float, half_rad: float) -> float:
+        lo = int((center_rad - half_rad - msg.angle_min) / msg.angle_increment)
+        hi = int((center_rad + half_rad - msg.angle_min) / msg.angle_increment)
         n = len(msg.ranges)
         lo = max(0, lo)
         hi = min(n - 1, hi)
         cone = np.array(msg.ranges[lo:hi + 1], dtype=float)
-        # set inf valus to max range
         cone[np.isinf(cone)] = msg.range_max
         valid = cone[(cone > msg.range_min) & np.isfinite(cone)]
-        self.front_dist = float(np.min(valid)) if valid.size > 0 else 0 # no valid readings, treat as very close
+        return float(np.min(valid)) if valid.size > 0 else 0.0  # no valid readings, treat as very close
+
+    def _scan_cb(self, msg: LaserScan):
+        self.front_dist = self._cone_min(msg, 0.0, math.radians(5.0))
+        self.right_dist = self._cone_min(msg, math.radians(-90.0), math.radians(15.0))
+        self.left_dist  = self._cone_min(msg, math.radians( 90.0), math.radians(15.0))
 
     def _pose_cb(self, msg):
         pose = msg.pose.pose.position.x, msg.pose.pose.position.y, math.degrees(2 * math.atan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))
@@ -150,7 +158,15 @@ class Hardcoded(Node):
             if abs(delta_yaw) > 30:
                 print("big turnnnn")
                 fwd = 0.2
-            self._publish(fwd, self.turn_speed * (delta_yaw) * self.turn_p)
+            ang = self.turn_speed * (delta_yaw) * self.turn_p
+
+            # also nudge away from side walls if too close
+            right_skew = max(0.0, self.side_threshold - self.right_dist) * self.kp_side
+            left_skew  = max(0.0, self.side_threshold - self.left_dist)  * self.kp_side
+            ang_bias = right_skew - left_skew
+            if ang_bias != 0.0:
+                print(f"side skew right={self.right_dist:.2f}m left={self.left_dist:.2f}m bias={ang_bias:+.2f}")
+            self._publish(fwd, ang + ang_bias)
         else:
             # stop
             print("Not in a hallway, stopping")

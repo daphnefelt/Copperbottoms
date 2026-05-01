@@ -1,0 +1,233 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-987b132947395c4abe9e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "amy_test__py",
+					"jsonFile" : "directory-amy_test__py-0e322d417a55a14aa10d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test/amy_test__py",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "amy_test",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_amy_test_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_amy_test_egg-0ad0e0555c675d5d075e.json",
+					"name" : "ament_cmake_python_build_amy_test_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_amy_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_amy_test-2bcbf498691b7d9e3d52.json",
+					"name" : "ament_cmake_python_copy_amy_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test-e722b1011bad1de33b41.json",
+					"name" : "amy_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__cpp-7a9768697447743f61d4.json",
+					"name" : "amy_test__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "amy_test__py::@64ec3643a06fa303afef",
+					"jsonFile" : "target-amy_test__py-fbc0d31d465890d1892f.json",
+					"name" : "amy_test__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_generator_c-9911f8ea12403437193b.json",
+					"name" : "amy_test__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_generator_py-02c008137300b75fd258.json",
+					"name" : "amy_test__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_c-7497f3da7c3eeb5564e8.json",
+					"name" : "amy_test__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_c__pyext-0d941a543795d00a4549.json",
+					"name" : "amy_test__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_cpp-ad114fc62146aaf84b59.json",
+					"name" : "amy_test__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_fastrtps_c-5d022472423cb2990b1a.json",
+					"name" : "amy_test__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_fastrtps_c__pyext-ef943284ed42fdf31f42.json",
+					"name" : "amy_test__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_fastrtps_cpp-144f9c71f854a6af36bb.json",
+					"name" : "amy_test__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_introspection_c-7f778ae4724e8d895a7b.json",
+					"name" : "amy_test__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_introspection_c__pyext-b765f2819927bf1b487a.json",
+					"name" : "amy_test__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test__rosidl_typesupport_introspection_cpp-0150fbf8f03f20c2e64e.json",
+					"name" : "amy_test__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "amy_test_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-amy_test_uninstall-39f344d57a3de01a8709.json",
+					"name" : "amy_test_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-2e00528f90f959bce5cf.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/copperbottoms/code/Copperbottoms/ros_ws/build/amy_test",
+		"source" : "/home/copperbottoms/code/Copperbottoms/ros_ws/src/amy_test"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

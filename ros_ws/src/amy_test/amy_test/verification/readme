@@ -1,0 +1,292 @@
+RTES Application
+
+there are two motors. 
+servo controls steering 
+other motor controls speed of moving 
+
+hardware
+rpi, imu realsense camera 
+
+
+camera 
+s2 topic hz /camera/color/image_raw
+average rate: 28.504
+
+
+
+ros2 topic hz /imu/gyro
+average rate: 19.924
+  min: 0.042s max: 0.058s std dev: 0.00463s window: 21
+
+
+ros2 topic hz /imu/accele
+average rate: 20.033
+        min: 0.041s max: 0.059s std dev: 0.00444s window: 22
+
+
+LIDAR
+ros2 topic hz /scan
+average rate: 7.327
+        min: 0.132s max: 0.141s std dev: 0.00274s window: 9
+
+
+
+
+
+ros2 node info  /rover_node
+/rover_node
+  Subscribers:
+    /cmd_vel: geometry_msgs/msg/Twist
+    /slow_move: custom_messages/msg/Slow
+    /stop_move: std_msgs/msg/Bool
+  Publishers:
+    /imu/accel: geometry_msgs/msg/Vector3
+    /imu/gyro: geometry_msgs/msg/Vector3
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /rover/armed: std_msgs/msg/Bool
+  Service Servers:
+    /rover_node/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /rover_node/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /rover_node/get_parameters: rcl_interfaces/srv/GetParameters
+    /rover_node/list_parameters: rcl_interfaces/srv/ListParameters
+    /rover_node/set_parameters: rcl_interfaces/srv/SetParameters
+    /rover_node/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+
+
+
+measure end to end latency 
+add latency measurement node (recommended)
+Create a simple test node that:
+
+Publishes a command to /cmd_vel with a timestamp
+Subscribes to IMU data /imu/accel or /imu/gyro
+Calculates delta between command sent → sensor response
+
+
+Goal: 
+Tuning Control Algorithms
+
+Line following: If your camera processes at 28 Hz but motor commands lag by 200ms, the rover reacts to old vision data → poor tracking
+PID tuning: Controller gains depend on loop timing. Variable latency breaks PID assumptions → unstable control
+
+
+Debugging Performance Issues
+Your system has:
+
+Camera: 28 Hz
+IMU: 20 Hz
+LIDAR: 7 Hz
+If latency is high, you can identify bottlenecks:
+
+Is the RPi CPU overloaded?
+Is the /cmd_vel callback blocking on I2C/serial communication?
+Are there scheduling delays in ROS 2?
+
+
+System Integration
+
+Sensor-to-actuator loop: You need to know: "Camera sees line → process image → send steering command → motor moves" total time
+If this loop is >100ms, you're reacting to stale data at any speed > 1 m/s
+
+
+the hard real time is stopping before impact 
+* everything needs to be at a frequencys os that the stopping before impact happens with time to collision figured out .
+
+
+================================================================================
+REAL-TIME PERFORMANCE TESTING & OPTIMIZATION PLAN
+================================================================================
+
+Phase 0: Baseline Vision Performance (FIFO Test)
+-------------------------------------------------
+Purpose: Establish performance ceiling for vision processing before ROS overhead
+
+Test: SCHED_FIFO Hough line detection at multiple resolutions
+Location: See README_FIFO_TEST.md in this directory
+
+STATUS: ✓ COMPLETED - April 18, 2026
+
+Results Summary:
+  Resolution  | Mean Exec Time | Performance  
+  ------------|----------------|-------------
+  424×240     | 18.03ms       | ✓ EXCELLENT (recommended)
+  640×480     | 58.42ms       | ⚠ MARGINAL (over 50ms target)
+
+Key Findings:
+  - Hough line detection at 424×240: 18ms (well under 50ms deadline)
+  - Leaves 32ms headroom for ROS overhead + Python processing
+  - Expected total camera→cmd_vel: 30-40ms (meets target)
+  
+Decision: Use 424×240 resolution for line following
+  - Provides actual line geometry (vs just edges)
+  - 2.5x slower than Canny but still real-time capable
+  - Better accuracy for steering control
+
+CSV Files Generated:
+  ✓ fifo_realsense_houghlines_424x240.csv
+  ✓ fifo_realsense_houghlines_640x480.csv
+
+
+Phase 1-4: ROS End-to-End Latency Monitoring
+---------------------------------------------
+Purpose: Measure complete camera→motor latency in production ROS system
+
+Approach: Non-invasive monitoring (all code in amy_test, no modifications to production)
+
+Nodes to create:
+  1. topic_rate_monitor.py - Measures publication rates and jitter
+  2. vision_latency_monitor.py - Correlates camera frames to /cmd_vel
+  3. motor_latency_monitor.py - Measures /cmd_vel → IMU response
+  4. latency_aggregator.py - Combines data, computes total latency
+  5. performance_logger.py - CSV logging for analysis
+  6. latency_dashboard.py - Real-time terminal display
+  7. automated_latency_test.py - Automated validation
+
+STATUS: ✓ INFRASTRUCTURE COMPLETE - April 18, 2026
+
+Implementation Summary:
+  ✓ Custom messages created (LatencyStats.msg, RateStats.msg)
+  ✓ All 7 monitoring nodes implemented
+  ✓ Launch file with 3 modes (monitoring, dashboard, test)
+  ✓ Packages built successfully (custom_messages, amy_test)
+  
+Location: ~/code/Copperbottoms/ros_ws/src/amy_test/
+Documentation: See README_LATENCY_MONITORING.md
+
+Launch Modes:
+  # Background logging
+  ros2 launch amy_test latency_monitoring.launch.py
+  
+  # Live dashboard
+  ros2 launch amy_test latency_monitoring.launch.py mode:=dashboard
+  
+  # Automated test (30s)
+  ros2 launch amy_test latency_monitoring.launch.py mode:=test
+
+Next Steps:
+  1. Run automated test while line following to validate <100ms requirement
+  2. Collect baseline performance data (5-10 min runs)
+  3. Analyze CSV logs for patterns and optimization opportunities
+
+Messages to create:
+  - custom_messages/msg/LatencyStats.msg
+  - custom_messages/msg/RateStats.msg
+
+Launch file:
+  - amy_test/launch/latency_monitoring.launch.py
+
+Commands:
+  ros2 launch amy_test latency_monitoring.launch.py
+  ros2 run amy_test latency_dashboard
+  ros2 topic echo /monitoring/latency_stats
+
+Target Performance Budget:
+  Vision processing (FIFO result): 20-30ms (from Phase 0)
+  + ROS message overhead: 5ms
+  + Python processing overhead: 5-10ms
+  + RPi scheduling jitter: 5ms
+  ─────────────────────────────────────
+  Camera→cmd_vel latency: 35-50ms ✓
+  
+  + Motor actuation (MAVLink + servo): 10-15ms
+  ─────────────────────────────────────
+  Total end-to-end latency: 45-65ms ✓ (meets <100ms requirement)
+
+If ROS latency exceeds FIFO baseline + 30ms, indicates ROS/Python bottleneck
+
+
+Critical Metrics to Monitor:
+----------------------------
+1. Vision Processing Latency: camera timestamp → /cmd_vel publish
+   - Target: <50ms mean, <70ms max
+   - Measures: Image processing efficiency
+
+2. Motor Actuation Latency: /cmd_vel timestamp → IMU change detection
+   - Target: <20ms mean
+   - Measures: MAVLink + ArduPilot + servo response
+
+3. End-to-End Latency: camera capture → motor actuation
+   - Target: <100ms total (for line following at 1 m/s)
+   - Measures: Complete control loop performance
+
+4. Jitter: Variance in latencies
+   - Target: Coefficient of variation <15%
+   - Measures: System determinism
+
+5. Deadline Misses: Frames exceeding latency thresholds
+   - Target: <5% miss rate
+   - Measures: Real-time guarantee
+
+
+Next Steps:
+-----------
+[✓] Phase 0 tools created: FIFO test, Makefile, analysis script
+[ ] Run FIFO baseline test, select optimal resolution
+[ ] Implement Phase 1: ROS monitoring infrastructure
+[ ] Implement Phase 2: Data aggregation and logging
+[ ] Implement Phase 3: Dashboard and automated tests
+[ ] Run baseline measurements on current system
+[ ] Document findings and optimization recommendations
+[ ] Tune PD controller based on measured latencies
+[ ] Validate <100ms total latency requirement
+
+
+Files:
+------
+Phase 0:
+  - fifo_realsense_linedetect.c - RealSense FIFO performance test
+  - Makefile - Build configuration
+  - analyze_fifo_results.py - CSV analysis tool
+  - README_FIFO_TEST.md - Complete test documentation
+
+Phase 1-4: (to be created in ~/code/Copperbottoms/ros_ws/src/amy_test/amy_test/)
+  - topic_rate_monitor.py
+  - vision_latency_monitor.py
+  - motor_latency_monitor.py
+  - latency_aggregator.py
+  - performance_logger.py
+  - latency_dashboard.py
+  - automated_latency_test.py
+
+Documentation:
+  - This file (readme) - Overall test plan and results
+  - latency_analysis.md - Detailed performance analysis (to be created)
+
+
+References:
+-----------
+- FIFO_Hough.c - Original multi-transform FIFO test (reference implementation)
+- /memories/session/plan.md - Complete implementation plan
+- Line follow user memory notes - Control algorithm considerations 
+
+this means the sensors need to be at a frequency that works witht he mtor controls . 
+
+need to knpw 
+
+term 1 
+launch nodes 
+cd ~/code/Copperbottoms/ros_ws
+source install/setup.bash
+ros2 launch amy_test test_full_launch.py
+
+term 2 
+lidar node 
+ros2 launch rplidar_ros view_rplidar_a1_launch.py
+
+term 3 
+colcon build --symlink-install && source ~/code/Copperbottoms/ros_ws/install/setup.bash
+turn right node 
+
+
+
+new ros system 
+cd ~/code/Copperbottoms/ros_ws
+colcon build --symlink-install
+source install/setup.bash

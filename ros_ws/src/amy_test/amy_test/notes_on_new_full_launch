@@ -1,0 +1,122 @@
+the notes for the new full launch 4/20/26 
+Terminal 1 - Launch system
+cd ~/code/Copperbottoms/ros_ws
+source install/setup.bash
+ros2 launch amy_test test_full_launch.py
+
+
+* it did agoodjob following tape on straight and the curvy section 
+
+when tape lost, recoverymode, it doesnt move, 
+
+isnt turning bc of that , does run into walls, 
+
+adding the turn right node to  full launch 
+ros2 launch rplidar_ros view_rplidar_a1_launch.py
+
+node 
+
+
+thoughts. 
+what do i want for debug 
+* when tape actually lost
+
+previous thoughts 
+* wanted to fix tape detection 
+wanted to fix right turning logic 
+
+
+
+Terminal 2 - View debug images
+ros2 run rqt_image_view rqt_image_view
+
+
+
+focusing on tape detection. only
+issues
+* purrple arrow pointing backwards 
+
+*removedtop1/3view - fixed gap issue 
+
+* working color issueby using HSV values bc thyrrebetter with differentlighting 
+
+
+usedhsv values and it did much better following th tape in differnt lightings, it would pick up on the floor itself if it got, 
+
+
+fix: applying a limit on the saturation s > 60 
+and the brightness to v > 50. testing these values now  for correct "lost detection"
+
+noticed its kinda wavy probably a pid control issue 
+
+
+appliedparamters 
+* lost at the big gap again but just a little buit 
+
+need to fix corner detection now 
+still alittle wavy probaly still need that PID fix 
+is stopping when no tape detected now , mostly 
+
+changing it to be .2
+filtered out 
+
+now the gap is an issue 
+changed steering deadband to .12 
+
+i made it stop when it saw right turn 
+ape lost: entering recovery/search mode
+[tape_recovery_node-5] [WARN] [1776731802.155045030] [tape_recovery_node]: Tape lost: entering recovery/search mode
+[tape_vision_node-3] [WARN] [1776731811.506934270] [tape_vision_node]: [VISION] Sharp turn confirmed! Angle: -85.2°, Area: 5744, Position: (127.0, 170.0)
+[tape_control_node-4] [WARN] [1776731811.515709222] [tape_control_node]: [SHARP TURN DETECTED] Frame 284 - Angle: -85.2°, Area: 5744, Center: (127.0, 170.0)
+[tape_control_node-4] [INFO] [1776731811.528671348] [tape_control_node]: [SHARP TURN STOP] Frame 1 since detection - STOPPED
+
+
+
+
+
+
+the walls are being detectednow and im not sure why 
+need to look at the adaptive values 
+disbale the adaptive testfor rn 
+
+bounds logic needs otbe fixed 
+the hsv lowe min shuld by 70 30 30 
+
+self.hsvlower max , 
+
+Hue (75-105): Color range. For cyan/teal tape, keep 75-105. Widen if missing tape, narrow if picking up wrong colors
+Saturation (40-255): Color intensity. Increase lower bound (e.g., 60) to ignore dull/washed out objects like walls
+Value (40-255): Brightness. Increase lower bound (e.g., 60) to ignore dark shadows
+
+
+
+
+added debug info 
+cd ~/code/Copperbottoms/ros_ws
+colcon build --packages-select amy_test
+ros2 launch amy_test test_full_launch.py
+
+
+
+directly center info 
+[tape_control_node-4] [INFO] [1776892691.174483561]
+ [tape_control_node]: [DEBUG] Speed: 0.250 | Turn: -0.845 | Error: 0.450 | P: 0.270 | I: 0.575 | D: 0.000 |
+  Center: 232.0 | Angle: -114.5°
+
+notes 
+camera center is 232 
+the angle is 114 
+the rover is centered on tape on the straight tape line 
+]new variables 
+camera center off set and camera angle offset 
+camera position, angled all the way down for consitency 
+
+Updated error calculation:
+
+Lateral error now uses corrected center (232 instead of 160)
+Angle error normalized: 0 = straight, ±1 = 90° deviation
+Combined error: weighted blend of position and angle
+
+
+
+following tapebut cant really turn 

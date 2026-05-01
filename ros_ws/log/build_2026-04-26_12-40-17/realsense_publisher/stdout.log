@@ -1,0 +1,43 @@
+running egg_info
+creating ../../build/realsense_publisher/realsense_publisher.egg-info
+writing ../../build/realsense_publisher/realsense_publisher.egg-info/PKG-INFO
+writing dependency_links to ../../build/realsense_publisher/realsense_publisher.egg-info/dependency_links.txt
+writing entry points to ../../build/realsense_publisher/realsense_publisher.egg-info/entry_points.txt
+writing requirements to ../../build/realsense_publisher/realsense_publisher.egg-info/requires.txt
+writing top-level names to ../../build/realsense_publisher/realsense_publisher.egg-info/top_level.txt
+writing manifest file '../../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+reading manifest file '../../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher
+copying realsense_publisher/realsense_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher
+copying realsense_publisher/realsense_depth_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher
+copying realsense_publisher/realsense_subsriber.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher
+copying realsense_publisher/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher
+running install
+running install_lib
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher/realsense_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher/realsense_depth_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher/realsense_subsriber.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build/lib/realsense_publisher/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher/realsense_node.py to realsense_node.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher/realsense_depth_node.py to realsense_depth_node.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher/realsense_subsriber.py to realsense_subsriber.cpython-310.pyc
+byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/ament_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/ament_index/resource_index
+creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/ament_index/resource_index/packages
+copying resource/realsense_publisher -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/ament_index/resource_index/packages
+copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/share/realsense_publisher
+running install_egg_info
+Copying ../../build/realsense_publisher/realsense_publisher.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher-0.0.0-py3.10.egg-info
+running install_scripts
+Installing realsense_depth_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher
+Installing realsense_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher
+writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/install.log'

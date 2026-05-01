@@ -1,0 +1,3 @@
+[console_scripts]
+visualize_sensors = visualize_sensors.visualize_sensors:main
+

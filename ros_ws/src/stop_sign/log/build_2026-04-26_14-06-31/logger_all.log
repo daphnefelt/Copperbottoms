@@ -1,0 +1,92 @@
+[1.585s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'stop_sign']
+[1.586s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['stop_sign'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0xffff955b39a0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff957b0940>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff957b0940>>, mixin_verb=('build',))
+[3.601s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[3.603s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[3.604s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[3.606s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[3.606s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[3.606s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[3.608s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign'
+[3.608s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[3.609s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[3.610s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[3.610s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[3.611s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[3.611s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[3.611s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[3.612s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[3.612s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[3.698s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_python' and name 'stop_sign'
+[3.699s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[3.700s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[3.700s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[3.712s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[3.713s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[4.061s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[4.061s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[4.087s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install
+[4.095s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 11 installed packages in /home/copperbottoms/code/Copperbottoms/ros_ws/install
+[4.115s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 297 installed packages in /opt/ros/humble
+[4.124s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[4.707s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'cmake_args' from command line to 'None'
+[4.708s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'cmake_target' from command line to 'None'
+[4.709s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[4.710s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'cmake_clean_cache' from command line to 'False'
+[4.711s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'cmake_clean_first' from command line to 'False'
+[4.712s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'cmake_force_configure' from command line to 'False'
+[4.713s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'ament_cmake_args' from command line to 'None'
+[4.715s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'catkin_cmake_args' from command line to 'None'
+[4.716s] Level 5:colcon.colcon_core.verb:set package 'stop_sign' build argument 'catkin_skip_building_tests' from command line to 'False'
+[4.718s] DEBUG:colcon.colcon_core.verb:Building package 'stop_sign' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign', 'merge_install': False, 'path': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign', 'symlink_install': False, 'test_result_base': None}
+[4.720s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[4.727s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[4.729s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign' with build type 'ament_python'
+[4.731s] Level 1:colcon.colcon_core.shell:create_environment_hook('stop_sign', 'ament_prefix_path')
+[4.757s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[4.759s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/hook/ament_prefix_path.ps1'
+[4.765s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/hook/ament_prefix_path.dsv'
+[4.771s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/hook/ament_prefix_path.sh'
+[4.780s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[4.781s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.936s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign'
+[8.937s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[8.938s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[13.097s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/stop_sign build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/install.log --single-version-externally-managed install_data
+[16.866s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/stop_sign build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/build/stop_sign/install.log --single-version-externally-managed install_data
+[16.880s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign' for CMake module files
+[16.884s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign' for CMake config files
+[16.891s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib'
+[16.892s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/bin'
+[16.893s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/pkgconfig/stop_sign.pc'
+[16.894s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/lib/python3.10/site-packages'
+[16.894s] Level 1:colcon.colcon_core.shell:create_environment_hook('stop_sign', 'pythonpath')
+[16.896s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/hook/pythonpath.ps1'
+[16.899s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/hook/pythonpath.dsv'
+[16.902s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/hook/pythonpath.sh'
+[16.907s] Level 1:colcon.colcon_core.environment:checking '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/bin'
+[16.907s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(stop_sign)
+[16.911s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/package.ps1'
+[16.922s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/package.dsv'
+[16.931s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/package.sh'
+[16.944s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/package.bash'
+[16.953s] INFO:colcon.colcon_core.shell:Creating package script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/stop_sign/package.zsh'
+[16.958s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/stop_sign/share/colcon-core/packages/stop_sign)
+[16.961s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[16.963s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[16.964s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[16.965s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[17.036s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[17.037s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[17.037s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[17.045s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[17.047s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[17.048s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/local_setup.ps1'
+[17.056s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/_local_setup_util_ps1.py'
+[17.066s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/setup.ps1'
+[17.075s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/local_setup.sh'
+[17.079s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/_local_setup_util_sh.py'
+[17.086s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/setup.sh'
+[17.098s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/local_setup.bash'
+[17.102s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/setup.bash'
+[17.121s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/local_setup.zsh'
+[17.128s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/copperbottoms/code/Copperbottoms/ros_ws/src/stop_sign/install/setup.zsh'

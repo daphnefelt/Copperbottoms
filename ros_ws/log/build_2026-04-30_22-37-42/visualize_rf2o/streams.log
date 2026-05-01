@@ -1,0 +1,38 @@
+[8.707s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/visualize_rf2o': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/visualize_rf2o build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/install.log --single-version-externally-managed install_data
+[12.234s] running egg_info
+[12.258s] creating ../../build/visualize_rf2o/visualize_rf2o.egg-info
+[12.277s] writing ../../build/visualize_rf2o/visualize_rf2o.egg-info/PKG-INFO
+[12.278s] writing dependency_links to ../../build/visualize_rf2o/visualize_rf2o.egg-info/dependency_links.txt
+[12.279s] writing entry points to ../../build/visualize_rf2o/visualize_rf2o.egg-info/entry_points.txt
+[12.279s] writing requirements to ../../build/visualize_rf2o/visualize_rf2o.egg-info/requires.txt
+[12.280s] writing top-level names to ../../build/visualize_rf2o/visualize_rf2o.egg-info/top_level.txt
+[12.280s] writing manifest file '../../build/visualize_rf2o/visualize_rf2o.egg-info/SOURCES.txt'
+[12.281s] reading manifest file '../../build/visualize_rf2o/visualize_rf2o.egg-info/SOURCES.txt'
+[12.282s] writing manifest file '../../build/visualize_rf2o/visualize_rf2o.egg-info/SOURCES.txt'
+[12.286s] running build
+[12.287s] running build_py
+[12.288s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build
+[12.290s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build/lib
+[12.290s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build/lib/visualize_rf2o
+[12.291s] copying visualize_rf2o/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build/lib/visualize_rf2o
+[12.292s] copying visualize_rf2o/visualize_rf2o.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build/lib/visualize_rf2o
+[12.308s] running install
+[12.312s] running install_lib
+[12.335s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages/visualize_rf2o
+[12.339s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build/lib/visualize_rf2o/__init__.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages/visualize_rf2o
+[12.342s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build/lib/visualize_rf2o/visualize_rf2o.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages/visualize_rf2o
+[12.346s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages/visualize_rf2o/__init__.py to __init__.cpython-310.pyc
+[12.351s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages/visualize_rf2o/visualize_rf2o.py to visualize_rf2o.cpython-310.pyc
+[12.356s] running install_data
+[12.360s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/share
+[12.376s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/share/ament_index
+[12.380s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/share/ament_index/resource_index
+[12.388s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/share/ament_index/resource_index/packages
+[12.392s] copying resource/visualize_rf2o -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/share/ament_index/resource_index/packages
+[12.400s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/share/visualize_rf2o
+[12.405s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/share/visualize_rf2o
+[12.409s] running install_egg_info
+[12.417s] Copying ../../build/visualize_rf2o/visualize_rf2o.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages/visualize_rf2o-0.0.0-py3.10.egg-info
+[12.435s] running install_scripts
+[12.682s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/install.log'
+[12.954s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/visualize_rf2o' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/visualize_rf2o build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/visualize_rf2o/install.log --single-version-externally-managed install_data

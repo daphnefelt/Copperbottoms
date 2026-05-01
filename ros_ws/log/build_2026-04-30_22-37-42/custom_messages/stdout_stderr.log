@@ -1,0 +1,290 @@
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+-- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/copperbottoms/code/Copperbottoms/ros_ws/build/custom_messages
+[  0%] Built target ament_cmake_python_copy_custom_messages
+[35m[1mConsolidate compiler generated dependencies of target custom_messages__rosidl_generator_c[0m
+[  1%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/slow__functions.c.o[0m
+[  3%] Built target custom_messages__cpp
+[  5%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/latency_stats__functions.c.o[0m
+[  7%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/rate_stats__functions.c.o[0m
+[  9%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_c.dir/rosidl_generator_c/custom_messages/msg/detail/imu_bundled__functions.c.o[0m
+running egg_info
+writing custom_messages.egg-info/PKG-INFO
+writing dependency_links to custom_messages.egg-info/dependency_links.txt
+writing top-level names to custom_messages.egg-info/top_level.txt
+reading manifest file 'custom_messages.egg-info/SOURCES.txt'
+writing manifest file 'custom_messages.egg-info/SOURCES.txt'
+[ 10%] [32m[1mLinking C shared library libcustom_messages__rosidl_generator_c.so[0m
+[ 10%] Built target ament_cmake_python_build_custom_messages_egg
+[ 12%] Built target custom_messages__rosidl_generator_c
+[ 14%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/slow__type_support.cpp.o[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/latency_stats__type_support.cpp.o[0m
+[ 18%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/rate_stats__type_support.cpp.o[0m
+[ 20%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_messages/msg/detail/imu_bundled__type_support.cpp.o[0m
+[ 21%] [32m[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_introspection_cpp.so[0m
+[ 23%] Built target custom_messages__rosidl_typesupport_introspection_cpp
+[35m[1mConsolidate compiler generated dependencies of target custom_messages__rosidl_typesupport_fastrtps_c[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/slow__type_support_c.cpp.o[0m
+[ 27%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/latency_stats__type_support_c.cpp.o[0m
+[ 29%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/rate_stats__type_support_c.cpp.o[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_messages/msg/detail/imu_bundled__type_support_c.cpp.o[0m
+[ 32%] [32m[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_fastrtps_c.so[0m
+[ 34%] Built target custom_messages__rosidl_typesupport_fastrtps_c
+[35m[1mConsolidate compiler generated dependencies of target custom_messages__rosidl_typesupport_introspection_c[0m
+[ 36%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/slow__type_support.c.o[0m
+[ 38%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/latency_stats__type_support.c.o[0m
+[ 40%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/rate_stats__type_support.c.o[0m
+[ 41%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_messages/msg/detail/imu_bundled__type_support.c.o[0m
+[ 43%] [32m[1mLinking C shared library libcustom_messages__rosidl_typesupport_introspection_c.so[0m
+[ 45%] Built target custom_messages__rosidl_typesupport_introspection_c
+[35m[1mConsolidate compiler generated dependencies of target custom_messages__rosidl_typesupport_c[0m
+[ 47%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/slow__type_support.cpp.o[0m
+[ 49%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/latency_stats__type_support.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/rate_stats__type_support.cpp.o[0m
+[ 52%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_messages/msg/imu_bundled__type_support.cpp.o[0m
+[ 54%] [32m[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_c.so[0m
+[ 56%] Built target custom_messages__rosidl_typesupport_c
+[ 58%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/slow__type_support.cpp.o[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/rate_stats__type_support.cpp.o[0m
+[ 61%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/imu_bundled__type_support.cpp.o[0m
+[ 63%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_messages/msg/detail/dds_fastrtps/latency_stats__type_support.cpp.o[0m
+[ 65%] [32m[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_fastrtps_cpp.so[0m
+[ 67%] Built target custom_messages__rosidl_typesupport_fastrtps_cpp
+[35m[1mConsolidate compiler generated dependencies of target custom_messages__rosidl_typesupport_cpp[0m
+[ 69%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/slow__type_support.cpp.o[0m
+[ 70%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/imu_bundled__type_support.cpp.o[0m
+[ 72%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/rate_stats__type_support.cpp.o[0m
+[ 74%] [32mBuilding CXX object CMakeFiles/custom_messages__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_messages/msg/latency_stats__type_support.cpp.o[0m
+[ 76%] [32m[1mLinking CXX shared library libcustom_messages__rosidl_typesupport_cpp.so[0m
+[ 78%] Built target custom_messages__rosidl_typesupport_cpp
+[ 78%] Built target custom_messages
+[ 80%] Built target custom_messages__py
+[35m[1mConsolidate compiler generated dependencies of target custom_messages__rosidl_generator_py[0m
+[ 81%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_slow_s.c.o[0m
+[ 83%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_imu_bundled_s.c.o[0m
+[ 85%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_rate_stats_s.c.o[0m
+[ 87%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_generator_py.dir/rosidl_generator_py/custom_messages/msg/_latency_stats_s.c.o[0m
+[ 89%] [32m[1mLinking C shared library rosidl_generator_py/custom_messages/libcustom_messages__rosidl_generator_py.so[0m
+[ 89%] Built target custom_messages__rosidl_generator_py
+[ 90%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[ 92%] [32m[1mLinking C shared library rosidl_generator_py/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[ 92%] Built target custom_messages__rosidl_typesupport_fastrtps_c__pyext
+[35m[1mConsolidate compiler generated dependencies of target custom_messages__rosidl_typesupport_c__pyext[0m
+[ 94%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_c.c.o[0m
+[ 96%] [32m[1mLinking C shared library rosidl_generator_py/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[ 96%] Built target custom_messages__rosidl_typesupport_c__pyext
+[ 98%] [32mBuilding C object CMakeFiles/custom_messages__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[100%] [32m[1mLinking C shared library rosidl_generator_py/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[100%] Built target custom_messages__rosidl_typesupport_introspection_c__pyext
+-- Install configuration: ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/rosidl_interfaces/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/latency_stats.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_generator_c__visibility_control.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/imu_bundled.h
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__functions.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__functions.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__struct.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__struct.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__type_support.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__struct.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__type_support.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__functions.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__struct.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__functions.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__functions.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__type_support.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__functions.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__functions.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__functions.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rate_stats.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/slow.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/library_path.sh
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/library_path.dsv
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_c.so" to ""
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_c.so" to ""
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__type_support.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_introspection_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__type_support.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_introspection_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_introspection_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__type_support.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_c.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_c.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_c.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_c.so" to ""
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_generator_cpp__visibility_control.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/imu_bundled.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/latency_stats.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rate_stats.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/slow.hpp
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__type_support.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__type_support.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__builder.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__struct.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__traits.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__builder.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__traits.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__builder.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__builder.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__type_support.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__struct.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__traits.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__struct.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__struct.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__traits.hpp
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/dds_fastrtps
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_cpp.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_fastrtps_cpp.so" to ""
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__type_support.cpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/latency_stats__type_support.cpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/imu_bundled__type_support.cpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/slow__type_support.cpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/include/custom_messages/custom_messages/msg/detail/rate_stats__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_cpp.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_introspection_cpp.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_cpp.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_typesupport_cpp.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/pythonpath.sh
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/pythonpath.dsv
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/PKG-INFO
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/top_level.txt
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages-0.0.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages
+-- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_imu_bundled.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_latency_stats.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow_s.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_rate_stats.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_latency_stats_s.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_imu_bundled_s.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/__init__.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_rate_stats_s.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_c.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/__init__.py
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_fastrtps_c.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/_custom_messages_s.ep.rosidl_typesupport_introspection_c.c
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/libcustom_messages__rosidl_generator_py.so
+Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/__init__.py'...
+Listing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/__init__.py'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_imu_bundled.py'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_latency_stats.py'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_rate_stats.py'...
+Compiling '/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/msg/_slow.py'...
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages/custom_messages/custom_messages_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_py.so
+-- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib/libcustom_messages__rosidl_generator_py.so" to ""
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/Slow.idl
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/LatencyStats.idl
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/RateStats.idl
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/ImuBundled.idl
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/Slow.msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/LatencyStats.msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/RateStats.msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/msg/ImuBundled.msg
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/package_run_dependencies/custom_messages
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/parent_prefix_path/custom_messages
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/ament_prefix_path.sh
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/ament_prefix_path.dsv
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/path.sh
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/environment/path.dsv
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.bash
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.sh
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.zsh
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/local_setup.dsv
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.dsv
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/ament_index/resource_index/packages/custom_messages
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_cppExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cppExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cppExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cppExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messages__rosidl_typesupport_cppExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_pyExport.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/export_custom_messages__rosidl_generator_pyExport-noconfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake-extras.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messagesConfig.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/cmake/custom_messagesConfig-version.cmake
+-- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/share/custom_messages/package.xml

@@ -1,0 +1,3 @@
+[console_scripts]
+waypoint_nav = waypoint_nav.waypoint_nav:main
+

@@ -1,0 +1,14 @@
+[0.000000] (-) TimerEvent: {}
+[0.004592] (-) JobUnselected: {'identifier': 'amy_test'}
+[0.016832] (-) JobUnselected: {'identifier': 'camera_navigation'}
+[0.017074] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.017241] (-) JobUnselected: {'identifier': 'imu_pose_estimate'}
+[0.017385] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.017543] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.017696] (-) JobUnselected: {'identifier': 'rf2o_laser_odometry'}
+[0.017814] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.017923] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.018036] (-) JobUnselected: {'identifier': 'stop_sign'}
+[0.018143] (-) JobUnselected: {'identifier': 'visualize_rf2o'}
+[0.018257] (-) JobUnselected: {'identifier': 'visualize_sensors'}
+[0.018380] (-) EventReactorShutdown: {}

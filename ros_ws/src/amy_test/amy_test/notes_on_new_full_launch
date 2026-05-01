@@ -4,6 +4,8 @@ cd ~/code/Copperbottoms/ros_ws
 source install/setup.bash
 ros2 launch amy_test test_full_launch.py
 
+\cd ~/code/Copperbottoms/ros_ws
+colcon build --packages-select amy_test
 
 * it did agoodjob following tape on straight and the curvy section 
 
@@ -120,3 +122,281 @@ Combined error: weighted blend of position and angle
 
 
 following tapebut cant really turn 
+
+
+
+4/30/26
+added csv logging for debug info 
+from tape_control_node
+~/performance_logs/
+
+CSV Analysis Results:
+- Turn failure: max_turn parameter too low (0.5 rad/s caps response)
+- During sharp turns: only getting 0.175 rad/s avg, 0.396 max
+- Need 0.8-1.2 rad/s for smooth turns
+- Angle error underweighted: only 5% contribution during 178° angle change
+- Center position 78px off during turn but couldn't correct fast enough
+
+Fixes to implement:
+1. Increase max_turn from 0.5 to 2.0-2.5
+2. Increase angle_control_weight from 0.05 to 0.2
+3. Consider reducing kd (0.25 → 0.15) to reduce D-term fighting
+4. May increase kp (0.45 → 0.6) for faster response 
+
+✓ APPLIED - Parameters updated:
+- kp: 0.45 → 0.55 (faster response)
+- kd: 0.25 → 0.15 (reduce D-term fighting)
+- angle_control_weight: 0.05 → 0.2 (4x increase for turn sensitivity)
+- max_turn_rate: 1.8 → 3.5 (allows faster steering changes)
+Package rebuilt. Ready to test improved turn performance.
+
+Second Test Results (CSV comparison):
+Improvements from first round:
+- Mean error: -27.6% (0.182 → 0.132)
+- High error frames: -73.9% (234 → 61 frames) 
+- Turn during high error: +37.7% (0.175 → 0.241 rad/s)
+- D-term fighting: 33.3% → 14.8%
+- Max error: -10.4% (0.525 → 0.471)
+
+Still needs work - "almost made the turn":
+- Max turn rate: 0.325 rad/s (need 0.8-1.2)
+- Turn during high error: 0.241 rad/s (3x too weak)
+- Still limited by max_turn_rate parameter
+
+ APPLIED Round 2 - More aggressive tuning:
+- kp: 0.55 → 0.65 (18% increase)
+- max_turn_rate: 3.5 → 6.0 (71% increase)
+Target: reach 0.8-1.2 rad/s turn rate for smooth turns
+
+next 
+
+run 3 
+- still did not make right turn 
+- compare latest fil e
+turn rate limited due to high error 
+steering rate limiter 
+Third Test Results (3-way comparison):
+ Major improvements:
+- High error frames: -77.4% (234 → 53 frames)
+- Turn during high error: +60.3% (0.175 → 0.281 rad/s) 
+- D-term fighting: 33.3% → 1.9% (nearly eliminated!)
+- Mean turn rate: +38.9%
+- Max error: -11.8%
+
+ Still limited:
+- Turn rate: 0.281 rad/s (target: 0.8-1.2)
+- Max turn: 0.344 rad/s (barely improved)
+- Problem: Steering rate limiter prevents fast ramp-up
+  With max_turn_rate=6.0 @ 29fps → only 0.2 rad/s change per frame
+  Takes 4 frames to reach 0.8 rad/s, but turn is over by then!
+
+ APPLIED Round 3 - Aggressive final tuning:
+- kp: 0.65 → 0.75 (15% increase for stronger response)
+- max_turn_rate: 6.0 → 10.0 (67% increase for rapid ramp-up)
+Target: D-term fighting is now only 1.9%, so rate limiter can be much more aggressive
+Should reach 0.8+ rad/s in 2-3 frames instead of 4+
+
+Run 4 Results - BREAKTHROUGH:
+ Major success:
+- Duration: 33.0s → 61.8s (+87% - rover going WAY further!)
+- Turn during high error: 0.175 → 0.545 rad/s (+211%)
+- Max turn achieved: 1.139 rad/s (EXCEEDED 0.8-1.2 target!)
+- Mean turn: +187%
+
+ Tradeoff - too aggressive now:
+- Mean error: 0.182 → 0.320 (+76% - overshooting)
+- High error frames: 234 → 475 (more challenging sections)
+- D-term fighting: 1.9% → 34.3% (oscillating)
+- Max error: 0.525 → 1.221
+
+Analysis: Rover CAN make the turns now (doubled runtime!), but control is too aggressive
+Need to dial back for smoother, less oscillatory performance
+
+
+run 5 : 
+it made the turn, it made some gaps, 
+its now going for the blue wall 
+* changing the hsv lower min 
+* changing the blocked percentageto 35%
+
+
+
+
+for run 6 
+paramters 
+: 
+
+HSV lower bound: [75, 60, 60] → [75, 90, 70]
+
+Saturation: 60 → 90 (walls are typically 30-60, tape is 90+)
+Value: 60 → 70 (better brightness threshold)
+HSV lower minimum: [70, 30, 30] → [70, 70, 50]
+
+Prevents adaptive tolerance from loosening enough to detect walls
+ROI top ignore: 0.20 → 0.35
+
+Analysis 
+Duration: 61.8s → 53.3s (-13.7%) 
+Max turn: 1.139 → 0.467 rad/s (-59.0%) 
+Mean error: 0.320 → 0.167 (-47.9%) ✓
+Max error: 1.221 → 0.547 (-55.2%) ✓
+High error frames: 475 → 190 (-60.0%) ✓
+D-term fighting: 34.3% → 22.1% (-35.6%) ✓
+
+Parameters:
+:
+
+forward_speed: 0.25 m/s
+max_turn: 5.0
+steering_deadband: 0.05
+max_turn_rate: 10.0 rad/s (max steering change per frame)
+enable_motor_control: True
+PID Tuning:
+
+kp: 0.75 (proportional gain)
+ki: 0.005 (integral gain)
+kd: 0.15 (derivative gain)
+max_integral: 0.15 (anti-windup limit)
+angle_control_weight: 0.2 (angle error importance)
+Camera Calibration:
+
+camera_center_offset: 72.0 pixels
+camera_angle_offset: -24.0 degrees
+Sharp Turn Handling:
+
+sharp_turn_boost: 1.8
+sharp_turn_speed_factor: 0.6
+sharp_turn_stop_frames: 5
+sharp_turn_execute_speed: 0.2 m/s
+sharp_turn_execute_rate: 1.5 rad/s
+Adaptive Speed:
+
+adaptive_speed: True
+min_speed_ratio: 0.8 (80% of forward_speed)
+error_threshold_slow: 0.25
+TAPE VISION NODE (Color Detection & Filtering):
+
+Image Processing:
+
+image_topic: '/camera/color/image_raw'
+target_width: 320 pixels
+target_height: 240 pixels
+min_contour_area: 100 pixels²
+HSV Color Thresholds:
+
+hsv_lower: [75, 90, 70] (H, S, V)
+hsv_upper: [105, 255, 255]
+hsv_lower_min: [70, 70, 50] (adaptive bounds)
+hsv_upper_max: [110, 255, 255]
+Adaptive Tolerance:
+
+adaptive_tolerance: False (disabled)
+h_tolerance_step: 3
+sv_tolerance_step: 10
+max_detection_percent: 10.0%
+Spatial Filtering:
+
+roi_top_ignore_ratio: 0.35 (block top 35% of image)
+center_bias_weight: 200.0
+continuity_weight: 300.0
+y_position_weight: 50.0
+Sharp Turn Detection:
+
+sharp_turn_angle_threshold: 85.0° (from vertical)
+sharp_turn_min_area: 500 pixels²
+sharp_turn_position_threshold: 0.6 (fraction of width)
+Performance Results:
+
+Duration: 53.3 seconds
+Mean error: 0.167
+Max turn rate: 0.467 rad/s
+Stability: 22.1% D-term fighting (much improved)
+Smooth control: -47.9% mean error vs previous run
+Key Success Factors:
+
+Vision fixes (saturation 90, ROI 35%) prevent wall false positives
+High max_turn_rate (10.0) allows rapid steering response
+Moderate kp (0.75) + low kd (0.15) = stable but responsive
+Angle weight (0.2) gives proper turn anticipation
+Claude Sonnet 4.5 • 1x
+
+!!! made it to the first sharp right trun 
+
+[tape_vision_node-3] [WARN] [1777603555.150552464] [tape_vision_node]: [VISION] Sharp turn confirmed! Angle: -3.7°, Area: 1136, Position: (258.0, 218.0)
+[tape_control_node-4] [WARN] [1777603555.157877389] [tape_control_node]: [SHARP TURN START] Frame 1571 - Angle: -3.7°, Direction: LEFT
+[tape_control_node-4] [INFO] [1777603555.164485380] [tape_control_node]: [STOPPING] Frame 1/5
+[tape_vision_node-3] [WARN] [1777603555.247283388] [tape_vision_node]: [VISION] Sharp turn confirmed! Angle: -0.7°, Area: 877, Position: (275.0, 229.0)
+[tape_control_node-4] [WARN] [1777603555.284423503] [tape_control_node]: [SHARP TURN EXECUTE] Starting turn maneuver
+
+----
+
+
+run seven: 
+fixing the "DIRECTION LEFT" bug in tapecontrol node 
+
+
+-made it to right turn again (bathroom) 
+- behavior - 
+it stops at the end of the tape. it is not doing the right turn 
+
+
+[tape_vision_node-3] [WARN] [1777604787.084163516] [tape_vision_node]: [VISION] Sharp turn confirmed! Angle: -0.7°, Area: 943, Position: (273.0, 228.0)
+[tape_control_node-4] [WARN] [1777604787.091831675] [tape_control_node]: [SHARP TURN START] Frame 1852 - Angle: -0.7°, Direction: RIGHT
+
+tape_recovery_node-5] [WARN] [1777604787.355859425] [tape_recovery_node]: Tape lost: entering recovery/search mode
+[tape_recovery_node-5] [WARN] [1777604787.387785816] [tape_recovery_node]: Tape lost: entering recovery/search mode
+[tape_recovery_node-5] [WARN] [1777604787.424242718] [tape_recovery_node]: Tape lost: entering recovery/search mode
+
+
+
+run 8 
+- applying fix 
+he Problem:
+
+When entering STOPPING state, the rover stops completely for 5 frames. During those stopped frames, the camera view changes slightly, and the vision node loses the tape (possibly because the tape shifts in the frame, or the ROI blocking is too aggressive). When msg.found becomes False, the callback immediately returns and never progresses from STOPPING → TURNING.
+
+if not msg.found and self.sharp_turn_state == 'NORMAL':
+    # Stop only if not executing sharp turn maneuver
+    return
+
+
+
+turned to the leftnot right 
+Found the problem! ROS angular velocity convention is inverted.
+
+ROS Convention:
+
+Positive angular.z (+1.5) = rotate counter-clockwise = LEFT turn
+Negative angular.z (-1.5) = rotate clockwise = RIGHT turn
+
+run 9 
+- needed a little nudge on the windy bit 
+made the right turn 
+
+run 10 
+- working making the sharp right turn with fake outg 
+special case :FAKE OUT" 
+plan: add minimumturn duration 
+            if msg.found and self.sharp_turn_frame_count >= min_turn_frames and (is_angle_reasonable or is_timeou
+
+
+
+
+run 11 
+hesitated, still diddnt turn 
+turn longer 
+trying 22 frames 
+
+
+
+
+run X.1
+ min_turn_frames = 100  # Must turn at least 22 frames (~0.8s) to clear fork junction
+            angle_from_vertical = abs(msg.angle - (-90.0))
+            is_angle_reasonable = angle_from_vertical < 45  # Within 45° of vertical (tighter for fake path rejection)
+            is_timeout = self.sharp_turn_frame_count > 35 
+
+
+
+
+made the turn! ut then stoppedmoving 

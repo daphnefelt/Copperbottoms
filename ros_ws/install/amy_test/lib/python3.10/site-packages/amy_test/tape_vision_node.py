@@ -19,14 +19,14 @@ class TapeVisionNode(Node):
         self.declare_parameter('target_height', 240)
         self.declare_parameter('min_contour_area', 100)
         # HSV color params (more robust to lighting than BGR)
-        # For cyan/teal tape: H~85-100, S~50-255, V~50-255
-        self.declare_parameter('hsv_lower', [75, 60, 60])  # Lower HSV bound
+        # For cyan/teal tape: H~85-100, S~90-255, V~70-255 (high saturation to reject walls)
+        self.declare_parameter('hsv_lower', [75, 90, 70])  # Require high saturation to reject dull walls
         self.declare_parameter('hsv_upper', [105, 255, 255])  # Upper HSV bound
         # Adaptive tolerance parameters
         self.declare_parameter('adaptive_tolerance', False)  # Enable adaptive adjustment
         self.declare_parameter('h_tolerance_step', 3)  # Hue adjustment step
         self.declare_parameter('sv_tolerance_step', 10)  # Saturation/Value step
-        self.declare_parameter('hsv_lower_min', [70, 30, 30])  # Minimum (tightest) - require saturated colors
+        self.declare_parameter('hsv_lower_min', [70, 70, 50])  # Tighter minimum to prevent wall detection
         # testing theseparameter s[]
         self.declare_parameter('hsv_upper_max', [110, 255, 255])  # Maximum (loosest)
         self.declare_parameter('max_detection_percent', 10.0)  # Reset if detecting >10% of image
@@ -52,7 +52,7 @@ class TapeVisionNode(Node):
         self.max_frames_before_adapt = 3  # Adjust after 3 failed frames
         
         # Spatial filtering parameters to avoid false detections (walls, etc.)
-        self.declare_parameter('roi_top_ignore_ratio', 0.20)  # Ignore top 20% where walls appear
+        self.declare_parameter('roi_top_ignore_ratio', 0.35)  # Ignore top 35% where walls appear
         self.declare_parameter('center_bias_weight', 200.0)  # Penalty for distance from center
         self.declare_parameter('continuity_weight', 300.0)  # Penalty for distance from last position
         self.declare_parameter('y_position_weight', 50.0)  # Prefer lower (closer) tape

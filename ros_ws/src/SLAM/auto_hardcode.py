@@ -23,6 +23,14 @@ def get_hallway(pose):
             return 2 # left hallway
         else:
             return 3 # right hallway
+    if x < x_walls[0] and y < y_walls[0]:
+        return 2 # bottom left corner, treat as left hallway
+    if x < x_walls[0] and y > y_walls[1]:
+        return 1 # top left corner, treat as top hallway
+    if x > x_walls[1] and y > y_walls[1]:
+        return 3 # top right corner, treat as right hallway
+    if x > x_walls[1] and y < y_walls[0]:
+        return 0 # bottom right corner, treat as bottom hallway
     return None # not in a hallway, need to turn right
 
 def pose_goal_from_hallway(hallway):

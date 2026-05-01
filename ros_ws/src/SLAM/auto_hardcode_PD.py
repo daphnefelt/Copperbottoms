@@ -6,8 +6,8 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 
-x_walls = [5, 32]
-y_walls = [3, 21.5]
+x_walls = [7, 31]
+y_walls = [3, 20.5]
 
 
 
@@ -37,10 +37,15 @@ class Hardcoded(Node):
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.forward_speed = 0.25
         self.turn_speed = 0.3
-        self.sharp_turn_speed = 0.75
+        self.sharp_turn_speed = 0.55
         self.backup_speed = 0.25
         self.backup_time = 1.0
-        self.turn_p = 1/20 / 2 # turn full at 20 degrees off
+        self.turn_p = 1/20 /2  # turn full at 20 degrees off
+        self.sharp_turn_p = 1/20 /4
+        self.turn_d = 0.00  # tune this — try something like 0.05 to start
+        self._prev_delta_yaw = 0.0
+        self._prev_yaw_time = None
+        self._prev_hallway = None
         self.right_turn_duration = 1.0
         self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf
@@ -55,11 +60,17 @@ class Hardcoded(Node):
         self._mode_start = 0.0
         self._backup_turn_dir = -1.0
 
-        # side-wall avoidance
-        self.side_threshold = 1.0  # m — start skewing away when either side is closer than this
-        self.kp_side = 0.5
+        # side-wall nudge
+        self.side_threshold = 1.0      # m — trigger a nudge when either side gets closer than this
+        self.shift_time = 0.5          # base length of a nudge phase (s)
+        self.shift_speed = 0.3         # base angular magnitude during a nudge (rad/s)
+        self.nudge_cooldown = 1.0      # min time between consecutive nudges (s)
         self.right_dist = float('inf')
         self.left_dist = float('inf')
+        self._nudge_phase = 'NONE'     # 'NONE' | 'AWAY' | 'BACK' | 'SETTLE'
+        self._nudge_start = 0.0
+        self._nudge_dir = 0.0          # +1 = nudge left (CCW), -1 = nudge right (CW)
+        self._nudge_cooldown_start = -math.inf
 
         self.hall = 0
         self.transitioning = False
@@ -96,7 +107,7 @@ class Hardcoded(Node):
         if new_hall != self.hall:
             self.get_logger().info(f"Entering transitioning... previous hall {self.hall} new hall {new_hall}")
             self.transitioning = True
-        return None # not in a hallway, need to turn right
+        return new_hall # not in a hallway, need to turn right
 
 
 
@@ -128,10 +139,39 @@ class Hardcoded(Node):
         # look ahead
         if self.transitioning:
             self.get_logger().info(f"In transition: Look ahead...")
-            if self._cone_num_greater_max(msg, math.radians(-88.0), math.radians(10.0)) >= 5:
+            if self._cone_num_greater_max(msg, math.radians(-88.0), math.radians(10.0), 5.0) >= 5:
                 self.get_logger().info(f"Gap on right ahead!")
                 self.hall = (self.hall + 1) % 4
                 self.transitioning = False
+
+    def _nudge(self, direction: float, now: float) -> bool:
+        if self._nudge_phase == 'NONE':
+            self._nudge_phase = 'AWAY'
+            self._nudge_start = now
+            self._nudge_dir = direction
+
+        if self._nudge_phase == 'AWAY':
+            if now - self._nudge_start < self.shift_time * 1.5:
+                self._publish(self.forward_speed, self._nudge_dir * self.shift_speed * 1.5)
+                return True
+            self._nudge_phase = 'BACK'
+            self._nudge_start = now
+
+        if self._nudge_phase == 'BACK':
+            if now - self._nudge_start < self.shift_time:
+                self._publish(self.forward_speed, -self._nudge_dir * self.shift_speed)
+                return True
+            self._nudge_phase = 'SETTLE'
+            self._nudge_start = now
+
+        if self._nudge_phase == 'SETTLE':
+            if now - self._nudge_start < self.shift_time * 2:
+                self._publish(self.forward_speed, -self._nudge_dir * self.shift_speed * 0.4)
+                return True
+            self._nudge_phase = 'NONE'
+            self._nudge_cooldown_start = now
+
+        return False
             
 
     def _pose_cb(self, msg):
@@ -182,22 +222,32 @@ class Hardcoded(Node):
 
         # ── normal driving ──────────────────────────────────────────────
         if hallway is not None:
+            # if a nudge is mid-execution, let it finish — it overrides goal-tracking
+            if self._nudge_phase != 'NONE':
+                self._nudge(self._nudge_dir, now)
+                return
+
+            # else, maybe start a new nudge if a side wall is too close (and cooldown elapsed)
+            in_cooldown = (now - self._nudge_cooldown_start) < self.nudge_cooldown
+            side_close = self.right_dist < self.side_threshold or self.left_dist < self.side_threshold
+            if side_close and not in_cooldown:
+                # nudge away from whichever side is closer
+                direction = 1.0 if self.right_dist < self.left_dist else -1.0
+                print(f"NUDGE {'LEFT' if direction > 0 else 'RIGHT'}: right={self.right_dist:.2f}m left={self.left_dist:.2f}m")
+                self._nudge(direction, now)
+                return
+
+            # otherwise: usual goal-tracking command
             goal_yaw = pose_goal_from_hallway(hallway)
             delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
             print(f"delta_yaw {delta_yaw}")
             fwd = self.forward_speed
+            p = self.sharp_turn_p if abs(delta_yaw) > 30 else self.turn_p
             if abs(delta_yaw) > 30:
                 print("big turnnnn")
                 fwd = 0.2
-            ang = self.turn_speed * (delta_yaw) * self.turn_p
-
-            # also nudge away from side walls if too close
-            right_skew = max(0.0, self.side_threshold - self.right_dist) * self.kp_side
-            left_skew  = max(0.0, self.side_threshold - self.left_dist)  * self.kp_side
-            ang_bias = right_skew - left_skew
-            if ang_bias != 0.0:
-                print(f"side skew right={self.right_dist:.2f}m left={self.left_dist:.2f}m bias={ang_bias:+.2f}")
-            self._publish(fwd, ang + ang_bias)
+            ang = self.turn_speed * (delta_yaw) * p
+            self._publish(fwd, ang)
         else:
             # stop
             print("Not in a hallway, stopping")

@@ -7,6 +7,7 @@ import os
 from launch import LaunchDescription, LaunchService
 from launch.actions import ExecuteProcess, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
@@ -40,6 +41,14 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
+    # Static transform: lidar is mounted at the center of the robot (adjust x/y/z if needed)
+    laser_base_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'laser'],
+        output='screen',
+    )
+
     nav2 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
@@ -61,7 +70,7 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
-    return LaunchDescription([ekf_slam, tf_bridge, map_relay, nav2, waypoint_runner])
+    return LaunchDescription([ekf_slam, tf_bridge, map_relay, laser_base_tf, nav2, waypoint_runner])
 
 
 def main() -> int:

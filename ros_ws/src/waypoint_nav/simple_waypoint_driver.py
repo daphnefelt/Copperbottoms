@@ -10,14 +10,15 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from geometry_msgs.msg import PoseWithCovarianceStamped
 
-WAYPOINT_TOLERANCE = 0.5   # metres — advance when within this distance
-MAX_LINEAR_VEL    = 0.3    # m/s
-KP_ANGULAR        = 1.5    # rad/s per rad of heading error
-MAX_ANGULAR_VEL   = 1.2    # rad/s cap
-HEADING_SLOW_THRESH = 0.5  # rad — slow down when heading error is larger than this
+WAYPOINT_TOLERANCE  = 0.3   # metres — advance when within this distance
+WAYPOINT_EVERY_N    = 8     # sample every Nth pose from the history file
+MAX_LINEAR_VEL      = 0.3   # m/s
+KP_ANGULAR          = 1.5   # rad/s per rad of heading error
+MAX_ANGULAR_VEL     = 1.2   # rad/s cap
+HEADING_SLOW_THRESH = 0.5   # rad — slow down when heading error is larger than this
 
 
-def load_waypoints(filepath, every_n=4):
+def load_waypoints(filepath, every_n=WAYPOINT_EVERY_N):
     poses = []
     with open(filepath) as f:
         for line in f:
@@ -33,7 +34,7 @@ def load_waypoints(filepath, every_n=4):
     # Skip all initial waypoints at starting position to avoid trivial zero-distance goals
     start_x, start_y = sampled[0][0], sampled[0][1]
     i = 0
-    while i < len(sampled) and math.hypot(sampled[i][0] - start_x, sampled[i][1] - start_y) < WAYPOINT_TOLERANCE:
+    while i < len(sampled) and math.hypot(sampled[i][0] - start_x, sampled[i][1] - start_y) < 0.5:
         i += 1
     return sampled[i:]
 

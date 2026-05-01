@@ -2,17 +2,13 @@ import rclpy
 import numpy as np
 import math
 from rclpy.node import Node
-from sensor_msgs.msg import LaserScan
-from geometry_msgs.msg import Twist
-from std_msgs.msg import Bool
-from std_msgs.msg import Float32
+from geometry_msgs.msg import PoseWithCovarianceStamped
 import matplotlib.pyplot as plt
 import threading
 """
 How to use:
 Run this node to visualize sensor data.
-Launch imu_pose_estimate.py,
-ros2 run imu_pose_estimate imu_pose_estimate
+Requires SLAM to be publishing /slam/pose.
 
 Launch this node:
 ros2 run visualize_sensors visualize_sensors
@@ -20,27 +16,22 @@ ros2 run visualize_sensors visualize_sensors
 """
 
 class SensorVisualizationNode(Node):
-    
+
     def __init__(self):
         super().__init__('Visualize_Sensors_node')
 
-        # imu_heading estimate
-        self.heading_sub = self.create_subscription(
-            Float32, 
-            'imu/heading_estimate',      
-            self.heading_estimate_callback, 
-            10)  
-
-        # imu_velocity estimate
-        self.velocity_sub = self.create_subscription(
-            Float32, 
-            'imu/velocity_estimate',      
-            self.velocity_estimate_callback, 
-            10)  
+        self.pose_sub = self.create_subscription(
+            PoseWithCovarianceStamped,
+            '/slam/pose',
+            self._pose_cb,
+            10)
 
         # Store latest values
         self.latest_heading = 0.0
         self.latest_velocity = 0.0
+        self._prev_x = None
+        self._prev_y = None
+        self._prev_time = None
 
         # Setup matplotlib for live updating
         plt.ion()
@@ -79,13 +70,22 @@ class SensorVisualizationNode(Node):
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()
 
-    def heading_estimate_callback(self, msg):
-        self.latest_heading = msg.data
-        self.get_logger().info(f"Heading Estimate: {msg.data:.2f} radians")
+    def _pose_cb(self, msg: PoseWithCovarianceStamped):
+        x = msg.pose.pose.position.x
+        y = msg.pose.pose.position.y
+        q = msg.pose.pose.orientation
+        self.latest_heading = 2.0 * math.atan2(q.z, q.w)
 
-    def velocity_estimate_callback(self, msg):
-        self.latest_velocity = msg.data
-        self.get_logger().info(f"Velocity Estimate: {msg.data:.2f} m/s")
+        stamp = msg.header.stamp
+        t = stamp.sec + stamp.nanosec * 1e-9
+        if self._prev_x is not None and self._prev_time is not None:
+            dt = t - self._prev_time
+            if dt > 0:
+                dist = math.hypot(x - self._prev_x, y - self._prev_y)
+                self.latest_velocity = dist / dt
+        self._prev_x = x
+        self._prev_y = y
+        self._prev_time = t
 
     def update_plots(self):
         x = np.sin(self.latest_heading)

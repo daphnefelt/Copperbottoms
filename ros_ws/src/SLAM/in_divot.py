@@ -10,20 +10,20 @@ from std_msgs.msg import Bool
 def div_1(pose):
     x, y = pose
     if 9 < x < 15 and y < 10:
-        return True
+        return True, -180.
     return False, -180 # heading cmd
 
 def div_2(pose):
     x, y = pose
     if 10 < y < 20 and x < 10:
-        return True
-    return False, 90
+        return True, 90
+    return False, 90.
 
 def div_3(pose):
     x, y = pose
     if 15 < y < 22 and x > 30:
-        return True
-    return False, -90
+        return True, -90
+    return False, -90.
 
 def in_divot(pose):
     div1 = div_1(pose)
@@ -34,7 +34,7 @@ def in_divot(pose):
         return div2[1]
     div3 = div_3(pose)
     if div3[0] == True:
-        return div3
+        return div3[1]
     return None
 
 class Hardcoded(Node):
@@ -42,6 +42,9 @@ class Hardcoded(Node):
         super().__init__('hardcoded')
         self.create_subscription(PoseWithCovarianceStamped, '/slam/pose', self._pose_cb, 10)
         self.pub = self.create_publisher(Bool, '/in_divot', 10)
+        self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.turn_speed = 0.3
+        self.fwd = 0.25
 
     def _publish(self, lin: float, ang: float):
         t = Twist()
@@ -58,7 +61,7 @@ class Hardcoded(Node):
             delta_yaw = (goal_theta - theta + 180) % 360 - 180
             p = 1/20 /2
             ang = self.turn_speed * (delta_yaw) * p
-            self._publish(fwd, ang)
+            self._publish(self.fwd, ang)
             self.pub.publish(Bool(data=True))
         else:
             self.pub.publish(Bool(data=False))

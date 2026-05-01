@@ -69,7 +69,7 @@ class WaypointFollower(Node):
 
     def load_waypoints(self, filename, every_n):
         data = np.loadtxt(filename)
-        return data[::every_n, :4]  
+        return data[::every_n]
     def get_goal_waypoint(self, pose):
         last_in_radius_idx = None
         last_in_radius_goal = None

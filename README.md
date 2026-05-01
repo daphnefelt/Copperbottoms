@@ -1,6 +1,28 @@
 # Copperbottoms
 advanced robo repo
 
+## Run Landmark Slam
+**Launch the following in separate terminals**
+open two terminals 
+ros2 run joy joy_node --ros-args --params-file joystick.yaml
+ros2 run teleop_twist_joy teleop_node --ros-args --params-file joystick.yaml
+
+run SUPPORTING NODES
+open a terminal
+cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
+ros2 launch SLAM_dependency_launch.py
+
+open a terminal
+cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
+python3 landmark_based_slam.py
+
+Ctl-c 
+writes robot poses to pose_history.txt
+draws landmarks and poses to map_pose_history.jpg
+saves lidar-based occupancy grid to last_lidar_grid.npy
+
+
+
 
 ## Stopsign Detection
 A brief overview on the stopsign detetion node.

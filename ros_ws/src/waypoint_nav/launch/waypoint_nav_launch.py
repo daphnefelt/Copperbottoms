@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# Assumes SLAM is already running (launched via SLAM_dependency_launch.py).
-# Starts the TF bridge, map relay, Nav2, and waypoint runner.
+# Assumes hardware sensors are running (SLAM_dependency_launch.py for rplidar, rf2o, camera, etc.).
+# Starts EKF SLAM, TF bridge (map→odom), map relay, Nav2, and waypoint runner.
 
 import os
 from launch import LaunchDescription, LaunchService
@@ -15,9 +15,18 @@ def generate_launch_description():
     run_waypoints_script = os.path.join(package_share, 'run_waypoints.py')
     map_relay_script = os.path.join(package_share, 'map_relay.py')
     workspace_root = os.path.abspath(os.path.join(package_share, '..', '..', '..', '..'))
-    slam_tf_bridge_script = os.path.join(workspace_root, 'src', 'SLAM', 'slam_tf_bridge.py')
+    slam_dir = os.path.join(workspace_root, 'src', 'SLAM')
+    slam_tf_bridge_script = os.path.join(slam_dir, 'slam_tf_bridge.py')
+    landmark_slam_script = os.path.join(slam_dir, 'landmark_based_slam.py')
 
-    # Converts /slam/pose → TF map→base_link for Nav2
+    # EKF SLAM — publishes /slam/pose, /slam/lidar_map, and saves pose history
+    ekf_slam = ExecuteProcess(
+        cmd=['python3', landmark_slam_script],
+        output='screen',
+        emulate_tty=True,
+    )
+
+    # Converts /slam/pose + odom→base_link TF → map→odom TF for Nav2
     tf_bridge = ExecuteProcess(
         cmd=['python3', slam_tf_bridge_script],
         output='screen',
@@ -52,7 +61,7 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
-    return LaunchDescription([tf_bridge, map_relay, nav2, waypoint_runner])
+    return LaunchDescription([ekf_slam, tf_bridge, map_relay, nav2, waypoint_runner])
 
 
 def main() -> int:

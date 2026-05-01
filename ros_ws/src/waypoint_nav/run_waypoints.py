@@ -14,7 +14,7 @@ def load_waypoints(filepath, every_n=4):
             parts = list(map(float, line.strip().split()))
             x, y, yaw = parts[0], parts[1], parts[2]  # ignore timestamp if present
             poses.append((x + SLAM_OFFSET_X, y + SLAM_OFFSET_Y, yaw))
-    return poses[::every_n]
+    return poses[::every_n][1:]  # skip first pose: robot start == goal causes NavFn to return empty plan
 
 def yaw_to_quaternion(yaw):
     return (0.0, 0.0, math.sin(yaw / 2.0), math.cos(yaw / 2.0))

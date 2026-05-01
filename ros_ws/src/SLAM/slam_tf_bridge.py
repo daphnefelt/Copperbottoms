@@ -14,7 +14,6 @@ class SlamTfBridge(Node):
         self.create_subscription(
             PoseWithCovarianceStamped, '/slam/pose', self.pose_cb, 10)
         self._last_transform = None  # (x_mo, y_mo, theta_mo)
-        # Republish at 20 Hz so Nav2 controller never gets a stale TF
         self.create_timer(0.05, self._publish_tf)
 
     def pose_cb(self, msg: PoseWithCovarianceStamped):
@@ -26,12 +25,17 @@ class SlamTfBridge(Node):
         try:
             odom_to_base = self.tf_buffer.lookup_transform(
                 'odom', 'base_link', rclpy.time.Time())
-            odom_x = odom_to_base.transform.translation.x
-            odom_y = odom_to_base.transform.translation.y
-            oq = odom_to_base.transform.rotation
-            odom_yaw = 2.0 * math.atan2(oq.z, oq.w)
-        except Exception:
-            odom_x, odom_y, odom_yaw = 0.0, 0.0, 0.0
+        except Exception as e:
+            # Don't fall back to 0,0,0 — wait until rf2o is ready
+            self.get_logger().warn(
+                f'odom→base_link not available, skipping map→odom update: {e}',
+                throttle_duration_sec=5.0)
+            return
+
+        odom_x = odom_to_base.transform.translation.x
+        odom_y = odom_to_base.transform.translation.y
+        oq = odom_to_base.transform.rotation
+        odom_yaw = 2.0 * math.atan2(oq.z, oq.w)
 
         # map_T_odom = map_T_base * inv(odom_T_base)
         theta_mo = slam_yaw - odom_yaw

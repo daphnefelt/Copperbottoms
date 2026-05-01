@@ -78,7 +78,7 @@ class Hardcoded(Node):
         self._backup_turn_dir = -1.0
 
         # side-wall avoidance
-        self.side_threshold = 0.5  # m — start skewing away when either side is closer than this
+        self.side_threshold = 1.0  # m — start skewing away when either side is closer than this
         self.kp_side = 0.5
         self.right_dist = float('inf')
         self.left_dist = float('inf')

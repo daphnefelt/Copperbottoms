@@ -11,4 +11,5 @@ setup.py
 ../../build/stop_sign/stop_sign.egg-info/zip-safe
 resource/stop_sign
 stop_sign_detect/__init__.py
+stop_sign_detect/cascade_stop_sign.xml
 stop_sign_detect/stop_sign_detect.py

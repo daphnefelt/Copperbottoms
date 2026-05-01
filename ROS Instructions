@@ -247,7 +247,7 @@ ros2 run teleop_twist_joy teleop_node --ros-args --params-file joystick.yaml
 run SUPPORTING NODES
 open a terminal
 cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
-ros2 launch SLAM_dependency_launch.py
+python3 SLAM_dependency_launch.py
 
 run SLAM
 open a terminal

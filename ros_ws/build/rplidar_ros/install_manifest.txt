@@ -1,4 +1,5 @@
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/__pycache__/view_rplidar_a1_launch.cpython-310.pyc
+/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/__pycache__/rplidar_a1_launch.cpython-310.pyc
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m8_launch.py
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_launch.py
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a1_launch.py

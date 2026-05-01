@@ -9,6 +9,9 @@ from custom_messages.msg import Slow
 from sensor_msgs.msg import Image
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
+from ament_index_python.packages import get_package_share_directory
+import time
+import os
 
 class StopSignDetect(Node):
 
@@ -20,16 +23,35 @@ class StopSignDetect(Node):
         self.stop_sign_angle = 0.0
         self.bridge = CvBridge()
         # Load the cascade classifier (ensure the path is correct)
-        self.stop_sign_cascade = cv2.CascadeClassifier('cascade_stop_sign.xml')
+
+        cascade_path = os.path.join(
+        get_package_share_directory('stop_sign'),
+        'stop_sign_detect',
+        'cascade_stop_sign.xml'
+        )
+        self.stop_sign_cascade = cv2.CascadeClassifier(cascade_path)
+
+        # self.stop_sign_cascade = cv2.CascadeClassifier('cascade_stop_sign.xml')
 
         # Subscribers
-        self.image_sub = self.create_subscription(Image, 'camera/image_raw', self.image_callback, 10)
-
+        # self.image_sub = self.create_subscription(Image, 'camera/image_raw', self.image_callback, 10)
+        self.image_sub = self.create_subscription(Image, '/camera/color/image_raw', self.image_callback, 10)
         # Publishers
         self.stop_sign_pub = self.create_publisher(Bool, 'stop_sign_detected', 10)
+        self.stop_move_pub = self.create_publisher(Bool, 'stop_move', 10)
         self.slow_pub = self.create_publisher(Slow, 'slow_down', 10)
+        self.vel_pub= self.create_publisher(Twist, 'cmd_vel', 10)
+
+
+        self.get_logger().info('StopSignDetect node started and ready.')
+
+        stop_msg = Bool()
+        slow_msg = Slow()
 
     def image_callback(self, msg):
+        stop_msg = Bool()
+        slow_msg = Slow()
+
         try:
             # Convert ROS Image to OpenCV image
             cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
@@ -52,9 +74,12 @@ class StopSignDetect(Node):
                 self.stop_sign_detected = True
                 self.publish_stop_sign_detected()
                 self.stop_robot()
+                self.get_logger().info('Stopping...')
+                stop_msg.data = True
                 # Pause for 5 seconds to simulate looking both ways
-                rclpy.timer.sleep(5)
-                self.get_logger().info('Looking both ways...')
+                self.get_logger().info('Looking both ways before crossing the street...')
+                time.sleep(5)
+                stop_msg.data = False
                 self.resume_robot()
                 self.get_logger().info('Resuming movement after stop sign.')
                 self.stop_sign_detected = False
@@ -74,18 +99,42 @@ class StopSignDetect(Node):
         self.stop_sign_pub.publish(msg)
 
     def stop_robot(self):
-        msg = Slow()
-        msg.should_slow_down = True
-        self.slow_pub.publish(msg)
+        # msg = Slow()
+        # msg.slowcmdvel = 0.0
+        # msg.slowcmdang = 0.0
+        # msg.slowcmdlogi = False
+        stop_msg = Bool()
+        slow_msg = Slow()
+
+        # Stop the motors
+        twist_msg = Twist()
+        twist_msg.linear.x = 0.0
+        twist_msg.angular.z = 0.0
+        self.vel_pub.publish(twist_msg)
+        
+        stop_msg = Bool()
+        stop_msg.data = True
+        slow_msg.slowcmdlogi = False
+
+        # self.slow_pub.publish(msg)
+        self.stop_move_pub.publish(stop_msg)
 
     def resume_robot(self):
         msg = Slow()
-        msg.should_slow_down = False
+        msg.slowcmdvel = 0.1  # or your desired resume speed
+        msg.slowcmdang = 0.0
+        msg.slowcmdlogi = True
         self.slow_pub.publish(msg)
+
+
+        stop_msg = Bool()
+        stop_msg.data = False
+        self.stop_move_pub.publish(stop_msg)
+
 
     def temporarily_ignore_stop_signs(self, duration):
         self.stop_sign_detected = False
-        rclpy.timer.sleep(duration)
+        time.sleep(duration)
         self.stop_sign_detected = True
     
     
@@ -103,6 +152,6 @@ if __name__ == '__main__':
 
 
 
-    
+
 
 

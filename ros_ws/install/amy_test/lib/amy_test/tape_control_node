@@ -196,8 +196,8 @@ class TapeControlNode(Node):
             # Require minimum turn duration to avoid exiting on fake straight paths at junction
             min_turn_frames = 60  # Must turn at least 22 frames (~0.8s) to clear fork junction
             angle_from_vertical = abs(msg.angle - (-90.0))
-            is_angle_reasonable = angle_from_vertical < 45  # Within 45° of vertical (tighter for fake path rejection)
-            is_timeout = self.sharp_turn_frame_count > 60  # Max 35 frames (~1.2s at 28 fps)
+            is_angle_reasonable = angle_from_vertical < 82  # Within 45° of vertical (tighter for fake path rejection)
+            is_timeout = self.sharp_turn_frame_count > 100 # Max 35 frames (~1.2s at 28 fps)
             
             if msg.found and self.sharp_turn_frame_count >= min_turn_frames and (is_angle_reasonable or is_timeout):
                 self.sharp_turn_state = 'NORMAL'

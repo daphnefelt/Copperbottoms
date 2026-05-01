@@ -1,4 +1,5 @@
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry/lib/rf2o_laser_odometry/rf2o_laser_odometry_node
+/home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry/share/rf2o_laser_odometry/launch/__pycache__/rf2o_laser_odometry.launch.cpython-310.pyc
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry/share/rf2o_laser_odometry/launch/rf2o_laser_odometry.launch.py
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry/share/ament_index/resource_index/package_run_dependencies/rf2o_laser_odometry
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry/share/ament_index/resource_index/parent_prefix_path/rf2o_laser_odometry

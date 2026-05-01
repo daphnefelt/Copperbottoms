@@ -62,7 +62,7 @@ class Hardcoded(Node):
         self.sharp_turn_speed = 0.75
         self.backup_speed = 0.25
         self.backup_time = 1.0
-        self.turn_p = 1/20 * 2 # turn full at 20 degrees off
+        self.turn_p = 1/20 / 2 # turn full at 20 degrees off
         self.right_turn_duration = 1.0
         self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf

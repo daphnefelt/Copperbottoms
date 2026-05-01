@@ -6,7 +6,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 
-x_walls = [4, 35]
+x_walls = [5, 35]
 y_walls = [3, 22.5]
 
 def get_hallway(pose):
@@ -54,7 +54,7 @@ class Hardcoded(Node):
         self.backup_speed = 0.25
         self.backup_time = 1.0
         self.turn_p = 1/20 # turn full at 20 degrees off
-        self.right_turn_duration = 0.5
+        self.right_turn_duration = 1.0
         self.right_turn_cooldown = 2.0
         self._right_turn_start = -math.inf
 

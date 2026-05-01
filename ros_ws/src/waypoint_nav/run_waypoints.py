@@ -4,8 +4,8 @@ import rclpy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator
 
-SLAM_OFFSET_X = 20.0
-SLAM_OFFSET_Y = 20.0
+SLAM_OFFSET_X = 0.0
+SLAM_OFFSET_Y = 0.0
 
 def load_waypoints(filepath, every_n=4):
     poses = []

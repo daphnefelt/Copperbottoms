@@ -217,8 +217,7 @@ class LidarDebugNode(Node):
         correction = self.Kp_angle * heading_error + self.Kd_angle * d_heading
         if math.isnan(correction):
             correction = 0.0
-        if correction > 30.0:
-            correction = 30
+        correction = max(-2.0, min(2.0, correction))
         self.last_correction = correction
         return correction
     
@@ -490,6 +489,7 @@ class LidarDebugNode(Node):
             f'lookahead: {angle_dist:6.2f} m  ({lookahead_cls}) |'
             f'right: {right_dist:6.2f} m   ({right_cls}) |'
             f'lookbehind: {rear_dist:6.2f} m  ({lookbehind_cls}) |'
+            f'correction: {self.last_correction:+.3f}  |  '
             f'mode: {self.mode}',
             throttle_duration_sec=0.2
         )

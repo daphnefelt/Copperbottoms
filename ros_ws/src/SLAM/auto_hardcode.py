@@ -55,7 +55,7 @@ class Hardcoded(Node):
         self.backup_time = 1.0
         self.turn_p = 1/20 # turn full at 20 degrees off
         self.right_turn_duration = 1.0
-        self.right_turn_cooldown = 2.0
+        self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf
 
     def _publish(self, lin: float, ang: float):

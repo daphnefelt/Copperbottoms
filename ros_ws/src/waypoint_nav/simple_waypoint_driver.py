@@ -10,33 +10,12 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from geometry_msgs.msg import PoseWithCovarianceStamped
 
-WAYPOINT_TOLERANCE  = 0.3   # metres — advance when within this distance
-WAYPOINT_EVERY_N    = 8     # sample every Nth pose from the history file
-MAX_LINEAR_VEL      = 0.3   # m/s
-KP_ANGULAR          = 1.5   # rad/s per rad of heading error
-MAX_ANGULAR_VEL     = 1.2   # rad/s cap
-HEADING_SLOW_THRESH = 0.5   # rad — slow down when heading error is larger than this
-
-
-def load_waypoints(filepath, every_n=WAYPOINT_EVERY_N):
-    poses = []
-    with open(filepath) as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            parts = list(map(float, line.split()))
-            x, y, yaw = parts[0], parts[1], parts[2]
-            poses.append((x, y, yaw))
-    sampled = poses[::every_n]
-    if not sampled:
-        return sampled
-    # Skip all initial waypoints at starting position to avoid trivial zero-distance goals
-    start_x, start_y = sampled[0][0], sampled[0][1]
-    i = 0
-    while i < len(sampled) and math.hypot(sampled[i][0] - start_x, sampled[i][1] - start_y) < 0.5:
-        i += 1
-    return sampled[i:]
+WAYPOINT_TOLERANCE  = 0.35  # metres — advance when within this distance
+MIN_WAYPOINT_DIST   = 0.15   # metres — minimum spacing between loaded waypoints
+MIN_LINEAR_VEL      = 0.25  # m/s — minimum to actually overcome friction at low battery
+MAX_LINEAR_VEL      = 0.35  # m/s
+KP_ANGULAR          = 0.8   # rad/s per rad of heading error
+MAX_ANGULAR_VEL     = 0.8   # rad/s cap
 
 
 def angle_wrap(a):
@@ -48,19 +27,63 @@ def angle_wrap(a):
 
 
 class SimpleWaypointDriver(Node):
-    def __init__(self, waypoints):
+    def __init__(self, waypoints_file):
         super().__init__('simple_waypoint_driver')
-        self._waypoints = waypoints
+        self._waypoints = []
         self._idx = 0
         self._pose = None
+        self._file = open(waypoints_file, 'r')
+        self._start_pos = None   # first point read, used to skip starting cluster
+        self._last_wp_pos = None # (x,y) of last accepted waypoint, for distance filter
 
         self._cmd_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.create_subscription(
             PoseWithCovarianceStamped, '/slam/pose', self._pose_cb, 10)
-        self.create_timer(0.1, self._control_loop)   # 10 Hz
+        self.create_timer(0.1, self._control_loop)
+        self.create_timer(1.0, self._poll_file)
 
+        self._poll_file()  # load whatever is already in the file
         self.get_logger().info(
-            f'Simple waypoint driver ready — {len(waypoints)} waypoints loaded')
+            f'Simple waypoint driver ready — watching {waypoints_file}')
+
+    def _poll_file(self):
+        added = 0
+        while True:
+            line = self._file.readline()
+            if not line:
+                break
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                parts = list(map(float, line.split()))
+                x, y, yaw = parts[0], parts[1], parts[2]
+            except (ValueError, IndexError):
+                continue
+
+            if self._start_pos is None:
+                self._start_pos = (x, y)
+
+            # Skip the initial cluster at the recording start position
+            if self._last_wp_pos is None:
+                sx, sy = self._start_pos
+                if math.hypot(x - sx, y - sy) < 0.5:
+                    continue
+
+            # Reject points too close to the last accepted waypoint
+            if self._last_wp_pos is not None:
+                lx, ly = self._last_wp_pos
+                if math.hypot(x - lx, y - ly) < MIN_WAYPOINT_DIST:
+                    continue
+
+            self._waypoints.append((x, y, yaw))
+            self._last_wp_pos = (x, y)
+            added += 1
+
+        if added > 0:
+            self.get_logger().info(
+                f'+{added} waypoints  total={len(self._waypoints)}  '
+                f'remaining={len(self._waypoints) - self._idx}')
 
     def _pose_cb(self, msg: PoseWithCovarianceStamped):
         x = msg.pose.pose.position.x
@@ -83,7 +106,8 @@ class SimpleWaypointDriver(Node):
 
         if self._idx >= len(self._waypoints):
             self._stop()
-            self.get_logger().info('All waypoints reached — stopping.', once=True)
+            if len(self._waypoints) > 0:
+                self.get_logger().info('All waypoints reached — waiting for more.', once=True)
             return
 
         rx, ry, ryaw = self._pose
@@ -114,11 +138,10 @@ class SimpleWaypointDriver(Node):
         angular_z = max(-MAX_ANGULAR_VEL,
                         min(MAX_ANGULAR_VEL, KP_ANGULAR * heading_err))
 
-        # Reduce forward speed when heading error is large
-        if abs(heading_err) > HEADING_SLOW_THRESH:
-            linear_x = MAX_LINEAR_VEL * max(0.0, math.cos(heading_err))
-        else:
-            linear_x = MAX_LINEAR_VEL
+        # Always maintain at least MIN_LINEAR_VEL (robot needs forward motion to turn).
+        # Scale up toward MAX_LINEAR_VEL as heading error shrinks.
+        heading_factor = max(0.0, math.cos(heading_err))
+        linear_x = max(MIN_LINEAR_VEL, MAX_LINEAR_VEL * heading_factor)
 
         msg = Twist()
         msg.linear.x = linear_x
@@ -133,13 +156,12 @@ def main(args=None):
     rclpy.init(args=args)
     script_dir = os.path.dirname(os.path.abspath(__file__))
     waypoints_file = os.path.join(script_dir, 'pose_history_save.txt')
-    waypoints = load_waypoints(waypoints_file)
-    if not waypoints:
-        print(f'ERROR: no waypoints loaded from {waypoints_file}')
+    if not os.path.exists(waypoints_file):
+        print(f'ERROR: waypoints file not found: {waypoints_file}')
         return
-    print(f'Loaded {len(waypoints)} waypoints')
-    node = SimpleWaypointDriver(waypoints)
+    node = SimpleWaypointDriver(waypoints_file)
     rclpy.spin(node)
+    node._file.close()
     rclpy.shutdown()
 
 

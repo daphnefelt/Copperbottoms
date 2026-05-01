@@ -7,6 +7,13 @@ ros2 launch amy_test test_full_launch.py
 \cd ~/code/Copperbottoms/ros_ws
 colcon build --packages-select amy_test
 
+# Before each new launch, check for orphaned processes:
+ps aux | grep -E "realsense|tape_" | grep -v grep
+
+# Or use pkill to clean up:
+pkill -f realsense_node
+pkill -f tape_control_node
+
 * it did agoodjob following tape on straight and the curvy section 
 
 when tape lost, recoverymode, it doesnt move, 

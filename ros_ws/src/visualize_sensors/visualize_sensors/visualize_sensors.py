@@ -97,8 +97,8 @@ class SensorVisualizationNode(Node):
                 pass
         self.arrow = self.ax_compass.arrow(0, 0, x, y, head_width=0.1, head_length=0.15, fc='r', ec='r')
         self.bar[0].set_height(self.latest_velocity)
-        self.fig.canvas.draw()
-        plt.pause(0.001)
+        self.fig.canvas.draw_idle()
+        self.fig.canvas.flush_events()
 
 def main(args=None):
     rclpy.init(args=args)

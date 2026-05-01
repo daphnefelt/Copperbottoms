@@ -6,9 +6,9 @@ advanced robo repo
 A brief overview on the stopsign detetion node.
 Uses a online-sourced cascade model with open-CV to scan for stop-signs.
 When stop-sign detected stops, pauses all other velocity commands.
-After wait period begins to allow driving again and ignores stop sign reading briefly
+After wait period begins to allow driving again and ignores stop sign reading briefly.
 ### How to Run: Stopsign Detetion
-**Launch the following across seperate terminals**
+**Launch the following across separate terminals**
 - Need rover_node running: "ros2 run robo_rover rover_node"
 - Need realsense camera running: "ros2 launch robo_realsense realsense_launch"
 
@@ -16,8 +16,10 @@ After wait period begins to allow driving again and ignores stop sign reading br
 
 
 ## Sensor Visualization
-**Launch the following across seperate terminals**
+A brief overview on sensor visualization.
+Subscribes to a series of nodes that provide 
 ### How to Run: Sensor Visualization
+**Launch the following across separate terminals**
 - Need rover_node running: "ros2 run robo_rover rover_node"
 - Need land_mark slam running *This provides pose esimates information*
     - Slam Dependencies: 

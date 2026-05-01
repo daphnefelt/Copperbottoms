@@ -92,8 +92,19 @@ class SimpleWaypointDriver(Node):
         dist = math.hypot(wx - rx, wy - ry)
         if dist < WAYPOINT_TOLERANCE:
             self.get_logger().info(
-                f'Reached waypoint {self._idx + 1}/{len(self._waypoints)}')
+                f'Reached WP{self._idx + 1}/{len(self._waypoints)} '
+                f'robot=({rx:.2f},{ry:.2f}) yaw={math.degrees(ryaw):.1f}°')
             self._idx += 1
+            if self._idx < len(self._waypoints):
+                nwx, nwy, _ = self._waypoints[self._idx]
+                bearing = math.degrees(math.atan2(nwy - ry, nwx - rx))
+                rel_bearing = math.degrees(math.atan2(
+                    math.sin(math.radians(bearing) - ryaw),
+                    math.cos(math.radians(bearing) - ryaw)))
+                self.get_logger().info(
+                    f'  → WP{self._idx + 1}: ({nwx:.2f},{nwy:.2f}) '
+                    f'dist={math.hypot(nwx-rx,nwy-ry):.2f}m '
+                    f'abs_bearing={bearing:.1f}° rel={rel_bearing:+.1f}°(+L/-R)')
             return
 
         # Desired heading toward waypoint

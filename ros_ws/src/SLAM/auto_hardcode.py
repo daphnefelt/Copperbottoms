@@ -55,7 +55,7 @@ class Hardcoded(Node):
         self.backup_time = 1.0
         self.turn_p = 1/20 # turn full at 20 degrees off
         self.right_turn_duration = 1.0
-        self.right_turn_cooldown = 2.0
+        self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf
 
     def _publish(self, lin: float, ang: float):
@@ -87,7 +87,11 @@ class Hardcoded(Node):
             goal_yaw = pose_goal_from_hallway(hallway)
             delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
             print(f"delta_yaw {delta_yaw}")
-            self._publish(self.forward_speed, self.turn_speed * (delta_yaw) * self.turn_p)
+            fwd = self.forward_speed
+            if abs(delta_yaw) > 30:
+                print("big turnnnn")
+                fwd = self.forward_speed / 2
+            self._publish(fwd, self.turn_speed * (delta_yaw) * self.turn_p)
         else:
             print("right turnnnn")
             self.right_turn()

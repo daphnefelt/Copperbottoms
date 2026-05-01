@@ -19,17 +19,17 @@ class LidarDebugNode(Node):
         super().__init__('lidar_debug_node')
 
         # -- distances --------------------------------------------------------
-        self.stop_dist = 0.5
+        self.stop_dist = 1.0
         self.wall_target_inital = 1.47
         self.wall_target = 1.47
         self.dist_tol = 0.1
 
         # -- misc variables --------------------------------------------------
         self.prev_cls = 'PARALLEL'
-        self.prev_state = ''
+        self.prev_state = 'STRAIGHT'
         self.turn_rate = -0.8
         self.forward_speed = 0.12
-        self.OB_forward_speed = 0.2
+        self.OB_forward_speed = 0.22
         self.phase_start_time = None
         self.last_correction = 0.0
     
@@ -49,7 +49,7 @@ class LidarDebugNode(Node):
 
         # -- Cone half-widths  ------------------------------------------------
         self.front_half_cone = math.radians(10)   # ±10° front
-        self.side_half_cone  = math.radians(5)    # ±5°  right side 90°
+        self.side_half_cone  = math.radians(10)    # ±5°  right side 90°
         self.angle_half_cone = math.radians(2)    # ±1°  angled lookahead 135°
 
         # -- Parallel / perpendicular tolerance --------------------------------
@@ -148,13 +148,8 @@ class LidarDebugNode(Node):
             ranges_np, msg,
             [(3 * math.pi / 4, self.angle_half_cone)])
     
-    def _wall_angle_combined(self, ranges_np, msg):
-        """Linear regression on the points spanning right cone (90°) through lookahead cone (135°)."""
-        # Span from start of right cone to end of lookahead cone
-        center_rad = (math.pi / 2 + 3 * math.pi / 4) / 2          # midpoint = 112.5°
-        half_cone  = (3 * math.pi / 4 - math.pi / 2) / 2 \
-                    + max(self.side_half_cone, self.angle_half_cone)
-        return self._wall_angle_from_cones(ranges_np, msg,[(center_rad, half_cone)])
+    def _wall_angle_rear(self, ranges_np, msg):
+        return self._wall_angle_from_cones(ranges_np, msg, [(math.pi / 4, self.angle_half_cone)])
     
     # --------------------------------------------------------------------------
     # -- PD Steering Control -------
@@ -255,10 +250,11 @@ class LidarDebugNode(Node):
         front_dist      = self._valid_median(ranges, msg, math.pi, self.front_half_cone)
         right_dist      = self._valid_median(ranges, msg, math.pi / 2, self.side_half_cone)
         angle_dist      = self._valid_median(ranges, msg, 3 * math.pi / 4, self.angle_half_cone)
+        rear_dist       = self._valid_median(ranges, msg, math.pi / 4, self.angle_half_cone)
         left_dist       = self._valid_median(ranges, msg, -math.pi / 2, self.side_half_cone)
         right_angle     = self._wall_angle_right(ranges, msg)
         lookahead_angle = self._wall_angle_angle(ranges, msg)
-        combined_angle    = self._wall_angle_combined(ranges, msg)
+        lookbehind_angle = self._wall_angle_rear(ranges, msg)
 
         def classify(a):
             if math.isnan(a):
@@ -272,7 +268,7 @@ class LidarDebugNode(Node):
 
         right_cls     = classify(right_angle)
         lookahead_cls = classify(lookahead_angle)
-        combined_cls = classify(combined_angle)
+        lookbehind_cls = classify(lookbehind_angle)
         right_deg     = math.degrees(right_angle)     if not math.isnan(right_angle)     else float('nan')
         lookahead_deg = math.degrees(lookahead_angle) if not math.isnan(lookahead_angle) else float('nan')
 
@@ -280,7 +276,7 @@ class LidarDebugNode(Node):
         # State switching logic
         # ------------------------------------------------------------------
 
-        if self.mode in (self.MODE_STRAIGHT, self.MODE_DIVOT, self.MODE_INLET):
+        if self.mode in (self.MODE_STRAIGHT, self.MODE_DIVOT, self.MODE_INLET, self.MODE_OBSTACLE):
 
             # Evaluate each condition and log it explicitly
             cond_sideways = (right_cls == 'PERPENDICULAR' and front_dist < 3)
@@ -317,7 +313,7 @@ class LidarDebugNode(Node):
                 #self.wall_target = 1.4
 
             if self.prev_state == self.MODE_INLET:
-                if (right_dist > 1.2 and right_dist != 99):
+                if (right_dist > 1.3 and right_dist != 99):
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 else:
@@ -340,8 +336,14 @@ class LidarDebugNode(Node):
             # Maintain right_dist until right_angle not parallel or no reading
             # coast when not parallel or no reading
             # when parallel again, re-assess right_dist and maintain
+            """if right_dist == 99:
+                twist.linear.x = -self.forward_speed
+                twist.angular.z = 0.0
+                self.vel_pub.publish(twist)
+                self.get_logger().info('COAST')"""
+            
             if right_cls == 'PARALLEL':
-                if self.prev_cls != 'PARALLEL':
+                if right_dist > 1.3 or self.prev_cls != 'PARALLEL':
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target
@@ -360,6 +362,12 @@ class LidarDebugNode(Node):
         elif self.mode == self.MODE_INLET:
             twist = Twist()
             self.prev_state = self.MODE_INLET
+
+            """if right_dist == 99:
+                twist.linear.x = -self.forward_speed
+                twist.angular.z = 0.0
+                self.vel_pub.publish(twist)
+                self.get_logger().info('COAST')"""
             
             dist_error = right_dist - self.wall_target
             angle_error = self._wrap(right_angle - math.pi)
@@ -395,7 +403,7 @@ class LidarDebugNode(Node):
                 if self.phase_start_time is None:
                     self.phase_start_time = time.time()
 
-                if time.time() - self.phase_start_time < 2.0:
+                if time.time() - self.phase_start_time < 3.0:
                     # Drive backward, straight
                     twist.linear.x  = self.OB_forward_speed   # positive = backward in your convention
                     twist.angular.z = 0.0
@@ -439,12 +447,18 @@ class LidarDebugNode(Node):
     # ------------------------------------------------------------------
     # Sensor summary
     # ------------------------------------------------------------------
-        self.get_logger().info(
+        """self.get_logger().info(
             f'front: {front_dist:6.2f} m  |  '
             f'right: {right_dist:6.2f} m   ({right_cls})  |  '
             f'lookahead: {angle_dist:6.2f} m  ({lookahead_cls})  |  '
             f'correction: {self.last_correction:+.3f}  |  '
-            
+            f'mode: {self.mode}',
+            throttle_duration_sec=0.2
+        )"""
+        self.get_logger().info(
+            f'lookahead: {angle_dist:6.2f} m  ({lookahead_cls}) |'
+            f'right: {right_dist:6.2f} m   ({right_cls}) |'
+            f'lookbehind: {rear_dist:6.2f} m  ({lookbehind_cls}) |'
             f'mode: {self.mode}',
             throttle_duration_sec=0.2
         )

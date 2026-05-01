@@ -4,21 +4,23 @@
 # Starts the TF bridge, map relay, Nav2, and waypoint runner.
 
 import os
-from launch import LaunchDescription
+from launch import LaunchDescription, LaunchService
 from launch.actions import ExecuteProcess, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
-
 def generate_launch_description():
-    waypoint_nav_dir = get_package_share_directory('waypoint_nav')
-    slam_dir = os.path.abspath(os.path.join(waypoint_nav_dir, '..', 'SLAM'))
-    params_file = os.path.join(waypoint_nav_dir, 'nav2_params.yaml')
+    package_share = get_package_share_directory('waypoint_nav')
+    params_file = os.path.join(package_share, 'nav2_params.yaml')
+    run_waypoints_script = os.path.join(package_share, 'run_waypoints.py')
+    # With this workspace layout, src/SLAM sits at ros_ws/src/SLAM.
+    workspace_root = os.path.abspath(os.path.join(package_share, '..', '..', '..', '..'))
+    slam_tf_bridge_script = os.path.join(workspace_root, 'src', 'SLAM', 'slam_tf_bridge.py')
 
     # Converts /slam/pose → TF map→base_link for Nav2
     tf_bridge = ExecuteProcess(
-        cmd=['python3', os.path.join(slam_dir, 'slam_tf_bridge.py')],
+        cmd=['python3', slam_tf_bridge_script],
         output='screen',
         emulate_tty=True,
     )
@@ -47,7 +49,6 @@ def generate_launch_description():
     )
 
     # Waits for Nav2 to be active before sending waypoints
-    run_waypoints_script = os.path.join(waypoint_nav_dir, '..', 'waypoint_nav', 'run_waypoints.py')
     waypoint_runner = ExecuteProcess(
         cmd=['python3', run_waypoints_script],
         output='screen',
@@ -55,3 +56,13 @@ def generate_launch_description():
     )
 
     return LaunchDescription([tf_bridge, map_relay, nav2, waypoint_runner])
+
+
+def main() -> int:
+    launch_service = LaunchService()
+    launch_service.include_launch_description(generate_launch_description())
+    return launch_service.run()
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

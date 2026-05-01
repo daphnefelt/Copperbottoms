@@ -1,4 +1,7 @@
+nav2_params.yaml
 package.xml
+pose_history_save.txt
+run_waypoints.py
 setup.cfg
 setup.py
 ../../build/waypoint_nav/waypoint_nav.egg-info/PKG-INFO
@@ -8,4 +11,5 @@ setup.py
 ../../build/waypoint_nav/waypoint_nav.egg-info/requires.txt
 ../../build/waypoint_nav/waypoint_nav.egg-info/top_level.txt
 ../../build/waypoint_nav/waypoint_nav.egg-info/zip-safe
+launch/waypoint_nav_launch.py
 resource/waypoint_nav

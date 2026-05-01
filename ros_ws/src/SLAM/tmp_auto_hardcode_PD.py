@@ -6,32 +6,37 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 
-x_walls = [5.5, 32]
+x_walls = [6, 32]
 y_walls = [3, 21.5]
 
 def get_hallway(pose):
     x, y = pose
+    new_hall =None
     if x_walls[0] < x < x_walls[1]:
         y_middle = (y_walls[0] + y_walls[1]) / 2
         if y < y_middle:
-            return 0 # bottom hallway
+            new_hall = 0 # bottom hallway
         else:
-            return 1 # top hallway
-    if y_walls[0] < y < y_walls[1]:
+            new_hall = 1 # top hallway
+    elif y_walls[0] < y < y_walls[1]:
         x_middle = (x_walls[0] + x_walls[1]) / 2
         if x < x_middle:
-            return 2 # left hallway
+            new_hall = 2 # left hallway
         else:
-            return 3 # right hallway
-    if x < x_walls[0] and y < y_walls[0]:
-        return 2 # bottom left corner, treat as left hallway
-    if x < x_walls[0] and y > y_walls[1]:
-        return 1 # top left corner, treat as top hallway
-    if x > x_walls[1] and y > y_walls[1]:
-        return 3 # top right corner, treat as right hallway
-    if x > x_walls[1] and y < y_walls[0]:
-        return 0 # bottom right corner, treat as bottom hallway
-    return None # not in a hallway, need to turn right
+            new_hall = 3 # right hallway
+    elif x < x_walls[0] and y < y_walls[0]:
+        new_hall = 2 # bottom left corner, treat as left hallway
+    elif x < x_walls[0] and y > y_walls[1]:
+        new_hall = 1 # top left corner, treat as top hallway
+    elif x > x_walls[1] and y > y_walls[1]:
+        new_hall = 3 # top right corner, treat as right hallway
+    elif x > x_walls[1] and y < y_walls[0]:
+        new_hall =  0 # bottom right corner, treat as bottom hallway
+    if new_hall != None:
+        if new_hall != self.hallway:
+            self.transitioning = True
+            # don't change hallway until done transitioning
+    return new_hall# not in a hallway, need to turn right
 
 def pose_goal_from_hallway(hallway):
     pose_map = {
@@ -57,17 +62,24 @@ class Hardcoded(Node):
         self.create_subscription(PoseWithCovarianceStamped, '/slam/pose', self._pose_cb, 10)
         self.create_subscription(LaserScan, '/scan', self._scan_cb, 10)
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
-        self.forward_speed = 0.2
+        self.forward_speed = 0.25
         self.turn_speed = 0.3
         self.sharp_turn_speed = 0.75
         self.backup_speed = 0.25
         self.backup_time = 1.0
         self.turn_p = 1/20 / 2 # turn full at 20 degrees off
+        self.turn_d = 0.05  # tune this — try something like 0.05 to start
+        self._prev_delta_yaw = 0.0
+        self._prev_yaw_time = None
+        self._prev_hallway = None
+        self.right_turn_duration = 1.0
+        self.right_turn_cooldown = 10.0
+        self._right_turn_start = -math.inf
 
         # auto-backup recovery
         self.front_threshold = 0.6
         self.stop_time = 0.2
-        self.recovery_turn_time = 0.7
+        self.recovery_turn_time = 1.5
         self.front_dist = float('inf')
         self.current_yaw = 0.0
         self.mode = 'NORMAL'  # 'NORMAL' | 'STOPPING' | 'BACKING_UP' | 'TURNING'
@@ -79,6 +91,9 @@ class Hardcoded(Node):
         self.kp_side = 0.3
         self.right_dist = float('inf')
         self.left_dist = float('inf')
+
+        self.transitioning = False
+        self.hallway = 0
 
     def _publish(self, lin: float, ang: float):
         t = Twist()
@@ -98,7 +113,7 @@ class Hardcoded(Node):
         return float(np.min(valid)) if valid.size > 0 else 0.0  # no valid readings, treat as very close
 
     def _scan_cb(self, msg: LaserScan):
-        self.front_dist = self._cone_min(msg, 0.0, math.radians(5.0))
+        self.front_dist = self._cone_min(msg, 0.0, math.radians(15.0))
         self.right_dist = self._cone_min(msg, math.radians(-90.0), math.radians(15.0))
         self.left_dist  = self._cone_min(msg, math.radians( 90.0), math.radians(15.0))
 
@@ -119,7 +134,7 @@ class Hardcoded(Node):
 
         if self.mode == 'BACKING_UP':
             if now - self._mode_start < self.backup_time:
-                self._publish(-self.backup_speed, 0.0)
+                self._publish(-self.backup_speed, self._backup_turn_dir * self.sharp_turn_speed * 2)
                 return
             self.mode = 'TURNING'
             self._mode_start = now
@@ -154,8 +169,20 @@ class Hardcoded(Node):
             fwd = self.forward_speed
             if abs(delta_yaw) > 30:
                 print("big turnnnn")
-                fwd = 0.2
-            ang = self.turn_speed * (delta_yaw) * self.turn_p
+                fwd = 0.25
+            # PD control on yaw
+            if hallway != self._prev_hallway:
+                self._prev_yaw_time = None
+            self._prev_hallway = hallway
+
+            if self._prev_yaw_time is not None:
+                dt = now - self._prev_yaw_time
+                d_delta = (delta_yaw - self._prev_delta_yaw) / dt if dt > 0 else 0.0
+            else:
+                d_delta = 0.0
+            self._prev_delta_yaw = delta_yaw
+            self._prev_yaw_time = now
+            ang = self.turn_speed * (self.turn_p * delta_yaw + self.turn_d * d_delta)
 
             # also nudge away from side walls if too close
             right_skew = max(0.0, self.side_threshold - self.right_dist) * self.kp_side

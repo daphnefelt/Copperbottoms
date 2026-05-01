@@ -36,10 +36,10 @@ class LidarDebugNode(Node):
     
 
         # PD gains — tune these
-        self.Kp_dist  =  1.2   # proportional to lateral distance error
-        self.Kd_dist  =  0.5   # damping on distance error
-        self.Kp_angle =  1.2   # proportional to angle error
-        self.Kd_angle =  0.1  # damping on angle error
+        self.Kp_dist  =  0.4   # proportional to lateral distance error
+        self.Kd_dist  =  0.8   # damping on distance error
+        self.Kp_angle =  1   # proportional to angle error
+        self.Kd_angle =  0.8  # damping on angle error
         self.K_dist_to_heading = 1.2   # rad of heading bias per meter of distance error
 
 
@@ -190,6 +190,7 @@ class LidarDebugNode(Node):
             correction = self.Kp_dist * dist_error + self.Kd_dist * d_dist
             if math.isnan(correction):
                 correction = 0.0
+            correction = max(-12.0, min(12.0, correction))
             self.last_correction = correction
             return correction
 
@@ -287,7 +288,7 @@ class LidarDebugNode(Node):
 
             # Evaluate each condition and log it explicitly
             cond_sideways = (right_cls == 'PERPENDICULAR' and front_dist < 3)
-            cond_turn   = (right_cls == 'PARALLEL' and lookahead_cls == 'PERPENDICULAR' and 4.5 <= angle_dist < 99)
+            cond_turn   = (right_cls == 'PARALLEL' and lookahead_cls == 'PERPENDICULAR' and 4.2 <= angle_dist < 99)
             cond_inlet  = (right_dist > angle_dist)
             cond_divot  = (angle_dist >= 99 and (lookahead_cls == 'NOT PARALLEL' or lookahead_cls == 'NO READING'))
             cond_obstacle = (front_dist < self.stop_dist)
@@ -332,10 +333,10 @@ class LidarDebugNode(Node):
             #if left_dist < 0.6
                 #self.wall_target = 1.4
 
-            
+            came_from_transition = (self.prev_state == self.MODE_INLET or self.prev_state == self.MODE_DIVOT)
 
-            if self.prev_state == self.MODE_INLET:
-                if (right_dist > 1.3 and right_dist != 99):
+            if came_from_transition:
+                if (right_dist > 1.47 and right_dist != 99):
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 else:
@@ -344,11 +345,14 @@ class LidarDebugNode(Node):
 
             self.prev_state = self.MODE_STRAIGHT
             # error values
-            dist_error = right_dist - self.wall_target   # + too far, - too close
-            angle_error = self._wrap(right_angle - math.pi)            
+            dist_error = 0.0 if right_dist >= 99 else right_dist - self.wall_target  # + too far, - too close
+            angle_error = self._wrap(right_angle - math.pi)
             # PD control staying a distance from the wall and parallel
             twist.linear.x  = -self.forward_speed
-            twist.angular.z = self.PD_steering(angle_error, dist_error)
+            correction = self.PD_steering(angle_error, dist_error)
+            if came_from_transition:
+                correction = max(0.0, correction)
+            twist.angular.z = correction
             self.vel_pub.publish(twist)
 
 
@@ -358,42 +362,21 @@ class LidarDebugNode(Node):
             # Maintain right_dist until right_angle not parallel or no reading
             # coast when not parallel or no reading
             # when parallel again, re-assess right_dist and maintain
-            """if right_dist == 99:
+            if right_cls == 'PARALLEL':
+                if self.prev_cls != 'PARALLEL':
+                    self.wall_target = right_dist
+                    self.get_logger().info('UPDATE WALL TARGET')
+                dist_error = 0.0 if right_dist >= 99 else right_dist - self.wall_target
+                angle_error = self._wrap(right_angle - math.pi)
+                twist.linear.x = -self.forward_speed
+                correction = self.PD_steering(angle_error, dist_error)
+                twist.angular.z = max(0.0, correction)
+                self.vel_pub.publish(twist)
+            else:
                 twist.linear.x = -self.forward_speed
                 twist.angular.z = 0.0
                 self.vel_pub.publish(twist)
-                self.get_logger().info('COAST')"""
-            
-
-            if right_cls == 'PARALLEL':
-                update_wall_target = False
-                if self.num_lidar_itrs > 3:
-                    if abs(right_dist - avg_prev_dist) > self.rolling_dist_thres:
-                        self.wall_target = right_dist
-                        update_wall_target = True
-                        self.get_logger().info('UPDATE WALL TARGET')
-                        
-                if not update_wall_target and right_dist > 1.3 or self.prev_cls != 'PARALLEL':
-                    self.wall_target = right_dist
-                    self.get_logger().info('UPDATE WALL TARGET')
-                dist_error = right_dist - self.wall_target
-                angle_error = self._wrap(right_angle - math.pi)
-                twist.linear.x = -self.forward_speed
-                twist.angular.z = self.PD_steering(angle_error, dist_error)
-                self.vel_pub.publish(twist)
-            else:
-                if math.isnan(right_dist) or right_dist >= 99 or math.isnan(right_angle):
-                    # No useful right wall data — coast straight, no PD
-                    twist.linear.x = -self.forward_speed
-                    twist.angular.z = 0.0
-                    self.vel_pub.publish(twist)
-                    self.get_logger().info('COAST')
-                else:
-                    dist_error = right_dist - self.wall_target
-                    angle_error = self._wrap(right_angle - math.pi)
-                    twist.linear.x = -self.forward_speed
-                    twist.angular.z = self.PD_steering(angle_error, dist_error)
-                    self.vel_pub.publish(twist)
+                self.get_logger().info('COAST')
             
             self.prev_cls = right_cls
 
@@ -407,13 +390,14 @@ class LidarDebugNode(Node):
                 self.vel_pub.publish(twist)
                 self.get_logger().info('COAST')"""
             
-            dist_error = right_dist - self.wall_target
+            dist_error = 0.0 if right_dist >= 99 else right_dist - self.wall_target
             angle_error = self._wrap(right_angle - math.pi)
             # analyze if the inlet will result in a collision / adjust if needed??
             # forward speed
             twist.linear.x  = -self.forward_speed
             # PD Steering correction
-            twist.angular.z = self.PD_steering(angle_error, dist_error)
+            correction = self.PD_steering(angle_error, dist_error)
+            twist.angular.z = max(0.0, correction)
             self.vel_pub.publish(twist)
 
 

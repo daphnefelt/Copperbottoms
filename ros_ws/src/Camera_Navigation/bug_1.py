@@ -53,11 +53,11 @@ class Bug1(Node):
         self.wall_fov_hi      = -75.0   # deg — right edge of right-wall FOV
         self.quadrant_open_thresh = 2.0  # m — beam reading above this = open space
 
-        self.forward_speed  = 0.25    # m/s
-        self.turn_speed     = 0.3     # rad/s (spin in place)
+        self.forward_speed  = 0.3    # m/s
+        self.turn_speed     = 0.2     # rad/s (spin in place)
         self.sharp_turn_speed = 0.75     # rad/s
-        self.backup_speed   = 0.25    # m/s magnitude during backup
-        self.backup_time    = 1.0     # seconds to reverse
+        self.backup_speed   = 0.2    # m/s magnitude during backup
+        self.backup_time    = .75     # seconds to reverse
         self.kp_angle       = 3.85     # P gain when correction is leftward (+z)
         self.kp_angle_right = 3.85      # P gain when correction is rightward (-z)
         self.n_min_avg      = 3       # number of closest beams to average for min point

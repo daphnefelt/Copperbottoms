@@ -5,6 +5,7 @@ pose_history_save.txt
 run_waypoints.py
 setup.cfg
 setup.py
+simple_waypoint_driver.py
 ../../build/waypoint_nav/waypoint_nav.egg-info/PKG-INFO
 ../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt
 ../../build/waypoint_nav/waypoint_nav.egg-info/dependency_links.txt

@@ -4,6 +4,8 @@
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/waypoint_nav/nav2_params.yaml
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/waypoint_nav/run_waypoints.py
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/waypoint_nav/map_relay.py
+/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/waypoint_nav/simple_waypoint_driver.py
+/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/waypoint_nav/simple_waypoint_launch.py
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/waypoint_nav/pose_history_save.txt
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages/waypoint_nav-0.0.0-py3.10.egg-info/zip-safe
 /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages/waypoint_nav-0.0.0-py3.10.egg-info/PKG-INFO

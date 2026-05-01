@@ -52,6 +52,7 @@ cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
 ros2 launch SLAM_dependency_launch.py
 ```
 
+** This launch should no longer be needed **
 **Terminal 2 — landmark_based stack** (sensors, EKF, lidar, camera):
 ```bash
 cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
@@ -61,6 +62,12 @@ python3 landmark_based_slam.py
 **Terminal 3 — Nav2 + waypoint navigation:**
 ```bash
 ros2 launch waypoint_nav waypoint_nav_launch.py
+```
+
+**OR SIMPLE NAV:**
+```bash
+python3 simple_waypoint_launch.py
+ros2 run simple_waypoint simple_waypoint_launch.py
 ```
 
 Terminal 2 handles everything else automatically:

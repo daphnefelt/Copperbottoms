@@ -27,7 +27,7 @@ class LidarDebugNode(Node):
         # -- misc variables --------------------------------------------------
         self.prev_cls = 'PARALLEL'
         self.prev_state = 'STRAIGHT'
-        self.turn_rate = -0.8
+        self.turn_rate = -0.3
         self.forward_speed = 0.12
         self.OB_forward_speed = 0.22
         self.phase_start_time = None
@@ -39,7 +39,7 @@ class LidarDebugNode(Node):
         self.Kd_dist  =  0.5   # damping on distance error
         self.Kp_angle =  1.2   # proportional to angle error
         self.Kd_angle =  0.1  # damping on angle error
-        self.K_dist_to_heading = 0.3   # rad of heading bias per meter of distance error
+        self.K_dist_to_heading = 0.8   # rad of heading bias per meter of distance error
 
 
         # PD state
@@ -211,8 +211,6 @@ class LidarDebugNode(Node):
         correction = self.Kp_angle * heading_error + self.Kd_angle * d_heading
         if math.isnan(correction):
             correction = 0.0
-        if correction > 30.0:
-            correction = 30.0
         self.last_correction = correction
         return correction
     

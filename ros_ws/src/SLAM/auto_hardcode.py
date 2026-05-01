@@ -59,7 +59,7 @@ class Hardcoded(Node):
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.forward_speed = 0.2
         self.turn_speed = 0.3
-        self.sharp_turn_speed = 0.75
+        self.sharp_turn_speed = 0.55
         self.backup_speed = 0.25
         self.backup_time = 1.0
         self.turn_p = 1/20 / 2 # turn full at 20 degrees off

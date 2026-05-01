@@ -26,12 +26,13 @@ class LidarDebugNode(Node):
 
         # -- misc variables --------------------------------------------------
         self.prev_cls = 'PARALLEL'
-        self.prev_state = ''
-        self.turn_rate = -0.8
+        self.prev_state = 'STRAIGHT'
+        self.turn_rate = -0.3
         self.forward_speed = 0.12
         self.OB_forward_speed = 0.22
         self.phase_start_time = None
         self.last_correction = 0.0
+        self.OB_turn_rate = 1.0
     
 
         # PD gains — tune these
@@ -39,7 +40,7 @@ class LidarDebugNode(Node):
         self.Kd_dist  =  0.5   # damping on distance error
         self.Kp_angle =  1.2   # proportional to angle error
         self.Kd_angle =  0.1  # damping on angle error
-        self.K_dist_to_heading = 0.3   # rad of heading bias per meter of distance error
+        self.K_dist_to_heading = 1.2   # rad of heading bias per meter of distance error
 
 
         # PD state
@@ -66,6 +67,11 @@ class LidarDebugNode(Node):
         self.obstacle_phase  = 'BACKUP'
         self.mode            = self.MODE_STRAIGHT
         self.mode_start_time = 0.0
+
+
+        self.num_lidar_itrs = 0
+        self.rolling_avg_dist = np.zeros(3)
+        self.rolling_dist_thres = 2
 
         # -- PUB / SUB --------
         self.vel_pub      = self.create_publisher(Twist, 'cmd_vel', 10)
@@ -148,6 +154,9 @@ class LidarDebugNode(Node):
             ranges_np, msg,
             [(3 * math.pi / 4, self.angle_half_cone)])
     
+    def _wall_angle_rear(self, ranges_np, msg):
+        return self._wall_angle_from_cones(ranges_np, msg, [(math.pi / 4, self.angle_half_cone)])
+    
     # --------------------------------------------------------------------------
     # -- PD Steering Control -------
     # -------------------------------------------------------------------------
@@ -208,6 +217,8 @@ class LidarDebugNode(Node):
         correction = self.Kp_angle * heading_error + self.Kd_angle * d_heading
         if math.isnan(correction):
             correction = 0.0
+        if correction > 30.0:
+            correction = 30
         self.last_correction = correction
         return correction
     
@@ -247,9 +258,11 @@ class LidarDebugNode(Node):
         front_dist      = self._valid_median(ranges, msg, math.pi, self.front_half_cone)
         right_dist      = self._valid_median(ranges, msg, math.pi / 2, self.side_half_cone)
         angle_dist      = self._valid_median(ranges, msg, 3 * math.pi / 4, self.angle_half_cone)
+        rear_dist       = self._valid_median(ranges, msg, math.pi / 4, self.angle_half_cone)
         left_dist       = self._valid_median(ranges, msg, -math.pi / 2, self.side_half_cone)
         right_angle     = self._wall_angle_right(ranges, msg)
         lookahead_angle = self._wall_angle_angle(ranges, msg)
+        lookbehind_angle = self._wall_angle_rear(ranges, msg)
 
         def classify(a):
             if math.isnan(a):
@@ -263,6 +276,7 @@ class LidarDebugNode(Node):
 
         right_cls     = classify(right_angle)
         lookahead_cls = classify(lookahead_angle)
+        lookbehind_cls = classify(lookbehind_angle)
         right_deg     = math.degrees(right_angle)     if not math.isnan(right_angle)     else float('nan')
         lookahead_deg = math.degrees(lookahead_angle) if not math.isnan(lookahead_angle) else float('nan')
 
@@ -297,6 +311,19 @@ class LidarDebugNode(Node):
 
             else:
                 self._enter_mode(self.MODE_STRAIGHT)
+        
+
+        self.num_lidar_itrs += 1
+
+        # get previous average distance
+        if self.num_lidar_itrs > 3:
+            avg_prev_dist = self.rolling_avg_dist.sum()/3
+
+            # update rolling values 
+            self.rolling_avg_dist[0:2] = self.rolling_avg_dist[1:]
+            self.rolling_avg_dist[-1] = right_dist
+        else:
+            self.rolling_avg_dist[self.num_lidar_itrs-1] = right_dist
 
         # ----------------------------------------------------------------------------------------------------
         # ---- STATES ----------------------------------------------------------------------------------------
@@ -305,6 +332,8 @@ class LidarDebugNode(Node):
             twist = Twist()
             #if left_dist < 0.6
                 #self.wall_target = 1.4
+
+            
 
             if self.prev_state == self.MODE_INLET:
                 if (right_dist > 1.3 and right_dist != 99):
@@ -337,7 +366,14 @@ class LidarDebugNode(Node):
                 self.get_logger().info('COAST')"""
             
             if right_cls == 'PARALLEL':
-                if right_dist > 1.3 or self.prev_cls != 'PARALLEL':
+                update_wall_target = False
+                if self.num_lidar_itrs > 3:
+                    if abs(right_dist - avg_prev_dist) > self.rolling_dist_thres:
+                        self.wall_target = right_dist
+                        update_wall_target = True
+                        self.get_logger().info('UPDATE WALL TARGET')
+                        
+                if not update_wall_target and right_dist > 1.3 or self.prev_cls != 'PARALLEL':
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target
@@ -346,10 +382,11 @@ class LidarDebugNode(Node):
                 twist.angular.z = self.PD_steering(angle_error, dist_error)
                 self.vel_pub.publish(twist)
             else:
+                dist_error = right_dist - self.wall_target
+                angle_error = self._wrap(right_angle - math.pi)
                 twist.linear.x = -self.forward_speed
-                twist.angular.z = 0.0
+                twist.angular.z = self.PD_steering(angle_error, dist_error)
                 self.vel_pub.publish(twist)
-                self.get_logger().info('COAST')
             
             self.prev_cls = right_cls
 
@@ -415,7 +452,7 @@ class LidarDebugNode(Node):
                     self.phase_start_time = time.time()
                 if (right_dist > 5.0 or right_dist < 0.6):
                     twist.linear.x  = -self.OB_forward_speed
-                    twist.angular.z = self.turn_rate
+                    twist.angular.z = self.OB_turn_rate
                     self.vel_pub.publish(twist)
                     if right_cls == 'PARALLEL':
                         self.obstacle_phase = 'BACKUP'
@@ -424,12 +461,12 @@ class LidarDebugNode(Node):
 
                 else: # turn right first
                     twist.linear.x  = -self.OB_forward_speed
-                    twist.angular.z = -self.turn_rate
+                    twist.angular.z = -self.OB_turn_rate
                     self.vel_pub.publish(twist)
 
                     if time.time() - self.phase_start_time > 2.0:      # then turn left until parallel
                         twist.linear.x  = -self.OB_forward_speed
-                        twist.angular.z = self.turn_rate
+                        twist.angular.z = self.OB_turn_rate
                         self.vel_pub.publish(twist)
                         if right_cls == 'PARALLEL':
                             self.obstacle_phase = 'BACKUP'
@@ -441,11 +478,18 @@ class LidarDebugNode(Node):
     # ------------------------------------------------------------------
     # Sensor summary
     # ------------------------------------------------------------------
-        self.get_logger().info(
+        """self.get_logger().info(
             f'front: {front_dist:6.2f} m  |  '
             f'right: {right_dist:6.2f} m   ({right_cls})  |  '
             f'lookahead: {angle_dist:6.2f} m  ({lookahead_cls})  |  '
             f'correction: {self.last_correction:+.3f}  |  '
+            f'mode: {self.mode}',
+            throttle_duration_sec=0.2
+        )"""
+        self.get_logger().info(
+            f'lookahead: {angle_dist:6.2f} m  ({lookahead_cls}) |'
+            f'right: {right_dist:6.2f} m   ({right_cls}) |'
+            f'lookbehind: {rear_dist:6.2f} m  ({lookbehind_cls}) |'
             f'mode: {self.mode}',
             throttle_duration_sec=0.2
         )

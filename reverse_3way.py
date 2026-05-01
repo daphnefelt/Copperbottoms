@@ -217,7 +217,8 @@ class LidarDebugNode(Node):
         correction = self.Kp_angle * heading_error + self.Kd_angle * d_heading
         if math.isnan(correction):
             correction = 0.0
-        correction = max(-2.0, min(2.0, correction))
+        if correction > 12:
+            correction = 12
         self.last_correction = correction
         return correction
     

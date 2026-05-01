@@ -190,6 +190,7 @@ class LidarDebugNode(Node):
             correction = self.Kp_dist * dist_error + self.Kd_dist * d_dist
             if math.isnan(correction):
                 correction = 0.0
+            correction = max(-12.0, min(12.0, correction))
             self.last_correction = correction
             return correction
 
@@ -217,8 +218,7 @@ class LidarDebugNode(Node):
         correction = self.Kp_angle * heading_error + self.Kd_angle * d_heading
         if math.isnan(correction):
             correction = 0.0
-        if correction > 12:
-            correction = 12
+        correction = max(-12.0, min(12.0, correction))
         self.last_correction = correction
         return correction
     
@@ -333,10 +333,8 @@ class LidarDebugNode(Node):
             #if left_dist < 0.6
                 #self.wall_target = 1.4
 
-            
-
-            if self.prev_state == self.MODE_INLET:
-                if (right_dist > 1.3 and right_dist != 99):
+            if self.prev_state == self.MODE_INLET or self.prev_state == self.MODE_DIVOT:
+                if (right_dist > 1.47 and right_dist != 99):
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 else:
@@ -359,34 +357,21 @@ class LidarDebugNode(Node):
             # Maintain right_dist until right_angle not parallel or no reading
             # coast when not parallel or no reading
             # when parallel again, re-assess right_dist and maintain
-            """if right_dist == 99:
-                twist.linear.x = -self.forward_speed
-                twist.angular.z = 0.0
-                self.vel_pub.publish(twist)
-                self.get_logger().info('COAST')"""
-            
             if right_cls == 'PARALLEL':
-                update_wall_target = False
-                if self.num_lidar_itrs > 3:
-                    if abs(right_dist - avg_prev_dist) > self.rolling_dist_thres:
-                        self.wall_target = right_dist
-                        update_wall_target = True
-                        self.get_logger().info('UPDATE WALL TARGET')
-                        
-                if not update_wall_target and right_dist > 1.3 or self.prev_cls != 'PARALLEL':
+                if self.prev_cls != 'PARALLEL':
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target
                 angle_error = self._wrap(right_angle - math.pi)
                 twist.linear.x = -self.forward_speed
-                twist.angular.z = self.PD_steering(angle_error, dist_error)
+                correction = self.PD_steering(angle_error, dist_error)
+                twist.angular.z = max(0.0, correction)
                 self.vel_pub.publish(twist)
             else:
-                dist_error = right_dist - self.wall_target
-                angle_error = self._wrap(right_angle - math.pi)
                 twist.linear.x = -self.forward_speed
-                twist.angular.z = self.PD_steering(angle_error, dist_error)
+                twist.angular.z = 0.0
                 self.vel_pub.publish(twist)
+                self.get_logger().info('COAST')
             
             self.prev_cls = right_cls
 
@@ -406,7 +391,8 @@ class LidarDebugNode(Node):
             # forward speed
             twist.linear.x  = -self.forward_speed
             # PD Steering correction
-            twist.angular.z = self.PD_steering(angle_error, dist_error)
+            correction = self.PD_steering(angle_error, dist_error)
+            twist.angular.z = max(0.0, correction)
             self.vel_pub.publish(twist)
 
 

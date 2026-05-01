@@ -175,7 +175,7 @@ class EKFSlamNode(Node):
         for det in detections: # each apriltag seen
             tag_id = int(det['id'])
             r_obs = float(det['depth'])
-            phi_obs = float(det['angle'])
+            phi_obs = -float(det['angle']) # ccw + sign notation
 
             if r_obs <= 0.0: # something wrong w the depth
                 continue

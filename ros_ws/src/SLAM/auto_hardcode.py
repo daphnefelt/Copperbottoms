@@ -6,7 +6,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 
-x_walls = [5, 35]
+x_walls = [5, 32]
 y_walls = [3, 21.5]
 
 def get_hallway(pose):

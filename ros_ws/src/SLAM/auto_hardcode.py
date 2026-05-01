@@ -52,6 +52,7 @@ class Hardcoded(Node):
         self.sharp_turn_speed = 0.75
         self.backup_speed = 0.25
         self.backup_time = 1.0
+        self.turn_p = 1/20 # turn full at 20 degrees off
 
     def right_turn(self):
         self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
@@ -64,7 +65,7 @@ class Hardcoded(Node):
             goal_yaw = pose_goal_from_hallway(hallway)
             delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
             print(f"delta_yaw {delta_yaw}")
-            self._publish(self.forward_speed, self.turn_speed * (delta_yaw))
+            self._publish(self.forward_speed, self.turn_speed * (delta_yaw) * self.turn_p)
         else:
             print("right turnnnn")
             self.right_turn()

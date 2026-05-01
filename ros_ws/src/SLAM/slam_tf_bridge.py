@@ -13,7 +13,7 @@ class SlamTfBridge(Node):
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.create_subscription(
             PoseWithCovarianceStamped, '/slam/pose', self.pose_cb, 10)
-        self._last_transform = None  # (x_mo, y_mo, theta_mo)
+        self._slam_pose = None  # (slam_x, slam_y, slam_yaw) — updated when SLAM publishes
         self.create_timer(0.05, self._publish_tf)
 
     def pose_cb(self, msg: PoseWithCovarianceStamped):
@@ -21,14 +21,20 @@ class SlamTfBridge(Node):
         slam_y = msg.pose.pose.position.y
         q = msg.pose.pose.orientation
         slam_yaw = 2.0 * math.atan2(q.z, q.w)
+        self._slam_pose = (slam_x, slam_y, slam_yaw)
 
+    def _publish_tf(self):
+        if self._slam_pose is None:
+            return
+        slam_x, slam_y, slam_yaw = self._slam_pose
+
+        # Recompute map→odom from current odom every cycle so stale odom never causes drift
         try:
             odom_to_base = self.tf_buffer.lookup_transform(
                 'odom', 'base_link', rclpy.time.Time())
         except Exception as e:
-            # Don't fall back to 0,0,0 — wait until rf2o is ready
             self.get_logger().warn(
-                f'odom→base_link not available, skipping map→odom update: {e}',
+                f'odom→base_link not available, skipping map→odom publish: {e}',
                 throttle_duration_sec=5.0)
             return
 
@@ -41,12 +47,7 @@ class SlamTfBridge(Node):
         theta_mo = slam_yaw - odom_yaw
         x_mo = slam_x - (math.cos(theta_mo) * odom_x - math.sin(theta_mo) * odom_y)
         y_mo = slam_y - (math.sin(theta_mo) * odom_x + math.cos(theta_mo) * odom_y)
-        self._last_transform = (x_mo, y_mo, theta_mo)
 
-    def _publish_tf(self):
-        if self._last_transform is None:
-            return
-        x_mo, y_mo, theta_mo = self._last_transform
         t = TransformStamped()
         t.header.stamp = self.get_clock().now().to_msg()
         t.header.frame_id = 'map'

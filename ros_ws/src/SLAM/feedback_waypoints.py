@@ -55,7 +55,7 @@ class WaypointFollower(Node):
         self.front_dist = np.min(get_front(msg, np.radians(5)))
         if self.front_dist < self.collision_imminent_dist:
             self.mode = MODE.RECOVERY
-            self.get_logger().info("Entering recovery")
+            self.get_logger().info(f"Entering recovery {self.front_dist}")
 
         # when to leave recovery mode
         if self.mode == MODE.RECOVERY:
@@ -63,7 +63,7 @@ class WaypointFollower(Node):
             # if perp need at least minimum turning radius distance
             # if driving in correct direction - pretty sure this is more distance than needed
             if self.front_dist >= self.clearing_dist:
-                self.get_logger().info("Entering normal mode")
+                self.get_logger().info(f"Entering normal mode dist {self.front_dist}")
                 self.mode = MODE.NORMAL
 
 

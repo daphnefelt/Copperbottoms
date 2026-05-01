@@ -87,7 +87,11 @@ class Hardcoded(Node):
             goal_yaw = pose_goal_from_hallway(hallway)
             delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
             print(f"delta_yaw {delta_yaw}")
-            self._publish(self.forward_speed, self.turn_speed * (delta_yaw) * self.turn_p)
+            fwd = self.forward_speed
+            if abs(delta_yaw) > 30:
+                print("big turnnnn")
+                fwd = self.forward_speed / 2
+            self._publish(fwd, self.turn_speed * (delta_yaw) * self.turn_p)
         else:
             print("right turnnnn")
             self.right_turn()

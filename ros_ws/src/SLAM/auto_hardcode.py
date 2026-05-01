@@ -62,7 +62,7 @@ class Hardcoded(Node):
         self.sharp_turn_speed = 0.75
         self.backup_speed = 0.25
         self.backup_time = 1.0
-        self.turn_p = 1/20 # turn full at 20 degrees off
+        self.turn_p = 1/20 * 2 # turn full at 20 degrees off
         self.right_turn_duration = 1.0
         self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf
@@ -92,8 +92,10 @@ class Hardcoded(Node):
         lo = max(0, lo)
         hi = min(n - 1, hi)
         cone = np.array(msg.ranges[lo:hi + 1], dtype=float)
+        # set inf valus to max range
+        cone[np.isinf(cone)] = msg.range_max
         valid = cone[(cone > msg.range_min) & np.isfinite(cone)]
-        self.front_dist = float(np.min(valid)) if valid.size > 0 else float('inf')
+        self.front_dist = float(np.min(valid)) if valid.size > 0 else 0 # no valid readings, treat as very close
 
     def _pose_cb(self, msg):
         pose = msg.pose.pose.position.x, msg.pose.pose.position.y, math.degrees(2 * math.atan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))

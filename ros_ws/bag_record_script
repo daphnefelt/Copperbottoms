@@ -1,1 +1,0 @@
-ros2 bag record /cmd_vel /imu/imu_bundled /landmarks /odom_rf2o /rover/armed /rover/battery /scan /slow_move /stop_move

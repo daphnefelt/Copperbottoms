@@ -1,3 +1,0 @@
-[console_scripts]
-landmark_slam = landmark_slam.landmark_slam:main
-

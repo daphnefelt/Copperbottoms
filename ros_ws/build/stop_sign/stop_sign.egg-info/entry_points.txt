@@ -1,3 +1,0 @@
-[console_scripts]
-stop_sign_detect = stop_sign_detect.stop_sign_detect:main
-

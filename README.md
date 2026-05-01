@@ -51,3 +51,9 @@ After wait period begins to allow driving again and ignores stop sign reading br
 -  **Run sensor visualization with** "ros2 run visualize_sensors visualize_sensors"
 *Note: need graphics enabled, in SSH connection*
 
+## Reverse Driving
+**Launch the following accross separate terminals ***
+ros2 run robo_rover rover_node to get rover node running
+ros2 launch rplidar_ros rplidar_a1_launch.py to get the lidar running
+python3 reverse_driving.py to run the script
+*STAND CLEAR OF THE SIDES AND FRONT*

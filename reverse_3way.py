@@ -67,6 +67,11 @@ class LidarDebugNode(Node):
         self.mode            = self.MODE_STRAIGHT
         self.mode_start_time = 0.0
 
+
+        self.num_lidar_itrs = 0
+        self.rolling_avg_dist = np.zeros(3)
+        self.rolling_dist_thres = 2
+
         # -- PUB / SUB --------
         self.vel_pub      = self.create_publisher(Twist, 'cmd_vel', 10)
         self.subscription = self.create_subscription(
@@ -303,6 +308,19 @@ class LidarDebugNode(Node):
 
             else:
                 self._enter_mode(self.MODE_STRAIGHT)
+        
+
+        self.num_lidar_itrs += 1
+
+        # get previous average distance
+        if self.num_lidar_itrs > 3:
+            avg_prev_dist = self.rolling_avg_dist.sum()/3
+
+            # update rolling values 
+            self.rolling_avg_dist[0:2] = self.rolling_avg_dist[1:]
+            self.rolling_avg_dist[-1] = right_dist
+        else:
+            self.rolling_avg_dist[self.num_lidar_itrs-1] = right_dist
 
         # ----------------------------------------------------------------------------------------------------
         # ---- STATES ----------------------------------------------------------------------------------------
@@ -311,6 +329,8 @@ class LidarDebugNode(Node):
             twist = Twist()
             #if left_dist < 0.6
                 #self.wall_target = 1.4
+
+            
 
             if self.prev_state == self.MODE_INLET:
                 if (right_dist > 1.3 and right_dist != 99):
@@ -343,7 +363,14 @@ class LidarDebugNode(Node):
                 self.get_logger().info('COAST')"""
             
             if right_cls == 'PARALLEL':
-                if right_dist > 1.3 or self.prev_cls != 'PARALLEL':
+                update_wall_target = False
+                if self.num_lidar_itrs > 3:
+                    if abs(right_dist - avg_prev_dist) > self.rolling_dist_thres:
+                        self.wall_target = right_dist
+                        update_wall_target = True
+                        self.get_logger().info('UPDATE WALL TARGET')
+                        
+                if not update_wall_target and right_dist > 1.3 or self.prev_cls != 'PARALLEL':
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 dist_error = right_dist - self.wall_target

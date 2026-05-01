@@ -58,8 +58,9 @@ class Hardcoded(Node):
         self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
 
     def _pose_cb(self, msg):
-        pose = msg.pose.pose.position.x, msg.pose.pose.position.y
-        hallway = get_hallway(pose)
+        pose = msg.pose.pose.position.x, msg.pose.pose.position.y, math.degrees(2 * math.atan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))
+        x, y, self.current_yaw = pose
+        hallway = get_hallway((x, y))
         print(f"pose {pose} hallway {hallway_to_print(hallway)}")
         if hallway is not None:
             goal_yaw = pose_goal_from_hallway(hallway)

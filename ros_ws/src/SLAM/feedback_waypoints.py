@@ -28,7 +28,7 @@ class WaypointFollower(Node):
         self.current_idx = 0
         self.goal_tolerance = 0.5
         self.linear_speed = 0.3
-        self.back_up_speed = 0.5
+        self.back_up_speed = 0.1
         self.angular_speed = 0.3
         self.max_angular_speed = 1.5
         self.detection_radius = 1.2
@@ -39,7 +39,7 @@ class WaypointFollower(Node):
 
         # once in recovery need enough distance to turn and clear
         # minimum turning radius + buffer
-        self.clearing_dist = FEET_TO_METERS*1.0  + SMALLEST_TURN_RADIUS
+        self.clearing_dist = FEET_TO_METERS*0.5  + SMALLEST_TURN_RADIUS
         self.mode = MODE.NORMAL
 
 
@@ -53,9 +53,9 @@ class WaypointFollower(Node):
 
     def lidar_update(self, msg: LaserScan):
         self.front_dist = np.min(get_front(msg, np.radians(5)))
-        if self.front_dist < self.collision_imminent_dist:
-            self.mode = MODE.RECOVERY
-            self.get_logger().info(f"Entering recovery {self.front_dist}")
+        #if self.front_dist < self.collision_imminent_dist:
+        #    self.mode = MODE.RECOVERY
+        #    self.get_logger().info(f"Entering recovery {self.front_dist}")
 
         # when to leave recovery mode
         if self.mode == MODE.RECOVERY:
@@ -82,9 +82,12 @@ class WaypointFollower(Node):
                 last_in_radius_goal = wp
             else:
                 break
+        if last_in_radius_idx is None:
+            # find the closest next waypoint bc all else failed
+            print("No waypoints in radius, finding closest next waypoint")
+            last_in_radius_idx = self.current_idx + 1
+            last_in_radius_goal = self.waypoints[last_in_radius_idx] if last_in_radius_idx < len(self.waypoints) else None
         return last_in_radius_idx, last_in_radius_goal
-
-
 
 
     def pose_cb(self, msg):

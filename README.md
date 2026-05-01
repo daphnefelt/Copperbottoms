@@ -35,7 +35,7 @@ After wait period begins to allow driving again and ignores stop sign reading br
 - Need rover_node running: "ros2 run robo_rover rover_node"
 - Need realsense camera running: "ros2 launch robo_realsense realsense_launch"
 
-- **Run stopsign detecct with**  "ros2 run stop_sign_detect stop_sign_detect"
+- **Run stopsign detecct with**  "ros2 run stop_sig stop_sign_detect"
 
 
 ## Sensor Visualization

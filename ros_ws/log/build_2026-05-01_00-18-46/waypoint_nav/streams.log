@@ -1,0 +1,19 @@
+[16.353s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/waypoint_nav': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/waypoint_nav build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log --single-version-externally-managed install_data
+[21.244s] running egg_info
+[21.267s] creating ../../build/waypoint_nav/waypoint_nav.egg-info
+[21.269s] writing ../../build/waypoint_nav/waypoint_nav.egg-info/PKG-INFO
+[21.271s] writing dependency_links to ../../build/waypoint_nav/waypoint_nav.egg-info/dependency_links.txt
+[21.276s] writing entry points to ../../build/waypoint_nav/waypoint_nav.egg-info/entry_points.txt
+[21.278s] writing requirements to ../../build/waypoint_nav/waypoint_nav.egg-info/requires.txt
+[21.291s] writing top-level names to ../../build/waypoint_nav/waypoint_nav.egg-info/top_level.txt
+[21.294s] writing manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'
+[21.326s] reading manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'
+[21.352s] writing manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'
+[21.363s] running build
+[21.382s] running install
+[21.392s] running install_data
+[21.409s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/ament_index
+[21.432s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/ament_index/resource_index
+[21.451s] creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/ament_index/resource_index/packages
+[21.461s] error: can't copy 'resource/waypoint_nav': doesn't exist or not a regular file
+[21.751s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/waypoint_nav' returned '1': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/waypoint_nav build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log --single-version-externally-managed install_data

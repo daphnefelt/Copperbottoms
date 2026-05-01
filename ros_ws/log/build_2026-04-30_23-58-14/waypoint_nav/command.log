@@ -1,0 +1,2 @@
+Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav': /usr/bin/cmake /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM/waypoint_nav -DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav
+Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav' returned '1': /usr/bin/cmake /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM/waypoint_nav -DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav

@@ -1,0 +1,129 @@
+[0.000000] (-) TimerEvent: {}
+[0.001309] (-) JobUnselected: {'identifier': 'amy_test'}
+[0.001731] (-) JobUnselected: {'identifier': 'camera_navigation'}
+[0.002032] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.002284] (-) JobUnselected: {'identifier': 'imu_pose_estimate'}
+[0.002624] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.003024] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.004727] (-) JobUnselected: {'identifier': 'rf2o_laser_odometry'}
+[0.005789] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.006375] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.006685] (-) JobUnselected: {'identifier': 'stop_sign'}
+[0.007391] (-) JobUnselected: {'identifier': 'visualize_rf2o'}
+[0.007784] (-) JobUnselected: {'identifier': 'visualize_sensors'}
+[0.008546] (waypoint_nav) JobQueued: {'identifier': 'waypoint_nav', 'dependencies': OrderedDict()}
+[0.008879] (waypoint_nav) JobStarted: {'identifier': 'waypoint_nav'}
+[0.068111] (waypoint_nav) JobProgress: {'identifier': 'waypoint_nav', 'progress': 'cmake'}
+[0.070233] (waypoint_nav) Command: {'cmd': ['/usr/bin/cmake', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM/waypoint_nav', '-DCMAKE_INSTALL_PREFIX=/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'copperbottoms'), ('SSH_CLIENT', '100.85.94.30 49925 22'), ('GIT_EDITOR', ':'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/copperbottoms'), ('OLDPWD', '/home/copperbottoms/code/Copperbottoms/ros_ws'), ('TERM_PROGRAM_VERSION', '1.118.1'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-6f8759ca-591d-4423-aacc-ab752e02a4f4.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'copperbottoms'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('HISTCONTROL', 'ignorespace'), ('PATH', '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-7925a18a25.sock'), ('TERM_PROGRAM', 'vscode'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SLAM', '/home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('GIT_PAGER', 'cat'), ('PWD', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav'), ('GIT_MERGE_AUTOEDIT', 'no'), ('SSH_CONNECTION', '100.85.94.30 49925 100.124.219.92 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ROS', '/home/copperbottoms/code/Copperbottoms/ros_ws/'), ('PYTHONPATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages')]), 'shell': False}
+[0.106667] (-) TimerEvent: {}
+[0.207681] (-) TimerEvent: {}
+[0.308934] (-) TimerEvent: {}
+[0.410176] (-) TimerEvent: {}
+[0.511086] (-) TimerEvent: {}
+[0.612049] (-) TimerEvent: {}
+[0.713482] (-) TimerEvent: {}
+[0.822473] (-) TimerEvent: {}
+[0.923616] (-) TimerEvent: {}
+[1.024695] (-) TimerEvent: {}
+[1.125748] (-) TimerEvent: {}
+[1.226742] (-) TimerEvent: {}
+[1.328000] (-) TimerEvent: {}
+[1.428884] (-) TimerEvent: {}
+[1.529878] (-) TimerEvent: {}
+[1.631088] (-) TimerEvent: {}
+[1.733309] (-) TimerEvent: {}
+[1.835790] (-) TimerEvent: {}
+[1.936841] (-) TimerEvent: {}
+[2.028743] (waypoint_nav) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[2.037042] (-) TimerEvent: {}
+[2.137901] (-) TimerEvent: {}
+[2.238777] (-) TimerEvent: {}
+[2.339648] (-) TimerEvent: {}
+[2.440493] (-) TimerEvent: {}
+[2.542201] (-) TimerEvent: {}
+[2.643498] (-) TimerEvent: {}
+[2.744834] (-) TimerEvent: {}
+[2.845997] (-) TimerEvent: {}
+[2.947003] (-) TimerEvent: {}
+[3.047832] (-) TimerEvent: {}
+[3.148675] (-) TimerEvent: {}
+[3.249861] (-) TimerEvent: {}
+[3.350966] (-) TimerEvent: {}
+[3.377184] (waypoint_nav) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[3.451277] (-) TimerEvent: {}
+[3.552539] (-) TimerEvent: {}
+[3.566401] (waypoint_nav) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[3.652777] (-) TimerEvent: {}
+[3.755291] (-) TimerEvent: {}
+[3.856934] (-) TimerEvent: {}
+[3.957660] (-) TimerEvent: {}
+[4.058566] (-) TimerEvent: {}
+[4.096681] (waypoint_nav) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[4.149914] (waypoint_nav) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[4.159041] (-) TimerEvent: {}
+[4.173130] (waypoint_nav) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[4.185403] (waypoint_nav) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[4.247457] (waypoint_nav) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[4.259257] (-) TimerEvent: {}
+[4.360504] (-) TimerEvent: {}
+[4.461332] (-) TimerEvent: {}
+[4.562119] (-) TimerEvent: {}
+[4.676676] (-) TimerEvent: {}
+[4.774036] (waypoint_nav) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[4.776935] (-) TimerEvent: {}
+[4.801330] (waypoint_nav) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[4.803070] (waypoint_nav) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[4.810158] (waypoint_nav) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[4.877121] (-) TimerEvent: {}
+[4.943151] (waypoint_nav) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[4.977307] (-) TimerEvent: {}
+[5.078150] (-) TimerEvent: {}
+[5.179087] (-) TimerEvent: {}
+[5.281158] (-) TimerEvent: {}
+[5.381925] (-) TimerEvent: {}
+[5.482762] (-) TimerEvent: {}
+[5.584237] (-) TimerEvent: {}
+[5.684922] (-) TimerEvent: {}
+[5.785887] (-) TimerEvent: {}
+[5.887137] (-) TimerEvent: {}
+[5.987942] (-) TimerEvent: {}
+[6.088708] (-) TimerEvent: {}
+[6.147305] (waypoint_nav) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[6.188913] (-) TimerEvent: {}
+[6.289761] (-) TimerEvent: {}
+[6.390730] (-) TimerEvent: {}
+[6.491593] (-) TimerEvent: {}
+[6.592458] (-) TimerEvent: {}
+[6.693785] (-) TimerEvent: {}
+[6.794583] (-) TimerEvent: {}
+[6.895553] (-) TimerEvent: {}
+[6.996493] (-) TimerEvent: {}
+[7.097341] (-) TimerEvent: {}
+[7.198190] (-) TimerEvent: {}
+[7.302017] (-) TimerEvent: {}
+[7.402839] (-) TimerEvent: {}
+[7.503890] (-) TimerEvent: {}
+[7.604825] (-) TimerEvent: {}
+[7.705866] (-) TimerEvent: {}
+[7.719451] (waypoint_nav) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:15 (find_package):\n'}
+[7.720288] (waypoint_nav) StderrLine: {'line': b'  By not providing "Findlaunch.cmake" in CMAKE_MODULE_PATH this project has\n'}
+[7.720798] (waypoint_nav) StderrLine: {'line': b'  asked CMake to find a package configuration file provided by "launch", but\n'}
+[7.721252] (waypoint_nav) StderrLine: {'line': b'  CMake did not find one.\n'}
+[7.727744] (waypoint_nav) StderrLine: {'line': b'\n'}
+[7.746889] (waypoint_nav) StderrLine: {'line': b'  Could not find a package configuration file provided by "launch" with any\n'}
+[7.748071] (waypoint_nav) StderrLine: {'line': b'  of the following names:\n'}
+[7.748743] (waypoint_nav) StderrLine: {'line': b'\n'}
+[7.749452] (waypoint_nav) StderrLine: {'line': b'    launchConfig.cmake\n'}
+[7.752140] (waypoint_nav) StderrLine: {'line': b'    launch-config.cmake\n'}
+[7.753177] (waypoint_nav) StderrLine: {'line': b'\n'}
+[7.753708] (waypoint_nav) StderrLine: {'line': b'  Add the installation prefix of "launch" to CMAKE_PREFIX_PATH or set\n'}
+[7.754380] (waypoint_nav) StderrLine: {'line': b'  "launch_DIR" to a directory containing one of the above files.  If "launch"\n'}
+[7.754916] (waypoint_nav) StderrLine: {'line': b'  provides a separate development package or SDK, be sure it has been\n'}
+[7.756014] (waypoint_nav) StderrLine: {'line': b'  installed.\n'}
+[7.756561] (waypoint_nav) StderrLine: {'line': b'\n'}
+[7.757060] (waypoint_nav) StderrLine: {'line': b'\x1b[0m\n'}
+[7.757772] (waypoint_nav) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[7.758953] (waypoint_nav) StdoutLine: {'line': b'See also "/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/CMakeFiles/CMakeOutput.log".\n'}
+[7.760539] (waypoint_nav) CommandEnded: {'returncode': 1}
+[7.762250] (waypoint_nav) JobEnded: {'identifier': 'waypoint_nav', 'rc': 1}
+[7.771721] (-) EventReactorShutdown: {}

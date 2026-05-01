@@ -1,0 +1,54 @@
+[16.560s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/Camera_Navigation': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_navigation build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/install.log --single-version-externally-managed install_data
+[20.418s] running egg_info
+[20.439s] writing ../../build/camera_navigation/camera_navigation.egg-info/PKG-INFO
+[20.445s] writing dependency_links to ../../build/camera_navigation/camera_navigation.egg-info/dependency_links.txt
+[20.486s] writing entry points to ../../build/camera_navigation/camera_navigation.egg-info/entry_points.txt
+[20.513s] writing requirements to ../../build/camera_navigation/camera_navigation.egg-info/requires.txt
+[20.547s] writing top-level names to ../../build/camera_navigation/camera_navigation.egg-info/top_level.txt
+[20.573s] reading manifest file '../../build/camera_navigation/camera_navigation.egg-info/SOURCES.txt'
+[20.589s] writing manifest file '../../build/camera_navigation/camera_navigation.egg-info/SOURCES.txt'
+[20.614s] running build
+[20.616s] running build_py
+[20.618s] copying line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.619s] copying line_follow_V2.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.620s] copying line_follow_daph.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.622s] copying mary_line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.625s] copying blue_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.632s] copying line_detection.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.634s] copying follow_the_gap.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.636s] copying turn_right_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib
+[20.638s] running install
+[20.667s] running install_lib
+[20.675s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/follow_the_gap.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.677s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_detection.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.681s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/turn_right_node.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.684s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/blue_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.700s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/mary_line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.705s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_follow_daph.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.710s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_follow.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.714s] copying /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build/lib/line_follow_V2.py -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages
+[20.720s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/follow_the_gap.py to follow_the_gap.cpython-310.pyc
+[20.750s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_detection.py to line_detection.cpython-310.pyc
+[20.776s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/turn_right_node.py to turn_right_node.cpython-310.pyc
+[20.791s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/blue_follow.py to blue_follow.cpython-310.pyc
+[20.807s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/mary_line_follow.py to mary_line_follow.cpython-310.pyc
+[20.821s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_follow_daph.py to line_follow_daph.cpython-310.pyc
+[20.835s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_follow.py to line_follow.cpython-310.pyc
+[20.841s] byte-compiling /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/line_follow_V2.py to line_follow_V2.cpython-310.pyc
+[20.918s] running install_data
+[20.938s] copying resource/camera_navigation -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/ament_index/resource_index/packages
+[20.941s] copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/share/camera_navigation
+[20.942s] running install_egg_info
+[20.962s] removing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/camera_navigation-0.0.0-py3.10.egg-info' (and everything under it)
+[20.963s] Copying ../../build/camera_navigation/camera_navigation.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages/camera_navigation-0.0.0-py3.10.egg-info
+[20.964s] running install_scripts
+[21.358s] Installing blue_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.383s] Installing follow_the_gap script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.409s] Installing line_detection script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.421s] Installing line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.426s] Installing line_follow_V2 script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.429s] Installing line_follow_daph script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.433s] Installing mary_line_follow script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.448s] Installing turn_right_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/camera_navigation
+[21.455s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/install.log'
+[21.954s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/Camera_Navigation' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_navigation build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/camera_navigation/install.log --single-version-externally-managed install_data

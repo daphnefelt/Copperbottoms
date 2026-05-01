@@ -1,0 +1,19 @@
+[5.780s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/waypoint_nav': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/waypoint_nav build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log --single-version-externally-managed install_data
+[8.050s] running egg_info
+[8.056s] writing ../../build/waypoint_nav/waypoint_nav.egg-info/PKG-INFO
+[8.059s] writing dependency_links to ../../build/waypoint_nav/waypoint_nav.egg-info/dependency_links.txt
+[8.062s] writing entry points to ../../build/waypoint_nav/waypoint_nav.egg-info/entry_points.txt
+[8.066s] writing requirements to ../../build/waypoint_nav/waypoint_nav.egg-info/requires.txt
+[8.071s] writing top-level names to ../../build/waypoint_nav/waypoint_nav.egg-info/top_level.txt
+[8.073s] reading manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'
+[8.077s] writing manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'
+[8.078s] running build
+[8.079s] running install
+[8.081s] running install_data
+[8.082s] running install_egg_info
+[8.094s] removing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages/waypoint_nav-0.0.0-py3.10.egg-info' (and everything under it)
+[8.098s] Copying ../../build/waypoint_nav/waypoint_nav.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages/waypoint_nav-0.0.0-py3.10.egg-info
+[8.114s] running install_scripts
+[8.252s] Installing waypoint_nav script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/waypoint_nav
+[8.255s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log'
+[8.407s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/waypoint_nav' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/waypoint_nav build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log --single-version-externally-managed install_data

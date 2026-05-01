@@ -1,0 +1,101 @@
+[0.295s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros -- -j4 -l4
+[0.913s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[3.112s] -- Found rclcpp: 16.0.17 (/opt/ros/humble/share/rclcpp/cmake)
+[3.560s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[3.589s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[3.741s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[3.875s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[4.135s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.398s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[4.422s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[6.899s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[7.450s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[7.853s] -- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)
+[9.035s] -- Configuring done
+[9.392s] -- Generating done
+[9.525s] -- Build files have been written to: /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros
+[9.971s] [35m[1mConsolidate compiler generated dependencies of target rplidar_node[0m
+[11.393s] [  2%] [32mBuilding CXX object CMakeFiles/rplidar_node.dir/src/rplidar_node.cpp.o[0m
+[38.500s] In file included from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41[m[K,
+[38.505s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+[38.519s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar.h:36[m[K,
+[38.525s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/src/rplidar_node.cpp:38[m[K:
+[38.530s] [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[38.539s]    66 |     sl_u8 data[[01;35m[K0[m[K];
+[38.545s]       |                [01;35m[K^[m[K
+[38.551s] In file included from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+[38.556s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar.h:36[m[K,
+[38.561s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/src/rplidar_node.cpp:38[m[K:
+[38.567s] [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[38.574s]   324 |     sl_u8  payload[[01;35m[K0[m[K];
+[38.579s]       |                    [01;35m[K^[m[K
+[62.193s] [  5%] [32m[1mLinking CXX executable rplidar_node[0m
+[66.554s] [ 47%] Built target rplidar_node
+[66.829s] [35m[1mConsolidate compiler generated dependencies of target rplidar_client[0m
+[67.002s] [ 50%] [32mBuilding CXX object CMakeFiles/rplidar_client.dir/src/rplidar_client.cpp.o[0m
+[144.309s] [ 52%] [32m[1mLinking CXX executable rplidar_client[0m
+[147.242s] [ 52%] Built target rplidar_client
+[147.532s] [35m[1mConsolidate compiler generated dependencies of target rplidar_composition[0m
+[148.441s] [ 55%] [32mBuilding CXX object CMakeFiles/rplidar_composition.dir/src/rplidar_node.cpp.o[0m
+[165.072s] In file included from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41[m[K,
+[165.088s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+[165.096s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar.h:36[m[K,
+[165.102s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/src/rplidar_node.cpp:38[m[K:
+[165.109s] [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[165.118s]    66 |     sl_u8 data[[01;35m[K0[m[K];
+[165.129s]       |                [01;35m[K^[m[K
+[165.130s] In file included from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+[165.131s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar.h:36[m[K,
+[165.131s]                  from [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/src/rplidar_node.cpp:38[m[K:
+[165.151s] [01m[K/home/copperbottoms/code/Copperbottoms/ros_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[165.153s]   324 |     sl_u8  payload[[01;35m[K0[m[K];
+[165.154s]       |                    [01;35m[K^[m[K
+[185.433s] [ 57%] [32m[1mLinking CXX executable rplidar_composition[0m
+[188.725s] [100%] Built target rplidar_composition
+[188.882s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --build /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros -- -j4 -l4
+[188.905s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros
+[188.982s] -- Install configuration: ""
+[188.983s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch
+[188.992s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/__pycache__
+[188.996s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/__pycache__/view_rplidar_a1_launch.cpython-310.pyc
+[189.000s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/__pycache__/rplidar_a1_launch.cpython-310.pyc
+[189.038s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m8_launch.py
+[189.049s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_launch.py
+[189.069s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a1_launch.py
+[189.078s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a3_launch.py
+[189.085s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2e_launch.py
+[189.099s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m12_launch.py
+[189.102s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s3_launch.py
+[189.108s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a1_launch.py
+[189.109s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_t1_launch.py
+[189.114s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/hallway_launch.py
+[189.117s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m7_launch.py
+[189.132s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_tcp_launch.py
+[189.154s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2_launch.py
+[189.159s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_c1_launch.py
+[189.174s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/rviz
+[189.175s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/rviz/rplidar_ros.rviz
+[189.212s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_node
+[189.323s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_node" to ""
+[189.324s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_composition
+[189.477s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_composition" to ""
+[189.481s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_client
+[189.769s] -- Set runtime path of "/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_client" to ""
+[189.791s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/ament_index/resource_index/package_run_dependencies/rplidar_ros
+[189.791s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/ament_index/resource_index/parent_prefix_path/rplidar_ros
+[189.792s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.sh
+[189.796s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.dsv
+[189.797s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/path.sh
+[189.798s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/environment/path.dsv
+[189.799s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.bash
+[189.800s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.sh
+[189.804s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.zsh
+[189.805s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/local_setup.dsv
+[189.805s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.dsv
+[189.843s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/ament_index/resource_index/packages/rplidar_ros
+[189.844s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_dependencies-extras.cmake
+[189.845s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_include_directories-extras.cmake
+[189.846s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig.cmake
+[189.849s] -- Up-to-date: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig-version.cmake
+[189.854s] -- Installing: /home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros/share/rplidar_ros/package.xml
+[189.869s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble /usr/bin/cmake --install /home/copperbottoms/code/Copperbottoms/ros_ws/build/rplidar_ros

@@ -106,6 +106,7 @@ class TapeVisionNode(Node):
             
             # Check if this frame has sharp turn conditions
             angle_from_vertical = abs(angle - (-90.0))  # -90 = straight up, 0/180 = horizontal
+            #self.get_logger().info(f"Angle from verticle is {angle_from_vertical}")
             is_sharp_angle = angle_from_vertical > self.sharp_turn_angle_threshold
             has_enough_area = area >= self.sharp_turn_min_area
             
@@ -129,9 +130,9 @@ class TapeVisionNode(Node):
             else:
                 self.sharp_turn_frames = 0
             
-            # Require 2 consecutive frames for sharp turn confirmation
+            # Require 1 frame for sharp turn confirmation (reduced from 2 to handle quick detection)
             was_sharp_turn = self.is_sharp_turn
-            self.is_sharp_turn = (self.sharp_turn_frames >= 2)
+            self.is_sharp_turn = (self.sharp_turn_frames >= 1)
             tape_msg.sharp_turn = self.is_sharp_turn
             
             # Log when sharp turn is first confirmed

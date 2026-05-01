@@ -247,12 +247,13 @@ ros2 run teleop_twist_joy teleop_node --ros-args --params-file joystick.yaml
 run SUPPORTING NODES
 open a terminal
 cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
-python3 SLAM_dependency_launch.py
+ros2 launch SLAM_dependency_launch.py
 
 run SLAM
 open a terminal
 cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
 python3 landmark_based_slam.py
+
 Ctl-c 
 writes robot poses to pose_history.txt
 draws landmarks and poses to map_pose_history.jpg

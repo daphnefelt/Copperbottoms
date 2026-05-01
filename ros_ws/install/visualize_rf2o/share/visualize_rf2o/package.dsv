@@ -1,0 +1,3 @@
+source;share/visualize_rf2o/hook/pythonpath.ps1
+source;share/visualize_rf2o/hook/pythonpath.dsv
+source;share/visualize_rf2o/hook/pythonpath.sh

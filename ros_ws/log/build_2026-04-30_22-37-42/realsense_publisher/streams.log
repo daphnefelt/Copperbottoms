@@ -1,0 +1,23 @@
+[16.748s] Invoking command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/realsense_publisher build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/install.log --single-version-externally-managed install_data
+[21.638s] running egg_info
+[21.659s] writing ../../build/realsense_publisher/realsense_publisher.egg-info/PKG-INFO
+[21.662s] writing dependency_links to ../../build/realsense_publisher/realsense_publisher.egg-info/dependency_links.txt
+[21.669s] writing entry points to ../../build/realsense_publisher/realsense_publisher.egg-info/entry_points.txt
+[21.679s] writing requirements to ../../build/realsense_publisher/realsense_publisher.egg-info/requires.txt
+[21.683s] writing top-level names to ../../build/realsense_publisher/realsense_publisher.egg-info/top_level.txt
+[21.726s] reading manifest file '../../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+[21.726s] adding license file 'LICENSE'
+[21.749s] writing manifest file '../../build/realsense_publisher/realsense_publisher.egg-info/SOURCES.txt'
+[21.766s] running build
+[21.771s] running build_py
+[21.779s] running install
+[21.786s] running install_lib
+[21.831s] running install_data
+[21.837s] running install_egg_info
+[21.908s] removing '/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher-0.0.0-py3.10.egg-info' (and everything under it)
+[21.912s] Copying ../../build/realsense_publisher/realsense_publisher.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages/realsense_publisher-0.0.0-py3.10.egg-info
+[21.987s] running install_scripts
+[22.247s] Installing realsense_depth_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher
+[22.336s] Installing realsense_node script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/realsense_publisher
+[22.375s] writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/install.log'
+[22.916s] Invoked command in '/home/copperbottoms/code/Copperbottoms/ros_ws/src/realsense_publisher' returned '0': PYTHONPATH=/home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/realsense_publisher build --build-base /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/build install --record /home/copperbottoms/code/Copperbottoms/ros_ws/build/realsense_publisher/install.log --single-version-externally-managed install_data

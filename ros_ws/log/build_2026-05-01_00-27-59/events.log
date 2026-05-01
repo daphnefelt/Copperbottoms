@@ -1,0 +1,95 @@
+[0.000000] (-) TimerEvent: {}
+[0.001293] (-) JobUnselected: {'identifier': 'amy_test'}
+[0.002384] (-) JobUnselected: {'identifier': 'camera_navigation'}
+[0.003120] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.003791] (-) JobUnselected: {'identifier': 'imu_pose_estimate'}
+[0.004023] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.004550] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.004743] (-) JobUnselected: {'identifier': 'rf2o_laser_odometry'}
+[0.004860] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.004958] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.005055] (-) JobUnselected: {'identifier': 'stop_sign'}
+[0.005153] (-) JobUnselected: {'identifier': 'visualize_rf2o'}
+[0.005335] (-) JobUnselected: {'identifier': 'visualize_sensors'}
+[0.006005] (waypoint_nav) JobQueued: {'identifier': 'waypoint_nav', 'dependencies': OrderedDict()}
+[0.007444] (waypoint_nav) JobStarted: {'identifier': 'waypoint_nav'}
+[0.099038] (-) TimerEvent: {}
+[0.201144] (-) TimerEvent: {}
+[0.303003] (-) TimerEvent: {}
+[0.403833] (-) TimerEvent: {}
+[0.504709] (-) TimerEvent: {}
+[0.605703] (-) TimerEvent: {}
+[0.706411] (-) TimerEvent: {}
+[0.807149] (-) TimerEvent: {}
+[0.907920] (-) TimerEvent: {}
+[1.008673] (-) TimerEvent: {}
+[1.109493] (-) TimerEvent: {}
+[1.210231] (-) TimerEvent: {}
+[1.310997] (-) TimerEvent: {}
+[1.411802] (-) TimerEvent: {}
+[1.512632] (-) TimerEvent: {}
+[1.613537] (-) TimerEvent: {}
+[1.714333] (-) TimerEvent: {}
+[1.815377] (-) TimerEvent: {}
+[1.916184] (-) TimerEvent: {}
+[2.016932] (-) TimerEvent: {}
+[2.117740] (-) TimerEvent: {}
+[2.218472] (-) TimerEvent: {}
+[2.319206] (-) TimerEvent: {}
+[2.420025] (-) TimerEvent: {}
+[2.520924] (-) TimerEvent: {}
+[2.621726] (-) TimerEvent: {}
+[2.722440] (-) TimerEvent: {}
+[2.823146] (-) TimerEvent: {}
+[2.923883] (-) TimerEvent: {}
+[3.024627] (-) TimerEvent: {}
+[3.125559] (-) TimerEvent: {}
+[3.226382] (-) TimerEvent: {}
+[3.327111] (-) TimerEvent: {}
+[3.427893] (-) TimerEvent: {}
+[3.528665] (-) TimerEvent: {}
+[3.629398] (-) TimerEvent: {}
+[3.730196] (-) TimerEvent: {}
+[3.831290] (-) TimerEvent: {}
+[3.927836] (waypoint_nav) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/waypoint_nav', 'build', '--build-base', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/build', 'install', '--record', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/waypoint_nav', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.85.94.30 54319 22', 'GIT_EDITOR': ':', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms/code/Copperbottoms/ros_ws', 'TERM_PROGRAM_VERSION': '1.118.1', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-8813598f-4f94-4358-83f0-e270f724ea9b.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '8', 'ROS_LOCALHOST_ONLY': '0', 'HISTCONTROL': 'ignorespace', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-7925a18a25.sock', 'TERM_PROGRAM': 'vscode', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'SLAM': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'GIT_PAGER': 'cat', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav', 'GIT_MERGE_AUTOEDIT': 'no', 'SSH_CONNECTION': '100.85.94.30 54319 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[3.933090] (-) TimerEvent: {}
+[4.034246] (-) TimerEvent: {}
+[4.135757] (-) TimerEvent: {}
+[4.236611] (-) TimerEvent: {}
+[4.337549] (-) TimerEvent: {}
+[4.438306] (-) TimerEvent: {}
+[4.539162] (-) TimerEvent: {}
+[4.640115] (-) TimerEvent: {}
+[4.743966] (-) TimerEvent: {}
+[4.844811] (-) TimerEvent: {}
+[4.945573] (-) TimerEvent: {}
+[5.046349] (-) TimerEvent: {}
+[5.147181] (-) TimerEvent: {}
+[5.247975] (-) TimerEvent: {}
+[5.348785] (-) TimerEvent: {}
+[5.449727] (-) TimerEvent: {}
+[5.512462] (waypoint_nav) StdoutLine: {'line': b'running egg_info\n'}
+[5.515838] (waypoint_nav) StdoutLine: {'line': b'writing ../../build/waypoint_nav/waypoint_nav.egg-info/PKG-INFO\n'}
+[5.517097] (waypoint_nav) StdoutLine: {'line': b'writing dependency_links to ../../build/waypoint_nav/waypoint_nav.egg-info/dependency_links.txt\n'}
+[5.519112] (waypoint_nav) StdoutLine: {'line': b'writing entry points to ../../build/waypoint_nav/waypoint_nav.egg-info/entry_points.txt\n'}
+[5.520294] (waypoint_nav) StdoutLine: {'line': b'writing requirements to ../../build/waypoint_nav/waypoint_nav.egg-info/requires.txt\n'}
+[5.521467] (waypoint_nav) StdoutLine: {'line': b'writing top-level names to ../../build/waypoint_nav/waypoint_nav.egg-info/top_level.txt\n'}
+[5.525375] (waypoint_nav) StdoutLine: {'line': b"reading manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'\n"}
+[5.529494] (waypoint_nav) StdoutLine: {'line': b"writing manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'\n"}
+[5.530741] (waypoint_nav) StdoutLine: {'line': b'running build\n'}
+[5.532417] (waypoint_nav) StdoutLine: {'line': b'running install\n'}
+[5.533978] (waypoint_nav) StdoutLine: {'line': b'running install_data\n'}
+[5.536602] (waypoint_nav) StdoutLine: {'line': b'copying resource/waypoint_nav -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/ament_index/resource_index/packages\n'}
+[5.538509] (waypoint_nav) StdoutLine: {'line': b'copying package.xml -> /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/waypoint_nav\n'}
+[5.540340] (waypoint_nav) StdoutLine: {'line': b'running install_egg_info\n'}
+[5.547392] (waypoint_nav) StdoutLine: {'line': b'Copying ../../build/waypoint_nav/waypoint_nav.egg-info to /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages/waypoint_nav-0.0.0-py3.10.egg-info\n'}
+[5.550886] (-) TimerEvent: {}
+[5.564064] (waypoint_nav) StdoutLine: {'line': b'running install_scripts\n'}
+[5.650167] (-) TimerEvent: {}
+[5.656144] (waypoint_nav) StdoutLine: {'line': b'Installing waypoint_nav script to /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/waypoint_nav\n'}
+[5.657157] (waypoint_nav) StdoutLine: {'line': b"writing list of installed files to '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log'\n"}
+[5.750536] (-) TimerEvent: {}
+[5.801485] (waypoint_nav) CommandEnded: {'returncode': 0}
+[5.850928] (-) TimerEvent: {}
+[5.865353] (waypoint_nav) JobEnded: {'identifier': 'waypoint_nav', 'rc': 0}
+[5.868603] (-) EventReactorShutdown: {}

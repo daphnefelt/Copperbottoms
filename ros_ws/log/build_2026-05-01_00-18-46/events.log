@@ -1,0 +1,246 @@
+[0.000000] (-) TimerEvent: {}
+[0.003011] (-) JobUnselected: {'identifier': 'amy_test'}
+[0.003343] (-) JobUnselected: {'identifier': 'camera_navigation'}
+[0.003526] (-) JobUnselected: {'identifier': 'custom_messages'}
+[0.003669] (-) JobUnselected: {'identifier': 'imu_pose_estimate'}
+[0.003806] (-) JobUnselected: {'identifier': 'obstacle_avoidance'}
+[0.003965] (-) JobUnselected: {'identifier': 'realsense_publisher'}
+[0.004076] (-) JobUnselected: {'identifier': 'rf2o_laser_odometry'}
+[0.004191] (-) JobUnselected: {'identifier': 'robo_rover'}
+[0.004303] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.004411] (-) JobUnselected: {'identifier': 'stop_sign'}
+[0.004518] (-) JobUnselected: {'identifier': 'visualize_rf2o'}
+[0.004654] (-) JobUnselected: {'identifier': 'visualize_sensors'}
+[0.004788] (waypoint_nav) JobQueued: {'identifier': 'waypoint_nav', 'dependencies': OrderedDict()}
+[0.018501] (waypoint_nav) JobStarted: {'identifier': 'waypoint_nav'}
+[0.107329] (-) TimerEvent: {}
+[0.211325] (-) TimerEvent: {}
+[0.313698] (-) TimerEvent: {}
+[0.415096] (-) TimerEvent: {}
+[0.516361] (-) TimerEvent: {}
+[0.617869] (-) TimerEvent: {}
+[0.723402] (-) TimerEvent: {}
+[0.834692] (-) TimerEvent: {}
+[0.946737] (-) TimerEvent: {}
+[1.050520] (-) TimerEvent: {}
+[1.154112] (-) TimerEvent: {}
+[1.260504] (-) TimerEvent: {}
+[1.363155] (-) TimerEvent: {}
+[1.471237] (-) TimerEvent: {}
+[1.577716] (-) TimerEvent: {}
+[1.699114] (-) TimerEvent: {}
+[1.802238] (-) TimerEvent: {}
+[1.908284] (-) TimerEvent: {}
+[2.027505] (-) TimerEvent: {}
+[2.128448] (-) TimerEvent: {}
+[2.229290] (-) TimerEvent: {}
+[2.330151] (-) TimerEvent: {}
+[2.431121] (-) TimerEvent: {}
+[2.531922] (-) TimerEvent: {}
+[2.632870] (-) TimerEvent: {}
+[2.733711] (-) TimerEvent: {}
+[2.834537] (-) TimerEvent: {}
+[2.939157] (-) TimerEvent: {}
+[3.042012] (-) TimerEvent: {}
+[3.146163] (-) TimerEvent: {}
+[3.247102] (-) TimerEvent: {}
+[3.348379] (-) TimerEvent: {}
+[3.449288] (-) TimerEvent: {}
+[3.551073] (-) TimerEvent: {}
+[3.652101] (-) TimerEvent: {}
+[3.753568] (-) TimerEvent: {}
+[3.866092] (-) TimerEvent: {}
+[3.979257] (-) TimerEvent: {}
+[4.089454] (-) TimerEvent: {}
+[4.194171] (-) TimerEvent: {}
+[4.300108] (-) TimerEvent: {}
+[4.415167] (-) TimerEvent: {}
+[4.519745] (-) TimerEvent: {}
+[4.626023] (-) TimerEvent: {}
+[4.743203] (-) TimerEvent: {}
+[4.849824] (-) TimerEvent: {}
+[4.964522] (-) TimerEvent: {}
+[5.067402] (-) TimerEvent: {}
+[5.175084] (-) TimerEvent: {}
+[5.283270] (-) TimerEvent: {}
+[5.390548] (-) TimerEvent: {}
+[5.500511] (-) TimerEvent: {}
+[5.609911] (-) TimerEvent: {}
+[5.715222] (-) TimerEvent: {}
+[5.816515] (-) TimerEvent: {}
+[5.919517] (-) TimerEvent: {}
+[6.021893] (-) TimerEvent: {}
+[6.122854] (-) TimerEvent: {}
+[6.224577] (-) TimerEvent: {}
+[6.325548] (-) TimerEvent: {}
+[6.426645] (-) TimerEvent: {}
+[6.527595] (-) TimerEvent: {}
+[6.638308] (-) TimerEvent: {}
+[6.741326] (-) TimerEvent: {}
+[6.847075] (-) TimerEvent: {}
+[6.952293] (-) TimerEvent: {}
+[7.053205] (-) TimerEvent: {}
+[7.154162] (-) TimerEvent: {}
+[7.255029] (-) TimerEvent: {}
+[7.355900] (-) TimerEvent: {}
+[7.456681] (-) TimerEvent: {}
+[7.557635] (-) TimerEvent: {}
+[7.658754] (-) TimerEvent: {}
+[7.759745] (-) TimerEvent: {}
+[7.861749] (-) TimerEvent: {}
+[7.963739] (-) TimerEvent: {}
+[8.065554] (-) TimerEvent: {}
+[8.166526] (-) TimerEvent: {}
+[8.267431] (-) TimerEvent: {}
+[8.368470] (-) TimerEvent: {}
+[8.473132] (-) TimerEvent: {}
+[8.575406] (-) TimerEvent: {}
+[8.676350] (-) TimerEvent: {}
+[8.777903] (-) TimerEvent: {}
+[8.878920] (-) TimerEvent: {}
+[8.981265] (-) TimerEvent: {}
+[9.088606] (-) TimerEvent: {}
+[9.190934] (-) TimerEvent: {}
+[9.293167] (-) TimerEvent: {}
+[9.396392] (-) TimerEvent: {}
+[9.498215] (-) TimerEvent: {}
+[9.599233] (-) TimerEvent: {}
+[9.701957] (-) TimerEvent: {}
+[9.804271] (-) TimerEvent: {}
+[9.907321] (-) TimerEvent: {}
+[10.011011] (-) TimerEvent: {}
+[10.113308] (-) TimerEvent: {}
+[10.214722] (-) TimerEvent: {}
+[10.315908] (-) TimerEvent: {}
+[10.417760] (-) TimerEvent: {}
+[10.519410] (-) TimerEvent: {}
+[10.620750] (-) TimerEvent: {}
+[10.722224] (-) TimerEvent: {}
+[10.823663] (-) TimerEvent: {}
+[10.925295] (-) TimerEvent: {}
+[11.026677] (-) TimerEvent: {}
+[11.128107] (-) TimerEvent: {}
+[11.233890] (-) TimerEvent: {}
+[11.337224] (-) TimerEvent: {}
+[11.439459] (-) TimerEvent: {}
+[11.540969] (-) TimerEvent: {}
+[11.642615] (-) TimerEvent: {}
+[11.744579] (-) TimerEvent: {}
+[11.846855] (-) TimerEvent: {}
+[11.948411] (-) TimerEvent: {}
+[12.049339] (-) TimerEvent: {}
+[12.151187] (-) TimerEvent: {}
+[12.252860] (-) TimerEvent: {}
+[12.357457] (-) TimerEvent: {}
+[12.460252] (-) TimerEvent: {}
+[12.563339] (-) TimerEvent: {}
+[12.666758] (-) TimerEvent: {}
+[12.768298] (-) TimerEvent: {}
+[12.872093] (-) TimerEvent: {}
+[12.973340] (-) TimerEvent: {}
+[13.074422] (-) TimerEvent: {}
+[13.176391] (-) TimerEvent: {}
+[13.277853] (-) TimerEvent: {}
+[13.379294] (-) TimerEvent: {}
+[13.480446] (-) TimerEvent: {}
+[13.581621] (-) TimerEvent: {}
+[13.682549] (-) TimerEvent: {}
+[13.783691] (-) TimerEvent: {}
+[13.892319] (-) TimerEvent: {}
+[13.993646] (-) TimerEvent: {}
+[14.095906] (-) TimerEvent: {}
+[14.197426] (-) TimerEvent: {}
+[14.303403] (-) TimerEvent: {}
+[14.405191] (-) TimerEvent: {}
+[14.506951] (-) TimerEvent: {}
+[14.608684] (-) TimerEvent: {}
+[14.710122] (-) TimerEvent: {}
+[14.811357] (-) TimerEvent: {}
+[14.912489] (-) TimerEvent: {}
+[15.013459] (-) TimerEvent: {}
+[15.115950] (-) TimerEvent: {}
+[15.218354] (-) TimerEvent: {}
+[15.319550] (-) TimerEvent: {}
+[15.421824] (-) TimerEvent: {}
+[15.523689] (-) TimerEvent: {}
+[15.624885] (-) TimerEvent: {}
+[15.731427] (-) TimerEvent: {}
+[15.832379] (-) TimerEvent: {}
+[15.933643] (-) TimerEvent: {}
+[16.039158] (-) TimerEvent: {}
+[16.140628] (-) TimerEvent: {}
+[16.243922] (-) TimerEvent: {}
+[16.303000] (waypoint_nav) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/waypoint_nav', 'build', '--build-base', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/build', 'install', '--record', '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/waypoint_nav', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'copperbottoms', 'SSH_CLIENT': '100.85.94.30 54319 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/copperbottoms', 'OLDPWD': '/home/copperbottoms', 'TERM_PROGRAM_VERSION': '1.118.1', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-3ec66e44-e2cc-46b2-977c-5a3bf8e48f07.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'copperbottoms', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '8', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/copperbottoms/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/copperbottoms/.vscode-server/cli/servers/Stable-034f571df509819cc10b0c8129f66ef77a542f0e/server/bin/remote-cli:/home/copperbottoms/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-7925a18a25.sock', 'TERM_PROGRAM': 'vscode', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'SLAM': '/home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav', 'SSH_CONNECTION': '100.85.94.30 54319 100.124.219.92 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS': '/home/copperbottoms/code/Copperbottoms/ros_ws/', 'PYTHONPATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/build/waypoint_nav/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_sensors/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/visualize_rf2o/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/stop_sign/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/realsense_publisher/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/obstacle_avoidance/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/landmark_slam/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/imu_pose_estimate/lib/python3.10/site-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages/local/lib/python3.10/dist-packages:/home/copperbottoms/code/Copperbottoms/ros_ws/install/camera_navigation/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/copperbottoms/code/Copperbottoms/ros_ws/install/rplidar_ros:/home/copperbottoms/code/Copperbottoms/ros_ws/install/amy_test:/home/copperbottoms/code/Copperbottoms/ros_ws/install/robo_rover:/home/copperbottoms/code/Copperbottoms/ros_ws/install/rf2o_laser_odometry:/home/copperbottoms/code/Copperbottoms/ros_ws/install/custom_messages'}, 'shell': False}
+[16.374082] (-) TimerEvent: {}
+[16.482051] (-) TimerEvent: {}
+[16.583881] (-) TimerEvent: {}
+[16.686801] (-) TimerEvent: {}
+[16.788077] (-) TimerEvent: {}
+[16.892829] (-) TimerEvent: {}
+[16.994440] (-) TimerEvent: {}
+[17.096210] (-) TimerEvent: {}
+[17.197476] (-) TimerEvent: {}
+[17.298771] (-) TimerEvent: {}
+[17.403274] (-) TimerEvent: {}
+[17.506241] (-) TimerEvent: {}
+[17.608820] (-) TimerEvent: {}
+[17.709757] (-) TimerEvent: {}
+[17.811351] (-) TimerEvent: {}
+[17.912686] (-) TimerEvent: {}
+[18.013590] (-) TimerEvent: {}
+[18.118903] (-) TimerEvent: {}
+[18.223929] (-) TimerEvent: {}
+[18.325249] (-) TimerEvent: {}
+[18.431784] (-) TimerEvent: {}
+[18.533148] (-) TimerEvent: {}
+[18.639157] (-) TimerEvent: {}
+[18.740134] (-) TimerEvent: {}
+[18.843096] (-) TimerEvent: {}
+[18.944085] (-) TimerEvent: {}
+[19.045106] (-) TimerEvent: {}
+[19.147012] (-) TimerEvent: {}
+[19.252711] (-) TimerEvent: {}
+[19.354408] (-) TimerEvent: {}
+[19.456410] (-) TimerEvent: {}
+[19.557906] (-) TimerEvent: {}
+[19.663337] (-) TimerEvent: {}
+[19.767694] (-) TimerEvent: {}
+[19.869693] (-) TimerEvent: {}
+[19.971669] (-) TimerEvent: {}
+[20.073131] (-) TimerEvent: {}
+[20.174235] (-) TimerEvent: {}
+[20.277071] (-) TimerEvent: {}
+[20.380507] (-) TimerEvent: {}
+[20.482564] (-) TimerEvent: {}
+[20.585325] (-) TimerEvent: {}
+[20.687325] (-) TimerEvent: {}
+[20.796109] (-) TimerEvent: {}
+[20.897658] (-) TimerEvent: {}
+[21.009088] (-) TimerEvent: {}
+[21.112648] (-) TimerEvent: {}
+[21.218728] (-) TimerEvent: {}
+[21.254795] (waypoint_nav) StdoutLine: {'line': b'running egg_info\n'}
+[21.268820] (waypoint_nav) StdoutLine: {'line': b'creating ../../build/waypoint_nav/waypoint_nav.egg-info\n'}
+[21.287862] (waypoint_nav) StdoutLine: {'line': b'writing ../../build/waypoint_nav/waypoint_nav.egg-info/PKG-INFO\n'}
+[21.290627] (waypoint_nav) StdoutLine: {'line': b'writing dependency_links to ../../build/waypoint_nav/waypoint_nav.egg-info/dependency_links.txt\n'}
+[21.295616] (waypoint_nav) StdoutLine: {'line': b'writing entry points to ../../build/waypoint_nav/waypoint_nav.egg-info/entry_points.txt\n'}
+[21.296634] (waypoint_nav) StdoutLine: {'line': b'writing requirements to ../../build/waypoint_nav/waypoint_nav.egg-info/requires.txt\n'}
+[21.297919] (waypoint_nav) StdoutLine: {'line': b'writing top-level names to ../../build/waypoint_nav/waypoint_nav.egg-info/top_level.txt\n'}
+[21.312532] (waypoint_nav) StdoutLine: {'line': b"writing manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'\n"}
+[21.323132] (-) TimerEvent: {}
+[21.337389] (waypoint_nav) StdoutLine: {'line': b"reading manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'\n"}
+[21.368886] (waypoint_nav) StdoutLine: {'line': b"writing manifest file '../../build/waypoint_nav/waypoint_nav.egg-info/SOURCES.txt'\n"}
+[21.375940] (waypoint_nav) StdoutLine: {'line': b'running build\n'}
+[21.399560] (waypoint_nav) StdoutLine: {'line': b'running install\n'}
+[21.402391] (waypoint_nav) StdoutLine: {'line': b'running install_data\n'}
+[21.414487] (waypoint_nav) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/ament_index\n'}
+[21.431897] (-) TimerEvent: {}
+[21.446420] (waypoint_nav) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/ament_index/resource_index\n'}
+[21.454112] (waypoint_nav) StdoutLine: {'line': b'creating /home/copperbottoms/code/Copperbottoms/ros_ws/install/waypoint_nav/share/ament_index/resource_index/packages\n'}
+[21.472822] (waypoint_nav) StderrLine: {'line': b"error: can't copy 'resource/waypoint_nav': doesn't exist or not a regular file\n"}
+[21.544552] (-) TimerEvent: {}
+[21.659092] (-) TimerEvent: {}
+[21.767996] (waypoint_nav) CommandEnded: {'returncode': 1}
+[21.774763] (-) TimerEvent: {}
+[21.776733] (waypoint_nav) JobEnded: {'identifier': 'waypoint_nav', 'rc': 1}
+[21.797809] (-) EventReactorShutdown: {}

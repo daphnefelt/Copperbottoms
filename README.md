@@ -21,7 +21,8 @@ writes robot poses to pose_history.txt
 draws landmarks and poses to map_pose_history.jpg
 saves lidar-based occupancy grid to last_lidar_grid.npy
 
-
+For live updates, in your local terminal with ROS ID 42:
+ros2 run rviz2 rviz2 -d ./rviz_config_slam.rviz
 
 
 ## Stopsign Detection

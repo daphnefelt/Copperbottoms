@@ -7,29 +7,25 @@ import os
 from launch import LaunchDescription, LaunchService
 from launch.actions import ExecuteProcess, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     this_dir = os.path.dirname(os.path.abspath(__file__))
-    slam_dir  = os.path.abspath(os.path.join(this_dir, '..'))
+    slam_dir  = os.path.abspath(os.path.join(this_dir, '..', 'SLAM'))
     params_file = os.path.join(this_dir, 'nav2_params.yaml')
 
     # Converts /slam/pose → TF map→base_link for Nav2
     tf_bridge = ExecuteProcess(
-        cmd=['python3', os.path.join(slam_dir, 'SLAM', 'slam_tf_bridge.py')],
+        cmd=['python3', os.path.join(slam_dir, 'slam_tf_bridge.py')],
         output='screen',
         emulate_tty=True,
     )
 
-    # Mirrors /slam/lidar_map → /map without touching the original topic.
-    # transient_local durability matches what Nav2 costmap expects.
-    map_relay = Node(
-        package='topic_tools',
-        executable='relay',
-        name='lidar_map_relay',
-        arguments=['/slam/lidar_map', '/map', '--qos-durability', 'transient_local'],
+    # Republishes /slam/lidar_map → /map with TRANSIENT_LOCAL durability for Nav2 costmap
+    map_relay = ExecuteProcess(
+        cmd=['python3', os.path.join(this_dir, 'map_relay.py')],
         output='screen',
+        emulate_tty=True,
     )
 
     nav2 = IncludeLaunchDescription(

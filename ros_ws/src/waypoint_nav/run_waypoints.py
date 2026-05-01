@@ -4,12 +4,15 @@ import rclpy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator
 
+SLAM_OFFSET_X = 20.0
+SLAM_OFFSET_Y = 20.0
+
 def load_waypoints(filepath, every_n=4):
     poses = []
     with open(filepath) as f:
         for line in f:
             x, y, yaw = map(float, line.strip().split())
-            poses.append((x, y, yaw))
+            poses.append((x + SLAM_OFFSET_X, y + SLAM_OFFSET_Y, yaw))
     return poses[::every_n]
 
 def yaw_to_quaternion(yaw):

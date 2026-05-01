@@ -48,10 +48,17 @@ source install/setup.bash
 
 **Terminal 1 — SLAM stack** (sensors, EKF, lidar, camera):
 ```bash
-python3 /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM/SLAM_dependency_launch.py
+cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
+ros2 launch SLAM_dependency_launch.py
 ```
 
-**Terminal 2 — Nav2 + waypoint navigation:**
+**Terminal 2 — landmark_based stack** (sensors, EKF, lidar, camera):
+```bash
+cd /home/copperbottoms/code/Copperbottoms/ros_ws/src/SLAM
+python3 landmark_based_slam.py
+```
+
+**Terminal 3 — Nav2 + waypoint navigation:**
 ```bash
 ros2 launch waypoint_nav waypoint_nav_launch.py
 ```

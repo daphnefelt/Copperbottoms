@@ -130,9 +130,9 @@ class TapeVisionNode(Node):
             else:
                 self.sharp_turn_frames = 0
             
-            # Require 2 consecutive frames for sharp turn confirmation
+            # Require 1 frame for sharp turn confirmation (reduced from 2 to handle quick detection)
             was_sharp_turn = self.is_sharp_turn
-            self.is_sharp_turn = (self.sharp_turn_frames >= 2)
+            self.is_sharp_turn = (self.sharp_turn_frames >= 1)
             tape_msg.sharp_turn = self.is_sharp_turn
             
             # Log when sharp turn is first confirmed

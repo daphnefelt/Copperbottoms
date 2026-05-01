@@ -82,9 +82,26 @@ class TapeControlNode(Node):
         self.csv_file = None
         self.csv_writer = None
         if self.debug:
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            csv_filename = os.path.expanduser(f'~/performance_logs/tape_control_debug_{timestamp}.csv')
-            os.makedirs(os.path.dirname(csv_filename), exist_ok=True)
+            # Find next available counter (e.g., 5_1_one.csv, 5_1_two.csv, ...)
+            log_dir = os.path.expanduser('~/performance_logs/')
+            os.makedirs(log_dir, exist_ok=True)
+            
+            # Number words for sequential naming
+            number_words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 
+                           'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
+                           'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty']
+            
+            # Find existing files matching pattern
+            existing_files = [f for f in os.listdir(log_dir) if f.startswith('5_1_') and f.endswith('.csv')]
+            
+            # Determine next number
+            next_idx = len(existing_files)
+            if next_idx >= len(number_words):
+                # Fallback to numeric if we run out of words
+                csv_filename = os.path.join(log_dir, f'5_1_{next_idx + 1}.csv')
+            else:
+                csv_filename = os.path.join(log_dir, f'5_1_{number_words[next_idx]}.csv')
+            
             self.csv_file = open(csv_filename, 'w', newline='')
             self.csv_writer = csv.writer(self.csv_file)
             # Write header
@@ -192,26 +209,22 @@ class TapeControlNode(Node):
                 ])
                 self.csv_file.flush()
             
-            # Exit when tape is detected and reasonably visible, let normal PID handle alignment
-            # Require minimum turn duration to avoid exiting on fake straight paths at junction
-            min_turn_frames = 45  # Must turn at least 22 frames (~0.8s) to clear fork junction
-            angle_from_vertical = abs(msg.angle - (-90.0))
-            is_angle_reasonable = angle_from_vertical < 45  # Within 45° of vertical (tighter for fake path rejection)
-            is_timeout = self.sharp_turn_frame_count > 100 # Max 35 frames (~1.2s at 28 fps)
+            # Simple timeout-based exit: turn for fixed duration then resume normal following
+            # At 1.5 rad/s, 90° turn = 1.05 seconds ≈ 30 frames @ 28fps
+            # Use longer duration to ensure full turn completion and avoid fake-out paths
+            turn_duration_frames = 60  # ~2.1 seconds to fully clear junction
             
-            if msg.found and self.sharp_turn_frame_count >= min_turn_frames and (is_angle_reasonable or is_timeout):
+            if self.sharp_turn_frame_count >= turn_duration_frames:
                 self.sharp_turn_state = 'NORMAL'
-                reason = 'aligned' if is_angle_reasonable else 'timeout'
                 self.get_logger().warn(
-                    f'[SHARP TURN COMPLETE] {reason} - Frames: {self.sharp_turn_frame_count}, '
-                    f'Angle: {msg.angle:.1f}° (from vertical: {angle_from_vertical:.1f}°), '
-                    f'Center: {msg.center_x:.1f}'
+                    f'[SHARP TURN COMPLETE] Duration complete - Frames: {self.sharp_turn_frame_count}, '
+                    f'Angle: {msg.angle:.1f}°, Center: {msg.center_x:.1f}, Found: {msg.found}'
                 )
                 # Resume normal following on next frame
             else:
                 self.get_logger().info(
-                    f'[TURNING] Frame {self.sharp_turn_frame_count}, '
-                    f'Angle: {msg.angle:.1f}° (from vert: {angle_from_vertical:.1f}°), Center: {msg.center_x:.1f}',
+                    f'[TURNING] Frame {self.sharp_turn_frame_count}/{turn_duration_frames}, '
+                    f'Angle: {msg.angle:.1f}°, Center: {msg.center_x:.1f}, Found: {msg.found}',
                     throttle_duration_sec=0.5
                 )
             return

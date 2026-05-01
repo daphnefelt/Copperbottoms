@@ -366,6 +366,10 @@ class LidarDebugNode(Node):
                 self._enter_mode(self.MODE_INLET)
             if right_cls == 'PARALLEL' and lookahead_cls  == 'PARALLEL':
                 self._enter_mode(self.MODE_STRAIGHT)
+            if lookahead_cls == 'PERPENDICULAR' and 4.2 <= angle_dist < 99:
+                self._enter_mode(self.MODE_TURN)
+            if front_dist < self.stop_dist:
+                self._enter_mode(self.MODE_OBSTACLE)
                 
             if right_cls == 'PARALLEL':
                 if self.prev_cls != 'PARALLEL':

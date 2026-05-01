@@ -307,7 +307,7 @@ class LidarDebugNode(Node):
                 #self.wall_target = 1.4
 
             if self.prev_state == self.MODE_INLET:
-                if (right_dist > 1.2 and right_dist != 99)
+                if (right_dist > 1.2 and right_dist != 99):
                     self.wall_target = right_dist
                     self.get_logger().info('UPDATE WALL TARGET')
                 else:

@@ -67,6 +67,14 @@ class SimpleWaypointDriver(Node):
         y = msg.pose.pose.position.y
         q = msg.pose.pose.orientation
         yaw = 2.0 * math.atan2(q.z, q.w)
+        if self._pose is None:
+            self.get_logger().info(
+                f'SLAM start position: x={x:.3f}  y={y:.3f}  yaw={math.degrees(yaw):.1f}°')
+            for i, (wx, wy, _) in enumerate(self._waypoints[:5]):
+                dist = math.hypot(wx - x, wy - y)
+                bearing = math.degrees(math.atan2(wy - y, wx - x))
+                self.get_logger().info(
+                    f'  WP{i+1}: x={wx:.3f}  y={wy:.3f}  dist={dist:.2f}m  bearing={bearing:.1f}°')
         self._pose = (x, y, yaw)
 
     def _control_loop(self):

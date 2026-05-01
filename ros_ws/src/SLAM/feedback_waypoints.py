@@ -22,7 +22,7 @@ class WaypointFollower(Node):
         self.scan_sub = self.create_subscription(LaserScan, '/scan', self.lidar_update, 10)
         self.waypoints = self.load_waypoints(waypoint_file, every_n)
         print(self.waypoints.shape)
-        self.waypoints = self.waypoints[self.waypoints[:,:,:,3] >=time_start]
+        self.waypoints = self.waypoints[self.waypoints[:,3] >=time_start]
         # accept the last values for the landmarks as the true values
         self.landmarks = self.load_landmarks(landmark_file)
         self.current_idx = 0

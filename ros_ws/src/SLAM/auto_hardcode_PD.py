@@ -6,9 +6,8 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
 
-x_walls = [5, 32]
-y_walls = [3, 21.5]
-
+x_walls = [7, 31]
+y_walls = [3, 20.5]
 
 
 def pose_goal_from_hallway(hallway):
@@ -37,10 +36,15 @@ class Hardcoded(Node):
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.forward_speed = 0.25
         self.turn_speed = 0.3
-        self.sharp_turn_speed = 0.75
+        self.sharp_turn_speed = 0.55
         self.backup_speed = 0.25
         self.backup_time = 1.0
-        self.turn_p = 1/20 / 2 # turn full at 20 degrees off
+        self.turn_p = 1/20 /2  # turn full at 20 degrees off
+        self.sharp_turn_p = 1/20 /4
+        self.turn_d = 0.00  # tune this — try something like 0.05 to start
+        self._prev_delta_yaw = 0.0
+        self._prev_yaw_time = None
+        self._prev_hallway = None
         self.right_turn_duration = 1.0
         self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf
@@ -96,7 +100,7 @@ class Hardcoded(Node):
         if new_hall != self.hall:
             self.get_logger().info(f"Entering transitioning... previous hall {self.hall} new hall {new_hall}")
             self.transitioning = True
-        return None # not in a hallway, need to turn right
+        return new_hall # not in a hallway, need to turn right
 
 
 
@@ -128,7 +132,7 @@ class Hardcoded(Node):
         # look ahead
         if self.transitioning:
             self.get_logger().info(f"In transition: Look ahead...")
-            if self._cone_num_greater_max(msg, math.radians(-88.0), math.radians(10.0)) >= 5:
+            if self._cone_num_greater_max(msg, math.radians(-88.0), math.radians(10.0), 5.0) >= 5:
                 self.get_logger().info(f"Gap on right ahead!")
                 self.hall = (self.hall + 1) % 4
                 self.transitioning = False
@@ -185,11 +189,12 @@ class Hardcoded(Node):
             goal_yaw = pose_goal_from_hallway(hallway)
             delta_yaw = (goal_yaw - self.current_yaw + 180) % 360 - 180
             print(f"delta_yaw {delta_yaw}")
+            p = self.sharp_turn_p if abs(delta_yaw) > 30 else self.turn_p
             fwd = self.forward_speed
             if abs(delta_yaw) > 30:
                 print("big turnnnn")
                 fwd = 0.2
-            ang = self.turn_speed * (delta_yaw) * self.turn_p
+            ang = self.turn_speed * (delta_yaw) * p
 
             # also nudge away from side walls if too close
             right_skew = max(0.0, self.side_threshold - self.right_dist) * self.kp_side

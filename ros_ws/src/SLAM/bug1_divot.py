@@ -32,6 +32,7 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Bool
 
 
 class Bug1(Node):
@@ -81,7 +82,12 @@ class Bug1(Node):
         # ── ROS ──────────────────────────────────────────────────────────
         self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.create_subscription(LaserScan, '/scan', self.scan_callback, 10)
+        self.create_subscription(Bool, '/in_divot', self._in_divot_cb, 10)
+        self.in_divot = False  # when True, suppress all our cmd_vel publishes
         self.get_logger().info('Bug1 started — waiting 3 s for lidar to stabilise…')
+
+    def _in_divot_cb(self, msg: Bool):
+        self.in_divot = bool(msg.data)
 
     def _set_ready(self):
         if not self.ready:
@@ -168,6 +174,9 @@ class Bug1(Node):
         return False  # nudge complete
 
     def _publish(self, lin: float, ang: float):
+        if self.in_divot:
+            # divot handler is driving — don't fight it
+            return
         t = Twist()
         t.linear.x  = float(lin)
         t.angular.z = float(ang)

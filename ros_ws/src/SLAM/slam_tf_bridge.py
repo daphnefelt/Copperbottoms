@@ -13,6 +13,9 @@ class SlamTfBridge(Node):
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.create_subscription(
             PoseWithCovarianceStamped, '/slam/pose', self.pose_cb, 10)
+        self._last_transform = None  # (x_mo, y_mo, theta_mo)
+        # Republish at 20 Hz so Nav2 controller never gets a stale TF
+        self.create_timer(0.05, self._publish_tf)
 
     def pose_cb(self, msg: PoseWithCovarianceStamped):
         slam_x = msg.pose.pose.position.x
@@ -28,16 +31,18 @@ class SlamTfBridge(Node):
             oq = odom_to_base.transform.rotation
             odom_yaw = 2.0 * math.atan2(oq.z, oq.w)
         except Exception:
-            # rf2o not ready yet — publish map→odom at current SLAM pose (odom origin = base_link)
             odom_x, odom_y, odom_yaw = 0.0, 0.0, 0.0
 
         # map_T_odom = map_T_base * inv(odom_T_base)
-        # rotation: theta_mo = slam_yaw - odom_yaw
-        # translation: p_mo = p_mb - R_mo * p_ob
         theta_mo = slam_yaw - odom_yaw
         x_mo = slam_x - (math.cos(theta_mo) * odom_x - math.sin(theta_mo) * odom_y)
         y_mo = slam_y - (math.sin(theta_mo) * odom_x + math.cos(theta_mo) * odom_y)
+        self._last_transform = (x_mo, y_mo, theta_mo)
 
+    def _publish_tf(self):
+        if self._last_transform is None:
+            return
+        x_mo, y_mo, theta_mo = self._last_transform
         t = TransformStamped()
         t.header.stamp = self.get_clock().now().to_msg()
         t.header.frame_id = 'map'

@@ -62,7 +62,7 @@ class Hardcoded(Node):
         self.sharp_turn_speed = 0.75
         self.backup_speed = 0.25
         self.backup_time = 1.0
-        self.turn_p = 1/20 / 3 # turn full at 20 degrees off
+        self.turn_p = 1/20 / 2 # turn full at 20 degrees off
         self.right_turn_duration = 1.0
         self.right_turn_cooldown = 10.0
         self._right_turn_start = -math.inf
@@ -79,7 +79,7 @@ class Hardcoded(Node):
 
         # side-wall avoidance
         self.side_threshold = 0.5  # m — start skewing away when either side is closer than this
-        self.kp_side = 1 / 20
+        self.kp_side = 0.5
         self.right_dist = float('inf')
         self.left_dist = float('inf')
 

@@ -54,6 +54,9 @@ class Hardcoded(Node):
         self.backup_speed = 0.25
         self.backup_time = 1.0
         self.turn_p = 1/20 # turn full at 20 degrees off
+        self.right_turn_duration = 0.5
+        self.right_turn_cooldown = 2.0
+        self._right_turn_start = -math.inf
 
     def _publish(self, lin: float, ang: float):
         t = Twist()
@@ -62,7 +65,18 @@ class Hardcoded(Node):
         self.vel_pub.publish(t)
 
     def right_turn(self):
-        self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
+        now = time.time()
+        elapsed = now - self._right_turn_start
+        if elapsed < self.right_turn_duration:
+            # still inside the active 0.5s turn window
+            self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
+        elif elapsed < self.right_turn_duration + self.right_turn_cooldown:
+            # cooldown — ignore the call, go straight
+            self._publish(self.forward_speed, 0.0)
+        else:
+            # cooldown expired — start a fresh 0.5s turn
+            self._right_turn_start = now
+            self._publish(self.forward_speed, -1 * self.sharp_turn_speed * 2)
 
     def _pose_cb(self, msg):
         pose = msg.pose.pose.position.x, msg.pose.pose.position.y, math.degrees(2 * math.atan2(msg.pose.pose.orientation.z, msg.pose.pose.orientation.w))

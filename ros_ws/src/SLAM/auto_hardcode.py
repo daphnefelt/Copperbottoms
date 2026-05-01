@@ -90,7 +90,7 @@ class Hardcoded(Node):
             fwd = self.forward_speed
             if abs(delta_yaw) > 30:
                 print("big turnnnn")
-                fwd = self.forward_speed / 2
+                fwd = 0.2
             self._publish(fwd, self.turn_speed * (delta_yaw) * self.turn_p)
         else:
             print("right turnnnn")
